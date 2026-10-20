@@ -13,7 +13,7 @@ Keep `workshop_offline.py`, `data/`, and the package helper files in their origi
 
 | Section | Main notebook | What you do |
 |---|---|---|
-| 1 | `01_architectures.ipynb` | Compare the simple definition, annex, programmed branch and missing annex; inspect what each path supports. |
+| 1 | `01_architectures.ipynb` | Build a synthetic LLM client, retrieval/calculator tools, fixed workflows and an agent loop. Inspect messages and test missing evidence; optionally call OpenAI or Together directly with your own key. |
 | 2 | `02_grounded_rag.ipynb` | Check time eligibility and sufficiency, trace branching impact, and verify 4 valid / 17 invalid repairs. |
 | 3 | `03_post_training.ipynb` | Calculate the same SFT, LoRA and DPO illustrations as the web interface; inspect the unchanged evidence gap. |
 | 4 | `04_adaptation_lab.ipynb` | Diagnose a controlled workflow through supplied interventions. See the additional recorded-adaptation notebooks below. |
@@ -36,3 +36,7 @@ Instructor instructions are retained in `instructor-sandbox/INSTRUCTOR_LORA_DEMO
 Sections 1–3, 5 and 7 are declared synthetic teaching computations. Section 6 replays measured model responses to synthetic cases. The Section 4 recorded adapter comparison is separately labelled. Do not interpret synthetic positive returns as market alpha, a lower training loss as calibrated confidence, or model-reported citations as causal attribution.
 
 The portable Python checks in Sections 1–3 and 5–7 are compared against saved outputs exported from the browser engines. Regeneration for maintainers uses `scripts/export_notebook_fixtures.mjs` and `scripts/align_offline_notebooks.py`; participants do not run those scripts.
+
+### Section 1: executable architecture notebook
+
+`01_architectures.ipynb` is now self-contained: no fixture lookup or helper import. It defines a transparent synthetic model, actual Python tools and orchestration. The optional `HostedLLM` client calls OpenAI or Together directly from the Jupyter kernel. Set `RUN_LIVE=True`, select the provider and model, and enter your provider key using the hidden prompt. Default execution makes no network calls. Hosted adapters follow documented tool-call schemas; account/model compatibility must be checked in a live run.

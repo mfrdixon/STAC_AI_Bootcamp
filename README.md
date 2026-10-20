@@ -17,7 +17,7 @@ Keep `workshop_offline.py`, `data/`, and the package helper files in their origi
 
 | Section | Main notebook | What you do |
 |---|---|---|
-| 1 | `01_architectures.ipynb` | Compare the simple definition, annex, programmed branch and missing annex; inspect what each path supports. |
+| 1 | `01_architectures.ipynb` | Build a synthetic LLM client, retrieval/calculator tools, fixed workflows and an agent loop. Inspect messages and test missing evidence; optionally call OpenAI or Together directly with your own key. |
 | 2 | `02_grounded_rag.ipynb` | Check time eligibility and sufficiency, trace branching impact, and verify 4 valid / 17 invalid repairs. |
 | 3 | `03_post_training.ipynb` | Calculate the same SFT, LoRA and DPO illustrations as the web interface; inspect the unchanged evidence gap. |
 | 4 | `04_adaptation_lab.ipynb` | Diagnose a controlled workflow through supplied interventions. See the additional recorded-adaptation notebooks below. |
@@ -51,3 +51,7 @@ python3 -m jupyterlab notebooks
 ```
 
 Live model calls and fresh GPU training are optional instructor extensions. The default notebooks use bundled fixtures, numerical illustrations and explicitly labelled recorded responses. They do not contact a model provider.
+
+### Section 1: executable architecture notebook
+
+`01_architectures.ipynb` is now self-contained: no fixture lookup or helper import. It defines a transparent synthetic model, actual Python tools and orchestration. The optional `HostedLLM` client calls OpenAI or Together directly from the Jupyter kernel. Set `RUN_LIVE=True`, select the provider and model, and enter your provider key using the hidden prompt. Default execution makes no network calls. Hosted adapters follow documented tool-call schemas; account/model compatibility must be checked in a live run.
