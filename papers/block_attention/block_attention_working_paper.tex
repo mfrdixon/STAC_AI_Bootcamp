@@ -14,7 +14,7 @@ When an application presents independent action alternatives, their arbitrary li
 \section{Two methods, two distinct claims}
 \textbf{Independent encoding: tested on pretrained models.} Application code reads one dictionary, encodes evidence separately, and encodes every action description in a separate model call. It reads hidden vectors rather than generating text. A shared, untrained comparison scores each action against the evidence. Separate files are unnecessary. Existing transformer attention remains active within each input.
 
-\textbf{Block Attention: tested only on a tiny random model.} One structured input contains an evidence block and individually delimited action blocks. Application code identifies these spans, supplies a block attention mask, resets positional indices inside each block, pools each action block and applies a shared scoring head. This is not a prompting instruction and is not implemented merely by writing JSON. It requires control over model internals. It has not been validated in a pretrained Qwen or Llama transformer.
+\textbf{Block Attention: tiny-model proof and a preliminary Qwen readout test.} One structured input contains an evidence block and individually delimited action blocks. Application code identifies these spans, supplies a block attention mask, resets positional indices inside each block, pools each action block and applies a shared scoring head. This is not a prompting instruction and is not implemented merely by writing JSON. It requires control over model internals. A later matched Qwen readout experiment is reported below; useful pretrained-model behavior is not established.
 
 \section{Motivation and prior work}
 Option-order sensitivity has been documented in language-model multiple-choice tasks \cite{order}. Deep Sets \cite{deep} and Set Transformer \cite{set} provide established foundations for permutation-invariant and equivariant functions. Our contribution here is an explicit implementation and controlled demonstration of action isolation for a financial workflow. The behavior does not identify a defective attention head or isolate attention from positional encoding and learned behavior as the cause of a pretrained model's failure.
@@ -158,6 +158,24 @@ All thirty unconstrained greedy responses were identical: ``NO; count=50; percen
 Teacher-forced YES/NO prefix scores excluding EOS gave conditional YES probabilities between 0.23746 and 0.26800, a range of 3.0534 percentage points. These scores condition on the two candidate prefixes and are not truth probabilities. Identical-prompt repeats yielded zero numerical or text variation. The run took 49 seconds on CPU with float32 eager inference, neutral repetition penalty and greedy decoding. No sampling or training occurred.
 
 This negative finding for final-answer sensitivity is retained alongside the positive order-effect experiments. It does not show broad robustness: only one fixed numerical sample and one small model were tested. Nor does it show Block Attention repairing a meaningful counting task: that comparison has not been trained or performed. Reproduction files are in \texttt{waiting\_times/}, including the manifest and raw outputs.
+
+\newpage
+\section{Matched pretrained Qwen readout with Block Attention}
+A follow-up applies a restricted attention graph directly to frozen Qwen2.5-0.5B, retaining its vocabulary output head. The same fifty waiting times, ten orders and three repeats are used in each of three configurations. Numbers are serialized as identically formatted records, with fixed segment tokenization. This differs from the earlier JSON list, so a new matched ordinary baseline is required. Input-token hashes are identical across configurations within each ordering. Ninety calls took 58.21 seconds on CPU.
+
+The instruction prefix uses ordinary causal attention. Each numerical record can see that prefix and its own earlier tokens, but no other numerical record. The fixed assistant/readout suffix can see the prefix, all records and its own earlier suffix tokens. The full construction resets each record's rotary positions to prefix length plus within-record index; prefix and suffix positions stay fixed. This directed extension of Block Attention lets the answer read the full set without letting records acquire contexts dependent on their list position. Its suffix representations are permutation invariant in exact arithmetic by the same layerwise symmetry argument, subject to the stated mask and positional conditions.
+
+The original output head scores the single-token uppercase candidates YES and NO at the final assistant-prefix token. These are normalized candidate probabilities, not compatibility scores. No answer is generated for this comparison.
+\begin{center}\small
+\begin{tabular}{lrrr}\toprule
+Configuration & Min. $P(\mathrm{YES})$ & Max. $P(\mathrm{YES})$ & Range (percentage points)\\\midrule
+Ordinary causal & 21.734693\% & 23.566553\% & 1.831860\\
+Restricted mask, global positions & 9.217633\% & 9.741331\% & 0.523698\\
+Restricted mask, local positions & 19.726548\% & 19.726937\% & 0.000389\\\bottomrule
+\end{tabular}\end{center}
+Every identical-repeat difference was zero. The full construction's range is $3.89\times10^{-6}$ in probability units, within the declared $10^{-5}$ numerical tolerance. It is not bitwise invariant. Masked attention entries were zero in audited order-zero runs across every layer, and the readout's access to all records was checked. The residual is consistent with floating-point reduction effects; a higher-precision diagnosis was not conducted.
+
+\textbf{Critical qualification.} Uppercase YES and NO together receive 95.71--96.77\% of raw probability mass in the ordinary condition, but only 8.6926--8.6929\% under the full mask/local-position construction. Although NO remains first within the two uppercase candidates, the unconstrained vocabulary argmax becomes title-case \texttt{Yes} in all thirty full-construction runs. In the mask-only condition it is NO in twenty-four runs and COUNT in six. Thus invariant conditional scores do not establish preserved output behavior, calibration or counting accuracy. A mask retrofit can substantially alter the pretrained model's distribution. This experiment is an architectural readout check on one fixed sample, not a validated counting solution. Raw results and code are in \texttt{waiting\_times/block\_matched/}.
 
 \newpage
 \section*{Figure 1: the tested independent-encoding workaround}

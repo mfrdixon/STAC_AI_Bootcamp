@@ -1,0 +1,61 @@
+{
+  "ordinary": {
+    "p_yes_min": 0.21734693006060693,
+    "p_yes_max": 0.23566552901463725,
+    "p_yes_order_range": 0.01831859895403032,
+    "max_repeat_range": 0.0,
+    "top_candidates": [
+      "NO"
+    ],
+    "raw_mass_min": 0.9571134448051453,
+    "raw_mass_max": 0.9676702469587326
+  },
+  "mask_only": {
+    "p_yes_min": 0.09217632587554855,
+    "p_yes_max": 0.09741330808439168,
+    "p_yes_order_range": 0.0052369822088431245,
+    "max_repeat_range": 0.0,
+    "top_candidates": [
+      "NO"
+    ],
+    "raw_mass_min": 0.11258695926517248,
+    "raw_mass_max": 0.1298933094367385
+  },
+  "block_local": {
+    "p_yes_min": 0.19726547963436172,
+    "p_yes_max": 0.19726936832667,
+    "p_yes_order_range": 3.888692308273711e-06,
+    "max_repeat_range": 0.0,
+    "top_candidates": [
+      "NO"
+    ],
+    "raw_mass_min": 0.08692565560340881,
+    "raw_mass_max": 0.08692899718880653
+  },
+  "audit": {
+    "ordinary": {
+      "forbidden_attention_max": 0.0,
+      "all_record_tokens_can_read_prefix": true,
+      "readout_can_read_all_records": true,
+      "tokens": 596
+    },
+    "block_local": {
+      "forbidden_attention_max": 0.0,
+      "all_record_tokens_can_read_prefix": true,
+      "readout_can_read_all_records": true,
+      "tokens": 596
+    },
+    "mask_only": {
+      "forbidden_attention_max": 0.0,
+      "all_record_tokens_can_read_prefix": true,
+      "readout_can_read_all_records": true,
+      "tokens": 596
+    }
+  },
+  "elapsed_seconds": 58.214646100997925,
+  "evaluations": 90,
+  "torch": "2.13.0",
+  "transformers": "4.57.3",
+  "invariance_tolerance": 1e-05,
+  "block_within_tolerance": true
+}
