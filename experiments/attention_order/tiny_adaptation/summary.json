@@ -1,0 +1,82 @@
+{
+  "results": {
+    "ordinary_trained": {
+      "majority_accuracy": 0.9778000116348267,
+      "majority_accuracy_first_order": 0.9760000109672546,
+      "fraction_mae_percentage_points": 1.7211503982543945,
+      "fraction_mae_first_order_pp": 1.7118209600448608,
+      "max_fraction_order_range_pp": 10.316893577575684,
+      "max_yes_probability_order_range": 0.7371003031730652,
+      "sets_with_answer_flip": 54,
+      "test_sets": 1000,
+      "max_identical_repeat_difference": 0.0,
+      "boundary_sets": 127,
+      "boundary_accuracy": 0.8267716765403748
+    },
+    "block_without_adaptation": {
+      "majority_accuracy": 0.996999979019165,
+      "majority_accuracy_first_order": 0.996999979019165,
+      "fraction_mae_percentage_points": 3.192845344543457,
+      "fraction_mae_first_order_pp": 3.192845344543457,
+      "max_fraction_order_range_pp": 1.1920928955078125e-05,
+      "max_yes_probability_order_range": 1.1920928955078125e-07,
+      "sets_with_answer_flip": 0,
+      "test_sets": 1000,
+      "max_identical_repeat_difference": 0.0,
+      "boundary_sets": 127,
+      "boundary_accuracy": 0.9763779640197754
+    },
+    "block_after_adaptation": {
+      "majority_accuracy": 0.996999979019165,
+      "majority_accuracy_first_order": 0.996999979019165,
+      "fraction_mae_percentage_points": 2.0240559577941895,
+      "fraction_mae_first_order_pp": 2.0240557193756104,
+      "max_fraction_order_range_pp": 1.1920928955078125e-05,
+      "max_yes_probability_order_range": 1.1920928955078125e-07,
+      "sets_with_answer_flip": 0,
+      "test_sets": 1000,
+      "max_identical_repeat_difference": 0.0,
+      "boundary_sets": 127,
+      "boundary_accuracy": 0.9763779640197754
+    }
+  },
+  "parameters": 18818,
+  "seconds": 10.604429960250854,
+  "base_training": [
+    {
+      "step": 100,
+      "loss": 0.15461288392543793
+    },
+    {
+      "step": 200,
+      "loss": 0.08250753581523895
+    },
+    {
+      "step": 300,
+      "loss": 0.07960595190525055
+    },
+    {
+      "step": 400,
+      "loss": 0.042836785316467285
+    },
+    {
+      "step": 500,
+      "loss": 0.08680963516235352
+    }
+  ],
+  "adaptation_training": [
+    {
+      "step": 100,
+      "loss": 0.02369997464120388
+    },
+    {
+      "step": 200,
+      "loss": 0.02078760601580143
+    },
+    {
+      "step": 300,
+      "loss": 0.041623231023550034
+    }
+  ],
+  "torch": "2.13.0"
+}

@@ -1,0 +1,17 @@
+{
+  "seed": 20261025,
+  "train_seed": 81001,
+  "test_seed": 81002,
+  "train_sets": 8000,
+  "test_sets": 1000,
+  "items": 50,
+  "base_steps": 500,
+  "adapt_steps": 300,
+  "batch_size": 64,
+  "learning_rate": 0.002,
+  "task": "Estimate fraction above 30 minutes; classify strictly more than half",
+  "input": "continuous numerical values, not text",
+  "training": "all tiny-model weights; no pretrained LM and no LoRA",
+  "evaluation": "10 fixed permutations per test set; three identical repeats of first permutation",
+  "success_criteria": "report all results; no selection based on held-out performance"
+}

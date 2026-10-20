@@ -14,10 +14,10 @@ When an application presents independent action alternatives, their arbitrary li
 \section{Two methods, two distinct claims}
 \textbf{Independent encoding: tested on pretrained models.} Application code reads one dictionary, encodes evidence separately, and encodes every action description in a separate model call. It reads hidden vectors rather than generating text. A shared, untrained comparison scores each action against the evidence. Separate files are unnecessary. Existing transformer attention remains active within each input.
 
-\textbf{Block Attention: tiny-model proof and a preliminary Qwen readout test.} One structured input contains an evidence block and individually delimited action blocks. Application code identifies these spans, supplies a block attention mask, resets positional indices inside each block, pools each action block and applies a shared scoring head. This is not a prompting instruction and is not implemented merely by writing JSON. It requires control over model internals. A later matched Qwen readout experiment is reported below; useful pretrained-model behavior is not established.
+\textbf{Block Attention: tested on a tiny random model.} One structured input contains an evidence block and individually delimited action blocks. Application code identifies these spans, supplies a block attention mask, resets positional indices inside each block, pools each action block and applies a shared scoring head. This is not a prompting instruction and is not implemented merely by writing JSON. It requires control over model internals. This action-scoring construction has not been validated as a trained replacement for a pretrained language model's answer generator.
 
 \section{Motivation and prior work}
-Option-order sensitivity has been documented in language-model multiple-choice tasks \cite{order}. Deep Sets \cite{deep} and Set Transformer \cite{set} provide established foundations for permutation-invariant and equivariant functions. Our contribution here is an explicit implementation and controlled demonstration of action isolation for a financial workflow. The behavior does not identify a defective attention head or isolate attention from positional encoding and learned behavior as the cause of a pretrained model's failure.
+Option-order sensitivity has been documented in language-model multiple-choice tasks \cite{order}. Deep Sets \cite{deep} and Set Transformer \cite{set} provide established foundations for permutation-invariant and equivariant functions. Our contribution here is an explicit implementation and controlled demonstration of action isolation for a financial workflow. The behavior does not identify a defective attention head or isolate attention from positional encoding and learned behavior as the cause of a pretrained model's failure. Sequence packing already combines attention isolation and adjusted positional embeddings to preserve separate-sequence computation \cite{packing}. UniLM combines different attention masks in a shared transformer \cite{unilm}; Fusion-in-Decoder independently encodes passages and combines them through decoder cross-attention \cite{fid}. Thus neither block isolation nor mixed attention patterns are new in themselves.
 \newpage
 \section{The mathematical construction}
 Let $X=(E,A_1,\ldots,A_m)$ denote token blocks, where $E$ is evidence and $A_a$ contains an action name and definition. Each token has block ID $b_i$ and within-block position $r_i$. For a causal decoder, define
@@ -98,127 +98,16 @@ Model revisions:\par
 Qwen: \texttt{7ae557604adf67be50417f59c2c2f167def9a775}.\par
 FLAN: \texttt{7bcac572ce56db69c1ea7c8af255c5d7c9672fc2}.\par The recorded environment uses PyTorch 2.13.0 and Transformers 4.57.3 for pretrained models. Tiny-model execution takes approximately 0.15 seconds after imports on this CPU; it is not a training-time estimate.
 
-\begin{thebibliography}{9}
+\begingroup\small
+\begin{thebibliography}{9}\setlength{\itemsep}{2pt}
 \bibitem{order} P. Pezeshkpour and E. Hruschka (2024). Large Language Models Sensitivity to the Order of Options in Multiple-Choice Questions. Findings of NAACL. \url{https://aclanthology.org/2024.findings-naacl.130/}
 \bibitem{deep} M. Zaheer et al. (2017). Deep Sets. NeurIPS. \url{https://arxiv.org/abs/1703.06114}
 \bibitem{set} J. Lee et al. (2019). Set Transformer: A Framework for Attention-based Permutation-Invariant Neural Networks. ICML. \url{https://proceedings.mlr.press/v97/lee19d.html}
+\bibitem{packing} M. M. Krell et al. (2021/2022). Efficient Sequence Packing without Cross-contamination: Accelerating Large Language Models without Impacting Performance. \url{https://arxiv.org/abs/2107.02027}
+\bibitem{unilm} L. Dong et al. (2019). Unified Language Model Pre-training for Natural Language Understanding and Generation. \url{https://arxiv.org/abs/1905.03197}
+\bibitem{fid} G. Izacard and E. Grave (2021). Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering. EACL. \url{https://aclanthology.org/2021.eacl-main.74/}
 \end{thebibliography}
-\newpage
-\section{Explicit set semantics and repeated-number tests}
-An application must distinguish an unordered sample from an ordered sequence explicitly. For example:
-\begin{verbatim}
-{"type": "set", "items": [0.12, -0.83, 1.47],
- "duplicates": "preserve"}
-\end{verbatim}
-Here ``set'' denotes a multiset of observations: repeated values are retained. A schema compiler assigns each item a separate block and local positional coordinates, followed by symmetric pooling. A sequence declaration instead preserves sequence positions and the ordinary attention pathway. The caller supplies the semantics; the model does not infer exchangeability, independence or chronology from values. Within-record order may still matter for structured or textual items. The implementation rejects missing semantics and non-finite inputs.
-
-\subsection*{Preliminary results: fixed 50-number samples}
-We generated twenty fixed samples of fifty independent standard-normal pseudorandom draws. For each sample, every comparison reuses exactly those fifty values: the identity ordering plus ninety-nine permutations, each repeated ten times. An assertion checks that the sorted input values agree exactly after every permutation. Across three configurations this gives 60,000 evaluations. Additional samples are replication checks, not replacements for the fixed-input comparisons.
-
-An untrained two-layer, four-head, width-32 transformer (18,785 parameters) embeds each scalar with a linear map, adds positions, applies its layers, averages the hidden vectors and applies a fixed random linear readout:
-\[
-y_\pi=w^\top\left(\frac1{50}\sum_{i=1}^{50}h_i(x_\pi)\right)+b.
-\]
-This output is a diagnostic, not an estimated population statistic. Across the first fixed sample, ordinary causal attention yields an output range of 0.14754; block masking with global positions yields 0.04558; block masking with local positions yields exactly zero. Across all twenty samples the corresponding maximum ranges are 0.18770, 0.06765 and zero. Every repeated-input range is zero. Permuting items only permutes the final hidden vectors under the full construction: measured equivariance error is zero.
-
-Each number is represented by one continuous embedding, so a singleton block's attention is trivial (self-only). This is a deliberate architectural isolation test and reduces to shared per-item processing plus symmetric pooling. It does not establish gains from learned attention. Changing the first sample's values by adding one changes the full construction's output by 0.20905; this separate control confirms that the output is not constant in its values. The ordering comparisons never change values.
-\newpage
-\section{An interpretable outcome: arithmetic mean}
-To make the diagnostic intuitive, consider an explicitly constructed one-head calculation with $Q=K=0$, $V_i=x_i$, no positional embeddings, residuals or feed-forward network, and arithmetic-mean pooling. Softmax assigns uniform weights to each row's allowed inputs. The target is the ordinary sample mean $\bar x=\frac1n\sum_i x_i$.
-
-With ordinary causal masking, each row averages its visible prefix. Pooling those averages gives
-\[
-y_{\rm causal}(x_\pi)=\frac1n\sum_{i=1}^n\frac1i\sum_{j=1}^i x_{\pi(j)}
-=\sum_{j=1}^n\left(\frac1n\sum_{i=j}^n\frac1i\right)x_{\pi(j)}.
-\]
-Earlier items receive larger effective weights. This is generally not the sample mean, and changing which number occupies each position changes the result. For singleton Block Attention, each row sees only itself, so $h_i=x_{\pi(i)}$ and
-\[
-y_{\rm block}(x_\pi)=\frac1n\sum_i x_{\pi(i)}=\bar x.
-\]
-An important control removes the causal restriction altogether. Every row then averages all numbers uniformly; pooling also returns $\bar x$. Thus Block Attention is sufficient here, not necessary. Reading the final causal prefix alone would also recover the mean. The example isolates aggregation and visibility choices, not an inherent inability of attention to calculate means.
-
-\subsection*{Preliminary results: same numbers, different order}
-The first sample has true mean $-0.0736113354$. The exact same fifty numbers give:
-\begin{center}
-\begin{tabular}{lrr}\toprule
-Calculation & Original order & Shuffled order\\\midrule
-Causal prefix attention + pooling & 0.081649 & -0.056449\\
-Singleton Block Attention + pooling & -0.073611 & -0.073611\\
-Unrestricted uniform attention + pooling & -0.073611 & -0.073611\\\bottomrule
-\end{tabular}
-\end{center}
-Across one hundred permutations of this sample, the causal output spans $[-0.34655,0.28677]$. Both invariant constructions return the exact mean in every tested order. Twenty fixed samples, one hundred orders, ten repetitions and three configurations give 60,000 evaluations. Every repeat is identical; no training or randomness in execution is involved. The maximum causal absolute error across all samples and orders is 0.47787; the other two constructions have zero measured error. These are analytic demonstrations, not a fitted estimator or evidence of trained-model competence.
-
-\newpage
-\section{A natural-language counting control: stable but incorrect}
-We tested whether an ordinary pretrained model changes a familiar statistical answer when unordered numerical observations are shuffled. One fixed sample of fifty synthetic clinic waiting times was drawn once using seed 20261022. Nineteen values exceed thirty minutes, so the correct response is ``NO; count=19; percentage=38\%.'' The same values were reused in ten permutations and three identical repeats, with the question and answer-label order held fixed. The execution order was randomized and the manifest frozen before inference. No calculator or expected answer was supplied to Qwen2.5-0.5B-Instruct.
-
-All thirty unconstrained greedy responses were identical: ``NO; count=50; percentage=0\%.'' They were validly formatted and untruncated. The NO answer was correct, but the count and percentage were wrong and internally inconsistent. This is a counting/instruction failure, not observed order-induced answer instability. Exact response accuracy was zero of thirty.
-
-Teacher-forced YES/NO prefix scores excluding EOS gave conditional YES probabilities between 0.23746 and 0.26800, a range of 3.0534 percentage points. These scores condition on the two candidate prefixes and are not truth probabilities. Identical-prompt repeats yielded zero numerical or text variation. The run took 49 seconds on CPU with float32 eager inference, neutral repetition penalty and greedy decoding. No sampling or training occurred.
-
-This negative finding for final-answer sensitivity is retained alongside the positive order-effect experiments. It does not show broad robustness: only one fixed numerical sample and one small model were tested. Nor does it show Block Attention repairing a meaningful counting task: that comparison has not been trained or performed. Reproduction files are in \texttt{waiting\_times/}, including the manifest and raw outputs.
-
-\newpage
-\section{Matched pretrained Qwen readout with Block Attention}
-A follow-up applies a restricted attention graph directly to frozen Qwen2.5-0.5B, retaining its vocabulary output head. The same fifty waiting times, ten orders and three repeats are used in each of three configurations. Numbers are serialized as identically formatted records, with fixed segment tokenization. This differs from the earlier JSON list, so a new matched ordinary baseline is required. Input-token hashes are identical across configurations within each ordering. Ninety calls took 58.21 seconds on CPU.
-
-The instruction prefix uses ordinary causal attention. Each numerical record can see that prefix and its own earlier tokens, but no other numerical record. The fixed assistant/readout suffix can see the prefix, all records and its own earlier suffix tokens. The full construction resets each record's rotary positions to prefix length plus within-record index; prefix and suffix positions stay fixed. This directed extension of Block Attention lets the answer read the full set without letting records acquire contexts dependent on their list position. Its suffix representations are permutation invariant in exact arithmetic by the same layerwise symmetry argument, subject to the stated mask and positional conditions.
-
-The original output head scores the single-token uppercase candidates YES and NO at the final assistant-prefix token. These are normalized candidate probabilities, not compatibility scores. No answer is generated for this comparison.
-\begin{center}\small
-\begin{tabular}{lrrr}\toprule
-Configuration & Min. $P(\mathrm{YES})$ & Max. $P(\mathrm{YES})$ & Range (percentage points)\\\midrule
-Ordinary causal & 21.734693\% & 23.566553\% & 1.831860\\
-Restricted mask, global positions & 9.217633\% & 9.741331\% & 0.523698\\
-Restricted mask, local positions & 19.726548\% & 19.726937\% & 0.000389\\\bottomrule
-\end{tabular}\end{center}
-Every identical-repeat difference was zero. The full construction's range is $3.89\times10^{-6}$ in probability units, within the declared $10^{-5}$ numerical tolerance. It is not bitwise invariant. Masked attention entries were zero in audited order-zero runs across every layer, and the readout's access to all records was checked. The residual is consistent with floating-point reduction effects; a subsequent precision diagnosis is reported in the next section.
-
-\textbf{Critical qualification.} Uppercase YES and NO together receive 95.71--96.77\% of raw probability mass in the ordinary condition, but only 8.6926--8.6929\% under the full mask/local-position construction. Although NO remains first within the two uppercase candidates, the unconstrained vocabulary argmax becomes title-case \texttt{Yes} in all thirty full-construction runs. In the mask-only condition it is NO in twenty-four runs and COUNT in six. Thus invariant conditional scores do not establish preserved output behavior, calibration or counting accuracy. A mask retrofit can substantially alter the pretrained model's distribution. This experiment is an architectural readout check on one fixed sample, not a validated counting solution. Raw results and code are in \texttt{waiting\_times/block\_matched/}.
-
-\newpage
-\section{Numerical precision and the residual order variation}
-A follow-up keeps the waiting-time inputs, masks, local positions and original Qwen output head fixed while increasing arithmetic precision. Casting the model to float64 alone leaves attention softmax and RMSNorm operations in float32 in the library implementation. A second diagnostic preserves float64 through those two operations, without changing their mathematical formulas or training any weights.
-\begin{center}\small
-\begin{tabular}{lr}\toprule
-Configuration & Maximum $P(\mathrm{YES})$ range\\\midrule
-Original float32 & $3.88869\times10^{-6}$\\
-Float64 weights, default internal casts & $3.60167\times10^{-7}$\\
-Float64 + dtype-preserving softmax and RMSNorm & $4.49640\times10^{-15}$\\\bottomrule
-\end{tabular}\end{center}
-Each configuration uses ten orders and three identical repeats. Repeated inputs give exactly identical results; forbidden attention entries remain zero. The final diagnostic meets the declared $10^{-12}$ probability tolerance and takes 63.25 seconds. Rotary embedding calculations retain the library implementation; the same local positions produce the same features under permutation.
-
-This controlled precision result strongly supports a floating-point explanation for the original residual. Matrix multiplication, softmax denominators and weighted sums can accumulate terms in different orders after a permutation. Real-number addition is associative, but finite-precision addition is not. The construction's exact-arithmetic symmetry therefore need not produce bitwise equality in ordinary kernels. The remaining $10^{-15}$-scale variation is consistent with double-precision rounding. This is not evidence of increased correctness or calibration: the uppercase YES/NO pair still receives only about 8.69\% of total vocabulary probability. Code and logs are in \texttt{waiting\_times/block\_float64/} and \texttt{waiting\_times/block\_precision/}.
-
-\newpage
-\section{Hidden-source dice: stability is not calibration}
-We generated one fixed sample of fifty independent fair-die draws with seed 20261024. The source is hidden from Qwen: it is told only that fifty numbers were observed and asked to predict the next digit from one to six. The same values are presented in ten permutations with three repeats. Ordinary causal and Block Attention configurations use identical record-formatted input tokens, unchanged weights and the original vocabulary head. Digit candidates are single tokens and normalized over the six alternatives; no EOS is scored or full answer generated. Sixty forward calls took 24.27 seconds.
-\begin{center}\small
-\begin{tabular}{lrr}\toprule
-Measure & Ordinary & Block + local positions\\\midrule
-Changed highest-ranked digit / 45 order pairs & 16 & 0\\
-Maximum order TV & 0.155478 & 0.000003171\\
-Identical-repeat TV & 0 & 0\\
-Preferred digits across orders & 4, 5 & 1\\
-Raw candidate mass & 93.93--95.53\% & 1.93646--1.93654\%\\
-Unrestricted vocabulary argmax & 4 or 5 & \texttt{Observ}\\\bottomrule
-\end{tabular}\end{center}
-For the original ordering, the restricted digit distributions are:
-\begin{center}\small
-\begin{tabular}{lrrr}\toprule
-Digit & Ordinary & Block Attention & True hidden process\\\midrule
-1 & 11.7892\% & 64.3762\% & 16.6667\%\\
-2 & 5.6526\% & 5.5056\% & 16.6667\%\\
-3 & 25.9069\% & 6.3672\% & 16.6667\%\\
-4 & 26.2371\% & 5.4086\% & 16.6667\%\\
-5 & 18.9917\% & 7.0223\% & 16.6667\%\\
-6 & 11.4225\% & 11.3202\% & 16.6667\%\\\bottomrule
-\end{tabular}\end{center}
-The ordinary model's highest-ranked digit changes with numerical evidence order. Block Attention reduces ordering variation within the declared $10^{-5}$ tolerance, but does not recover uniform probabilities. It strongly disrupts the output format: only about 1.94\% of raw probability mass remains on the allowed digits. The most likely unrestricted next token is \texttt{Observ}, not the restricted winner 1. Audited forbidden attention weights are zero, and the readout retains access to every record.
-
-The experimenter knows that a fair independent process assigns $1/6$ to each next value. The model was deliberately not told this. Without that premise, a nonuniform prediction alone is not a mathematical contradiction: it can reflect inference of an ordered process. The application imposes set semantics through the intervention. This test separates order invariance from predictive calibration and task-format preservation; it does not establish improved forecasting. Reproduction artifacts are in \texttt{dice\_order/}.
-
+\endgroup
 \newpage
 \section*{Figure 1: the tested independent-encoding workaround}
 \includegraphics[width=\linewidth]{partial_attention_figure.pdf}
