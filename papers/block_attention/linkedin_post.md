@@ -24,7 +24,16 @@ We then implemented **Block Attention** in a tiny, untrained transformer: one st
 
 **The mask alone was not enough. Position handling mattered too.** Forbidden attention weights were exactly zero; changing BUY's text did not change CASH's representation.
 
-This is a proof of order isolation—not a claim of better investment decisions or a diagnosis of which attention head caused Qwen's behavior. The Block Attention test used random weights; it has not yet been applied inside pretrained Qwen. The construction builds on established set-based attention ideas.
+This is a proof of order isolation—not a claim of better investment decisions or a diagnosis of which attention head caused Qwen's behavior. The action-block experiment used random weights in a tiny model; it is not a trained replacement for Qwen’s answer generator. Separate scoring produces normalized compatibility scores, whereas the prompt comparison uses answer likelihoods. Neither method improved agreement with the stipulated action rule in these five cases.
+
+These ideas have precedents:
+
+- **Set Transformer** lets unordered elements interact without arbitrary list-order dependence. Attention need not be removed altogether. [Lee et al., ICML 2019](https://proceedings.mlr.press/v97/lee19d.html)
+- **Fusion-in-Decoder** encodes passages separately and combines them during generation; **Atlas** explicitly uses it. [FiD](https://aclanthology.org/2021.eacl-main.74/) · [Atlas](https://jmlr.org/papers/volume24/23-0037/23-0037.pdf)
+- **UniLM** trains different attention visibility patterns within a shared transformer. [Dong et al., 2019](https://arxiv.org/abs/1905.03197)
+- **Llama 3** used masks to isolate documents during pretraining. That does not make action lists in its chat prompts order-invariant. [Meta](https://ai.meta.com/blog/meta-llama-3/)
+
+“Block Attention” is our descriptive label for this construction, not a claim to have invented masking or set attention. Public sources reviewed do not establish that GPT, Claude or Gemini use these specific architectures.
 
 The design question: **which parts of your workflow should interact—and which should be structurally independent?**
 
