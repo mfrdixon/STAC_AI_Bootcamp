@@ -1,0 +1,37 @@
+{
+  "causal": {
+    "first_sample_min": -0.34654732528650717,
+    "first_sample_max": 0.28676676976665116,
+    "first_sample_order0": 0.08164909399779786,
+    "first_sample_order1": -0.056448806724217176,
+    "max_order_range": 0.8647808297167131,
+    "max_absolute_error": 0.4778650775986056,
+    "max_repeat_range": 0
+  },
+  "block_set": {
+    "first_sample_min": -0.0736113354191184,
+    "first_sample_max": -0.0736113354191184,
+    "first_sample_order0": -0.0736113354191184,
+    "first_sample_order1": -0.0736113354191184,
+    "max_order_range": 0.0,
+    "max_absolute_error": 0.0,
+    "max_repeat_range": 0
+  },
+  "unrestricted": {
+    "first_sample_min": -0.0736113354191184,
+    "first_sample_max": -0.0736113354191184,
+    "first_sample_order0": -0.0736113354191184,
+    "first_sample_order1": -0.0736113354191184,
+    "max_order_range": 0.0,
+    "max_absolute_error": 0.0,
+    "max_repeat_range": 0
+  },
+  "first_sample_true_mean": -0.0736113354191184,
+  "samples": 20,
+  "items": 50,
+  "orders": 100,
+  "repeats": 10,
+  "evaluations": 60000,
+  "weights": "Q=K=0; V=x; uniform softmax within allowed positions; arithmetic mean pooling",
+  "training": false
+}

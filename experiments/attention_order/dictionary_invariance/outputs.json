@@ -1,0 +1,3902 @@
+[
+  {
+    "case": "positive",
+    "expected": "BUY",
+    "order": [
+      "BUY",
+      "CASH",
+      "WITHHOLD"
+    ],
+    "repeat": 0,
+    "separate_scores": {
+      "BUY": 0.3323887586593628,
+      "CASH": 0.3259583115577698,
+      "WITHHOLD": 0.17285986244678497
+    },
+    "separate_probs": {
+      "BUY": 0.35135361422125866,
+      "CASH": 0.34910150219519986,
+      "WITHHOLD": 0.2995448835835415
+    },
+    "json_prompt_probs": {
+      "BUY": 0.774963054821978,
+      "CASH": 0.02541249648804173,
+      "WITHHOLD": 0.19962444868998028
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.34. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "positive",
+    "expected": "BUY",
+    "order": [
+      "BUY",
+      "CASH",
+      "WITHHOLD"
+    ],
+    "repeat": 1,
+    "separate_scores": {
+      "BUY": 0.3323887586593628,
+      "CASH": 0.3259583115577698,
+      "WITHHOLD": 0.17285986244678497
+    },
+    "separate_probs": {
+      "BUY": 0.35135361422125866,
+      "CASH": 0.34910150219519986,
+      "WITHHOLD": 0.2995448835835415
+    },
+    "json_prompt_probs": {
+      "BUY": 0.774963054821978,
+      "CASH": 0.02541249648804173,
+      "WITHHOLD": 0.19962444868998028
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.34. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "positive",
+    "expected": "BUY",
+    "order": [
+      "BUY",
+      "CASH",
+      "WITHHOLD"
+    ],
+    "repeat": 2,
+    "separate_scores": {
+      "BUY": 0.3323887586593628,
+      "CASH": 0.3259583115577698,
+      "WITHHOLD": 0.17285986244678497
+    },
+    "separate_probs": {
+      "BUY": 0.35135361422125866,
+      "CASH": 0.34910150219519986,
+      "WITHHOLD": 0.2995448835835415
+    },
+    "json_prompt_probs": {
+      "BUY": 0.774963054821978,
+      "CASH": 0.02541249648804173,
+      "WITHHOLD": 0.19962444868998028
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.34. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "positive",
+    "expected": "BUY",
+    "order": [
+      "BUY",
+      "CASH",
+      "WITHHOLD"
+    ],
+    "repeat": 3,
+    "separate_scores": {
+      "BUY": 0.3323887586593628,
+      "CASH": 0.3259583115577698,
+      "WITHHOLD": 0.17285986244678497
+    },
+    "separate_probs": {
+      "BUY": 0.35135361422125866,
+      "CASH": 0.34910150219519986,
+      "WITHHOLD": 0.2995448835835415
+    },
+    "json_prompt_probs": {
+      "BUY": 0.774963054821978,
+      "CASH": 0.02541249648804173,
+      "WITHHOLD": 0.19962444868998028
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.34. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "positive",
+    "expected": "BUY",
+    "order": [
+      "BUY",
+      "CASH",
+      "WITHHOLD"
+    ],
+    "repeat": 4,
+    "separate_scores": {
+      "BUY": 0.3323887586593628,
+      "CASH": 0.3259583115577698,
+      "WITHHOLD": 0.17285986244678497
+    },
+    "separate_probs": {
+      "BUY": 0.35135361422125866,
+      "CASH": 0.34910150219519986,
+      "WITHHOLD": 0.2995448835835415
+    },
+    "json_prompt_probs": {
+      "BUY": 0.774963054821978,
+      "CASH": 0.02541249648804173,
+      "WITHHOLD": 0.19962444868998028
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.34. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "positive",
+    "expected": "BUY",
+    "order": [
+      "BUY",
+      "WITHHOLD",
+      "CASH"
+    ],
+    "repeat": 0,
+    "separate_scores": {
+      "BUY": 0.3323887586593628,
+      "WITHHOLD": 0.17285986244678497,
+      "CASH": 0.3259583115577698
+    },
+    "separate_probs": {
+      "BUY": 0.35135361422125866,
+      "CASH": 0.34910150219519986,
+      "WITHHOLD": 0.2995448835835415
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7795947736109505,
+      "CASH": 0.06904368360241023,
+      "WITHHOLD": 0.15136154278663938
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.34. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "positive",
+    "expected": "BUY",
+    "order": [
+      "BUY",
+      "WITHHOLD",
+      "CASH"
+    ],
+    "repeat": 1,
+    "separate_scores": {
+      "BUY": 0.3323887586593628,
+      "WITHHOLD": 0.17285986244678497,
+      "CASH": 0.3259583115577698
+    },
+    "separate_probs": {
+      "BUY": 0.35135361422125866,
+      "CASH": 0.34910150219519986,
+      "WITHHOLD": 0.2995448835835415
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7795947736109505,
+      "CASH": 0.06904368360241023,
+      "WITHHOLD": 0.15136154278663938
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.34. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "positive",
+    "expected": "BUY",
+    "order": [
+      "BUY",
+      "WITHHOLD",
+      "CASH"
+    ],
+    "repeat": 2,
+    "separate_scores": {
+      "BUY": 0.3323887586593628,
+      "WITHHOLD": 0.17285986244678497,
+      "CASH": 0.3259583115577698
+    },
+    "separate_probs": {
+      "BUY": 0.35135361422125866,
+      "CASH": 0.34910150219519986,
+      "WITHHOLD": 0.2995448835835415
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7795947736109505,
+      "CASH": 0.06904368360241023,
+      "WITHHOLD": 0.15136154278663938
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.34. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "positive",
+    "expected": "BUY",
+    "order": [
+      "BUY",
+      "WITHHOLD",
+      "CASH"
+    ],
+    "repeat": 3,
+    "separate_scores": {
+      "BUY": 0.3323887586593628,
+      "WITHHOLD": 0.17285986244678497,
+      "CASH": 0.3259583115577698
+    },
+    "separate_probs": {
+      "BUY": 0.35135361422125866,
+      "CASH": 0.34910150219519986,
+      "WITHHOLD": 0.2995448835835415
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7795947736109505,
+      "CASH": 0.06904368360241023,
+      "WITHHOLD": 0.15136154278663938
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.34. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "positive",
+    "expected": "BUY",
+    "order": [
+      "BUY",
+      "WITHHOLD",
+      "CASH"
+    ],
+    "repeat": 4,
+    "separate_scores": {
+      "BUY": 0.3323887586593628,
+      "WITHHOLD": 0.17285986244678497,
+      "CASH": 0.3259583115577698
+    },
+    "separate_probs": {
+      "BUY": 0.35135361422125866,
+      "CASH": 0.34910150219519986,
+      "WITHHOLD": 0.2995448835835415
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7795947736109505,
+      "CASH": 0.06904368360241023,
+      "WITHHOLD": 0.15136154278663938
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.34. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "positive",
+    "expected": "BUY",
+    "order": [
+      "CASH",
+      "BUY",
+      "WITHHOLD"
+    ],
+    "repeat": 0,
+    "separate_scores": {
+      "CASH": 0.3259583115577698,
+      "BUY": 0.3323887586593628,
+      "WITHHOLD": 0.17285986244678497
+    },
+    "separate_probs": {
+      "BUY": 0.35135361422125866,
+      "CASH": 0.34910150219519986,
+      "WITHHOLD": 0.2995448835835415
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7417751827708545,
+      "CASH": 0.0390378340148785,
+      "WITHHOLD": 0.21918698321426713
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.34. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "positive",
+    "expected": "BUY",
+    "order": [
+      "CASH",
+      "BUY",
+      "WITHHOLD"
+    ],
+    "repeat": 1,
+    "separate_scores": {
+      "CASH": 0.3259583115577698,
+      "BUY": 0.3323887586593628,
+      "WITHHOLD": 0.17285986244678497
+    },
+    "separate_probs": {
+      "BUY": 0.35135361422125866,
+      "CASH": 0.34910150219519986,
+      "WITHHOLD": 0.2995448835835415
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7417751827708545,
+      "CASH": 0.0390378340148785,
+      "WITHHOLD": 0.21918698321426713
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.34. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "positive",
+    "expected": "BUY",
+    "order": [
+      "CASH",
+      "BUY",
+      "WITHHOLD"
+    ],
+    "repeat": 2,
+    "separate_scores": {
+      "CASH": 0.3259583115577698,
+      "BUY": 0.3323887586593628,
+      "WITHHOLD": 0.17285986244678497
+    },
+    "separate_probs": {
+      "BUY": 0.35135361422125866,
+      "CASH": 0.34910150219519986,
+      "WITHHOLD": 0.2995448835835415
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7417751827708545,
+      "CASH": 0.0390378340148785,
+      "WITHHOLD": 0.21918698321426713
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.34. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "positive",
+    "expected": "BUY",
+    "order": [
+      "CASH",
+      "BUY",
+      "WITHHOLD"
+    ],
+    "repeat": 3,
+    "separate_scores": {
+      "CASH": 0.3259583115577698,
+      "BUY": 0.3323887586593628,
+      "WITHHOLD": 0.17285986244678497
+    },
+    "separate_probs": {
+      "BUY": 0.35135361422125866,
+      "CASH": 0.34910150219519986,
+      "WITHHOLD": 0.2995448835835415
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7417751827708545,
+      "CASH": 0.0390378340148785,
+      "WITHHOLD": 0.21918698321426713
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.34. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "positive",
+    "expected": "BUY",
+    "order": [
+      "CASH",
+      "BUY",
+      "WITHHOLD"
+    ],
+    "repeat": 4,
+    "separate_scores": {
+      "CASH": 0.3259583115577698,
+      "BUY": 0.3323887586593628,
+      "WITHHOLD": 0.17285986244678497
+    },
+    "separate_probs": {
+      "BUY": 0.35135361422125866,
+      "CASH": 0.34910150219519986,
+      "WITHHOLD": 0.2995448835835415
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7417751827708545,
+      "CASH": 0.0390378340148785,
+      "WITHHOLD": 0.21918698321426713
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.34. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "positive",
+    "expected": "BUY",
+    "order": [
+      "CASH",
+      "WITHHOLD",
+      "BUY"
+    ],
+    "repeat": 0,
+    "separate_scores": {
+      "CASH": 0.3259583115577698,
+      "WITHHOLD": 0.17285986244678497,
+      "BUY": 0.3323887586593628
+    },
+    "separate_probs": {
+      "BUY": 0.35135361422125866,
+      "CASH": 0.34910150219519986,
+      "WITHHOLD": 0.2995448835835415
+    },
+    "json_prompt_probs": {
+      "BUY": 0.8132242215229549,
+      "CASH": 0.041449044976833174,
+      "WITHHOLD": 0.14532673350021189
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.34. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "positive",
+    "expected": "BUY",
+    "order": [
+      "CASH",
+      "WITHHOLD",
+      "BUY"
+    ],
+    "repeat": 1,
+    "separate_scores": {
+      "CASH": 0.3259583115577698,
+      "WITHHOLD": 0.17285986244678497,
+      "BUY": 0.3323887586593628
+    },
+    "separate_probs": {
+      "BUY": 0.35135361422125866,
+      "CASH": 0.34910150219519986,
+      "WITHHOLD": 0.2995448835835415
+    },
+    "json_prompt_probs": {
+      "BUY": 0.8132242215229549,
+      "CASH": 0.041449044976833174,
+      "WITHHOLD": 0.14532673350021189
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.34. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "positive",
+    "expected": "BUY",
+    "order": [
+      "CASH",
+      "WITHHOLD",
+      "BUY"
+    ],
+    "repeat": 2,
+    "separate_scores": {
+      "CASH": 0.3259583115577698,
+      "WITHHOLD": 0.17285986244678497,
+      "BUY": 0.3323887586593628
+    },
+    "separate_probs": {
+      "BUY": 0.35135361422125866,
+      "CASH": 0.34910150219519986,
+      "WITHHOLD": 0.2995448835835415
+    },
+    "json_prompt_probs": {
+      "BUY": 0.8132242215229549,
+      "CASH": 0.041449044976833174,
+      "WITHHOLD": 0.14532673350021189
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.34. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "positive",
+    "expected": "BUY",
+    "order": [
+      "CASH",
+      "WITHHOLD",
+      "BUY"
+    ],
+    "repeat": 3,
+    "separate_scores": {
+      "CASH": 0.3259583115577698,
+      "WITHHOLD": 0.17285986244678497,
+      "BUY": 0.3323887586593628
+    },
+    "separate_probs": {
+      "BUY": 0.35135361422125866,
+      "CASH": 0.34910150219519986,
+      "WITHHOLD": 0.2995448835835415
+    },
+    "json_prompt_probs": {
+      "BUY": 0.8132242215229549,
+      "CASH": 0.041449044976833174,
+      "WITHHOLD": 0.14532673350021189
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.34. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "positive",
+    "expected": "BUY",
+    "order": [
+      "CASH",
+      "WITHHOLD",
+      "BUY"
+    ],
+    "repeat": 4,
+    "separate_scores": {
+      "CASH": 0.3259583115577698,
+      "WITHHOLD": 0.17285986244678497,
+      "BUY": 0.3323887586593628
+    },
+    "separate_probs": {
+      "BUY": 0.35135361422125866,
+      "CASH": 0.34910150219519986,
+      "WITHHOLD": 0.2995448835835415
+    },
+    "json_prompt_probs": {
+      "BUY": 0.8132242215229549,
+      "CASH": 0.041449044976833174,
+      "WITHHOLD": 0.14532673350021189
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.34. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "positive",
+    "expected": "BUY",
+    "order": [
+      "WITHHOLD",
+      "BUY",
+      "CASH"
+    ],
+    "repeat": 0,
+    "separate_scores": {
+      "WITHHOLD": 0.17285986244678497,
+      "BUY": 0.3323887586593628,
+      "CASH": 0.3259583115577698
+    },
+    "separate_probs": {
+      "BUY": 0.35135361422125866,
+      "CASH": 0.34910150219519986,
+      "WITHHOLD": 0.2995448835835415
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7261188859322049,
+      "CASH": 0.06954551047652278,
+      "WITHHOLD": 0.20433560359127226
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.34. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "positive",
+    "expected": "BUY",
+    "order": [
+      "WITHHOLD",
+      "BUY",
+      "CASH"
+    ],
+    "repeat": 1,
+    "separate_scores": {
+      "WITHHOLD": 0.17285986244678497,
+      "BUY": 0.3323887586593628,
+      "CASH": 0.3259583115577698
+    },
+    "separate_probs": {
+      "BUY": 0.35135361422125866,
+      "CASH": 0.34910150219519986,
+      "WITHHOLD": 0.2995448835835415
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7261188859322049,
+      "CASH": 0.06954551047652278,
+      "WITHHOLD": 0.20433560359127226
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.34. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "positive",
+    "expected": "BUY",
+    "order": [
+      "WITHHOLD",
+      "BUY",
+      "CASH"
+    ],
+    "repeat": 2,
+    "separate_scores": {
+      "WITHHOLD": 0.17285986244678497,
+      "BUY": 0.3323887586593628,
+      "CASH": 0.3259583115577698
+    },
+    "separate_probs": {
+      "BUY": 0.35135361422125866,
+      "CASH": 0.34910150219519986,
+      "WITHHOLD": 0.2995448835835415
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7261188859322049,
+      "CASH": 0.06954551047652278,
+      "WITHHOLD": 0.20433560359127226
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.34. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "positive",
+    "expected": "BUY",
+    "order": [
+      "WITHHOLD",
+      "BUY",
+      "CASH"
+    ],
+    "repeat": 3,
+    "separate_scores": {
+      "WITHHOLD": 0.17285986244678497,
+      "BUY": 0.3323887586593628,
+      "CASH": 0.3259583115577698
+    },
+    "separate_probs": {
+      "BUY": 0.35135361422125866,
+      "CASH": 0.34910150219519986,
+      "WITHHOLD": 0.2995448835835415
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7261188859322049,
+      "CASH": 0.06954551047652278,
+      "WITHHOLD": 0.20433560359127226
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.34. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "positive",
+    "expected": "BUY",
+    "order": [
+      "WITHHOLD",
+      "BUY",
+      "CASH"
+    ],
+    "repeat": 4,
+    "separate_scores": {
+      "WITHHOLD": 0.17285986244678497,
+      "BUY": 0.3323887586593628,
+      "CASH": 0.3259583115577698
+    },
+    "separate_probs": {
+      "BUY": 0.35135361422125866,
+      "CASH": 0.34910150219519986,
+      "WITHHOLD": 0.2995448835835415
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7261188859322049,
+      "CASH": 0.06954551047652278,
+      "WITHHOLD": 0.20433560359127226
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.34. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "positive",
+    "expected": "BUY",
+    "order": [
+      "WITHHOLD",
+      "CASH",
+      "BUY"
+    ],
+    "repeat": 0,
+    "separate_scores": {
+      "WITHHOLD": 0.17285986244678497,
+      "CASH": 0.3259583115577698,
+      "BUY": 0.3323887586593628
+    },
+    "separate_probs": {
+      "BUY": 0.35135361422125866,
+      "CASH": 0.34910150219519986,
+      "WITHHOLD": 0.2995448835835415
+    },
+    "json_prompt_probs": {
+      "BUY": 0.8110429357156722,
+      "CASH": 0.03740786765936319,
+      "WITHHOLD": 0.1515491966249645
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.34. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "positive",
+    "expected": "BUY",
+    "order": [
+      "WITHHOLD",
+      "CASH",
+      "BUY"
+    ],
+    "repeat": 1,
+    "separate_scores": {
+      "WITHHOLD": 0.17285986244678497,
+      "CASH": 0.3259583115577698,
+      "BUY": 0.3323887586593628
+    },
+    "separate_probs": {
+      "BUY": 0.35135361422125866,
+      "CASH": 0.34910150219519986,
+      "WITHHOLD": 0.2995448835835415
+    },
+    "json_prompt_probs": {
+      "BUY": 0.8110429357156722,
+      "CASH": 0.03740786765936319,
+      "WITHHOLD": 0.1515491966249645
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.34. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "positive",
+    "expected": "BUY",
+    "order": [
+      "WITHHOLD",
+      "CASH",
+      "BUY"
+    ],
+    "repeat": 2,
+    "separate_scores": {
+      "WITHHOLD": 0.17285986244678497,
+      "CASH": 0.3259583115577698,
+      "BUY": 0.3323887586593628
+    },
+    "separate_probs": {
+      "BUY": 0.35135361422125866,
+      "CASH": 0.34910150219519986,
+      "WITHHOLD": 0.2995448835835415
+    },
+    "json_prompt_probs": {
+      "BUY": 0.8110429357156722,
+      "CASH": 0.03740786765936319,
+      "WITHHOLD": 0.1515491966249645
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.34. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "positive",
+    "expected": "BUY",
+    "order": [
+      "WITHHOLD",
+      "CASH",
+      "BUY"
+    ],
+    "repeat": 3,
+    "separate_scores": {
+      "WITHHOLD": 0.17285986244678497,
+      "CASH": 0.3259583115577698,
+      "BUY": 0.3323887586593628
+    },
+    "separate_probs": {
+      "BUY": 0.35135361422125866,
+      "CASH": 0.34910150219519986,
+      "WITHHOLD": 0.2995448835835415
+    },
+    "json_prompt_probs": {
+      "BUY": 0.8110429357156722,
+      "CASH": 0.03740786765936319,
+      "WITHHOLD": 0.1515491966249645
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.34. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "positive",
+    "expected": "BUY",
+    "order": [
+      "WITHHOLD",
+      "CASH",
+      "BUY"
+    ],
+    "repeat": 4,
+    "separate_scores": {
+      "WITHHOLD": 0.17285986244678497,
+      "CASH": 0.3259583115577698,
+      "BUY": 0.3323887586593628
+    },
+    "separate_probs": {
+      "BUY": 0.35135361422125866,
+      "CASH": 0.34910150219519986,
+      "WITHHOLD": 0.2995448835835415
+    },
+    "json_prompt_probs": {
+      "BUY": 0.8110429357156722,
+      "CASH": 0.03740786765936319,
+      "WITHHOLD": 0.1515491966249645
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.34. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "negative",
+    "expected": "CASH",
+    "order": [
+      "BUY",
+      "CASH",
+      "WITHHOLD"
+    ],
+    "repeat": 0,
+    "separate_scores": {
+      "BUY": 0.33883896470069885,
+      "CASH": 0.3326376676559448,
+      "WITHHOLD": 0.17554542422294617
+    },
+    "separate_probs": {
+      "BUY": 0.3517213579421435,
+      "CASH": 0.34954697827982,
+      "WITHHOLD": 0.2987316637780364
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7680060163511698,
+      "CASH": 0.026160370240034574,
+      "WITHHOLD": 0.20583361340879558
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "negative",
+    "expected": "CASH",
+    "order": [
+      "BUY",
+      "CASH",
+      "WITHHOLD"
+    ],
+    "repeat": 1,
+    "separate_scores": {
+      "BUY": 0.33883896470069885,
+      "CASH": 0.3326376676559448,
+      "WITHHOLD": 0.17554542422294617
+    },
+    "separate_probs": {
+      "BUY": 0.3517213579421435,
+      "CASH": 0.34954697827982,
+      "WITHHOLD": 0.2987316637780364
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7680060163511698,
+      "CASH": 0.026160370240034574,
+      "WITHHOLD": 0.20583361340879558
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "negative",
+    "expected": "CASH",
+    "order": [
+      "BUY",
+      "CASH",
+      "WITHHOLD"
+    ],
+    "repeat": 2,
+    "separate_scores": {
+      "BUY": 0.33883896470069885,
+      "CASH": 0.3326376676559448,
+      "WITHHOLD": 0.17554542422294617
+    },
+    "separate_probs": {
+      "BUY": 0.3517213579421435,
+      "CASH": 0.34954697827982,
+      "WITHHOLD": 0.2987316637780364
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7680060163511698,
+      "CASH": 0.026160370240034574,
+      "WITHHOLD": 0.20583361340879558
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "negative",
+    "expected": "CASH",
+    "order": [
+      "BUY",
+      "CASH",
+      "WITHHOLD"
+    ],
+    "repeat": 3,
+    "separate_scores": {
+      "BUY": 0.33883896470069885,
+      "CASH": 0.3326376676559448,
+      "WITHHOLD": 0.17554542422294617
+    },
+    "separate_probs": {
+      "BUY": 0.3517213579421435,
+      "CASH": 0.34954697827982,
+      "WITHHOLD": 0.2987316637780364
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7680060163511698,
+      "CASH": 0.026160370240034574,
+      "WITHHOLD": 0.20583361340879558
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "negative",
+    "expected": "CASH",
+    "order": [
+      "BUY",
+      "CASH",
+      "WITHHOLD"
+    ],
+    "repeat": 4,
+    "separate_scores": {
+      "BUY": 0.33883896470069885,
+      "CASH": 0.3326376676559448,
+      "WITHHOLD": 0.17554542422294617
+    },
+    "separate_probs": {
+      "BUY": 0.3517213579421435,
+      "CASH": 0.34954697827982,
+      "WITHHOLD": 0.2987316637780364
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7680060163511698,
+      "CASH": 0.026160370240034574,
+      "WITHHOLD": 0.20583361340879558
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "negative",
+    "expected": "CASH",
+    "order": [
+      "BUY",
+      "WITHHOLD",
+      "CASH"
+    ],
+    "repeat": 0,
+    "separate_scores": {
+      "BUY": 0.33883896470069885,
+      "WITHHOLD": 0.17554542422294617,
+      "CASH": 0.3326376676559448
+    },
+    "separate_probs": {
+      "BUY": 0.3517213579421435,
+      "CASH": 0.34954697827982,
+      "WITHHOLD": 0.2987316637780364
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7687637972708912,
+      "CASH": 0.07020572269441935,
+      "WITHHOLD": 0.16103048003468942
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "negative",
+    "expected": "CASH",
+    "order": [
+      "BUY",
+      "WITHHOLD",
+      "CASH"
+    ],
+    "repeat": 1,
+    "separate_scores": {
+      "BUY": 0.33883896470069885,
+      "WITHHOLD": 0.17554542422294617,
+      "CASH": 0.3326376676559448
+    },
+    "separate_probs": {
+      "BUY": 0.3517213579421435,
+      "CASH": 0.34954697827982,
+      "WITHHOLD": 0.2987316637780364
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7687637972708912,
+      "CASH": 0.07020572269441935,
+      "WITHHOLD": 0.16103048003468942
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "negative",
+    "expected": "CASH",
+    "order": [
+      "BUY",
+      "WITHHOLD",
+      "CASH"
+    ],
+    "repeat": 2,
+    "separate_scores": {
+      "BUY": 0.33883896470069885,
+      "WITHHOLD": 0.17554542422294617,
+      "CASH": 0.3326376676559448
+    },
+    "separate_probs": {
+      "BUY": 0.3517213579421435,
+      "CASH": 0.34954697827982,
+      "WITHHOLD": 0.2987316637780364
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7687637972708912,
+      "CASH": 0.07020572269441935,
+      "WITHHOLD": 0.16103048003468942
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "negative",
+    "expected": "CASH",
+    "order": [
+      "BUY",
+      "WITHHOLD",
+      "CASH"
+    ],
+    "repeat": 3,
+    "separate_scores": {
+      "BUY": 0.33883896470069885,
+      "WITHHOLD": 0.17554542422294617,
+      "CASH": 0.3326376676559448
+    },
+    "separate_probs": {
+      "BUY": 0.3517213579421435,
+      "CASH": 0.34954697827982,
+      "WITHHOLD": 0.2987316637780364
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7687637972708912,
+      "CASH": 0.07020572269441935,
+      "WITHHOLD": 0.16103048003468942
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "negative",
+    "expected": "CASH",
+    "order": [
+      "BUY",
+      "WITHHOLD",
+      "CASH"
+    ],
+    "repeat": 4,
+    "separate_scores": {
+      "BUY": 0.33883896470069885,
+      "WITHHOLD": 0.17554542422294617,
+      "CASH": 0.3326376676559448
+    },
+    "separate_probs": {
+      "BUY": 0.3517213579421435,
+      "CASH": 0.34954697827982,
+      "WITHHOLD": 0.2987316637780364
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7687637972708912,
+      "CASH": 0.07020572269441935,
+      "WITHHOLD": 0.16103048003468942
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "negative",
+    "expected": "CASH",
+    "order": [
+      "CASH",
+      "BUY",
+      "WITHHOLD"
+    ],
+    "repeat": 0,
+    "separate_scores": {
+      "CASH": 0.3326376676559448,
+      "BUY": 0.33883896470069885,
+      "WITHHOLD": 0.17554542422294617
+    },
+    "separate_probs": {
+      "BUY": 0.3517213579421435,
+      "CASH": 0.34954697827982,
+      "WITHHOLD": 0.2987316637780364
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7325842904060136,
+      "CASH": 0.03811616679817099,
+      "WITHHOLD": 0.2292995427958155
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "negative",
+    "expected": "CASH",
+    "order": [
+      "CASH",
+      "BUY",
+      "WITHHOLD"
+    ],
+    "repeat": 1,
+    "separate_scores": {
+      "CASH": 0.3326376676559448,
+      "BUY": 0.33883896470069885,
+      "WITHHOLD": 0.17554542422294617
+    },
+    "separate_probs": {
+      "BUY": 0.3517213579421435,
+      "CASH": 0.34954697827982,
+      "WITHHOLD": 0.2987316637780364
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7325842904060136,
+      "CASH": 0.03811616679817099,
+      "WITHHOLD": 0.2292995427958155
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "negative",
+    "expected": "CASH",
+    "order": [
+      "CASH",
+      "BUY",
+      "WITHHOLD"
+    ],
+    "repeat": 2,
+    "separate_scores": {
+      "CASH": 0.3326376676559448,
+      "BUY": 0.33883896470069885,
+      "WITHHOLD": 0.17554542422294617
+    },
+    "separate_probs": {
+      "BUY": 0.3517213579421435,
+      "CASH": 0.34954697827982,
+      "WITHHOLD": 0.2987316637780364
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7325842904060136,
+      "CASH": 0.03811616679817099,
+      "WITHHOLD": 0.2292995427958155
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "negative",
+    "expected": "CASH",
+    "order": [
+      "CASH",
+      "BUY",
+      "WITHHOLD"
+    ],
+    "repeat": 3,
+    "separate_scores": {
+      "CASH": 0.3326376676559448,
+      "BUY": 0.33883896470069885,
+      "WITHHOLD": 0.17554542422294617
+    },
+    "separate_probs": {
+      "BUY": 0.3517213579421435,
+      "CASH": 0.34954697827982,
+      "WITHHOLD": 0.2987316637780364
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7325842904060136,
+      "CASH": 0.03811616679817099,
+      "WITHHOLD": 0.2292995427958155
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "negative",
+    "expected": "CASH",
+    "order": [
+      "CASH",
+      "BUY",
+      "WITHHOLD"
+    ],
+    "repeat": 4,
+    "separate_scores": {
+      "CASH": 0.3326376676559448,
+      "BUY": 0.33883896470069885,
+      "WITHHOLD": 0.17554542422294617
+    },
+    "separate_probs": {
+      "BUY": 0.3517213579421435,
+      "CASH": 0.34954697827982,
+      "WITHHOLD": 0.2987316637780364
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7325842904060136,
+      "CASH": 0.03811616679817099,
+      "WITHHOLD": 0.2292995427958155
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "negative",
+    "expected": "CASH",
+    "order": [
+      "CASH",
+      "WITHHOLD",
+      "BUY"
+    ],
+    "repeat": 0,
+    "separate_scores": {
+      "CASH": 0.3326376676559448,
+      "WITHHOLD": 0.17554542422294617,
+      "BUY": 0.33883896470069885
+    },
+    "separate_probs": {
+      "BUY": 0.3517213579421435,
+      "CASH": 0.34954697827982,
+      "WITHHOLD": 0.2987316637780364
+    },
+    "json_prompt_probs": {
+      "BUY": 0.8037444928123492,
+      "CASH": 0.04146024726939581,
+      "WITHHOLD": 0.15479525991825505
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "negative",
+    "expected": "CASH",
+    "order": [
+      "CASH",
+      "WITHHOLD",
+      "BUY"
+    ],
+    "repeat": 1,
+    "separate_scores": {
+      "CASH": 0.3326376676559448,
+      "WITHHOLD": 0.17554542422294617,
+      "BUY": 0.33883896470069885
+    },
+    "separate_probs": {
+      "BUY": 0.3517213579421435,
+      "CASH": 0.34954697827982,
+      "WITHHOLD": 0.2987316637780364
+    },
+    "json_prompt_probs": {
+      "BUY": 0.8037444928123492,
+      "CASH": 0.04146024726939581,
+      "WITHHOLD": 0.15479525991825505
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "negative",
+    "expected": "CASH",
+    "order": [
+      "CASH",
+      "WITHHOLD",
+      "BUY"
+    ],
+    "repeat": 2,
+    "separate_scores": {
+      "CASH": 0.3326376676559448,
+      "WITHHOLD": 0.17554542422294617,
+      "BUY": 0.33883896470069885
+    },
+    "separate_probs": {
+      "BUY": 0.3517213579421435,
+      "CASH": 0.34954697827982,
+      "WITHHOLD": 0.2987316637780364
+    },
+    "json_prompt_probs": {
+      "BUY": 0.8037444928123492,
+      "CASH": 0.04146024726939581,
+      "WITHHOLD": 0.15479525991825505
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "negative",
+    "expected": "CASH",
+    "order": [
+      "CASH",
+      "WITHHOLD",
+      "BUY"
+    ],
+    "repeat": 3,
+    "separate_scores": {
+      "CASH": 0.3326376676559448,
+      "WITHHOLD": 0.17554542422294617,
+      "BUY": 0.33883896470069885
+    },
+    "separate_probs": {
+      "BUY": 0.3517213579421435,
+      "CASH": 0.34954697827982,
+      "WITHHOLD": 0.2987316637780364
+    },
+    "json_prompt_probs": {
+      "BUY": 0.8037444928123492,
+      "CASH": 0.04146024726939581,
+      "WITHHOLD": 0.15479525991825505
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "negative",
+    "expected": "CASH",
+    "order": [
+      "CASH",
+      "WITHHOLD",
+      "BUY"
+    ],
+    "repeat": 4,
+    "separate_scores": {
+      "CASH": 0.3326376676559448,
+      "WITHHOLD": 0.17554542422294617,
+      "BUY": 0.33883896470069885
+    },
+    "separate_probs": {
+      "BUY": 0.3517213579421435,
+      "CASH": 0.34954697827982,
+      "WITHHOLD": 0.2987316637780364
+    },
+    "json_prompt_probs": {
+      "BUY": 0.8037444928123492,
+      "CASH": 0.04146024726939581,
+      "WITHHOLD": 0.15479525991825505
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "negative",
+    "expected": "CASH",
+    "order": [
+      "WITHHOLD",
+      "BUY",
+      "CASH"
+    ],
+    "repeat": 0,
+    "separate_scores": {
+      "WITHHOLD": 0.17554542422294617,
+      "BUY": 0.33883896470069885,
+      "CASH": 0.3326376676559448
+    },
+    "separate_probs": {
+      "BUY": 0.3517213579421435,
+      "CASH": 0.34954697827982,
+      "WITHHOLD": 0.2987316637780364
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7131555776120989,
+      "CASH": 0.07071940207755419,
+      "WITHHOLD": 0.21612502031034697
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "negative",
+    "expected": "CASH",
+    "order": [
+      "WITHHOLD",
+      "BUY",
+      "CASH"
+    ],
+    "repeat": 1,
+    "separate_scores": {
+      "WITHHOLD": 0.17554542422294617,
+      "BUY": 0.33883896470069885,
+      "CASH": 0.3326376676559448
+    },
+    "separate_probs": {
+      "BUY": 0.3517213579421435,
+      "CASH": 0.34954697827982,
+      "WITHHOLD": 0.2987316637780364
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7131555776120989,
+      "CASH": 0.07071940207755419,
+      "WITHHOLD": 0.21612502031034697
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "negative",
+    "expected": "CASH",
+    "order": [
+      "WITHHOLD",
+      "BUY",
+      "CASH"
+    ],
+    "repeat": 2,
+    "separate_scores": {
+      "WITHHOLD": 0.17554542422294617,
+      "BUY": 0.33883896470069885,
+      "CASH": 0.3326376676559448
+    },
+    "separate_probs": {
+      "BUY": 0.3517213579421435,
+      "CASH": 0.34954697827982,
+      "WITHHOLD": 0.2987316637780364
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7131555776120989,
+      "CASH": 0.07071940207755419,
+      "WITHHOLD": 0.21612502031034697
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "negative",
+    "expected": "CASH",
+    "order": [
+      "WITHHOLD",
+      "BUY",
+      "CASH"
+    ],
+    "repeat": 3,
+    "separate_scores": {
+      "WITHHOLD": 0.17554542422294617,
+      "BUY": 0.33883896470069885,
+      "CASH": 0.3326376676559448
+    },
+    "separate_probs": {
+      "BUY": 0.3517213579421435,
+      "CASH": 0.34954697827982,
+      "WITHHOLD": 0.2987316637780364
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7131555776120989,
+      "CASH": 0.07071940207755419,
+      "WITHHOLD": 0.21612502031034697
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "negative",
+    "expected": "CASH",
+    "order": [
+      "WITHHOLD",
+      "BUY",
+      "CASH"
+    ],
+    "repeat": 4,
+    "separate_scores": {
+      "WITHHOLD": 0.17554542422294617,
+      "BUY": 0.33883896470069885,
+      "CASH": 0.3326376676559448
+    },
+    "separate_probs": {
+      "BUY": 0.3517213579421435,
+      "CASH": 0.34954697827982,
+      "WITHHOLD": 0.2987316637780364
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7131555776120989,
+      "CASH": 0.07071940207755419,
+      "WITHHOLD": 0.21612502031034697
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "negative",
+    "expected": "CASH",
+    "order": [
+      "WITHHOLD",
+      "CASH",
+      "BUY"
+    ],
+    "repeat": 0,
+    "separate_scores": {
+      "WITHHOLD": 0.17554542422294617,
+      "CASH": 0.3326376676559448,
+      "BUY": 0.33883896470069885
+    },
+    "separate_probs": {
+      "BUY": 0.3517213579421435,
+      "CASH": 0.34954697827982,
+      "WITHHOLD": 0.2987316637780364
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7986970203068207,
+      "CASH": 0.03864489751208738,
+      "WITHHOLD": 0.162658082181092
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "negative",
+    "expected": "CASH",
+    "order": [
+      "WITHHOLD",
+      "CASH",
+      "BUY"
+    ],
+    "repeat": 1,
+    "separate_scores": {
+      "WITHHOLD": 0.17554542422294617,
+      "CASH": 0.3326376676559448,
+      "BUY": 0.33883896470069885
+    },
+    "separate_probs": {
+      "BUY": 0.3517213579421435,
+      "CASH": 0.34954697827982,
+      "WITHHOLD": 0.2987316637780364
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7986970203068207,
+      "CASH": 0.03864489751208738,
+      "WITHHOLD": 0.162658082181092
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "negative",
+    "expected": "CASH",
+    "order": [
+      "WITHHOLD",
+      "CASH",
+      "BUY"
+    ],
+    "repeat": 2,
+    "separate_scores": {
+      "WITHHOLD": 0.17554542422294617,
+      "CASH": 0.3326376676559448,
+      "BUY": 0.33883896470069885
+    },
+    "separate_probs": {
+      "BUY": 0.3517213579421435,
+      "CASH": 0.34954697827982,
+      "WITHHOLD": 0.2987316637780364
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7986970203068207,
+      "CASH": 0.03864489751208738,
+      "WITHHOLD": 0.162658082181092
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "negative",
+    "expected": "CASH",
+    "order": [
+      "WITHHOLD",
+      "CASH",
+      "BUY"
+    ],
+    "repeat": 3,
+    "separate_scores": {
+      "WITHHOLD": 0.17554542422294617,
+      "CASH": 0.3326376676559448,
+      "BUY": 0.33883896470069885
+    },
+    "separate_probs": {
+      "BUY": 0.3517213579421435,
+      "CASH": 0.34954697827982,
+      "WITHHOLD": 0.2987316637780364
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7986970203068207,
+      "CASH": 0.03864489751208738,
+      "WITHHOLD": 0.162658082181092
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "negative",
+    "expected": "CASH",
+    "order": [
+      "WITHHOLD",
+      "CASH",
+      "BUY"
+    ],
+    "repeat": 4,
+    "separate_scores": {
+      "WITHHOLD": 0.17554542422294617,
+      "CASH": 0.3326376676559448,
+      "BUY": 0.33883896470069885
+    },
+    "separate_probs": {
+      "BUY": 0.3517213579421435,
+      "CASH": 0.34954697827982,
+      "WITHHOLD": 0.2987316637780364
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7986970203068207,
+      "CASH": 0.03864489751208738,
+      "WITHHOLD": 0.162658082181092
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "equal",
+    "expected": "CASH",
+    "order": [
+      "BUY",
+      "CASH",
+      "WITHHOLD"
+    ],
+    "repeat": 0,
+    "separate_scores": {
+      "BUY": 0.3326663374900818,
+      "CASH": 0.3260219097137451,
+      "WITHHOLD": 0.18064762651920319
+    },
+    "separate_probs": {
+      "BUY": 0.3505881354006429,
+      "CASH": 0.34826639970006257,
+      "WITHHOLD": 0.30114546489929456
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7779463021120256,
+      "CASH": 0.03084923191274554,
+      "WITHHOLD": 0.19120446597522892
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.07. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "equal",
+    "expected": "CASH",
+    "order": [
+      "BUY",
+      "CASH",
+      "WITHHOLD"
+    ],
+    "repeat": 1,
+    "separate_scores": {
+      "BUY": 0.3326663374900818,
+      "CASH": 0.3260219097137451,
+      "WITHHOLD": 0.18064762651920319
+    },
+    "separate_probs": {
+      "BUY": 0.3505881354006429,
+      "CASH": 0.34826639970006257,
+      "WITHHOLD": 0.30114546489929456
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7779463021120256,
+      "CASH": 0.03084923191274554,
+      "WITHHOLD": 0.19120446597522892
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.07. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "equal",
+    "expected": "CASH",
+    "order": [
+      "BUY",
+      "CASH",
+      "WITHHOLD"
+    ],
+    "repeat": 2,
+    "separate_scores": {
+      "BUY": 0.3326663374900818,
+      "CASH": 0.3260219097137451,
+      "WITHHOLD": 0.18064762651920319
+    },
+    "separate_probs": {
+      "BUY": 0.3505881354006429,
+      "CASH": 0.34826639970006257,
+      "WITHHOLD": 0.30114546489929456
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7779463021120256,
+      "CASH": 0.03084923191274554,
+      "WITHHOLD": 0.19120446597522892
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.07. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "equal",
+    "expected": "CASH",
+    "order": [
+      "BUY",
+      "CASH",
+      "WITHHOLD"
+    ],
+    "repeat": 3,
+    "separate_scores": {
+      "BUY": 0.3326663374900818,
+      "CASH": 0.3260219097137451,
+      "WITHHOLD": 0.18064762651920319
+    },
+    "separate_probs": {
+      "BUY": 0.3505881354006429,
+      "CASH": 0.34826639970006257,
+      "WITHHOLD": 0.30114546489929456
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7779463021120256,
+      "CASH": 0.03084923191274554,
+      "WITHHOLD": 0.19120446597522892
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.07. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "equal",
+    "expected": "CASH",
+    "order": [
+      "BUY",
+      "CASH",
+      "WITHHOLD"
+    ],
+    "repeat": 4,
+    "separate_scores": {
+      "BUY": 0.3326663374900818,
+      "CASH": 0.3260219097137451,
+      "WITHHOLD": 0.18064762651920319
+    },
+    "separate_probs": {
+      "BUY": 0.3505881354006429,
+      "CASH": 0.34826639970006257,
+      "WITHHOLD": 0.30114546489929456
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7779463021120256,
+      "CASH": 0.03084923191274554,
+      "WITHHOLD": 0.19120446597522892
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.07. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "equal",
+    "expected": "CASH",
+    "order": [
+      "BUY",
+      "WITHHOLD",
+      "CASH"
+    ],
+    "repeat": 0,
+    "separate_scores": {
+      "BUY": 0.3326663374900818,
+      "WITHHOLD": 0.18064762651920319,
+      "CASH": 0.3260219097137451
+    },
+    "separate_probs": {
+      "BUY": 0.3505881354006429,
+      "CASH": 0.34826639970006257,
+      "WITHHOLD": 0.30114546489929456
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7797607418451972,
+      "CASH": 0.08118059244148061,
+      "WITHHOLD": 0.13905866571332218
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.07. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "equal",
+    "expected": "CASH",
+    "order": [
+      "BUY",
+      "WITHHOLD",
+      "CASH"
+    ],
+    "repeat": 1,
+    "separate_scores": {
+      "BUY": 0.3326663374900818,
+      "WITHHOLD": 0.18064762651920319,
+      "CASH": 0.3260219097137451
+    },
+    "separate_probs": {
+      "BUY": 0.3505881354006429,
+      "CASH": 0.34826639970006257,
+      "WITHHOLD": 0.30114546489929456
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7797607418451972,
+      "CASH": 0.08118059244148061,
+      "WITHHOLD": 0.13905866571332218
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.07. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "equal",
+    "expected": "CASH",
+    "order": [
+      "BUY",
+      "WITHHOLD",
+      "CASH"
+    ],
+    "repeat": 2,
+    "separate_scores": {
+      "BUY": 0.3326663374900818,
+      "WITHHOLD": 0.18064762651920319,
+      "CASH": 0.3260219097137451
+    },
+    "separate_probs": {
+      "BUY": 0.3505881354006429,
+      "CASH": 0.34826639970006257,
+      "WITHHOLD": 0.30114546489929456
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7797607418451972,
+      "CASH": 0.08118059244148061,
+      "WITHHOLD": 0.13905866571332218
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.07. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "equal",
+    "expected": "CASH",
+    "order": [
+      "BUY",
+      "WITHHOLD",
+      "CASH"
+    ],
+    "repeat": 3,
+    "separate_scores": {
+      "BUY": 0.3326663374900818,
+      "WITHHOLD": 0.18064762651920319,
+      "CASH": 0.3260219097137451
+    },
+    "separate_probs": {
+      "BUY": 0.3505881354006429,
+      "CASH": 0.34826639970006257,
+      "WITHHOLD": 0.30114546489929456
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7797607418451972,
+      "CASH": 0.08118059244148061,
+      "WITHHOLD": 0.13905866571332218
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.07. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "equal",
+    "expected": "CASH",
+    "order": [
+      "BUY",
+      "WITHHOLD",
+      "CASH"
+    ],
+    "repeat": 4,
+    "separate_scores": {
+      "BUY": 0.3326663374900818,
+      "WITHHOLD": 0.18064762651920319,
+      "CASH": 0.3260219097137451
+    },
+    "separate_probs": {
+      "BUY": 0.3505881354006429,
+      "CASH": 0.34826639970006257,
+      "WITHHOLD": 0.30114546489929456
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7797607418451972,
+      "CASH": 0.08118059244148061,
+      "WITHHOLD": 0.13905866571332218
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.07. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "equal",
+    "expected": "CASH",
+    "order": [
+      "CASH",
+      "BUY",
+      "WITHHOLD"
+    ],
+    "repeat": 0,
+    "separate_scores": {
+      "CASH": 0.3260219097137451,
+      "BUY": 0.3326663374900818,
+      "WITHHOLD": 0.18064762651920319
+    },
+    "separate_probs": {
+      "BUY": 0.3505881354006429,
+      "CASH": 0.34826639970006257,
+      "WITHHOLD": 0.30114546489929456
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7397012326146188,
+      "CASH": 0.04650589683201548,
+      "WITHHOLD": 0.21379287055336565
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.07. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "equal",
+    "expected": "CASH",
+    "order": [
+      "CASH",
+      "BUY",
+      "WITHHOLD"
+    ],
+    "repeat": 1,
+    "separate_scores": {
+      "CASH": 0.3260219097137451,
+      "BUY": 0.3326663374900818,
+      "WITHHOLD": 0.18064762651920319
+    },
+    "separate_probs": {
+      "BUY": 0.3505881354006429,
+      "CASH": 0.34826639970006257,
+      "WITHHOLD": 0.30114546489929456
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7397012326146188,
+      "CASH": 0.04650589683201548,
+      "WITHHOLD": 0.21379287055336565
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.07. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "equal",
+    "expected": "CASH",
+    "order": [
+      "CASH",
+      "BUY",
+      "WITHHOLD"
+    ],
+    "repeat": 2,
+    "separate_scores": {
+      "CASH": 0.3260219097137451,
+      "BUY": 0.3326663374900818,
+      "WITHHOLD": 0.18064762651920319
+    },
+    "separate_probs": {
+      "BUY": 0.3505881354006429,
+      "CASH": 0.34826639970006257,
+      "WITHHOLD": 0.30114546489929456
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7397012326146188,
+      "CASH": 0.04650589683201548,
+      "WITHHOLD": 0.21379287055336565
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.07. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "equal",
+    "expected": "CASH",
+    "order": [
+      "CASH",
+      "BUY",
+      "WITHHOLD"
+    ],
+    "repeat": 3,
+    "separate_scores": {
+      "CASH": 0.3260219097137451,
+      "BUY": 0.3326663374900818,
+      "WITHHOLD": 0.18064762651920319
+    },
+    "separate_probs": {
+      "BUY": 0.3505881354006429,
+      "CASH": 0.34826639970006257,
+      "WITHHOLD": 0.30114546489929456
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7397012326146188,
+      "CASH": 0.04650589683201548,
+      "WITHHOLD": 0.21379287055336565
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.07. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "equal",
+    "expected": "CASH",
+    "order": [
+      "CASH",
+      "BUY",
+      "WITHHOLD"
+    ],
+    "repeat": 4,
+    "separate_scores": {
+      "CASH": 0.3260219097137451,
+      "BUY": 0.3326663374900818,
+      "WITHHOLD": 0.18064762651920319
+    },
+    "separate_probs": {
+      "BUY": 0.3505881354006429,
+      "CASH": 0.34826639970006257,
+      "WITHHOLD": 0.30114546489929456
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7397012326146188,
+      "CASH": 0.04650589683201548,
+      "WITHHOLD": 0.21379287055336565
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.07. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "equal",
+    "expected": "CASH",
+    "order": [
+      "CASH",
+      "WITHHOLD",
+      "BUY"
+    ],
+    "repeat": 0,
+    "separate_scores": {
+      "CASH": 0.3260219097137451,
+      "WITHHOLD": 0.18064762651920319,
+      "BUY": 0.3326663374900818
+    },
+    "separate_probs": {
+      "BUY": 0.3505881354006429,
+      "CASH": 0.34826639970006257,
+      "WITHHOLD": 0.30114546489929456
+    },
+    "json_prompt_probs": {
+      "BUY": 0.8195440847024454,
+      "CASH": 0.04757862774385018,
+      "WITHHOLD": 0.13287728755370434
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.07. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "equal",
+    "expected": "CASH",
+    "order": [
+      "CASH",
+      "WITHHOLD",
+      "BUY"
+    ],
+    "repeat": 1,
+    "separate_scores": {
+      "CASH": 0.3260219097137451,
+      "WITHHOLD": 0.18064762651920319,
+      "BUY": 0.3326663374900818
+    },
+    "separate_probs": {
+      "BUY": 0.3505881354006429,
+      "CASH": 0.34826639970006257,
+      "WITHHOLD": 0.30114546489929456
+    },
+    "json_prompt_probs": {
+      "BUY": 0.8195440847024454,
+      "CASH": 0.04757862774385018,
+      "WITHHOLD": 0.13287728755370434
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.07. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "equal",
+    "expected": "CASH",
+    "order": [
+      "CASH",
+      "WITHHOLD",
+      "BUY"
+    ],
+    "repeat": 2,
+    "separate_scores": {
+      "CASH": 0.3260219097137451,
+      "WITHHOLD": 0.18064762651920319,
+      "BUY": 0.3326663374900818
+    },
+    "separate_probs": {
+      "BUY": 0.3505881354006429,
+      "CASH": 0.34826639970006257,
+      "WITHHOLD": 0.30114546489929456
+    },
+    "json_prompt_probs": {
+      "BUY": 0.8195440847024454,
+      "CASH": 0.04757862774385018,
+      "WITHHOLD": 0.13287728755370434
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.07. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "equal",
+    "expected": "CASH",
+    "order": [
+      "CASH",
+      "WITHHOLD",
+      "BUY"
+    ],
+    "repeat": 3,
+    "separate_scores": {
+      "CASH": 0.3260219097137451,
+      "WITHHOLD": 0.18064762651920319,
+      "BUY": 0.3326663374900818
+    },
+    "separate_probs": {
+      "BUY": 0.3505881354006429,
+      "CASH": 0.34826639970006257,
+      "WITHHOLD": 0.30114546489929456
+    },
+    "json_prompt_probs": {
+      "BUY": 0.8195440847024454,
+      "CASH": 0.04757862774385018,
+      "WITHHOLD": 0.13287728755370434
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.07. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "equal",
+    "expected": "CASH",
+    "order": [
+      "CASH",
+      "WITHHOLD",
+      "BUY"
+    ],
+    "repeat": 4,
+    "separate_scores": {
+      "CASH": 0.3260219097137451,
+      "WITHHOLD": 0.18064762651920319,
+      "BUY": 0.3326663374900818
+    },
+    "separate_probs": {
+      "BUY": 0.3505881354006429,
+      "CASH": 0.34826639970006257,
+      "WITHHOLD": 0.30114546489929456
+    },
+    "json_prompt_probs": {
+      "BUY": 0.8195440847024454,
+      "CASH": 0.04757862774385018,
+      "WITHHOLD": 0.13287728755370434
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.07. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "equal",
+    "expected": "CASH",
+    "order": [
+      "WITHHOLD",
+      "BUY",
+      "CASH"
+    ],
+    "repeat": 0,
+    "separate_scores": {
+      "WITHHOLD": 0.18064762651920319,
+      "BUY": 0.3326663374900818,
+      "CASH": 0.3260219097137451
+    },
+    "separate_probs": {
+      "BUY": 0.3505881354006429,
+      "CASH": 0.34826639970006257,
+      "WITHHOLD": 0.30114546489929456
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7311254933009487,
+      "CASH": 0.08217551144488014,
+      "WITHHOLD": 0.18669899525417127
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.07. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "equal",
+    "expected": "CASH",
+    "order": [
+      "WITHHOLD",
+      "BUY",
+      "CASH"
+    ],
+    "repeat": 1,
+    "separate_scores": {
+      "WITHHOLD": 0.18064762651920319,
+      "BUY": 0.3326663374900818,
+      "CASH": 0.3260219097137451
+    },
+    "separate_probs": {
+      "BUY": 0.3505881354006429,
+      "CASH": 0.34826639970006257,
+      "WITHHOLD": 0.30114546489929456
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7311254933009487,
+      "CASH": 0.08217551144488014,
+      "WITHHOLD": 0.18669899525417127
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.07. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "equal",
+    "expected": "CASH",
+    "order": [
+      "WITHHOLD",
+      "BUY",
+      "CASH"
+    ],
+    "repeat": 2,
+    "separate_scores": {
+      "WITHHOLD": 0.18064762651920319,
+      "BUY": 0.3326663374900818,
+      "CASH": 0.3260219097137451
+    },
+    "separate_probs": {
+      "BUY": 0.3505881354006429,
+      "CASH": 0.34826639970006257,
+      "WITHHOLD": 0.30114546489929456
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7311254933009487,
+      "CASH": 0.08217551144488014,
+      "WITHHOLD": 0.18669899525417127
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.07. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "equal",
+    "expected": "CASH",
+    "order": [
+      "WITHHOLD",
+      "BUY",
+      "CASH"
+    ],
+    "repeat": 3,
+    "separate_scores": {
+      "WITHHOLD": 0.18064762651920319,
+      "BUY": 0.3326663374900818,
+      "CASH": 0.3260219097137451
+    },
+    "separate_probs": {
+      "BUY": 0.3505881354006429,
+      "CASH": 0.34826639970006257,
+      "WITHHOLD": 0.30114546489929456
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7311254933009487,
+      "CASH": 0.08217551144488014,
+      "WITHHOLD": 0.18669899525417127
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.07. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "equal",
+    "expected": "CASH",
+    "order": [
+      "WITHHOLD",
+      "BUY",
+      "CASH"
+    ],
+    "repeat": 4,
+    "separate_scores": {
+      "WITHHOLD": 0.18064762651920319,
+      "BUY": 0.3326663374900818,
+      "CASH": 0.3260219097137451
+    },
+    "separate_probs": {
+      "BUY": 0.3505881354006429,
+      "CASH": 0.34826639970006257,
+      "WITHHOLD": 0.30114546489929456
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7311254933009487,
+      "CASH": 0.08217551144488014,
+      "WITHHOLD": 0.18669899525417127
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.07. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "equal",
+    "expected": "CASH",
+    "order": [
+      "WITHHOLD",
+      "CASH",
+      "BUY"
+    ],
+    "repeat": 0,
+    "separate_scores": {
+      "WITHHOLD": 0.18064762651920319,
+      "CASH": 0.3260219097137451,
+      "BUY": 0.3326663374900818
+    },
+    "separate_probs": {
+      "BUY": 0.3505881354006429,
+      "CASH": 0.34826639970006257,
+      "WITHHOLD": 0.30114546489929456
+    },
+    "json_prompt_probs": {
+      "BUY": 0.8172328199373268,
+      "CASH": 0.045420018598036245,
+      "WITHHOLD": 0.137347161464637
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.07. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "equal",
+    "expected": "CASH",
+    "order": [
+      "WITHHOLD",
+      "CASH",
+      "BUY"
+    ],
+    "repeat": 1,
+    "separate_scores": {
+      "WITHHOLD": 0.18064762651920319,
+      "CASH": 0.3260219097137451,
+      "BUY": 0.3326663374900818
+    },
+    "separate_probs": {
+      "BUY": 0.3505881354006429,
+      "CASH": 0.34826639970006257,
+      "WITHHOLD": 0.30114546489929456
+    },
+    "json_prompt_probs": {
+      "BUY": 0.8172328199373268,
+      "CASH": 0.045420018598036245,
+      "WITHHOLD": 0.137347161464637
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.07. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "equal",
+    "expected": "CASH",
+    "order": [
+      "WITHHOLD",
+      "CASH",
+      "BUY"
+    ],
+    "repeat": 2,
+    "separate_scores": {
+      "WITHHOLD": 0.18064762651920319,
+      "CASH": 0.3260219097137451,
+      "BUY": 0.3326663374900818
+    },
+    "separate_probs": {
+      "BUY": 0.3505881354006429,
+      "CASH": 0.34826639970006257,
+      "WITHHOLD": 0.30114546489929456
+    },
+    "json_prompt_probs": {
+      "BUY": 0.8172328199373268,
+      "CASH": 0.045420018598036245,
+      "WITHHOLD": 0.137347161464637
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.07. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "equal",
+    "expected": "CASH",
+    "order": [
+      "WITHHOLD",
+      "CASH",
+      "BUY"
+    ],
+    "repeat": 3,
+    "separate_scores": {
+      "WITHHOLD": 0.18064762651920319,
+      "CASH": 0.3260219097137451,
+      "BUY": 0.3326663374900818
+    },
+    "separate_probs": {
+      "BUY": 0.3505881354006429,
+      "CASH": 0.34826639970006257,
+      "WITHHOLD": 0.30114546489929456
+    },
+    "json_prompt_probs": {
+      "BUY": 0.8172328199373268,
+      "CASH": 0.045420018598036245,
+      "WITHHOLD": 0.137347161464637
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.07. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "equal",
+    "expected": "CASH",
+    "order": [
+      "WITHHOLD",
+      "CASH",
+      "BUY"
+    ],
+    "repeat": 4,
+    "separate_scores": {
+      "WITHHOLD": 0.18064762651920319,
+      "CASH": 0.3260219097137451,
+      "BUY": 0.3326663374900818
+    },
+    "separate_probs": {
+      "BUY": 0.3505881354006429,
+      "CASH": 0.34826639970006257,
+      "WITHHOLD": 0.30114546489929456
+    },
+    "json_prompt_probs": {
+      "BUY": 0.8172328199373268,
+      "CASH": 0.045420018598036245,
+      "WITHHOLD": 0.137347161464637
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Eligible actual EPS is 1.07. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "missing",
+    "expected": "WITHHOLD",
+    "order": [
+      "BUY",
+      "CASH",
+      "WITHHOLD"
+    ],
+    "repeat": 0,
+    "separate_scores": {
+      "BUY": 0.36326727271080017,
+      "CASH": 0.3638555407524109,
+      "WITHHOLD": 0.20280057191848755
+    },
+    "separate_probs": {
+      "BUY": 0.350590001133437,
+      "CASH": 0.35079630270117235,
+      "WITHHOLD": 0.29861369616539063
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7349984199897397,
+      "CASH": 0.02910031471565049,
+      "WITHHOLD": 0.23590126529460992
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Actual EPS is unavailable. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "missing",
+    "expected": "WITHHOLD",
+    "order": [
+      "BUY",
+      "CASH",
+      "WITHHOLD"
+    ],
+    "repeat": 1,
+    "separate_scores": {
+      "BUY": 0.36326727271080017,
+      "CASH": 0.3638555407524109,
+      "WITHHOLD": 0.20280057191848755
+    },
+    "separate_probs": {
+      "BUY": 0.350590001133437,
+      "CASH": 0.35079630270117235,
+      "WITHHOLD": 0.29861369616539063
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7349984199897397,
+      "CASH": 0.02910031471565049,
+      "WITHHOLD": 0.23590126529460992
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Actual EPS is unavailable. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "missing",
+    "expected": "WITHHOLD",
+    "order": [
+      "BUY",
+      "CASH",
+      "WITHHOLD"
+    ],
+    "repeat": 2,
+    "separate_scores": {
+      "BUY": 0.36326727271080017,
+      "CASH": 0.3638555407524109,
+      "WITHHOLD": 0.20280057191848755
+    },
+    "separate_probs": {
+      "BUY": 0.350590001133437,
+      "CASH": 0.35079630270117235,
+      "WITHHOLD": 0.29861369616539063
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7349984199897397,
+      "CASH": 0.02910031471565049,
+      "WITHHOLD": 0.23590126529460992
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Actual EPS is unavailable. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "missing",
+    "expected": "WITHHOLD",
+    "order": [
+      "BUY",
+      "CASH",
+      "WITHHOLD"
+    ],
+    "repeat": 3,
+    "separate_scores": {
+      "BUY": 0.36326727271080017,
+      "CASH": 0.3638555407524109,
+      "WITHHOLD": 0.20280057191848755
+    },
+    "separate_probs": {
+      "BUY": 0.350590001133437,
+      "CASH": 0.35079630270117235,
+      "WITHHOLD": 0.29861369616539063
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7349984199897397,
+      "CASH": 0.02910031471565049,
+      "WITHHOLD": 0.23590126529460992
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Actual EPS is unavailable. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "missing",
+    "expected": "WITHHOLD",
+    "order": [
+      "BUY",
+      "CASH",
+      "WITHHOLD"
+    ],
+    "repeat": 4,
+    "separate_scores": {
+      "BUY": 0.36326727271080017,
+      "CASH": 0.3638555407524109,
+      "WITHHOLD": 0.20280057191848755
+    },
+    "separate_probs": {
+      "BUY": 0.350590001133437,
+      "CASH": 0.35079630270117235,
+      "WITHHOLD": 0.29861369616539063
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7349984199897397,
+      "CASH": 0.02910031471565049,
+      "WITHHOLD": 0.23590126529460992
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Actual EPS is unavailable. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "missing",
+    "expected": "WITHHOLD",
+    "order": [
+      "BUY",
+      "WITHHOLD",
+      "CASH"
+    ],
+    "repeat": 0,
+    "separate_scores": {
+      "BUY": 0.36326727271080017,
+      "WITHHOLD": 0.20280057191848755,
+      "CASH": 0.3638555407524109
+    },
+    "separate_probs": {
+      "BUY": 0.350590001133437,
+      "CASH": 0.35079630270117235,
+      "WITHHOLD": 0.29861369616539063
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7089594191117169,
+      "CASH": 0.07673398321700478,
+      "WITHHOLD": 0.21430659767127827
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Actual EPS is unavailable. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "missing",
+    "expected": "WITHHOLD",
+    "order": [
+      "BUY",
+      "WITHHOLD",
+      "CASH"
+    ],
+    "repeat": 1,
+    "separate_scores": {
+      "BUY": 0.36326727271080017,
+      "WITHHOLD": 0.20280057191848755,
+      "CASH": 0.3638555407524109
+    },
+    "separate_probs": {
+      "BUY": 0.350590001133437,
+      "CASH": 0.35079630270117235,
+      "WITHHOLD": 0.29861369616539063
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7089594191117169,
+      "CASH": 0.07673398321700478,
+      "WITHHOLD": 0.21430659767127827
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Actual EPS is unavailable. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "missing",
+    "expected": "WITHHOLD",
+    "order": [
+      "BUY",
+      "WITHHOLD",
+      "CASH"
+    ],
+    "repeat": 2,
+    "separate_scores": {
+      "BUY": 0.36326727271080017,
+      "WITHHOLD": 0.20280057191848755,
+      "CASH": 0.3638555407524109
+    },
+    "separate_probs": {
+      "BUY": 0.350590001133437,
+      "CASH": 0.35079630270117235,
+      "WITHHOLD": 0.29861369616539063
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7089594191117169,
+      "CASH": 0.07673398321700478,
+      "WITHHOLD": 0.21430659767127827
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Actual EPS is unavailable. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "missing",
+    "expected": "WITHHOLD",
+    "order": [
+      "BUY",
+      "WITHHOLD",
+      "CASH"
+    ],
+    "repeat": 3,
+    "separate_scores": {
+      "BUY": 0.36326727271080017,
+      "WITHHOLD": 0.20280057191848755,
+      "CASH": 0.3638555407524109
+    },
+    "separate_probs": {
+      "BUY": 0.350590001133437,
+      "CASH": 0.35079630270117235,
+      "WITHHOLD": 0.29861369616539063
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7089594191117169,
+      "CASH": 0.07673398321700478,
+      "WITHHOLD": 0.21430659767127827
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Actual EPS is unavailable. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "missing",
+    "expected": "WITHHOLD",
+    "order": [
+      "BUY",
+      "WITHHOLD",
+      "CASH"
+    ],
+    "repeat": 4,
+    "separate_scores": {
+      "BUY": 0.36326727271080017,
+      "WITHHOLD": 0.20280057191848755,
+      "CASH": 0.3638555407524109
+    },
+    "separate_probs": {
+      "BUY": 0.350590001133437,
+      "CASH": 0.35079630270117235,
+      "WITHHOLD": 0.29861369616539063
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7089594191117169,
+      "CASH": 0.07673398321700478,
+      "WITHHOLD": 0.21430659767127827
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Actual EPS is unavailable. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "missing",
+    "expected": "WITHHOLD",
+    "order": [
+      "CASH",
+      "BUY",
+      "WITHHOLD"
+    ],
+    "repeat": 0,
+    "separate_scores": {
+      "CASH": 0.3638555407524109,
+      "BUY": 0.36326727271080017,
+      "WITHHOLD": 0.20280057191848755
+    },
+    "separate_probs": {
+      "BUY": 0.350590001133437,
+      "CASH": 0.35079630270117235,
+      "WITHHOLD": 0.29861369616539063
+    },
+    "json_prompt_probs": {
+      "BUY": 0.6984591197621962,
+      "CASH": 0.04185289489962988,
+      "WITHHOLD": 0.25968798533817394
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Actual EPS is unavailable. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "missing",
+    "expected": "WITHHOLD",
+    "order": [
+      "CASH",
+      "BUY",
+      "WITHHOLD"
+    ],
+    "repeat": 1,
+    "separate_scores": {
+      "CASH": 0.3638555407524109,
+      "BUY": 0.36326727271080017,
+      "WITHHOLD": 0.20280057191848755
+    },
+    "separate_probs": {
+      "BUY": 0.350590001133437,
+      "CASH": 0.35079630270117235,
+      "WITHHOLD": 0.29861369616539063
+    },
+    "json_prompt_probs": {
+      "BUY": 0.6984591197621962,
+      "CASH": 0.04185289489962988,
+      "WITHHOLD": 0.25968798533817394
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Actual EPS is unavailable. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "missing",
+    "expected": "WITHHOLD",
+    "order": [
+      "CASH",
+      "BUY",
+      "WITHHOLD"
+    ],
+    "repeat": 2,
+    "separate_scores": {
+      "CASH": 0.3638555407524109,
+      "BUY": 0.36326727271080017,
+      "WITHHOLD": 0.20280057191848755
+    },
+    "separate_probs": {
+      "BUY": 0.350590001133437,
+      "CASH": 0.35079630270117235,
+      "WITHHOLD": 0.29861369616539063
+    },
+    "json_prompt_probs": {
+      "BUY": 0.6984591197621962,
+      "CASH": 0.04185289489962988,
+      "WITHHOLD": 0.25968798533817394
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Actual EPS is unavailable. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "missing",
+    "expected": "WITHHOLD",
+    "order": [
+      "CASH",
+      "BUY",
+      "WITHHOLD"
+    ],
+    "repeat": 3,
+    "separate_scores": {
+      "CASH": 0.3638555407524109,
+      "BUY": 0.36326727271080017,
+      "WITHHOLD": 0.20280057191848755
+    },
+    "separate_probs": {
+      "BUY": 0.350590001133437,
+      "CASH": 0.35079630270117235,
+      "WITHHOLD": 0.29861369616539063
+    },
+    "json_prompt_probs": {
+      "BUY": 0.6984591197621962,
+      "CASH": 0.04185289489962988,
+      "WITHHOLD": 0.25968798533817394
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Actual EPS is unavailable. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "missing",
+    "expected": "WITHHOLD",
+    "order": [
+      "CASH",
+      "BUY",
+      "WITHHOLD"
+    ],
+    "repeat": 4,
+    "separate_scores": {
+      "CASH": 0.3638555407524109,
+      "BUY": 0.36326727271080017,
+      "WITHHOLD": 0.20280057191848755
+    },
+    "separate_probs": {
+      "BUY": 0.350590001133437,
+      "CASH": 0.35079630270117235,
+      "WITHHOLD": 0.29861369616539063
+    },
+    "json_prompt_probs": {
+      "BUY": 0.6984591197621962,
+      "CASH": 0.04185289489962988,
+      "WITHHOLD": 0.25968798533817394
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Actual EPS is unavailable. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "missing",
+    "expected": "WITHHOLD",
+    "order": [
+      "CASH",
+      "WITHHOLD",
+      "BUY"
+    ],
+    "repeat": 0,
+    "separate_scores": {
+      "CASH": 0.3638555407524109,
+      "WITHHOLD": 0.20280057191848755,
+      "BUY": 0.36326727271080017
+    },
+    "separate_probs": {
+      "BUY": 0.350590001133437,
+      "CASH": 0.35079630270117235,
+      "WITHHOLD": 0.29861369616539063
+    },
+    "json_prompt_probs": {
+      "BUY": 0.764472494649995,
+      "CASH": 0.04263136927682246,
+      "WITHHOLD": 0.19289613607318248
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Actual EPS is unavailable. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "missing",
+    "expected": "WITHHOLD",
+    "order": [
+      "CASH",
+      "WITHHOLD",
+      "BUY"
+    ],
+    "repeat": 1,
+    "separate_scores": {
+      "CASH": 0.3638555407524109,
+      "WITHHOLD": 0.20280057191848755,
+      "BUY": 0.36326727271080017
+    },
+    "separate_probs": {
+      "BUY": 0.350590001133437,
+      "CASH": 0.35079630270117235,
+      "WITHHOLD": 0.29861369616539063
+    },
+    "json_prompt_probs": {
+      "BUY": 0.764472494649995,
+      "CASH": 0.04263136927682246,
+      "WITHHOLD": 0.19289613607318248
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Actual EPS is unavailable. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "missing",
+    "expected": "WITHHOLD",
+    "order": [
+      "CASH",
+      "WITHHOLD",
+      "BUY"
+    ],
+    "repeat": 2,
+    "separate_scores": {
+      "CASH": 0.3638555407524109,
+      "WITHHOLD": 0.20280057191848755,
+      "BUY": 0.36326727271080017
+    },
+    "separate_probs": {
+      "BUY": 0.350590001133437,
+      "CASH": 0.35079630270117235,
+      "WITHHOLD": 0.29861369616539063
+    },
+    "json_prompt_probs": {
+      "BUY": 0.764472494649995,
+      "CASH": 0.04263136927682246,
+      "WITHHOLD": 0.19289613607318248
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Actual EPS is unavailable. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "missing",
+    "expected": "WITHHOLD",
+    "order": [
+      "CASH",
+      "WITHHOLD",
+      "BUY"
+    ],
+    "repeat": 3,
+    "separate_scores": {
+      "CASH": 0.3638555407524109,
+      "WITHHOLD": 0.20280057191848755,
+      "BUY": 0.36326727271080017
+    },
+    "separate_probs": {
+      "BUY": 0.350590001133437,
+      "CASH": 0.35079630270117235,
+      "WITHHOLD": 0.29861369616539063
+    },
+    "json_prompt_probs": {
+      "BUY": 0.764472494649995,
+      "CASH": 0.04263136927682246,
+      "WITHHOLD": 0.19289613607318248
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Actual EPS is unavailable. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "missing",
+    "expected": "WITHHOLD",
+    "order": [
+      "CASH",
+      "WITHHOLD",
+      "BUY"
+    ],
+    "repeat": 4,
+    "separate_scores": {
+      "CASH": 0.3638555407524109,
+      "WITHHOLD": 0.20280057191848755,
+      "BUY": 0.36326727271080017
+    },
+    "separate_probs": {
+      "BUY": 0.350590001133437,
+      "CASH": 0.35079630270117235,
+      "WITHHOLD": 0.29861369616539063
+    },
+    "json_prompt_probs": {
+      "BUY": 0.764472494649995,
+      "CASH": 0.04263136927682246,
+      "WITHHOLD": 0.19289613607318248
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Actual EPS is unavailable. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "missing",
+    "expected": "WITHHOLD",
+    "order": [
+      "WITHHOLD",
+      "BUY",
+      "CASH"
+    ],
+    "repeat": 0,
+    "separate_scores": {
+      "WITHHOLD": 0.20280057191848755,
+      "BUY": 0.36326727271080017,
+      "CASH": 0.3638555407524109
+    },
+    "separate_probs": {
+      "BUY": 0.350590001133437,
+      "CASH": 0.35079630270117235,
+      "WITHHOLD": 0.29861369616539063
+    },
+    "json_prompt_probs": {
+      "BUY": 0.6157113686122483,
+      "CASH": 0.07684462133494097,
+      "WITHHOLD": 0.30744401005281086
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Actual EPS is unavailable. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "missing",
+    "expected": "WITHHOLD",
+    "order": [
+      "WITHHOLD",
+      "BUY",
+      "CASH"
+    ],
+    "repeat": 1,
+    "separate_scores": {
+      "WITHHOLD": 0.20280057191848755,
+      "BUY": 0.36326727271080017,
+      "CASH": 0.3638555407524109
+    },
+    "separate_probs": {
+      "BUY": 0.350590001133437,
+      "CASH": 0.35079630270117235,
+      "WITHHOLD": 0.29861369616539063
+    },
+    "json_prompt_probs": {
+      "BUY": 0.6157113686122483,
+      "CASH": 0.07684462133494097,
+      "WITHHOLD": 0.30744401005281086
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Actual EPS is unavailable. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "missing",
+    "expected": "WITHHOLD",
+    "order": [
+      "WITHHOLD",
+      "BUY",
+      "CASH"
+    ],
+    "repeat": 2,
+    "separate_scores": {
+      "WITHHOLD": 0.20280057191848755,
+      "BUY": 0.36326727271080017,
+      "CASH": 0.3638555407524109
+    },
+    "separate_probs": {
+      "BUY": 0.350590001133437,
+      "CASH": 0.35079630270117235,
+      "WITHHOLD": 0.29861369616539063
+    },
+    "json_prompt_probs": {
+      "BUY": 0.6157113686122483,
+      "CASH": 0.07684462133494097,
+      "WITHHOLD": 0.30744401005281086
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Actual EPS is unavailable. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "missing",
+    "expected": "WITHHOLD",
+    "order": [
+      "WITHHOLD",
+      "BUY",
+      "CASH"
+    ],
+    "repeat": 3,
+    "separate_scores": {
+      "WITHHOLD": 0.20280057191848755,
+      "BUY": 0.36326727271080017,
+      "CASH": 0.3638555407524109
+    },
+    "separate_probs": {
+      "BUY": 0.350590001133437,
+      "CASH": 0.35079630270117235,
+      "WITHHOLD": 0.29861369616539063
+    },
+    "json_prompt_probs": {
+      "BUY": 0.6157113686122483,
+      "CASH": 0.07684462133494097,
+      "WITHHOLD": 0.30744401005281086
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Actual EPS is unavailable. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "missing",
+    "expected": "WITHHOLD",
+    "order": [
+      "WITHHOLD",
+      "BUY",
+      "CASH"
+    ],
+    "repeat": 4,
+    "separate_scores": {
+      "WITHHOLD": 0.20280057191848755,
+      "BUY": 0.36326727271080017,
+      "CASH": 0.3638555407524109
+    },
+    "separate_probs": {
+      "BUY": 0.350590001133437,
+      "CASH": 0.35079630270117235,
+      "WITHHOLD": 0.29861369616539063
+    },
+    "json_prompt_probs": {
+      "BUY": 0.6157113686122483,
+      "CASH": 0.07684462133494097,
+      "WITHHOLD": 0.30744401005281086
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Actual EPS is unavailable. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "missing",
+    "expected": "WITHHOLD",
+    "order": [
+      "WITHHOLD",
+      "CASH",
+      "BUY"
+    ],
+    "repeat": 0,
+    "separate_scores": {
+      "WITHHOLD": 0.20280057191848755,
+      "CASH": 0.3638555407524109,
+      "BUY": 0.36326727271080017
+    },
+    "separate_probs": {
+      "BUY": 0.350590001133437,
+      "CASH": 0.35079630270117235,
+      "WITHHOLD": 0.29861369616539063
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7104477214657952,
+      "CASH": 0.041750221548664646,
+      "WITHHOLD": 0.24780205698554014
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Actual EPS is unavailable. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "missing",
+    "expected": "WITHHOLD",
+    "order": [
+      "WITHHOLD",
+      "CASH",
+      "BUY"
+    ],
+    "repeat": 1,
+    "separate_scores": {
+      "WITHHOLD": 0.20280057191848755,
+      "CASH": 0.3638555407524109,
+      "BUY": 0.36326727271080017
+    },
+    "separate_probs": {
+      "BUY": 0.350590001133437,
+      "CASH": 0.35079630270117235,
+      "WITHHOLD": 0.29861369616539063
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7104477214657952,
+      "CASH": 0.041750221548664646,
+      "WITHHOLD": 0.24780205698554014
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Actual EPS is unavailable. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "missing",
+    "expected": "WITHHOLD",
+    "order": [
+      "WITHHOLD",
+      "CASH",
+      "BUY"
+    ],
+    "repeat": 2,
+    "separate_scores": {
+      "WITHHOLD": 0.20280057191848755,
+      "CASH": 0.3638555407524109,
+      "BUY": 0.36326727271080017
+    },
+    "separate_probs": {
+      "BUY": 0.350590001133437,
+      "CASH": 0.35079630270117235,
+      "WITHHOLD": 0.29861369616539063
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7104477214657952,
+      "CASH": 0.041750221548664646,
+      "WITHHOLD": 0.24780205698554014
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Actual EPS is unavailable. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "missing",
+    "expected": "WITHHOLD",
+    "order": [
+      "WITHHOLD",
+      "CASH",
+      "BUY"
+    ],
+    "repeat": 3,
+    "separate_scores": {
+      "WITHHOLD": 0.20280057191848755,
+      "CASH": 0.3638555407524109,
+      "BUY": 0.36326727271080017
+    },
+    "separate_probs": {
+      "BUY": 0.350590001133437,
+      "CASH": 0.35079630270117235,
+      "WITHHOLD": 0.29861369616539063
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7104477214657952,
+      "CASH": 0.041750221548664646,
+      "WITHHOLD": 0.24780205698554014
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Actual EPS is unavailable. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "missing",
+    "expected": "WITHHOLD",
+    "order": [
+      "WITHHOLD",
+      "CASH",
+      "BUY"
+    ],
+    "repeat": 4,
+    "separate_scores": {
+      "WITHHOLD": 0.20280057191848755,
+      "CASH": 0.3638555407524109,
+      "BUY": 0.36326727271080017
+    },
+    "separate_probs": {
+      "BUY": 0.350590001133437,
+      "CASH": 0.35079630270117235,
+      "WITHHOLD": 0.29861369616539063
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7104477214657952,
+      "CASH": 0.041750221548664646,
+      "WITHHOLD": 0.24780205698554014
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Actual EPS is unavailable. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "conflict",
+    "expected": "WITHHOLD",
+    "order": [
+      "BUY",
+      "CASH",
+      "WITHHOLD"
+    ],
+    "repeat": 0,
+    "separate_scores": {
+      "BUY": 0.3149314522743225,
+      "CASH": 0.3088876008987427,
+      "WITHHOLD": 0.19109231233596802
+    },
+    "separate_probs": {
+      "BUY": 0.3475243356491358,
+      "CASH": 0.3454302846558751,
+      "WITHHOLD": 0.30704537969498913
+    },
+    "json_prompt_probs": {
+      "BUY": 0.73907236371952,
+      "CASH": 0.030061707866513097,
+      "WITHHOLD": 0.23086592841396694
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Two eligible actual EPS sources conflict: 1.34 and 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "conflict",
+    "expected": "WITHHOLD",
+    "order": [
+      "BUY",
+      "CASH",
+      "WITHHOLD"
+    ],
+    "repeat": 1,
+    "separate_scores": {
+      "BUY": 0.3149314522743225,
+      "CASH": 0.3088876008987427,
+      "WITHHOLD": 0.19109231233596802
+    },
+    "separate_probs": {
+      "BUY": 0.3475243356491358,
+      "CASH": 0.3454302846558751,
+      "WITHHOLD": 0.30704537969498913
+    },
+    "json_prompt_probs": {
+      "BUY": 0.73907236371952,
+      "CASH": 0.030061707866513097,
+      "WITHHOLD": 0.23086592841396694
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Two eligible actual EPS sources conflict: 1.34 and 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "conflict",
+    "expected": "WITHHOLD",
+    "order": [
+      "BUY",
+      "CASH",
+      "WITHHOLD"
+    ],
+    "repeat": 2,
+    "separate_scores": {
+      "BUY": 0.3149314522743225,
+      "CASH": 0.3088876008987427,
+      "WITHHOLD": 0.19109231233596802
+    },
+    "separate_probs": {
+      "BUY": 0.3475243356491358,
+      "CASH": 0.3454302846558751,
+      "WITHHOLD": 0.30704537969498913
+    },
+    "json_prompt_probs": {
+      "BUY": 0.73907236371952,
+      "CASH": 0.030061707866513097,
+      "WITHHOLD": 0.23086592841396694
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Two eligible actual EPS sources conflict: 1.34 and 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "conflict",
+    "expected": "WITHHOLD",
+    "order": [
+      "BUY",
+      "CASH",
+      "WITHHOLD"
+    ],
+    "repeat": 3,
+    "separate_scores": {
+      "BUY": 0.3149314522743225,
+      "CASH": 0.3088876008987427,
+      "WITHHOLD": 0.19109231233596802
+    },
+    "separate_probs": {
+      "BUY": 0.3475243356491358,
+      "CASH": 0.3454302846558751,
+      "WITHHOLD": 0.30704537969498913
+    },
+    "json_prompt_probs": {
+      "BUY": 0.73907236371952,
+      "CASH": 0.030061707866513097,
+      "WITHHOLD": 0.23086592841396694
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Two eligible actual EPS sources conflict: 1.34 and 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "conflict",
+    "expected": "WITHHOLD",
+    "order": [
+      "BUY",
+      "CASH",
+      "WITHHOLD"
+    ],
+    "repeat": 4,
+    "separate_scores": {
+      "BUY": 0.3149314522743225,
+      "CASH": 0.3088876008987427,
+      "WITHHOLD": 0.19109231233596802
+    },
+    "separate_probs": {
+      "BUY": 0.3475243356491358,
+      "CASH": 0.3454302846558751,
+      "WITHHOLD": 0.30704537969498913
+    },
+    "json_prompt_probs": {
+      "BUY": 0.73907236371952,
+      "CASH": 0.030061707866513097,
+      "WITHHOLD": 0.23086592841396694
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Two eligible actual EPS sources conflict: 1.34 and 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "conflict",
+    "expected": "WITHHOLD",
+    "order": [
+      "BUY",
+      "WITHHOLD",
+      "CASH"
+    ],
+    "repeat": 0,
+    "separate_scores": {
+      "BUY": 0.3149314522743225,
+      "WITHHOLD": 0.19109231233596802,
+      "CASH": 0.3088876008987427
+    },
+    "separate_probs": {
+      "BUY": 0.3475243356491358,
+      "CASH": 0.3454302846558751,
+      "WITHHOLD": 0.30704537969498913
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7250862667079941,
+      "CASH": 0.08481083101024531,
+      "WITHHOLD": 0.1901029022817605
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Two eligible actual EPS sources conflict: 1.34 and 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "conflict",
+    "expected": "WITHHOLD",
+    "order": [
+      "BUY",
+      "WITHHOLD",
+      "CASH"
+    ],
+    "repeat": 1,
+    "separate_scores": {
+      "BUY": 0.3149314522743225,
+      "WITHHOLD": 0.19109231233596802,
+      "CASH": 0.3088876008987427
+    },
+    "separate_probs": {
+      "BUY": 0.3475243356491358,
+      "CASH": 0.3454302846558751,
+      "WITHHOLD": 0.30704537969498913
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7250862667079941,
+      "CASH": 0.08481083101024531,
+      "WITHHOLD": 0.1901029022817605
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Two eligible actual EPS sources conflict: 1.34 and 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "conflict",
+    "expected": "WITHHOLD",
+    "order": [
+      "BUY",
+      "WITHHOLD",
+      "CASH"
+    ],
+    "repeat": 2,
+    "separate_scores": {
+      "BUY": 0.3149314522743225,
+      "WITHHOLD": 0.19109231233596802,
+      "CASH": 0.3088876008987427
+    },
+    "separate_probs": {
+      "BUY": 0.3475243356491358,
+      "CASH": 0.3454302846558751,
+      "WITHHOLD": 0.30704537969498913
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7250862667079941,
+      "CASH": 0.08481083101024531,
+      "WITHHOLD": 0.1901029022817605
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Two eligible actual EPS sources conflict: 1.34 and 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "conflict",
+    "expected": "WITHHOLD",
+    "order": [
+      "BUY",
+      "WITHHOLD",
+      "CASH"
+    ],
+    "repeat": 3,
+    "separate_scores": {
+      "BUY": 0.3149314522743225,
+      "WITHHOLD": 0.19109231233596802,
+      "CASH": 0.3088876008987427
+    },
+    "separate_probs": {
+      "BUY": 0.3475243356491358,
+      "CASH": 0.3454302846558751,
+      "WITHHOLD": 0.30704537969498913
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7250862667079941,
+      "CASH": 0.08481083101024531,
+      "WITHHOLD": 0.1901029022817605
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Two eligible actual EPS sources conflict: 1.34 and 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "conflict",
+    "expected": "WITHHOLD",
+    "order": [
+      "BUY",
+      "WITHHOLD",
+      "CASH"
+    ],
+    "repeat": 4,
+    "separate_scores": {
+      "BUY": 0.3149314522743225,
+      "WITHHOLD": 0.19109231233596802,
+      "CASH": 0.3088876008987427
+    },
+    "separate_probs": {
+      "BUY": 0.3475243356491358,
+      "CASH": 0.3454302846558751,
+      "WITHHOLD": 0.30704537969498913
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7250862667079941,
+      "CASH": 0.08481083101024531,
+      "WITHHOLD": 0.1901029022817605
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Two eligible actual EPS sources conflict: 1.34 and 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "conflict",
+    "expected": "WITHHOLD",
+    "order": [
+      "CASH",
+      "BUY",
+      "WITHHOLD"
+    ],
+    "repeat": 0,
+    "separate_scores": {
+      "CASH": 0.3088876008987427,
+      "BUY": 0.3149314522743225,
+      "WITHHOLD": 0.19109231233596802
+    },
+    "separate_probs": {
+      "BUY": 0.3475243356491358,
+      "CASH": 0.3454302846558751,
+      "WITHHOLD": 0.30704537969498913
+    },
+    "json_prompt_probs": {
+      "BUY": 0.6959255290740546,
+      "CASH": 0.04736647664748802,
+      "WITHHOLD": 0.25670799427845736
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Two eligible actual EPS sources conflict: 1.34 and 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "conflict",
+    "expected": "WITHHOLD",
+    "order": [
+      "CASH",
+      "BUY",
+      "WITHHOLD"
+    ],
+    "repeat": 1,
+    "separate_scores": {
+      "CASH": 0.3088876008987427,
+      "BUY": 0.3149314522743225,
+      "WITHHOLD": 0.19109231233596802
+    },
+    "separate_probs": {
+      "BUY": 0.3475243356491358,
+      "CASH": 0.3454302846558751,
+      "WITHHOLD": 0.30704537969498913
+    },
+    "json_prompt_probs": {
+      "BUY": 0.6959255290740546,
+      "CASH": 0.04736647664748802,
+      "WITHHOLD": 0.25670799427845736
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Two eligible actual EPS sources conflict: 1.34 and 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "conflict",
+    "expected": "WITHHOLD",
+    "order": [
+      "CASH",
+      "BUY",
+      "WITHHOLD"
+    ],
+    "repeat": 2,
+    "separate_scores": {
+      "CASH": 0.3088876008987427,
+      "BUY": 0.3149314522743225,
+      "WITHHOLD": 0.19109231233596802
+    },
+    "separate_probs": {
+      "BUY": 0.3475243356491358,
+      "CASH": 0.3454302846558751,
+      "WITHHOLD": 0.30704537969498913
+    },
+    "json_prompt_probs": {
+      "BUY": 0.6959255290740546,
+      "CASH": 0.04736647664748802,
+      "WITHHOLD": 0.25670799427845736
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Two eligible actual EPS sources conflict: 1.34 and 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "conflict",
+    "expected": "WITHHOLD",
+    "order": [
+      "CASH",
+      "BUY",
+      "WITHHOLD"
+    ],
+    "repeat": 3,
+    "separate_scores": {
+      "CASH": 0.3088876008987427,
+      "BUY": 0.3149314522743225,
+      "WITHHOLD": 0.19109231233596802
+    },
+    "separate_probs": {
+      "BUY": 0.3475243356491358,
+      "CASH": 0.3454302846558751,
+      "WITHHOLD": 0.30704537969498913
+    },
+    "json_prompt_probs": {
+      "BUY": 0.6959255290740546,
+      "CASH": 0.04736647664748802,
+      "WITHHOLD": 0.25670799427845736
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Two eligible actual EPS sources conflict: 1.34 and 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "conflict",
+    "expected": "WITHHOLD",
+    "order": [
+      "CASH",
+      "BUY",
+      "WITHHOLD"
+    ],
+    "repeat": 4,
+    "separate_scores": {
+      "CASH": 0.3088876008987427,
+      "BUY": 0.3149314522743225,
+      "WITHHOLD": 0.19109231233596802
+    },
+    "separate_probs": {
+      "BUY": 0.3475243356491358,
+      "CASH": 0.3454302846558751,
+      "WITHHOLD": 0.30704537969498913
+    },
+    "json_prompt_probs": {
+      "BUY": 0.6959255290740546,
+      "CASH": 0.04736647664748802,
+      "WITHHOLD": 0.25670799427845736
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Two eligible actual EPS sources conflict: 1.34 and 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\"}"
+  },
+  {
+    "case": "conflict",
+    "expected": "WITHHOLD",
+    "order": [
+      "CASH",
+      "WITHHOLD",
+      "BUY"
+    ],
+    "repeat": 0,
+    "separate_scores": {
+      "CASH": 0.3088876008987427,
+      "WITHHOLD": 0.19109231233596802,
+      "BUY": 0.3149314522743225
+    },
+    "separate_probs": {
+      "BUY": 0.3475243356491358,
+      "CASH": 0.3454302846558751,
+      "WITHHOLD": 0.30704537969498913
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7538011576939876,
+      "CASH": 0.05453891263641836,
+      "WITHHOLD": 0.19165992966959403
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Two eligible actual EPS sources conflict: 1.34 and 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "conflict",
+    "expected": "WITHHOLD",
+    "order": [
+      "CASH",
+      "WITHHOLD",
+      "BUY"
+    ],
+    "repeat": 1,
+    "separate_scores": {
+      "CASH": 0.3088876008987427,
+      "WITHHOLD": 0.19109231233596802,
+      "BUY": 0.3149314522743225
+    },
+    "separate_probs": {
+      "BUY": 0.3475243356491358,
+      "CASH": 0.3454302846558751,
+      "WITHHOLD": 0.30704537969498913
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7538011576939876,
+      "CASH": 0.05453891263641836,
+      "WITHHOLD": 0.19165992966959403
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Two eligible actual EPS sources conflict: 1.34 and 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "conflict",
+    "expected": "WITHHOLD",
+    "order": [
+      "CASH",
+      "WITHHOLD",
+      "BUY"
+    ],
+    "repeat": 2,
+    "separate_scores": {
+      "CASH": 0.3088876008987427,
+      "WITHHOLD": 0.19109231233596802,
+      "BUY": 0.3149314522743225
+    },
+    "separate_probs": {
+      "BUY": 0.3475243356491358,
+      "CASH": 0.3454302846558751,
+      "WITHHOLD": 0.30704537969498913
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7538011576939876,
+      "CASH": 0.05453891263641836,
+      "WITHHOLD": 0.19165992966959403
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Two eligible actual EPS sources conflict: 1.34 and 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "conflict",
+    "expected": "WITHHOLD",
+    "order": [
+      "CASH",
+      "WITHHOLD",
+      "BUY"
+    ],
+    "repeat": 3,
+    "separate_scores": {
+      "CASH": 0.3088876008987427,
+      "WITHHOLD": 0.19109231233596802,
+      "BUY": 0.3149314522743225
+    },
+    "separate_probs": {
+      "BUY": 0.3475243356491358,
+      "CASH": 0.3454302846558751,
+      "WITHHOLD": 0.30704537969498913
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7538011576939876,
+      "CASH": 0.05453891263641836,
+      "WITHHOLD": 0.19165992966959403
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Two eligible actual EPS sources conflict: 1.34 and 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "conflict",
+    "expected": "WITHHOLD",
+    "order": [
+      "CASH",
+      "WITHHOLD",
+      "BUY"
+    ],
+    "repeat": 4,
+    "separate_scores": {
+      "CASH": 0.3088876008987427,
+      "WITHHOLD": 0.19109231233596802,
+      "BUY": 0.3149314522743225
+    },
+    "separate_probs": {
+      "BUY": 0.3475243356491358,
+      "CASH": 0.3454302846558751,
+      "WITHHOLD": 0.30704537969498913
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7538011576939876,
+      "CASH": 0.05453891263641836,
+      "WITHHOLD": 0.19165992966959403
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Two eligible actual EPS sources conflict: 1.34 and 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "conflict",
+    "expected": "WITHHOLD",
+    "order": [
+      "WITHHOLD",
+      "BUY",
+      "CASH"
+    ],
+    "repeat": 0,
+    "separate_scores": {
+      "WITHHOLD": 0.19109231233596802,
+      "BUY": 0.3149314522743225,
+      "CASH": 0.3088876008987427
+    },
+    "separate_probs": {
+      "BUY": 0.3475243356491358,
+      "CASH": 0.3454302846558751,
+      "WITHHOLD": 0.30704537969498913
+    },
+    "json_prompt_probs": {
+      "BUY": 0.6686289163126324,
+      "CASH": 0.08099206377373204,
+      "WITHHOLD": 0.25037901991363554
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Two eligible actual EPS sources conflict: 1.34 and 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "conflict",
+    "expected": "WITHHOLD",
+    "order": [
+      "WITHHOLD",
+      "BUY",
+      "CASH"
+    ],
+    "repeat": 1,
+    "separate_scores": {
+      "WITHHOLD": 0.19109231233596802,
+      "BUY": 0.3149314522743225,
+      "CASH": 0.3088876008987427
+    },
+    "separate_probs": {
+      "BUY": 0.3475243356491358,
+      "CASH": 0.3454302846558751,
+      "WITHHOLD": 0.30704537969498913
+    },
+    "json_prompt_probs": {
+      "BUY": 0.6686289163126324,
+      "CASH": 0.08099206377373204,
+      "WITHHOLD": 0.25037901991363554
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Two eligible actual EPS sources conflict: 1.34 and 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "conflict",
+    "expected": "WITHHOLD",
+    "order": [
+      "WITHHOLD",
+      "BUY",
+      "CASH"
+    ],
+    "repeat": 2,
+    "separate_scores": {
+      "WITHHOLD": 0.19109231233596802,
+      "BUY": 0.3149314522743225,
+      "CASH": 0.3088876008987427
+    },
+    "separate_probs": {
+      "BUY": 0.3475243356491358,
+      "CASH": 0.3454302846558751,
+      "WITHHOLD": 0.30704537969498913
+    },
+    "json_prompt_probs": {
+      "BUY": 0.6686289163126324,
+      "CASH": 0.08099206377373204,
+      "WITHHOLD": 0.25037901991363554
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Two eligible actual EPS sources conflict: 1.34 and 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "conflict",
+    "expected": "WITHHOLD",
+    "order": [
+      "WITHHOLD",
+      "BUY",
+      "CASH"
+    ],
+    "repeat": 3,
+    "separate_scores": {
+      "WITHHOLD": 0.19109231233596802,
+      "BUY": 0.3149314522743225,
+      "CASH": 0.3088876008987427
+    },
+    "separate_probs": {
+      "BUY": 0.3475243356491358,
+      "CASH": 0.3454302846558751,
+      "WITHHOLD": 0.30704537969498913
+    },
+    "json_prompt_probs": {
+      "BUY": 0.6686289163126324,
+      "CASH": 0.08099206377373204,
+      "WITHHOLD": 0.25037901991363554
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Two eligible actual EPS sources conflict: 1.34 and 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "conflict",
+    "expected": "WITHHOLD",
+    "order": [
+      "WITHHOLD",
+      "BUY",
+      "CASH"
+    ],
+    "repeat": 4,
+    "separate_scores": {
+      "WITHHOLD": 0.19109231233596802,
+      "BUY": 0.3149314522743225,
+      "CASH": 0.3088876008987427
+    },
+    "separate_probs": {
+      "BUY": 0.3475243356491358,
+      "CASH": 0.3454302846558751,
+      "WITHHOLD": 0.30704537969498913
+    },
+    "json_prompt_probs": {
+      "BUY": 0.6686289163126324,
+      "CASH": 0.08099206377373204,
+      "WITHHOLD": 0.25037901991363554
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Two eligible actual EPS sources conflict: 1.34 and 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\"}"
+  },
+  {
+    "case": "conflict",
+    "expected": "WITHHOLD",
+    "order": [
+      "WITHHOLD",
+      "CASH",
+      "BUY"
+    ],
+    "repeat": 0,
+    "separate_scores": {
+      "WITHHOLD": 0.19109231233596802,
+      "CASH": 0.3088876008987427,
+      "BUY": 0.3149314522743225
+    },
+    "separate_probs": {
+      "BUY": 0.3475243356491358,
+      "CASH": 0.3454302846558751,
+      "WITHHOLD": 0.30704537969498913
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7482522178141058,
+      "CASH": 0.0469915203782322,
+      "WITHHOLD": 0.20475626180766202
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Two eligible actual EPS sources conflict: 1.34 and 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "conflict",
+    "expected": "WITHHOLD",
+    "order": [
+      "WITHHOLD",
+      "CASH",
+      "BUY"
+    ],
+    "repeat": 1,
+    "separate_scores": {
+      "WITHHOLD": 0.19109231233596802,
+      "CASH": 0.3088876008987427,
+      "BUY": 0.3149314522743225
+    },
+    "separate_probs": {
+      "BUY": 0.3475243356491358,
+      "CASH": 0.3454302846558751,
+      "WITHHOLD": 0.30704537969498913
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7482522178141058,
+      "CASH": 0.0469915203782322,
+      "WITHHOLD": 0.20475626180766202
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Two eligible actual EPS sources conflict: 1.34 and 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "conflict",
+    "expected": "WITHHOLD",
+    "order": [
+      "WITHHOLD",
+      "CASH",
+      "BUY"
+    ],
+    "repeat": 2,
+    "separate_scores": {
+      "WITHHOLD": 0.19109231233596802,
+      "CASH": 0.3088876008987427,
+      "BUY": 0.3149314522743225
+    },
+    "separate_probs": {
+      "BUY": 0.3475243356491358,
+      "CASH": 0.3454302846558751,
+      "WITHHOLD": 0.30704537969498913
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7482522178141058,
+      "CASH": 0.0469915203782322,
+      "WITHHOLD": 0.20475626180766202
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Two eligible actual EPS sources conflict: 1.34 and 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "conflict",
+    "expected": "WITHHOLD",
+    "order": [
+      "WITHHOLD",
+      "CASH",
+      "BUY"
+    ],
+    "repeat": 3,
+    "separate_scores": {
+      "WITHHOLD": 0.19109231233596802,
+      "CASH": 0.3088876008987427,
+      "BUY": 0.3149314522743225
+    },
+    "separate_probs": {
+      "BUY": 0.3475243356491358,
+      "CASH": 0.3454302846558751,
+      "WITHHOLD": 0.30704537969498913
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7482522178141058,
+      "CASH": 0.0469915203782322,
+      "WITHHOLD": 0.20475626180766202
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Two eligible actual EPS sources conflict: 1.34 and 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  },
+  {
+    "case": "conflict",
+    "expected": "WITHHOLD",
+    "order": [
+      "WITHHOLD",
+      "CASH",
+      "BUY"
+    ],
+    "repeat": 4,
+    "separate_scores": {
+      "WITHHOLD": 0.19109231233596802,
+      "CASH": 0.3088876008987427,
+      "BUY": 0.3149314522743225
+    },
+    "separate_probs": {
+      "BUY": 0.3475243356491358,
+      "CASH": 0.3454302846558751,
+      "WITHHOLD": 0.30704537969498913
+    },
+    "json_prompt_probs": {
+      "BUY": 0.7482522178141058,
+      "CASH": 0.0469915203782322,
+      "WITHHOLD": 0.20475626180766202
+    },
+    "prompt": "Choose the action using the evidence and these definitions. Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: Two eligible actual EPS sources conflict: 1.34 and 0.85. Eligible consensus EPS is 1.07.\nAction definitions: {\"WITHHOLD\": \"Defer the decision when required evidence is missing or conflicting.\", \"CASH\": \"Do not take a position when eligible actual EPS is at or below consensus EPS.\", \"BUY\": \"Take a long position when eligible actual EPS exceeds consensus EPS.\"}"
+  }
+]

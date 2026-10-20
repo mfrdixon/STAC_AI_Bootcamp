@@ -1,0 +1,71 @@
+{
+  "model": "google/flan-t5-base",
+  "actions": {
+    "BUY": "Take a long position when eligible actual EPS exceeds consensus EPS.",
+    "CASH": "Do not take a position when eligible actual EPS is at or below consensus EPS.",
+    "WITHHOLD": "Defer the decision when required evidence is missing or conflicting."
+  },
+  "cases": [
+    [
+      "positive",
+      "Eligible actual EPS is 1.34. Eligible consensus EPS is 1.07.",
+      "BUY"
+    ],
+    [
+      "negative",
+      "Eligible actual EPS is 0.85. Eligible consensus EPS is 1.07.",
+      "CASH"
+    ],
+    [
+      "equal",
+      "Eligible actual EPS is 1.07. Eligible consensus EPS is 1.07.",
+      "CASH"
+    ],
+    [
+      "missing",
+      "Actual EPS is unavailable. Eligible consensus EPS is 1.07.",
+      "WITHHOLD"
+    ],
+    [
+      "conflict",
+      "Two eligible actual EPS sources conflict: 1.34 and 0.85. Eligible consensus EPS is 1.07.",
+      "WITHHOLD"
+    ]
+  ],
+  "orders": [
+    [
+      "BUY",
+      "CASH",
+      "WITHHOLD"
+    ],
+    [
+      "BUY",
+      "WITHHOLD",
+      "CASH"
+    ],
+    [
+      "CASH",
+      "BUY",
+      "WITHHOLD"
+    ],
+    [
+      "CASH",
+      "WITHHOLD",
+      "BUY"
+    ],
+    [
+      "WITHHOLD",
+      "BUY",
+      "CASH"
+    ],
+    [
+      "WITHHOLD",
+      "CASH",
+      "BUY"
+    ]
+  ],
+  "repeats": 5,
+  "seed": 20261019,
+  "head": "untrained shared cosine cross-attention; no learned projections",
+  "scope": "Architectural invariance only. Policy-derived labels are not investment outcomes."
+}

@@ -1,0 +1,39 @@
+{
+  "ordinary": {
+    "max_order_tv": 0.04116653177004925,
+    "mean_order_tv": 0.022521653160597874,
+    "top_changes": 52,
+    "order_pairs": 75,
+    "max_repeat_tv": 0.0,
+    "repeat_pairs": 300,
+    "cross_block_max_attention": 0.9684265851974487
+  },
+  "block_global_positions": {
+    "max_order_tv": 0.048785927316749494,
+    "mean_order_tv": 0.02642997125088929,
+    "top_changes": 51,
+    "order_pairs": 75,
+    "max_repeat_tv": 0.0,
+    "repeat_pairs": 300,
+    "cross_block_max_attention": 0.0
+  },
+  "block_reset": {
+    "max_order_tv": 0.0,
+    "mean_order_tv": 0.0,
+    "top_changes": 0,
+    "order_pairs": 75,
+    "max_repeat_tv": 0.0,
+    "repeat_pairs": 300,
+    "cross_block_max_attention": 0.0
+  },
+  "parameters": 22144,
+  "layers": 2,
+  "heads": 4,
+  "width": 32,
+  "trained": false,
+  "seed": 20261020,
+  "isolation_CASH_vector_max_change": 0.0,
+  "seconds": 0.15397906303405762,
+  "torch": "2.13.0",
+  "tolerance": 1e-06
+}

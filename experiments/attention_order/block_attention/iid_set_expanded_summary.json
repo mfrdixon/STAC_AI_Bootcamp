@@ -1,0 +1,37 @@
+{
+  "ordinary": {
+    "max_output_range": 0.18769705295562744,
+    "mean_output_range": 0.15367012321949006,
+    "first_sample_range": 0.147538959980011,
+    "max_repeat_range": 0
+  },
+  "block_global_positions": {
+    "max_output_range": 0.06764823198318481,
+    "mean_output_range": 0.05284901261329651,
+    "first_sample_range": 0.045579612255096436,
+    "max_repeat_range": 0
+  },
+  "block_set": {
+    "max_output_range": 0.0,
+    "mean_output_range": 0.0,
+    "first_sample_range": 0.0,
+    "max_repeat_range": 0
+  },
+  "parameters": 18785,
+  "trained": false,
+  "seed": 20261021,
+  "data_seed": 81234,
+  "distribution": "standard normal, independent pseudorandom draws",
+  "samples": 20,
+  "items_per_sample": 50,
+  "permutations": 100,
+  "repeats": 10,
+  "evaluations": 60000,
+  "block_max_hidden_equivariance_error": 0,
+  "block_forbidden_attention_max": 0.0,
+  "first_sample_original_output": -0.31086117029190063,
+  "first_sample_shifted_by_one_output": -0.5199064016342163,
+  "value_change_absolute_output": 0.20904523134231567,
+  "seconds": 16.49588918685913,
+  "tolerance": 1e-06
+}

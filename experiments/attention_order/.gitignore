@@ -1,0 +1,3 @@
+qwen_model/
+**/qwen_model/
+__pycache__/

@@ -1,0 +1,58 @@
+{
+  "separate_probs": {
+    "order_pairs": 75,
+    "mean_order_tv": 0.0,
+    "max_order_tv": 0.0,
+    "order_action_changes": 0,
+    "affected_cases": 0,
+    "repeat_pairs": 300,
+    "max_repeat_tv": 0.0,
+    "policy_matches": 60,
+    "runs": 150
+  },
+  "json_prompt_probs": {
+    "order_pairs": 75,
+    "mean_order_tv": 0.2505154771950511,
+    "max_order_tv": 0.5974957247924588,
+    "order_action_changes": 32,
+    "affected_cases": 4,
+    "repeat_pairs": 300,
+    "max_repeat_tv": 0.0,
+    "policy_matches": 60,
+    "runs": 150
+  },
+  "json_prefix_probs": {
+    "order_pairs": 75,
+    "mean_order_tv": 0.25035281631576317,
+    "max_order_tv": 0.5968584415142627,
+    "order_action_changes": 32,
+    "affected_cases": 4,
+    "repeat_pairs": 300,
+    "max_repeat_tv": 0.0,
+    "policy_matches": 60,
+    "runs": 150
+  },
+  "separate_evidence_change_max_tv": 0.004197848819346983,
+  "elapsed_seconds": 111.9294261932373,
+  "parameters": 494032768,
+  "trained_parameters": 0,
+  "device": "CPU",
+  "torch": "2.13.0",
+  "transformers": "4.57.3",
+  "model_revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "tokenization": {
+    "BUY": [
+      85973
+    ],
+    "CASH": [
+      34,
+      9537
+    ],
+    "WITHHOLD": [
+      44671,
+      39,
+      7863
+    ]
+  },
+  "manifest_sha256": "a650041368e547e9e3f9e8cec78b85b89c74b093887cb04708ffa676c1bb34a2"
+}
