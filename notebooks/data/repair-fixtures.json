@@ -1,0 +1,440 @@
+{
+  "graph": {
+    "actual": {
+      "type": "source",
+      "where": {
+        "issuer": "Harbor",
+        "period": "Q2",
+        "metric": "actual"
+      }
+    },
+    "consensus": {
+      "type": "source",
+      "where": {
+        "issuer": "Harbor",
+        "period": "Q2",
+        "metric": "consensus"
+      }
+    },
+    "surprise": {
+      "type": "compute",
+      "op": "subtract",
+      "deps": [
+        "actual",
+        "consensus"
+      ]
+    },
+    "positive": {
+      "type": "compute",
+      "op": "positive",
+      "deps": [
+        "surprise"
+      ]
+    },
+    "recommendation": {
+      "type": "compute",
+      "op": "action",
+      "deps": [
+        "positive"
+      ]
+    },
+    "report_actual": {
+      "type": "compute",
+      "op": "identity",
+      "deps": [
+        "actual"
+      ]
+    },
+    "earnings_risk": {
+      "type": "compute",
+      "op": "above",
+      "threshold": 2,
+      "deps": [
+        "actual"
+      ]
+    },
+    "independent_review": {
+      "type": "constant",
+      "value": true
+    },
+    "review_supported": {
+      "type": "or",
+      "deps": [
+        "positive",
+        "independent_review"
+      ]
+    },
+    "unrelated": {
+      "type": "constant",
+      "value": "market-open"
+    }
+  },
+  "cases": [
+    {
+      "id": "missing_actual",
+      "records": [
+        {
+          "id": "c",
+          "issuer": "Harbor",
+          "period": "Q2",
+          "metric": "consensus",
+          "value": 2,
+          "eligible": true,
+          "operative": true
+        }
+      ],
+      "repair": {
+        "add": [
+          {
+            "id": "a",
+            "issuer": "Harbor",
+            "period": "Q2",
+            "metric": "actual",
+            "value": 3,
+            "eligible": true,
+            "operative": true
+          }
+        ]
+      },
+      "controls": [
+        {
+          "name": "wrong_issuer",
+          "repair": {
+            "add": [
+              {
+                "id": "x",
+                "issuer": "Other",
+                "period": "Q2",
+                "metric": "actual",
+                "value": 3,
+                "eligible": true,
+                "operative": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "stale",
+          "repair": {
+            "add": [
+              {
+                "id": "x",
+                "issuer": "Harbor",
+                "period": "Q2",
+                "metric": "actual",
+                "value": 3,
+                "eligible": false,
+                "operative": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "empty",
+          "repair": {}
+        },
+        {
+          "name": "unauthorized_resolution",
+          "repair": {
+            "resolutions": [
+              {
+                "authority": "analyst",
+                "document_id": "x",
+                "issuer": "Harbor",
+                "metric": "actual",
+                "supersedes": [
+                  "bad"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "stale_consensus",
+      "records": [
+        {
+          "id": "a",
+          "issuer": "Harbor",
+          "period": "Q2",
+          "metric": "actual",
+          "value": 3,
+          "eligible": true,
+          "operative": true
+        },
+        {
+          "id": "old",
+          "issuer": "Harbor",
+          "period": "Q2",
+          "metric": "consensus",
+          "value": 2,
+          "eligible": false,
+          "operative": true
+        }
+      ],
+      "repair": {
+        "add": [
+          {
+            "id": "c",
+            "issuer": "Harbor",
+            "period": "Q2",
+            "metric": "consensus",
+            "value": 2,
+            "eligible": true,
+            "operative": true
+          }
+        ]
+      },
+      "controls": [
+        {
+          "name": "wrong_issuer",
+          "repair": {
+            "add": [
+              {
+                "id": "x",
+                "issuer": "Other",
+                "period": "Q2",
+                "metric": "actual",
+                "value": 3,
+                "eligible": true,
+                "operative": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "stale",
+          "repair": {
+            "add": [
+              {
+                "id": "x",
+                "issuer": "Harbor",
+                "period": "Q2",
+                "metric": "actual",
+                "value": 3,
+                "eligible": false,
+                "operative": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "empty",
+          "repair": {}
+        },
+        {
+          "name": "unauthorized_resolution",
+          "repair": {
+            "resolutions": [
+              {
+                "authority": "analyst",
+                "document_id": "x",
+                "issuer": "Harbor",
+                "metric": "actual",
+                "supersedes": [
+                  "bad"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "conflict_actual",
+      "records": [
+        {
+          "id": "a",
+          "issuer": "Harbor",
+          "period": "Q2",
+          "metric": "actual",
+          "value": 3,
+          "eligible": true,
+          "operative": true
+        },
+        {
+          "id": "bad",
+          "issuer": "Harbor",
+          "period": "Q2",
+          "metric": "actual",
+          "value": 1,
+          "eligible": true,
+          "operative": true
+        },
+        {
+          "id": "c",
+          "issuer": "Harbor",
+          "period": "Q2",
+          "metric": "consensus",
+          "value": 2,
+          "eligible": true,
+          "operative": true
+        }
+      ],
+      "repair": {
+        "resolutions": [
+          {
+            "authority": "issuer",
+            "document_id": "correction-1",
+            "issuer": "Harbor",
+            "metric": "actual",
+            "supersedes": [
+              "bad"
+            ]
+          }
+        ]
+      },
+      "controls": [
+        {
+          "name": "wrong_issuer",
+          "repair": {
+            "add": [
+              {
+                "id": "x",
+                "issuer": "Other",
+                "period": "Q2",
+                "metric": "actual",
+                "value": 3,
+                "eligible": true,
+                "operative": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "stale",
+          "repair": {
+            "add": [
+              {
+                "id": "x",
+                "issuer": "Harbor",
+                "period": "Q2",
+                "metric": "actual",
+                "value": 3,
+                "eligible": false,
+                "operative": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "empty",
+          "repair": {}
+        },
+        {
+          "name": "unauthorized_resolution",
+          "repair": {
+            "resolutions": [
+              {
+                "authority": "analyst",
+                "document_id": "x",
+                "issuer": "Harbor",
+                "metric": "actual",
+                "supersedes": [
+                  "bad"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "two_missing",
+      "records": [],
+      "repair": {
+        "add": [
+          {
+            "id": "a",
+            "issuer": "Harbor",
+            "period": "Q2",
+            "metric": "actual",
+            "value": 3,
+            "eligible": true,
+            "operative": true
+          },
+          {
+            "id": "c",
+            "issuer": "Harbor",
+            "period": "Q2",
+            "metric": "consensus",
+            "value": 2,
+            "eligible": true,
+            "operative": true
+          }
+        ]
+      },
+      "controls": [
+        {
+          "name": "wrong_issuer",
+          "repair": {
+            "add": [
+              {
+                "id": "x",
+                "issuer": "Other",
+                "period": "Q2",
+                "metric": "actual",
+                "value": 3,
+                "eligible": true,
+                "operative": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "stale",
+          "repair": {
+            "add": [
+              {
+                "id": "x",
+                "issuer": "Harbor",
+                "period": "Q2",
+                "metric": "actual",
+                "value": 3,
+                "eligible": false,
+                "operative": true
+              }
+            ]
+          }
+        },
+        {
+          "name": "empty",
+          "repair": {}
+        },
+        {
+          "name": "unauthorized_resolution",
+          "repair": {
+            "resolutions": [
+              {
+                "authority": "analyst",
+                "document_id": "x",
+                "issuer": "Harbor",
+                "metric": "actual",
+                "supersedes": [
+                  "bad"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "partial_repair",
+          "repair": {
+            "add": [
+              {
+                "id": "a",
+                "issuer": "Harbor",
+                "period": "Q2",
+                "metric": "actual",
+                "value": 3,
+                "eligible": true,
+                "operative": true
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

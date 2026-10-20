@@ -1,0 +1,419 @@
+[
+  {
+    "input": {
+      "id": "unclear",
+      "label": "1 · Ask “which is better?”",
+      "objective": false,
+      "coverage": false,
+      "comparable": false,
+      "approval": false
+    },
+    "expected": {
+      "case": "unclear",
+      "decision": "CLARIFY",
+      "release": false,
+      "rules": [
+        {
+          "id": "R1",
+          "name": "Define the decision",
+          "node": "O1",
+          "passed": false,
+          "owner": "Business owner",
+          "action": "Clarify objective, audience, market and period",
+          "reason": "“Better” has no approved comparison criterion.",
+          "record": "Signed objective and target population",
+          "path": [
+            "O1",
+            "M1",
+            "C1",
+            "A1"
+          ]
+        },
+        {
+          "id": "R2",
+          "name": "Check the evidence",
+          "node": "E1 / E2",
+          "passed": false,
+          "owner": "Data steward + survey specialist",
+          "action": "Obtain coverage and source-method records",
+          "reason": "A voluntary Yankees fan poll and missing equivalent Patriots evidence cannot support a general-market comparison.",
+          "record": "Provenance, sampling frame and coverage gaps",
+          "path": [
+            "E1 / E2",
+            "M1",
+            "C1",
+            "A1"
+          ]
+        },
+        {
+          "id": "R3",
+          "name": "Validate the inference",
+          "node": "E → M → C",
+          "passed": false,
+          "owner": "Statistician + commercial expert",
+          "action": "Match measures and qualify the claim",
+          "reason": "Audience counts and stated purchase interest are different outcomes; neither alone establishes campaign return.",
+          "record": "Matched metrics, assumptions and uncertainty review",
+          "path": [
+            "M1",
+            "C1",
+            "A1"
+          ]
+        },
+        {
+          "id": "R4",
+          "name": "Authorize the action",
+          "node": "A1",
+          "passed": false,
+          "owner": "Named approver",
+          "action": "Verify current approval after material checks pass",
+          "reason": "No current approval to release the memo.",
+          "record": "Policy version, check results and signed decision",
+          "path": [
+            "A1"
+          ]
+        }
+      ],
+      "affected": [
+        "O1",
+        "M1",
+        "C1",
+        "A1",
+        "E1 / E2"
+      ],
+      "policy": "sports-sponsorship-v1",
+      "scope": "Hypothetical metadata and expert-review states. No real sports ranking, survey validation, autonomous bias discovery or authenticated release is measured."
+    }
+  },
+  {
+    "input": {
+      "id": "coverage",
+      "label": "2 · Define campaign; use one fan poll",
+      "objective": true,
+      "coverage": false,
+      "comparable": false,
+      "approval": false
+    },
+    "expected": {
+      "case": "coverage",
+      "decision": "ESCALATE / WITHHOLD RANKING",
+      "release": false,
+      "rules": [
+        {
+          "id": "R1",
+          "name": "Define the decision",
+          "node": "O1",
+          "passed": true,
+          "owner": "Business owner",
+          "action": "Clarify objective, audience, market and period",
+          "reason": "Campaign objective and scope recorded.",
+          "record": "Signed objective and target population",
+          "path": [
+            "O1",
+            "M1",
+            "C1",
+            "A1"
+          ]
+        },
+        {
+          "id": "R2",
+          "name": "Check the evidence",
+          "node": "E1 / E2",
+          "passed": false,
+          "owner": "Data steward + survey specialist",
+          "action": "Obtain coverage and source-method records",
+          "reason": "A voluntary Yankees fan poll and missing equivalent Patriots evidence cannot support a general-market comparison.",
+          "record": "Provenance, sampling frame and coverage gaps",
+          "path": [
+            "E1 / E2",
+            "M1",
+            "C1",
+            "A1"
+          ]
+        },
+        {
+          "id": "R3",
+          "name": "Validate the inference",
+          "node": "E → M → C",
+          "passed": false,
+          "owner": "Statistician + commercial expert",
+          "action": "Match measures and qualify the claim",
+          "reason": "Audience counts and stated purchase interest are different outcomes; neither alone establishes campaign return.",
+          "record": "Matched metrics, assumptions and uncertainty review",
+          "path": [
+            "M1",
+            "C1",
+            "A1"
+          ]
+        },
+        {
+          "id": "R4",
+          "name": "Authorize the action",
+          "node": "A1",
+          "passed": false,
+          "owner": "Named approver",
+          "action": "Verify current approval after material checks pass",
+          "reason": "No current approval to release the memo.",
+          "record": "Policy version, check results and signed decision",
+          "path": [
+            "A1"
+          ]
+        }
+      ],
+      "affected": [
+        "E1 / E2",
+        "M1",
+        "C1",
+        "A1"
+      ],
+      "policy": "sports-sponsorship-v1",
+      "scope": "Hypothetical metadata and expert-review states. No real sports ranking, survey validation, autonomous bias discovery or authenticated release is measured."
+    }
+  },
+  {
+    "input": {
+      "id": "mismatch",
+      "label": "3 · Add sources; retain mismatched measures",
+      "objective": true,
+      "coverage": true,
+      "comparable": false,
+      "approval": false
+    },
+    "expected": {
+      "case": "mismatch",
+      "decision": "ESCALATE / WITHHOLD RANKING",
+      "release": false,
+      "rules": [
+        {
+          "id": "R1",
+          "name": "Define the decision",
+          "node": "O1",
+          "passed": true,
+          "owner": "Business owner",
+          "action": "Clarify objective, audience, market and period",
+          "reason": "Campaign objective and scope recorded.",
+          "record": "Signed objective and target population",
+          "path": [
+            "O1",
+            "M1",
+            "C1",
+            "A1"
+          ]
+        },
+        {
+          "id": "R2",
+          "name": "Check the evidence",
+          "node": "E1 / E2",
+          "passed": true,
+          "owner": "Data steward + survey specialist",
+          "action": "Obtain coverage and source-method records",
+          "reason": "Both teams have source-method and target-population records in this fixture.",
+          "record": "Provenance, sampling frame and coverage gaps",
+          "path": [
+            "E1 / E2",
+            "M1",
+            "C1",
+            "A1"
+          ]
+        },
+        {
+          "id": "R3",
+          "name": "Validate the inference",
+          "node": "E → M → C",
+          "passed": false,
+          "owner": "Statistician + commercial expert",
+          "action": "Match measures and qualify the claim",
+          "reason": "Audience counts and stated purchase interest are different outcomes; neither alone establishes campaign return.",
+          "record": "Matched metrics, assumptions and uncertainty review",
+          "path": [
+            "M1",
+            "C1",
+            "A1"
+          ]
+        },
+        {
+          "id": "R4",
+          "name": "Authorize the action",
+          "node": "A1",
+          "passed": false,
+          "owner": "Named approver",
+          "action": "Verify current approval after material checks pass",
+          "reason": "No current approval to release the memo.",
+          "record": "Policy version, check results and signed decision",
+          "path": [
+            "A1"
+          ]
+        }
+      ],
+      "affected": [
+        "M1",
+        "C1",
+        "A1"
+      ],
+      "policy": "sports-sponsorship-v1",
+      "scope": "Hypothetical metadata and expert-review states. No real sports ranking, survey validation, autonomous bias discovery or authenticated release is measured."
+    }
+  },
+  {
+    "input": {
+      "id": "review",
+      "label": "4 · Resolve evidence; await approval",
+      "objective": true,
+      "coverage": true,
+      "comparable": true,
+      "approval": false
+    },
+    "expected": {
+      "case": "review",
+      "decision": "AWAIT APPROVAL",
+      "release": false,
+      "rules": [
+        {
+          "id": "R1",
+          "name": "Define the decision",
+          "node": "O1",
+          "passed": true,
+          "owner": "Business owner",
+          "action": "Clarify objective, audience, market and period",
+          "reason": "Campaign objective and scope recorded.",
+          "record": "Signed objective and target population",
+          "path": [
+            "O1",
+            "M1",
+            "C1",
+            "A1"
+          ]
+        },
+        {
+          "id": "R2",
+          "name": "Check the evidence",
+          "node": "E1 / E2",
+          "passed": true,
+          "owner": "Data steward + survey specialist",
+          "action": "Obtain coverage and source-method records",
+          "reason": "Both teams have source-method and target-population records in this fixture.",
+          "record": "Provenance, sampling frame and coverage gaps",
+          "path": [
+            "E1 / E2",
+            "M1",
+            "C1",
+            "A1"
+          ]
+        },
+        {
+          "id": "R3",
+          "name": "Validate the inference",
+          "node": "E → M → C",
+          "passed": true,
+          "owner": "Statistician + commercial expert",
+          "action": "Match measures and qualify the claim",
+          "reason": "Reviewed measures share scope, period and denominator; claim limited to a comparison memo.",
+          "record": "Matched metrics, assumptions and uncertainty review",
+          "path": [
+            "M1",
+            "C1",
+            "A1"
+          ]
+        },
+        {
+          "id": "R4",
+          "name": "Authorize the action",
+          "node": "A1",
+          "passed": false,
+          "owner": "Named approver",
+          "action": "Verify current approval after material checks pass",
+          "reason": "No current approval to release the memo.",
+          "record": "Policy version, check results and signed decision",
+          "path": [
+            "A1"
+          ]
+        }
+      ],
+      "affected": [
+        "A1"
+      ],
+      "policy": "sports-sponsorship-v1",
+      "scope": "Hypothetical metadata and expert-review states. No real sports ranking, survey validation, autonomous bias discovery or authenticated release is measured."
+    }
+  },
+  {
+    "input": {
+      "id": "release",
+      "label": "5 · Record current approval",
+      "objective": true,
+      "coverage": true,
+      "comparable": true,
+      "approval": true
+    },
+    "expected": {
+      "case": "release",
+      "decision": "RELEASE SCOPED MEMO",
+      "release": true,
+      "rules": [
+        {
+          "id": "R1",
+          "name": "Define the decision",
+          "node": "O1",
+          "passed": true,
+          "owner": "Business owner",
+          "action": "Clarify objective, audience, market and period",
+          "reason": "Campaign objective and scope recorded.",
+          "record": "Signed objective and target population",
+          "path": [
+            "O1",
+            "M1",
+            "C1",
+            "A1"
+          ]
+        },
+        {
+          "id": "R2",
+          "name": "Check the evidence",
+          "node": "E1 / E2",
+          "passed": true,
+          "owner": "Data steward + survey specialist",
+          "action": "Obtain coverage and source-method records",
+          "reason": "Both teams have source-method and target-population records in this fixture.",
+          "record": "Provenance, sampling frame and coverage gaps",
+          "path": [
+            "E1 / E2",
+            "M1",
+            "C1",
+            "A1"
+          ]
+        },
+        {
+          "id": "R3",
+          "name": "Validate the inference",
+          "node": "E → M → C",
+          "passed": true,
+          "owner": "Statistician + commercial expert",
+          "action": "Match measures and qualify the claim",
+          "reason": "Reviewed measures share scope, period and denominator; claim limited to a comparison memo.",
+          "record": "Matched metrics, assumptions and uncertainty review",
+          "path": [
+            "M1",
+            "C1",
+            "A1"
+          ]
+        },
+        {
+          "id": "R4",
+          "name": "Authorize the action",
+          "node": "A1",
+          "passed": true,
+          "owner": "Named approver",
+          "action": "Verify current approval after material checks pass",
+          "reason": "Current simulated approval recorded.",
+          "record": "Policy version, check results and signed decision",
+          "path": [
+            "A1"
+          ]
+        }
+      ],
+      "affected": [],
+      "policy": "sports-sponsorship-v1",
+      "scope": "Hypothetical metadata and expert-review states. No real sports ranking, survey validation, autonomous bias discovery or authenticated release is measured."
+    }
+  }
+]

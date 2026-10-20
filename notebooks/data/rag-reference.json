@@ -1,0 +1,1966 @@
+[
+  {
+    "id": "baseline",
+    "result": {
+      "version": "1.0.0",
+      "run_id": "358c4f59-d8d8-4138-b2f0-90f967c080ab",
+      "timestamp": "2026-10-19T23:14:12.698Z",
+      "execution": "deterministic teaching simulator",
+      "config": {
+        "mode": "rag_tools",
+        "cash": 15,
+        "ebitda": 20,
+        "dropCovenant": false,
+        "futureLeak": false,
+        "disruption": true,
+        "approved": false,
+        "revoked": false,
+        "wording": "standard"
+      },
+      "sources": [
+        {
+          "id": "E1",
+          "type": "evidence",
+          "title": "Harbor Metals filing",
+          "published": "2026-10-20T12:00:00Z",
+          "available": "2026-10-20T12:02:00Z",
+          "text": "Debt USD75m; cash USD15m; covenant EBITDA USD20m. Same reporting period and covenant definitions.",
+          "eligible": true,
+          "data_points": [
+            {
+              "id": "E1:P1",
+              "source_id": "E1",
+              "quote": "Debt USD75m;",
+              "start": 0,
+              "end": 12,
+              "kind": "numeric fact or scenario",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E1:P2",
+              "source_id": "E1",
+              "quote": "cash USD15m;",
+              "start": 13,
+              "end": 25,
+              "kind": "numeric fact or scenario",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E1:P3",
+              "source_id": "E1",
+              "quote": "covenant EBITDA USD20m.",
+              "start": 26,
+              "end": 49,
+              "kind": "numeric fact or scenario",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E1:P4",
+              "source_id": "E1",
+              "quote": "Same reporting period and covenant definitions.",
+              "start": 50,
+              "end": 97,
+              "kind": "clause",
+              "method": "deterministic clause segmentation v1"
+            }
+          ]
+        },
+        {
+          "id": "E2",
+          "type": "evidence",
+          "title": "Signed covenant",
+          "published": "2026-10-20T12:08:00Z",
+          "available": "2026-10-20T12:10:00Z",
+          "text": "Net leverage = (debt - cash) / covenant EBITDA. Ceiling 3.5x.",
+          "eligible": true,
+          "data_points": [
+            {
+              "id": "E2:P1",
+              "source_id": "E2",
+              "quote": "Net leverage = (debt - cash) / covenant EBITDA.",
+              "start": 0,
+              "end": 47,
+              "kind": "clause",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E2:P2",
+              "source_id": "E2",
+              "quote": "Ceiling 3.5x.",
+              "start": 48,
+              "end": 61,
+              "kind": "numeric fact or scenario",
+              "method": "deterministic clause segmentation v1"
+            }
+          ]
+        },
+        {
+          "id": "E3",
+          "type": "evidence",
+          "title": "Operations update",
+          "published": "2026-10-20T12:40:00Z",
+          "available": "2026-10-20T12:42:00Z",
+          "text": "Supply disruption. A USD3m EBITDA reduction is a scenario, not a realized result. Credit review remains unresolved.",
+          "eligible": true,
+          "data_points": [
+            {
+              "id": "E3:P1",
+              "source_id": "E3",
+              "quote": "Supply disruption.",
+              "start": 0,
+              "end": 18,
+              "kind": "clause",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E3:P2",
+              "source_id": "E3",
+              "quote": "A USD3m EBITDA reduction is a scenario, not a realized result.",
+              "start": 19,
+              "end": 81,
+              "kind": "numeric fact or scenario",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E3:P3",
+              "source_id": "E3",
+              "quote": "Credit review remains unresolved.",
+              "start": 82,
+              "end": 115,
+              "kind": "clause",
+              "method": "deterministic clause segmentation v1"
+            }
+          ]
+        },
+        {
+          "id": "E4",
+          "type": "evidence",
+          "title": "Later covenant amendment",
+          "published": "2026-10-20T13:05:00Z",
+          "available": "2026-10-20T13:07:00Z",
+          "text": "Ceiling amended to 4.0x.",
+          "eligible": false,
+          "data_points": [
+            {
+              "id": "E4:P1",
+              "source_id": "E4",
+              "quote": "Ceiling amended to 4.0x.",
+              "start": 0,
+              "end": 24,
+              "kind": "numeric fact or scenario",
+              "method": "deterministic clause segmentation v1"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "E1",
+          "type": "evidence",
+          "title": "Harbor Metals filing",
+          "published": "2026-10-20T12:00:00Z",
+          "available": "2026-10-20T12:02:00Z",
+          "text": "Debt USD75m; cash USD15m; covenant EBITDA USD20m. Same reporting period and covenant definitions.",
+          "eligible": true,
+          "data_points": [
+            {
+              "id": "E1:P1",
+              "source_id": "E1",
+              "quote": "Debt USD75m;",
+              "start": 0,
+              "end": 12,
+              "kind": "numeric fact or scenario",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E1:P2",
+              "source_id": "E1",
+              "quote": "cash USD15m;",
+              "start": 13,
+              "end": 25,
+              "kind": "numeric fact or scenario",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E1:P3",
+              "source_id": "E1",
+              "quote": "covenant EBITDA USD20m.",
+              "start": 26,
+              "end": 49,
+              "kind": "numeric fact or scenario",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E1:P4",
+              "source_id": "E1",
+              "quote": "Same reporting period and covenant definitions.",
+              "start": 50,
+              "end": 97,
+              "kind": "clause",
+              "method": "deterministic clause segmentation v1"
+            }
+          ]
+        },
+        {
+          "id": "E2",
+          "type": "evidence",
+          "title": "Signed covenant",
+          "published": "2026-10-20T12:08:00Z",
+          "available": "2026-10-20T12:10:00Z",
+          "text": "Net leverage = (debt - cash) / covenant EBITDA. Ceiling 3.5x.",
+          "eligible": true,
+          "data_points": [
+            {
+              "id": "E2:P1",
+              "source_id": "E2",
+              "quote": "Net leverage = (debt - cash) / covenant EBITDA.",
+              "start": 0,
+              "end": 47,
+              "kind": "clause",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E2:P2",
+              "source_id": "E2",
+              "quote": "Ceiling 3.5x.",
+              "start": 48,
+              "end": 61,
+              "kind": "numeric fact or scenario",
+              "method": "deterministic clause segmentation v1"
+            }
+          ]
+        },
+        {
+          "id": "E3",
+          "type": "evidence",
+          "title": "Operations update",
+          "published": "2026-10-20T12:40:00Z",
+          "available": "2026-10-20T12:42:00Z",
+          "text": "Supply disruption. A USD3m EBITDA reduction is a scenario, not a realized result. Credit review remains unresolved.",
+          "eligible": true,
+          "data_points": [
+            {
+              "id": "E3:P1",
+              "source_id": "E3",
+              "quote": "Supply disruption.",
+              "start": 0,
+              "end": 18,
+              "kind": "clause",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E3:P2",
+              "source_id": "E3",
+              "quote": "A USD3m EBITDA reduction is a scenario, not a realized result.",
+              "start": 19,
+              "end": 81,
+              "kind": "numeric fact or scenario",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E3:P3",
+              "source_id": "E3",
+              "quote": "Credit review remains unresolved.",
+              "start": 82,
+              "end": 115,
+              "kind": "clause",
+              "method": "deterministic clause segmentation v1"
+            }
+          ]
+        }
+      ],
+      "calculation": {
+        "formula": "(75 - cash) / EBITDA",
+        "current": 3,
+        "scenario": 3.5294117647058822,
+        "ceiling": 3.5,
+        "inputs": [
+          "E1",
+          "E2"
+        ],
+        "note": "Scenario EBITDA falls by USD3m; this is not an observed outcome."
+      },
+      "messages": [
+        {
+          "role": "system",
+          "content": "You assess a fictional credit brief. Use only the supplied context. Distinguish current measurements from scenarios. Never invent evidence or permission. Return only JSON with keys claim (string), citations (array of evidence IDs), proposed_action (RELEASE, REVIEW or HOLD)."
+        },
+        {
+          "role": "user",
+          "content": "{\"question\":\"Can we release the Harbor Metals credit brief stating comfortable covenant headroom?\",\"as_of\":\"2026-10-20T12:55:00Z\",\"sources\":[{\"id\":\"E1\",\"type\":\"evidence\",\"title\":\"Harbor Metals filing\",\"published\":\"2026-10-20T12:00:00Z\",\"available\":\"2026-10-20T12:02:00Z\",\"text\":\"Debt USD75m; cash USD15m; covenant EBITDA USD20m. Same reporting period and covenant definitions.\",\"eligible\":true,\"data_points\":[{\"id\":\"E1:P1\",\"source_id\":\"E1\",\"quote\":\"Debt USD75m;\",\"start\":0,\"end\":12,\"kind\":\"numeric fact or scenario\",\"method\":\"deterministic clause segmentation v1\"},{\"id\":\"E1:P2\",\"source_id\":\"E1\",\"quote\":\"cash USD15m;\",\"start\":13,\"end\":25,\"kind\":\"numeric fact or scenario\",\"method\":\"deterministic clause segmentation v1\"},{\"id\":\"E1:P3\",\"source_id\":\"E1\",\"quote\":\"covenant EBITDA USD20m.\",\"start\":26,\"end\":49,\"kind\":\"numeric fact or scenario\",\"method\":\"deterministic clause segmentation v1\"},{\"id\":\"E1:P4\",\"source_id\":\"E1\",\"quote\":\"Same reporting period and covenant definitions.\",\"start\":50,\"end\":97,\"kind\":\"clause\",\"method\":\"deterministic clause segmentation v1\"}]},{\"id\":\"E2\",\"type\":\"evidence\",\"title\":\"Signed covenant\",\"published\":\"2026-10-20T12:08:00Z\",\"available\":\"2026-10-20T12:10:00Z\",\"text\":\"Net leverage = (debt - cash) / covenant EBITDA. Ceiling 3.5x.\",\"eligible\":true,\"data_points\":[{\"id\":\"E2:P1\",\"source_id\":\"E2\",\"quote\":\"Net leverage = (debt - cash) / covenant EBITDA.\",\"start\":0,\"end\":47,\"kind\":\"clause\",\"method\":\"deterministic clause segmentation v1\"},{\"id\":\"E2:P2\",\"source_id\":\"E2\",\"quote\":\"Ceiling 3.5x.\",\"start\":48,\"end\":61,\"kind\":\"numeric fact or scenario\",\"method\":\"deterministic clause segmentation v1\"}]},{\"id\":\"E3\",\"type\":\"evidence\",\"title\":\"Operations update\",\"published\":\"2026-10-20T12:40:00Z\",\"available\":\"2026-10-20T12:42:00Z\",\"text\":\"Supply disruption. A USD3m EBITDA reduction is a scenario, not a realized result. Credit review remains unresolved.\",\"eligible\":true,\"data_points\":[{\"id\":\"E3:P1\",\"source_id\":\"E3\",\"quote\":\"Supply disruption.\",\"start\":0,\"end\":18,\"kind\":\"clause\",\"method\":\"deterministic clause segmentation v1\"},{\"id\":\"E3:P2\",\"source_id\":\"E3\",\"quote\":\"A USD3m EBITDA reduction is a scenario, not a realized result.\",\"start\":19,\"end\":81,\"kind\":\"numeric fact or scenario\",\"method\":\"deterministic clause segmentation v1\"},{\"id\":\"E3:P3\",\"source_id\":\"E3\",\"quote\":\"Credit review remains unresolved.\",\"start\":82,\"end\":115,\"kind\":\"clause\",\"method\":\"deterministic clause segmentation v1\"}]}],\"calculator\":{\"formula\":\"(75 - cash) / EBITDA\",\"current\":3,\"scenario\":3.5294117647058822,\"ceiling\":3.5,\"inputs\":[\"E1\",\"E2\"],\"note\":\"Scenario EBITDA falls by USD3m; this is not an observed outcome.\"}}"
+        }
+      ],
+      "answer": {
+        "claim": "Current net leverage is 3.00x. The downside scenario needs credit review.",
+        "citations": [
+          "E1",
+          "E2",
+          "E3"
+        ],
+        "proposed_action": "REVIEW"
+      },
+      "checks": [
+        {
+          "id": "R1",
+          "name": "Eligible evidence",
+          "status": "PASS",
+          "reason": "Supplied sources precede the decision cutoff.",
+          "owner": "Data steward"
+        },
+        {
+          "id": "R2",
+          "name": "Bound calculation",
+          "status": "PASS",
+          "reason": "Deterministic calculation bound to filing and covenant.",
+          "owner": "Credit analyst"
+        },
+        {
+          "id": "R3",
+          "name": "Sufficient support",
+          "status": "UNRESOLVED",
+          "reason": "Workshop rule: require filing and covenant citations, a ratio at or below 3.5x, and no unresolved disruption. This is a bounded rule check, not general semantic verification.",
+          "owner": "Credit risk owner"
+        },
+        {
+          "id": "R4",
+          "name": "Current authority",
+          "status": "UNRESOLVED",
+          "reason": "Simulated reviewer approval is absent.",
+          "owner": "Accountable approver"
+        }
+      ],
+      "gate": "HOLD",
+      "executed_action": "NONE — teaching environment",
+      "graph": {
+        "nodes": [
+          {
+            "id": "E1",
+            "type": "evidence",
+            "label": "Harbor Metals filing"
+          },
+          {
+            "id": "E2",
+            "type": "evidence",
+            "label": "Signed covenant"
+          },
+          {
+            "id": "E3",
+            "type": "evidence",
+            "label": "Operations update"
+          },
+          {
+            "id": "T1",
+            "type": "tool",
+            "label": "Net leverage calculator"
+          },
+          {
+            "id": "W1",
+            "type": "language",
+            "label": "Current net leverage is 3.00x. The downside scenario needs credit review."
+          },
+          {
+            "id": "C1",
+            "type": "claim",
+            "label": "Target: comfortable headroom"
+          },
+          {
+            "id": "R1",
+            "type": "rule",
+            "label": "Eligible evidence"
+          },
+          {
+            "id": "R2",
+            "type": "rule",
+            "label": "Bound calculation"
+          },
+          {
+            "id": "R3",
+            "type": "rule",
+            "label": "Sufficient support"
+          },
+          {
+            "id": "R4",
+            "type": "rule",
+            "label": "Current authority"
+          },
+          {
+            "id": "D1",
+            "type": "decision",
+            "label": "HOLD"
+          }
+        ],
+        "edges": [
+          {
+            "from": "E1",
+            "to": "W1",
+            "label": "supplied context"
+          },
+          {
+            "from": "E2",
+            "to": "W1",
+            "label": "supplied context"
+          },
+          {
+            "from": "E3",
+            "to": "W1",
+            "label": "supplied context"
+          },
+          {
+            "from": "W1",
+            "to": "C1",
+            "label": "assesses target"
+          },
+          {
+            "from": "E1",
+            "to": "R1",
+            "label": "eligibility checked"
+          },
+          {
+            "from": "E2",
+            "to": "R1",
+            "label": "eligibility checked"
+          },
+          {
+            "from": "E3",
+            "to": "R1",
+            "label": "eligibility checked"
+          },
+          {
+            "from": "E1",
+            "to": "T1",
+            "label": "binds input"
+          },
+          {
+            "from": "E2",
+            "to": "T1",
+            "label": "binds input"
+          },
+          {
+            "from": "T1",
+            "to": "R2",
+            "label": "checked calculation"
+          },
+          {
+            "from": "T1",
+            "to": "R3",
+            "label": "supports numerical check"
+          },
+          {
+            "from": "C1",
+            "to": "R3",
+            "label": "requires support"
+          },
+          {
+            "from": "R1",
+            "to": "D1",
+            "label": "permits"
+          },
+          {
+            "from": "R2",
+            "to": "D1",
+            "label": "permits"
+          },
+          {
+            "from": "R3",
+            "to": "D1",
+            "label": "blocks"
+          },
+          {
+            "from": "R4",
+            "to": "D1",
+            "label": "blocks"
+          }
+        ]
+      },
+      "trace": [
+        "Prepare point-in-time context",
+        "Generate proposed assessment",
+        "Apply instructor-defined checks",
+        "Check simulated current authority",
+        "Record permitted action; execute no financial action"
+      ]
+    },
+    "sources": [
+      {
+        "id": "E1",
+        "type": "evidence",
+        "title": "Harbor Metals filing",
+        "published": "2026-10-20T12:00:00Z",
+        "available": "2026-10-20T12:02:00Z",
+        "text": "Debt USD75m; cash USD15m; covenant EBITDA USD20m. Same reporting period and covenant definitions.",
+        "eligible": true,
+        "data_points": [
+          {
+            "id": "E1:P1",
+            "source_id": "E1",
+            "quote": "Debt USD75m;",
+            "start": 0,
+            "end": 12,
+            "kind": "numeric fact or scenario",
+            "method": "deterministic clause segmentation v1"
+          },
+          {
+            "id": "E1:P2",
+            "source_id": "E1",
+            "quote": "cash USD15m;",
+            "start": 13,
+            "end": 25,
+            "kind": "numeric fact or scenario",
+            "method": "deterministic clause segmentation v1"
+          },
+          {
+            "id": "E1:P3",
+            "source_id": "E1",
+            "quote": "covenant EBITDA USD20m.",
+            "start": 26,
+            "end": 49,
+            "kind": "numeric fact or scenario",
+            "method": "deterministic clause segmentation v1"
+          },
+          {
+            "id": "E1:P4",
+            "source_id": "E1",
+            "quote": "Same reporting period and covenant definitions.",
+            "start": 50,
+            "end": 97,
+            "kind": "clause",
+            "method": "deterministic clause segmentation v1"
+          }
+        ],
+        "inContext": true,
+        "entity": "Harbor Metals",
+        "documentType": "Financial filing",
+        "period": "Same reporting period asserted in fixture; dates not supplied",
+        "effective": "Not supplied; contractual validity is assumed by the teaching fixture"
+      },
+      {
+        "id": "E2",
+        "type": "evidence",
+        "title": "Signed covenant",
+        "published": "2026-10-20T12:08:00Z",
+        "available": "2026-10-20T12:10:00Z",
+        "text": "Net leverage = (debt - cash) / covenant EBITDA. Ceiling 3.5x.",
+        "eligible": true,
+        "data_points": [
+          {
+            "id": "E2:P1",
+            "source_id": "E2",
+            "quote": "Net leverage = (debt - cash) / covenant EBITDA.",
+            "start": 0,
+            "end": 47,
+            "kind": "clause",
+            "method": "deterministic clause segmentation v1"
+          },
+          {
+            "id": "E2:P2",
+            "source_id": "E2",
+            "quote": "Ceiling 3.5x.",
+            "start": 48,
+            "end": 61,
+            "kind": "numeric fact or scenario",
+            "method": "deterministic clause segmentation v1"
+          }
+        ],
+        "inContext": true,
+        "entity": "Harbor Metals",
+        "documentType": "Signed covenant",
+        "period": "Not supplied",
+        "effective": "Not supplied; contractual validity is assumed by the teaching fixture"
+      },
+      {
+        "id": "E3",
+        "type": "evidence",
+        "title": "Operations update",
+        "published": "2026-10-20T12:40:00Z",
+        "available": "2026-10-20T12:42:00Z",
+        "text": "Supply disruption. A USD3m EBITDA reduction is a scenario, not a realized result. Credit review remains unresolved.",
+        "eligible": true,
+        "data_points": [
+          {
+            "id": "E3:P1",
+            "source_id": "E3",
+            "quote": "Supply disruption.",
+            "start": 0,
+            "end": 18,
+            "kind": "clause",
+            "method": "deterministic clause segmentation v1"
+          },
+          {
+            "id": "E3:P2",
+            "source_id": "E3",
+            "quote": "A USD3m EBITDA reduction is a scenario, not a realized result.",
+            "start": 19,
+            "end": 81,
+            "kind": "numeric fact or scenario",
+            "method": "deterministic clause segmentation v1"
+          },
+          {
+            "id": "E3:P3",
+            "source_id": "E3",
+            "quote": "Credit review remains unresolved.",
+            "start": 82,
+            "end": 115,
+            "kind": "clause",
+            "method": "deterministic clause segmentation v1"
+          }
+        ],
+        "inContext": true,
+        "entity": "Harbor Metals",
+        "documentType": "Operations update",
+        "period": "Not supplied",
+        "effective": "Not supplied; contractual validity is assumed by the teaching fixture"
+      },
+      {
+        "id": "E4",
+        "type": "evidence",
+        "title": "Later covenant amendment",
+        "published": "2026-10-20T13:05:00Z",
+        "available": "2026-10-20T13:07:00Z",
+        "text": "Ceiling amended to 4.0x.",
+        "eligible": false,
+        "data_points": [
+          {
+            "id": "E4:P1",
+            "source_id": "E4",
+            "quote": "Ceiling amended to 4.0x.",
+            "start": 0,
+            "end": 24,
+            "kind": "numeric fact or scenario",
+            "method": "deterministic clause segmentation v1"
+          }
+        ],
+        "inContext": false,
+        "entity": "Harbor Metals",
+        "documentType": "Covenant amendment",
+        "period": "Not supplied",
+        "effective": "Not supplied; contractual validity is assumed by the teaching fixture"
+      }
+    ],
+    "bound": true,
+    "eligibleIds": [
+      "E1",
+      "E2",
+      "E3"
+    ],
+    "requirements": [
+      {
+        "id": "C1",
+        "claim": "Current covenant leverage is 3.00×",
+        "status": "SUPPORTED IN FIXTURE",
+        "requires": "Eligible filing E1 + signed definition E2 + calculator record",
+        "reason": "(75 − 15) / 20 = 3.00×. Simple definition: all cash counts."
+      },
+      {
+        "id": "C2",
+        "claim": "Headroom is comfortable; no review needed",
+        "status": "UNRESOLVED",
+        "requires": "Supported current ratio + disruption assessment + approved materiality policy",
+        "reason": "E3 says the disruption remains unresolved. Downside EBITDA 17 implies 3.53×, above 3.5×. This scenario is not an observed loss."
+      }
+    ]
+  },
+  {
+    "id": "future",
+    "result": {
+      "version": "1.0.0",
+      "run_id": "79844d31-1d0d-4902-94bc-fb6efbc9222c",
+      "timestamp": "2026-10-19T23:14:12.702Z",
+      "execution": "deterministic teaching simulator",
+      "config": {
+        "mode": "rag_tools",
+        "cash": 15,
+        "ebitda": 20,
+        "dropCovenant": false,
+        "futureLeak": true,
+        "disruption": true,
+        "approved": false,
+        "revoked": false,
+        "wording": "standard"
+      },
+      "sources": [
+        {
+          "id": "E1",
+          "type": "evidence",
+          "title": "Harbor Metals filing",
+          "published": "2026-10-20T12:00:00Z",
+          "available": "2026-10-20T12:02:00Z",
+          "text": "Debt USD75m; cash USD15m; covenant EBITDA USD20m. Same reporting period and covenant definitions.",
+          "eligible": true,
+          "data_points": [
+            {
+              "id": "E1:P1",
+              "source_id": "E1",
+              "quote": "Debt USD75m;",
+              "start": 0,
+              "end": 12,
+              "kind": "numeric fact or scenario",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E1:P2",
+              "source_id": "E1",
+              "quote": "cash USD15m;",
+              "start": 13,
+              "end": 25,
+              "kind": "numeric fact or scenario",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E1:P3",
+              "source_id": "E1",
+              "quote": "covenant EBITDA USD20m.",
+              "start": 26,
+              "end": 49,
+              "kind": "numeric fact or scenario",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E1:P4",
+              "source_id": "E1",
+              "quote": "Same reporting period and covenant definitions.",
+              "start": 50,
+              "end": 97,
+              "kind": "clause",
+              "method": "deterministic clause segmentation v1"
+            }
+          ]
+        },
+        {
+          "id": "E2",
+          "type": "evidence",
+          "title": "Signed covenant",
+          "published": "2026-10-20T12:08:00Z",
+          "available": "2026-10-20T12:10:00Z",
+          "text": "Net leverage = (debt - cash) / covenant EBITDA. Ceiling 3.5x.",
+          "eligible": true,
+          "data_points": [
+            {
+              "id": "E2:P1",
+              "source_id": "E2",
+              "quote": "Net leverage = (debt - cash) / covenant EBITDA.",
+              "start": 0,
+              "end": 47,
+              "kind": "clause",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E2:P2",
+              "source_id": "E2",
+              "quote": "Ceiling 3.5x.",
+              "start": 48,
+              "end": 61,
+              "kind": "numeric fact or scenario",
+              "method": "deterministic clause segmentation v1"
+            }
+          ]
+        },
+        {
+          "id": "E3",
+          "type": "evidence",
+          "title": "Operations update",
+          "published": "2026-10-20T12:40:00Z",
+          "available": "2026-10-20T12:42:00Z",
+          "text": "Supply disruption. A USD3m EBITDA reduction is a scenario, not a realized result. Credit review remains unresolved.",
+          "eligible": true,
+          "data_points": [
+            {
+              "id": "E3:P1",
+              "source_id": "E3",
+              "quote": "Supply disruption.",
+              "start": 0,
+              "end": 18,
+              "kind": "clause",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E3:P2",
+              "source_id": "E3",
+              "quote": "A USD3m EBITDA reduction is a scenario, not a realized result.",
+              "start": 19,
+              "end": 81,
+              "kind": "numeric fact or scenario",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E3:P3",
+              "source_id": "E3",
+              "quote": "Credit review remains unresolved.",
+              "start": 82,
+              "end": 115,
+              "kind": "clause",
+              "method": "deterministic clause segmentation v1"
+            }
+          ]
+        },
+        {
+          "id": "E4",
+          "type": "evidence",
+          "title": "Later covenant amendment",
+          "published": "2026-10-20T13:05:00Z",
+          "available": "2026-10-20T13:07:00Z",
+          "text": "Ceiling amended to 4.0x.",
+          "eligible": false,
+          "data_points": [
+            {
+              "id": "E4:P1",
+              "source_id": "E4",
+              "quote": "Ceiling amended to 4.0x.",
+              "start": 0,
+              "end": 24,
+              "kind": "numeric fact or scenario",
+              "method": "deterministic clause segmentation v1"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "E1",
+          "type": "evidence",
+          "title": "Harbor Metals filing",
+          "published": "2026-10-20T12:00:00Z",
+          "available": "2026-10-20T12:02:00Z",
+          "text": "Debt USD75m; cash USD15m; covenant EBITDA USD20m. Same reporting period and covenant definitions.",
+          "eligible": true,
+          "data_points": [
+            {
+              "id": "E1:P1",
+              "source_id": "E1",
+              "quote": "Debt USD75m;",
+              "start": 0,
+              "end": 12,
+              "kind": "numeric fact or scenario",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E1:P2",
+              "source_id": "E1",
+              "quote": "cash USD15m;",
+              "start": 13,
+              "end": 25,
+              "kind": "numeric fact or scenario",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E1:P3",
+              "source_id": "E1",
+              "quote": "covenant EBITDA USD20m.",
+              "start": 26,
+              "end": 49,
+              "kind": "numeric fact or scenario",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E1:P4",
+              "source_id": "E1",
+              "quote": "Same reporting period and covenant definitions.",
+              "start": 50,
+              "end": 97,
+              "kind": "clause",
+              "method": "deterministic clause segmentation v1"
+            }
+          ]
+        },
+        {
+          "id": "E2",
+          "type": "evidence",
+          "title": "Signed covenant",
+          "published": "2026-10-20T12:08:00Z",
+          "available": "2026-10-20T12:10:00Z",
+          "text": "Net leverage = (debt - cash) / covenant EBITDA. Ceiling 3.5x.",
+          "eligible": true,
+          "data_points": [
+            {
+              "id": "E2:P1",
+              "source_id": "E2",
+              "quote": "Net leverage = (debt - cash) / covenant EBITDA.",
+              "start": 0,
+              "end": 47,
+              "kind": "clause",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E2:P2",
+              "source_id": "E2",
+              "quote": "Ceiling 3.5x.",
+              "start": 48,
+              "end": 61,
+              "kind": "numeric fact or scenario",
+              "method": "deterministic clause segmentation v1"
+            }
+          ]
+        },
+        {
+          "id": "E3",
+          "type": "evidence",
+          "title": "Operations update",
+          "published": "2026-10-20T12:40:00Z",
+          "available": "2026-10-20T12:42:00Z",
+          "text": "Supply disruption. A USD3m EBITDA reduction is a scenario, not a realized result. Credit review remains unresolved.",
+          "eligible": true,
+          "data_points": [
+            {
+              "id": "E3:P1",
+              "source_id": "E3",
+              "quote": "Supply disruption.",
+              "start": 0,
+              "end": 18,
+              "kind": "clause",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E3:P2",
+              "source_id": "E3",
+              "quote": "A USD3m EBITDA reduction is a scenario, not a realized result.",
+              "start": 19,
+              "end": 81,
+              "kind": "numeric fact or scenario",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E3:P3",
+              "source_id": "E3",
+              "quote": "Credit review remains unresolved.",
+              "start": 82,
+              "end": 115,
+              "kind": "clause",
+              "method": "deterministic clause segmentation v1"
+            }
+          ]
+        },
+        {
+          "id": "E4",
+          "type": "evidence",
+          "title": "Later covenant amendment",
+          "published": "2026-10-20T13:05:00Z",
+          "available": "2026-10-20T13:07:00Z",
+          "text": "Ceiling amended to 4.0x.",
+          "eligible": false,
+          "data_points": [
+            {
+              "id": "E4:P1",
+              "source_id": "E4",
+              "quote": "Ceiling amended to 4.0x.",
+              "start": 0,
+              "end": 24,
+              "kind": "numeric fact or scenario",
+              "method": "deterministic clause segmentation v1"
+            }
+          ]
+        }
+      ],
+      "calculation": {
+        "formula": "(75 - cash) / EBITDA",
+        "current": 3,
+        "scenario": 3.5294117647058822,
+        "ceiling": 3.5,
+        "inputs": [
+          "E1",
+          "E2"
+        ],
+        "note": "Scenario EBITDA falls by USD3m; this is not an observed outcome."
+      },
+      "messages": [
+        {
+          "role": "system",
+          "content": "You assess a fictional credit brief. Use only the supplied context. Distinguish current measurements from scenarios. Never invent evidence or permission. Return only JSON with keys claim (string), citations (array of evidence IDs), proposed_action (RELEASE, REVIEW or HOLD)."
+        },
+        {
+          "role": "user",
+          "content": "{\"question\":\"Can we release the Harbor Metals credit brief stating comfortable covenant headroom?\",\"as_of\":\"2026-10-20T12:55:00Z\",\"sources\":[{\"id\":\"E1\",\"type\":\"evidence\",\"title\":\"Harbor Metals filing\",\"published\":\"2026-10-20T12:00:00Z\",\"available\":\"2026-10-20T12:02:00Z\",\"text\":\"Debt USD75m; cash USD15m; covenant EBITDA USD20m. Same reporting period and covenant definitions.\",\"eligible\":true,\"data_points\":[{\"id\":\"E1:P1\",\"source_id\":\"E1\",\"quote\":\"Debt USD75m;\",\"start\":0,\"end\":12,\"kind\":\"numeric fact or scenario\",\"method\":\"deterministic clause segmentation v1\"},{\"id\":\"E1:P2\",\"source_id\":\"E1\",\"quote\":\"cash USD15m;\",\"start\":13,\"end\":25,\"kind\":\"numeric fact or scenario\",\"method\":\"deterministic clause segmentation v1\"},{\"id\":\"E1:P3\",\"source_id\":\"E1\",\"quote\":\"covenant EBITDA USD20m.\",\"start\":26,\"end\":49,\"kind\":\"numeric fact or scenario\",\"method\":\"deterministic clause segmentation v1\"},{\"id\":\"E1:P4\",\"source_id\":\"E1\",\"quote\":\"Same reporting period and covenant definitions.\",\"start\":50,\"end\":97,\"kind\":\"clause\",\"method\":\"deterministic clause segmentation v1\"}]},{\"id\":\"E2\",\"type\":\"evidence\",\"title\":\"Signed covenant\",\"published\":\"2026-10-20T12:08:00Z\",\"available\":\"2026-10-20T12:10:00Z\",\"text\":\"Net leverage = (debt - cash) / covenant EBITDA. Ceiling 3.5x.\",\"eligible\":true,\"data_points\":[{\"id\":\"E2:P1\",\"source_id\":\"E2\",\"quote\":\"Net leverage = (debt - cash) / covenant EBITDA.\",\"start\":0,\"end\":47,\"kind\":\"clause\",\"method\":\"deterministic clause segmentation v1\"},{\"id\":\"E2:P2\",\"source_id\":\"E2\",\"quote\":\"Ceiling 3.5x.\",\"start\":48,\"end\":61,\"kind\":\"numeric fact or scenario\",\"method\":\"deterministic clause segmentation v1\"}]},{\"id\":\"E3\",\"type\":\"evidence\",\"title\":\"Operations update\",\"published\":\"2026-10-20T12:40:00Z\",\"available\":\"2026-10-20T12:42:00Z\",\"text\":\"Supply disruption. A USD3m EBITDA reduction is a scenario, not a realized result. Credit review remains unresolved.\",\"eligible\":true,\"data_points\":[{\"id\":\"E3:P1\",\"source_id\":\"E3\",\"quote\":\"Supply disruption.\",\"start\":0,\"end\":18,\"kind\":\"clause\",\"method\":\"deterministic clause segmentation v1\"},{\"id\":\"E3:P2\",\"source_id\":\"E3\",\"quote\":\"A USD3m EBITDA reduction is a scenario, not a realized result.\",\"start\":19,\"end\":81,\"kind\":\"numeric fact or scenario\",\"method\":\"deterministic clause segmentation v1\"},{\"id\":\"E3:P3\",\"source_id\":\"E3\",\"quote\":\"Credit review remains unresolved.\",\"start\":82,\"end\":115,\"kind\":\"clause\",\"method\":\"deterministic clause segmentation v1\"}]},{\"id\":\"E4\",\"type\":\"evidence\",\"title\":\"Later covenant amendment\",\"published\":\"2026-10-20T13:05:00Z\",\"available\":\"2026-10-20T13:07:00Z\",\"text\":\"Ceiling amended to 4.0x.\",\"eligible\":false,\"data_points\":[{\"id\":\"E4:P1\",\"source_id\":\"E4\",\"quote\":\"Ceiling amended to 4.0x.\",\"start\":0,\"end\":24,\"kind\":\"numeric fact or scenario\",\"method\":\"deterministic clause segmentation v1\"}]}],\"calculator\":{\"formula\":\"(75 - cash) / EBITDA\",\"current\":3,\"scenario\":3.5294117647058822,\"ceiling\":3.5,\"inputs\":[\"E1\",\"E2\"],\"note\":\"Scenario EBITDA falls by USD3m; this is not an observed outcome.\"}}"
+        }
+      ],
+      "answer": {
+        "claim": "Current net leverage is 3.00x. The downside scenario needs credit review.",
+        "citations": [
+          "E1",
+          "E2",
+          "E3"
+        ],
+        "proposed_action": "REVIEW"
+      },
+      "checks": [
+        {
+          "id": "R1",
+          "name": "Eligible evidence",
+          "status": "UNRESOLVED",
+          "reason": "Future amendment entered context. Remove it and regenerate.",
+          "owner": "Data steward"
+        },
+        {
+          "id": "R2",
+          "name": "Bound calculation",
+          "status": "PASS",
+          "reason": "Deterministic calculation bound to filing and covenant.",
+          "owner": "Credit analyst"
+        },
+        {
+          "id": "R3",
+          "name": "Sufficient support",
+          "status": "UNRESOLVED",
+          "reason": "Workshop rule: require filing and covenant citations, a ratio at or below 3.5x, and no unresolved disruption. This is a bounded rule check, not general semantic verification.",
+          "owner": "Credit risk owner"
+        },
+        {
+          "id": "R4",
+          "name": "Current authority",
+          "status": "UNRESOLVED",
+          "reason": "Simulated reviewer approval is absent.",
+          "owner": "Accountable approver"
+        }
+      ],
+      "gate": "HOLD",
+      "executed_action": "NONE — teaching environment",
+      "graph": {
+        "nodes": [
+          {
+            "id": "E1",
+            "type": "evidence",
+            "label": "Harbor Metals filing"
+          },
+          {
+            "id": "E2",
+            "type": "evidence",
+            "label": "Signed covenant"
+          },
+          {
+            "id": "E3",
+            "type": "evidence",
+            "label": "Operations update"
+          },
+          {
+            "id": "E4",
+            "type": "evidence",
+            "label": "Later covenant amendment"
+          },
+          {
+            "id": "T1",
+            "type": "tool",
+            "label": "Net leverage calculator"
+          },
+          {
+            "id": "W1",
+            "type": "language",
+            "label": "Current net leverage is 3.00x. The downside scenario needs credit review."
+          },
+          {
+            "id": "C1",
+            "type": "claim",
+            "label": "Target: comfortable headroom"
+          },
+          {
+            "id": "R1",
+            "type": "rule",
+            "label": "Eligible evidence"
+          },
+          {
+            "id": "R2",
+            "type": "rule",
+            "label": "Bound calculation"
+          },
+          {
+            "id": "R3",
+            "type": "rule",
+            "label": "Sufficient support"
+          },
+          {
+            "id": "R4",
+            "type": "rule",
+            "label": "Current authority"
+          },
+          {
+            "id": "D1",
+            "type": "decision",
+            "label": "HOLD"
+          }
+        ],
+        "edges": [
+          {
+            "from": "E1",
+            "to": "W1",
+            "label": "supplied context"
+          },
+          {
+            "from": "E2",
+            "to": "W1",
+            "label": "supplied context"
+          },
+          {
+            "from": "E3",
+            "to": "W1",
+            "label": "supplied context"
+          },
+          {
+            "from": "E4",
+            "to": "W1",
+            "label": "supplied context"
+          },
+          {
+            "from": "W1",
+            "to": "C1",
+            "label": "assesses target"
+          },
+          {
+            "from": "E1",
+            "to": "R1",
+            "label": "eligibility checked"
+          },
+          {
+            "from": "E2",
+            "to": "R1",
+            "label": "eligibility checked"
+          },
+          {
+            "from": "E3",
+            "to": "R1",
+            "label": "eligibility checked"
+          },
+          {
+            "from": "E4",
+            "to": "R1",
+            "label": "eligibility checked"
+          },
+          {
+            "from": "E1",
+            "to": "T1",
+            "label": "binds input"
+          },
+          {
+            "from": "E2",
+            "to": "T1",
+            "label": "binds input"
+          },
+          {
+            "from": "T1",
+            "to": "R2",
+            "label": "checked calculation"
+          },
+          {
+            "from": "T1",
+            "to": "R3",
+            "label": "supports numerical check"
+          },
+          {
+            "from": "C1",
+            "to": "R3",
+            "label": "requires support"
+          },
+          {
+            "from": "R1",
+            "to": "D1",
+            "label": "blocks"
+          },
+          {
+            "from": "R2",
+            "to": "D1",
+            "label": "permits"
+          },
+          {
+            "from": "R3",
+            "to": "D1",
+            "label": "blocks"
+          },
+          {
+            "from": "R4",
+            "to": "D1",
+            "label": "blocks"
+          }
+        ]
+      },
+      "trace": [
+        "Prepare point-in-time context",
+        "Generate proposed assessment",
+        "Apply instructor-defined checks",
+        "Check simulated current authority",
+        "Record permitted action; execute no financial action"
+      ]
+    },
+    "sources": [
+      {
+        "id": "E1",
+        "type": "evidence",
+        "title": "Harbor Metals filing",
+        "published": "2026-10-20T12:00:00Z",
+        "available": "2026-10-20T12:02:00Z",
+        "text": "Debt USD75m; cash USD15m; covenant EBITDA USD20m. Same reporting period and covenant definitions.",
+        "eligible": true,
+        "data_points": [
+          {
+            "id": "E1:P1",
+            "source_id": "E1",
+            "quote": "Debt USD75m;",
+            "start": 0,
+            "end": 12,
+            "kind": "numeric fact or scenario",
+            "method": "deterministic clause segmentation v1"
+          },
+          {
+            "id": "E1:P2",
+            "source_id": "E1",
+            "quote": "cash USD15m;",
+            "start": 13,
+            "end": 25,
+            "kind": "numeric fact or scenario",
+            "method": "deterministic clause segmentation v1"
+          },
+          {
+            "id": "E1:P3",
+            "source_id": "E1",
+            "quote": "covenant EBITDA USD20m.",
+            "start": 26,
+            "end": 49,
+            "kind": "numeric fact or scenario",
+            "method": "deterministic clause segmentation v1"
+          },
+          {
+            "id": "E1:P4",
+            "source_id": "E1",
+            "quote": "Same reporting period and covenant definitions.",
+            "start": 50,
+            "end": 97,
+            "kind": "clause",
+            "method": "deterministic clause segmentation v1"
+          }
+        ],
+        "inContext": true,
+        "entity": "Harbor Metals",
+        "documentType": "Financial filing",
+        "period": "Same reporting period asserted in fixture; dates not supplied",
+        "effective": "Not supplied; contractual validity is assumed by the teaching fixture"
+      },
+      {
+        "id": "E2",
+        "type": "evidence",
+        "title": "Signed covenant",
+        "published": "2026-10-20T12:08:00Z",
+        "available": "2026-10-20T12:10:00Z",
+        "text": "Net leverage = (debt - cash) / covenant EBITDA. Ceiling 3.5x.",
+        "eligible": true,
+        "data_points": [
+          {
+            "id": "E2:P1",
+            "source_id": "E2",
+            "quote": "Net leverage = (debt - cash) / covenant EBITDA.",
+            "start": 0,
+            "end": 47,
+            "kind": "clause",
+            "method": "deterministic clause segmentation v1"
+          },
+          {
+            "id": "E2:P2",
+            "source_id": "E2",
+            "quote": "Ceiling 3.5x.",
+            "start": 48,
+            "end": 61,
+            "kind": "numeric fact or scenario",
+            "method": "deterministic clause segmentation v1"
+          }
+        ],
+        "inContext": true,
+        "entity": "Harbor Metals",
+        "documentType": "Signed covenant",
+        "period": "Not supplied",
+        "effective": "Not supplied; contractual validity is assumed by the teaching fixture"
+      },
+      {
+        "id": "E3",
+        "type": "evidence",
+        "title": "Operations update",
+        "published": "2026-10-20T12:40:00Z",
+        "available": "2026-10-20T12:42:00Z",
+        "text": "Supply disruption. A USD3m EBITDA reduction is a scenario, not a realized result. Credit review remains unresolved.",
+        "eligible": true,
+        "data_points": [
+          {
+            "id": "E3:P1",
+            "source_id": "E3",
+            "quote": "Supply disruption.",
+            "start": 0,
+            "end": 18,
+            "kind": "clause",
+            "method": "deterministic clause segmentation v1"
+          },
+          {
+            "id": "E3:P2",
+            "source_id": "E3",
+            "quote": "A USD3m EBITDA reduction is a scenario, not a realized result.",
+            "start": 19,
+            "end": 81,
+            "kind": "numeric fact or scenario",
+            "method": "deterministic clause segmentation v1"
+          },
+          {
+            "id": "E3:P3",
+            "source_id": "E3",
+            "quote": "Credit review remains unresolved.",
+            "start": 82,
+            "end": 115,
+            "kind": "clause",
+            "method": "deterministic clause segmentation v1"
+          }
+        ],
+        "inContext": true,
+        "entity": "Harbor Metals",
+        "documentType": "Operations update",
+        "period": "Not supplied",
+        "effective": "Not supplied; contractual validity is assumed by the teaching fixture"
+      },
+      {
+        "id": "E4",
+        "type": "evidence",
+        "title": "Later covenant amendment",
+        "published": "2026-10-20T13:05:00Z",
+        "available": "2026-10-20T13:07:00Z",
+        "text": "Ceiling amended to 4.0x.",
+        "eligible": false,
+        "data_points": [
+          {
+            "id": "E4:P1",
+            "source_id": "E4",
+            "quote": "Ceiling amended to 4.0x.",
+            "start": 0,
+            "end": 24,
+            "kind": "numeric fact or scenario",
+            "method": "deterministic clause segmentation v1"
+          }
+        ],
+        "inContext": true,
+        "entity": "Harbor Metals",
+        "documentType": "Covenant amendment",
+        "period": "Not supplied",
+        "effective": "Not supplied; contractual validity is assumed by the teaching fixture"
+      }
+    ],
+    "bound": true,
+    "eligibleIds": [
+      "E1",
+      "E2",
+      "E3"
+    ],
+    "requirements": [
+      {
+        "id": "C1",
+        "claim": "Current covenant leverage is 3.00×",
+        "status": "SUPPORTED IN FIXTURE",
+        "requires": "Eligible filing E1 + signed definition E2 + calculator record",
+        "reason": "(75 − 15) / 20 = 3.00×. Simple definition: all cash counts."
+      },
+      {
+        "id": "C2",
+        "claim": "Headroom is comfortable; no review needed",
+        "status": "UNRESOLVED",
+        "requires": "Supported current ratio + disruption assessment + approved materiality policy",
+        "reason": "E3 says the disruption remains unresolved. Downside EBITDA 17 implies 3.53×, above 3.5×. This scenario is not an observed loss."
+      }
+    ]
+  },
+  {
+    "id": "missing",
+    "result": {
+      "version": "1.0.0",
+      "run_id": "6a8720ab-bbe6-4dee-9d41-1b3b17a2be2b",
+      "timestamp": "2026-10-19T23:14:12.702Z",
+      "execution": "deterministic teaching simulator",
+      "config": {
+        "mode": "rag_tools",
+        "cash": 15,
+        "ebitda": 20,
+        "dropCovenant": true,
+        "futureLeak": false,
+        "disruption": true,
+        "approved": false,
+        "revoked": false,
+        "wording": "standard"
+      },
+      "sources": [
+        {
+          "id": "E1",
+          "type": "evidence",
+          "title": "Harbor Metals filing",
+          "published": "2026-10-20T12:00:00Z",
+          "available": "2026-10-20T12:02:00Z",
+          "text": "Debt USD75m; cash USD15m; covenant EBITDA USD20m. Same reporting period and covenant definitions.",
+          "eligible": true,
+          "data_points": [
+            {
+              "id": "E1:P1",
+              "source_id": "E1",
+              "quote": "Debt USD75m;",
+              "start": 0,
+              "end": 12,
+              "kind": "numeric fact or scenario",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E1:P2",
+              "source_id": "E1",
+              "quote": "cash USD15m;",
+              "start": 13,
+              "end": 25,
+              "kind": "numeric fact or scenario",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E1:P3",
+              "source_id": "E1",
+              "quote": "covenant EBITDA USD20m.",
+              "start": 26,
+              "end": 49,
+              "kind": "numeric fact or scenario",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E1:P4",
+              "source_id": "E1",
+              "quote": "Same reporting period and covenant definitions.",
+              "start": 50,
+              "end": 97,
+              "kind": "clause",
+              "method": "deterministic clause segmentation v1"
+            }
+          ]
+        },
+        {
+          "id": "E2",
+          "type": "evidence",
+          "title": "Signed covenant",
+          "published": "2026-10-20T12:08:00Z",
+          "available": "2026-10-20T12:10:00Z",
+          "text": "Net leverage = (debt - cash) / covenant EBITDA. Ceiling 3.5x.",
+          "eligible": true,
+          "data_points": [
+            {
+              "id": "E2:P1",
+              "source_id": "E2",
+              "quote": "Net leverage = (debt - cash) / covenant EBITDA.",
+              "start": 0,
+              "end": 47,
+              "kind": "clause",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E2:P2",
+              "source_id": "E2",
+              "quote": "Ceiling 3.5x.",
+              "start": 48,
+              "end": 61,
+              "kind": "numeric fact or scenario",
+              "method": "deterministic clause segmentation v1"
+            }
+          ]
+        },
+        {
+          "id": "E3",
+          "type": "evidence",
+          "title": "Operations update",
+          "published": "2026-10-20T12:40:00Z",
+          "available": "2026-10-20T12:42:00Z",
+          "text": "Supply disruption. A USD3m EBITDA reduction is a scenario, not a realized result. Credit review remains unresolved.",
+          "eligible": true,
+          "data_points": [
+            {
+              "id": "E3:P1",
+              "source_id": "E3",
+              "quote": "Supply disruption.",
+              "start": 0,
+              "end": 18,
+              "kind": "clause",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E3:P2",
+              "source_id": "E3",
+              "quote": "A USD3m EBITDA reduction is a scenario, not a realized result.",
+              "start": 19,
+              "end": 81,
+              "kind": "numeric fact or scenario",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E3:P3",
+              "source_id": "E3",
+              "quote": "Credit review remains unresolved.",
+              "start": 82,
+              "end": 115,
+              "kind": "clause",
+              "method": "deterministic clause segmentation v1"
+            }
+          ]
+        },
+        {
+          "id": "E4",
+          "type": "evidence",
+          "title": "Later covenant amendment",
+          "published": "2026-10-20T13:05:00Z",
+          "available": "2026-10-20T13:07:00Z",
+          "text": "Ceiling amended to 4.0x.",
+          "eligible": false,
+          "data_points": [
+            {
+              "id": "E4:P1",
+              "source_id": "E4",
+              "quote": "Ceiling amended to 4.0x.",
+              "start": 0,
+              "end": 24,
+              "kind": "numeric fact or scenario",
+              "method": "deterministic clause segmentation v1"
+            }
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "id": "E1",
+          "type": "evidence",
+          "title": "Harbor Metals filing",
+          "published": "2026-10-20T12:00:00Z",
+          "available": "2026-10-20T12:02:00Z",
+          "text": "Debt USD75m; cash USD15m; covenant EBITDA USD20m. Same reporting period and covenant definitions.",
+          "eligible": true,
+          "data_points": [
+            {
+              "id": "E1:P1",
+              "source_id": "E1",
+              "quote": "Debt USD75m;",
+              "start": 0,
+              "end": 12,
+              "kind": "numeric fact or scenario",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E1:P2",
+              "source_id": "E1",
+              "quote": "cash USD15m;",
+              "start": 13,
+              "end": 25,
+              "kind": "numeric fact or scenario",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E1:P3",
+              "source_id": "E1",
+              "quote": "covenant EBITDA USD20m.",
+              "start": 26,
+              "end": 49,
+              "kind": "numeric fact or scenario",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E1:P4",
+              "source_id": "E1",
+              "quote": "Same reporting period and covenant definitions.",
+              "start": 50,
+              "end": 97,
+              "kind": "clause",
+              "method": "deterministic clause segmentation v1"
+            }
+          ]
+        },
+        {
+          "id": "E3",
+          "type": "evidence",
+          "title": "Operations update",
+          "published": "2026-10-20T12:40:00Z",
+          "available": "2026-10-20T12:42:00Z",
+          "text": "Supply disruption. A USD3m EBITDA reduction is a scenario, not a realized result. Credit review remains unresolved.",
+          "eligible": true,
+          "data_points": [
+            {
+              "id": "E3:P1",
+              "source_id": "E3",
+              "quote": "Supply disruption.",
+              "start": 0,
+              "end": 18,
+              "kind": "clause",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E3:P2",
+              "source_id": "E3",
+              "quote": "A USD3m EBITDA reduction is a scenario, not a realized result.",
+              "start": 19,
+              "end": 81,
+              "kind": "numeric fact or scenario",
+              "method": "deterministic clause segmentation v1"
+            },
+            {
+              "id": "E3:P3",
+              "source_id": "E3",
+              "quote": "Credit review remains unresolved.",
+              "start": 82,
+              "end": 115,
+              "kind": "clause",
+              "method": "deterministic clause segmentation v1"
+            }
+          ]
+        }
+      ],
+      "calculation": {
+        "formula": "(75 - cash) / EBITDA",
+        "current": 3,
+        "scenario": 3.5294117647058822,
+        "ceiling": 3.5,
+        "inputs": [
+          "E1",
+          "E2"
+        ],
+        "note": "Scenario EBITDA falls by USD3m; this is not an observed outcome."
+      },
+      "messages": [
+        {
+          "role": "system",
+          "content": "You assess a fictional credit brief. Use only the supplied context. Distinguish current measurements from scenarios. Never invent evidence or permission. Return only JSON with keys claim (string), citations (array of evidence IDs), proposed_action (RELEASE, REVIEW or HOLD)."
+        },
+        {
+          "role": "user",
+          "content": "{\"question\":\"Can we release the Harbor Metals credit brief stating comfortable covenant headroom?\",\"as_of\":\"2026-10-20T12:55:00Z\",\"sources\":[{\"id\":\"E1\",\"type\":\"evidence\",\"title\":\"Harbor Metals filing\",\"published\":\"2026-10-20T12:00:00Z\",\"available\":\"2026-10-20T12:02:00Z\",\"text\":\"Debt USD75m; cash USD15m; covenant EBITDA USD20m. Same reporting period and covenant definitions.\",\"eligible\":true,\"data_points\":[{\"id\":\"E1:P1\",\"source_id\":\"E1\",\"quote\":\"Debt USD75m;\",\"start\":0,\"end\":12,\"kind\":\"numeric fact or scenario\",\"method\":\"deterministic clause segmentation v1\"},{\"id\":\"E1:P2\",\"source_id\":\"E1\",\"quote\":\"cash USD15m;\",\"start\":13,\"end\":25,\"kind\":\"numeric fact or scenario\",\"method\":\"deterministic clause segmentation v1\"},{\"id\":\"E1:P3\",\"source_id\":\"E1\",\"quote\":\"covenant EBITDA USD20m.\",\"start\":26,\"end\":49,\"kind\":\"numeric fact or scenario\",\"method\":\"deterministic clause segmentation v1\"},{\"id\":\"E1:P4\",\"source_id\":\"E1\",\"quote\":\"Same reporting period and covenant definitions.\",\"start\":50,\"end\":97,\"kind\":\"clause\",\"method\":\"deterministic clause segmentation v1\"}]},{\"id\":\"E3\",\"type\":\"evidence\",\"title\":\"Operations update\",\"published\":\"2026-10-20T12:40:00Z\",\"available\":\"2026-10-20T12:42:00Z\",\"text\":\"Supply disruption. A USD3m EBITDA reduction is a scenario, not a realized result. Credit review remains unresolved.\",\"eligible\":true,\"data_points\":[{\"id\":\"E3:P1\",\"source_id\":\"E3\",\"quote\":\"Supply disruption.\",\"start\":0,\"end\":18,\"kind\":\"clause\",\"method\":\"deterministic clause segmentation v1\"},{\"id\":\"E3:P2\",\"source_id\":\"E3\",\"quote\":\"A USD3m EBITDA reduction is a scenario, not a realized result.\",\"start\":19,\"end\":81,\"kind\":\"numeric fact or scenario\",\"method\":\"deterministic clause segmentation v1\"},{\"id\":\"E3:P3\",\"source_id\":\"E3\",\"quote\":\"Credit review remains unresolved.\",\"start\":82,\"end\":115,\"kind\":\"clause\",\"method\":\"deterministic clause segmentation v1\"}]}],\"calculator\":{\"formula\":\"(75 - cash) / EBITDA\",\"current\":3,\"scenario\":3.5294117647058822,\"ceiling\":3.5,\"inputs\":[\"E1\",\"E2\"],\"note\":\"Scenario EBITDA falls by USD3m; this is not an observed outcome.\"}}"
+        }
+      ],
+      "answer": {
+        "claim": "Current net leverage is 3.00x. The downside scenario needs credit review.",
+        "citations": [
+          "E1",
+          "E3"
+        ],
+        "proposed_action": "REVIEW"
+      },
+      "checks": [
+        {
+          "id": "R1",
+          "name": "Eligible evidence",
+          "status": "PASS",
+          "reason": "Supplied sources precede the decision cutoff.",
+          "owner": "Data steward"
+        },
+        {
+          "id": "R2",
+          "name": "Bound calculation",
+          "status": "UNRESOLVED",
+          "reason": "Missing covenant or calculator output.",
+          "owner": "Credit analyst"
+        },
+        {
+          "id": "R3",
+          "name": "Sufficient support",
+          "status": "UNRESOLVED",
+          "reason": "Workshop rule: require filing and covenant citations, a ratio at or below 3.5x, and no unresolved disruption. This is a bounded rule check, not general semantic verification.",
+          "owner": "Credit risk owner"
+        },
+        {
+          "id": "R4",
+          "name": "Current authority",
+          "status": "UNRESOLVED",
+          "reason": "Simulated reviewer approval is absent.",
+          "owner": "Accountable approver"
+        }
+      ],
+      "gate": "HOLD",
+      "executed_action": "NONE — teaching environment",
+      "graph": {
+        "nodes": [
+          {
+            "id": "E1",
+            "type": "evidence",
+            "label": "Harbor Metals filing"
+          },
+          {
+            "id": "E3",
+            "type": "evidence",
+            "label": "Operations update"
+          },
+          {
+            "id": "T1",
+            "type": "tool",
+            "label": "Net leverage calculator"
+          },
+          {
+            "id": "W1",
+            "type": "language",
+            "label": "Current net leverage is 3.00x. The downside scenario needs credit review."
+          },
+          {
+            "id": "C1",
+            "type": "claim",
+            "label": "Target: comfortable headroom"
+          },
+          {
+            "id": "R1",
+            "type": "rule",
+            "label": "Eligible evidence"
+          },
+          {
+            "id": "R2",
+            "type": "rule",
+            "label": "Bound calculation"
+          },
+          {
+            "id": "R3",
+            "type": "rule",
+            "label": "Sufficient support"
+          },
+          {
+            "id": "R4",
+            "type": "rule",
+            "label": "Current authority"
+          },
+          {
+            "id": "D1",
+            "type": "decision",
+            "label": "HOLD"
+          }
+        ],
+        "edges": [
+          {
+            "from": "E1",
+            "to": "W1",
+            "label": "supplied context"
+          },
+          {
+            "from": "E3",
+            "to": "W1",
+            "label": "supplied context"
+          },
+          {
+            "from": "W1",
+            "to": "C1",
+            "label": "assesses target"
+          },
+          {
+            "from": "E1",
+            "to": "R1",
+            "label": "eligibility checked"
+          },
+          {
+            "from": "E3",
+            "to": "R1",
+            "label": "eligibility checked"
+          },
+          {
+            "from": "E1",
+            "to": "T1",
+            "label": "binds input"
+          },
+          {
+            "from": "T1",
+            "to": "R2",
+            "label": "checked calculation"
+          },
+          {
+            "from": "T1",
+            "to": "R3",
+            "label": "supports numerical check"
+          },
+          {
+            "from": "C1",
+            "to": "R3",
+            "label": "requires support"
+          },
+          {
+            "from": "R1",
+            "to": "D1",
+            "label": "permits"
+          },
+          {
+            "from": "R2",
+            "to": "D1",
+            "label": "blocks"
+          },
+          {
+            "from": "R3",
+            "to": "D1",
+            "label": "blocks"
+          },
+          {
+            "from": "R4",
+            "to": "D1",
+            "label": "blocks"
+          }
+        ]
+      },
+      "trace": [
+        "Prepare point-in-time context",
+        "Generate proposed assessment",
+        "Apply instructor-defined checks",
+        "Check simulated current authority",
+        "Record permitted action; execute no financial action"
+      ]
+    },
+    "sources": [
+      {
+        "id": "E1",
+        "type": "evidence",
+        "title": "Harbor Metals filing",
+        "published": "2026-10-20T12:00:00Z",
+        "available": "2026-10-20T12:02:00Z",
+        "text": "Debt USD75m; cash USD15m; covenant EBITDA USD20m. Same reporting period and covenant definitions.",
+        "eligible": true,
+        "data_points": [
+          {
+            "id": "E1:P1",
+            "source_id": "E1",
+            "quote": "Debt USD75m;",
+            "start": 0,
+            "end": 12,
+            "kind": "numeric fact or scenario",
+            "method": "deterministic clause segmentation v1"
+          },
+          {
+            "id": "E1:P2",
+            "source_id": "E1",
+            "quote": "cash USD15m;",
+            "start": 13,
+            "end": 25,
+            "kind": "numeric fact or scenario",
+            "method": "deterministic clause segmentation v1"
+          },
+          {
+            "id": "E1:P3",
+            "source_id": "E1",
+            "quote": "covenant EBITDA USD20m.",
+            "start": 26,
+            "end": 49,
+            "kind": "numeric fact or scenario",
+            "method": "deterministic clause segmentation v1"
+          },
+          {
+            "id": "E1:P4",
+            "source_id": "E1",
+            "quote": "Same reporting period and covenant definitions.",
+            "start": 50,
+            "end": 97,
+            "kind": "clause",
+            "method": "deterministic clause segmentation v1"
+          }
+        ],
+        "inContext": true,
+        "entity": "Harbor Metals",
+        "documentType": "Financial filing",
+        "period": "Same reporting period asserted in fixture; dates not supplied",
+        "effective": "Not supplied; contractual validity is assumed by the teaching fixture"
+      },
+      {
+        "id": "E2",
+        "type": "evidence",
+        "title": "Signed covenant",
+        "published": "2026-10-20T12:08:00Z",
+        "available": "2026-10-20T12:10:00Z",
+        "text": "Net leverage = (debt - cash) / covenant EBITDA. Ceiling 3.5x.",
+        "eligible": true,
+        "data_points": [
+          {
+            "id": "E2:P1",
+            "source_id": "E2",
+            "quote": "Net leverage = (debt - cash) / covenant EBITDA.",
+            "start": 0,
+            "end": 47,
+            "kind": "clause",
+            "method": "deterministic clause segmentation v1"
+          },
+          {
+            "id": "E2:P2",
+            "source_id": "E2",
+            "quote": "Ceiling 3.5x.",
+            "start": 48,
+            "end": 61,
+            "kind": "numeric fact or scenario",
+            "method": "deterministic clause segmentation v1"
+          }
+        ],
+        "inContext": false,
+        "entity": "Harbor Metals",
+        "documentType": "Signed covenant",
+        "period": "Not supplied",
+        "effective": "Not supplied; contractual validity is assumed by the teaching fixture"
+      },
+      {
+        "id": "E3",
+        "type": "evidence",
+        "title": "Operations update",
+        "published": "2026-10-20T12:40:00Z",
+        "available": "2026-10-20T12:42:00Z",
+        "text": "Supply disruption. A USD3m EBITDA reduction is a scenario, not a realized result. Credit review remains unresolved.",
+        "eligible": true,
+        "data_points": [
+          {
+            "id": "E3:P1",
+            "source_id": "E3",
+            "quote": "Supply disruption.",
+            "start": 0,
+            "end": 18,
+            "kind": "clause",
+            "method": "deterministic clause segmentation v1"
+          },
+          {
+            "id": "E3:P2",
+            "source_id": "E3",
+            "quote": "A USD3m EBITDA reduction is a scenario, not a realized result.",
+            "start": 19,
+            "end": 81,
+            "kind": "numeric fact or scenario",
+            "method": "deterministic clause segmentation v1"
+          },
+          {
+            "id": "E3:P3",
+            "source_id": "E3",
+            "quote": "Credit review remains unresolved.",
+            "start": 82,
+            "end": 115,
+            "kind": "clause",
+            "method": "deterministic clause segmentation v1"
+          }
+        ],
+        "inContext": true,
+        "entity": "Harbor Metals",
+        "documentType": "Operations update",
+        "period": "Not supplied",
+        "effective": "Not supplied; contractual validity is assumed by the teaching fixture"
+      },
+      {
+        "id": "E4",
+        "type": "evidence",
+        "title": "Later covenant amendment",
+        "published": "2026-10-20T13:05:00Z",
+        "available": "2026-10-20T13:07:00Z",
+        "text": "Ceiling amended to 4.0x.",
+        "eligible": false,
+        "data_points": [
+          {
+            "id": "E4:P1",
+            "source_id": "E4",
+            "quote": "Ceiling amended to 4.0x.",
+            "start": 0,
+            "end": 24,
+            "kind": "numeric fact or scenario",
+            "method": "deterministic clause segmentation v1"
+          }
+        ],
+        "inContext": false,
+        "entity": "Harbor Metals",
+        "documentType": "Covenant amendment",
+        "period": "Not supplied",
+        "effective": "Not supplied; contractual validity is assumed by the teaching fixture"
+      }
+    ],
+    "bound": false,
+    "eligibleIds": [
+      "E1",
+      "E3"
+    ],
+    "requirements": [
+      {
+        "id": "C1",
+        "claim": "Current covenant leverage is 3.00×",
+        "status": "UNRESOLVED",
+        "requires": "Eligible filing E1 + signed definition E2 + calculator record",
+        "reason": "Signed definition E2 is absent. Arithmetic alone does not establish covenant leverage."
+      },
+      {
+        "id": "C2",
+        "claim": "Headroom is comfortable; no review needed",
+        "status": "UNRESOLVED",
+        "requires": "Supported current ratio + disruption assessment + approved materiality policy",
+        "reason": "E3 says the disruption remains unresolved. Downside EBITDA 17 implies 3.53×, above 3.5×. This scenario is not an observed loss."
+      }
+    ]
+  }
+]

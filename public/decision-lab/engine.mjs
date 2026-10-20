@@ -1,3 +1,4 @@
+import {evidenceItems} from './evidence-items.mjs';
 export const VERSION='1.0.0';
 export const sections=[
 ['Financial language-model architectures','09:30–10:15',['Compare deployment choices','Distinguish retrieval from adaptation','Inspect exact model context','Choose controls for a workflow'],'Which failure requires new evidence rather than training?','A missing current covenant requires retrieval. Consistent formatting failures may motivate adaptation; execution permissions require a controller.'],
@@ -20,6 +21,7 @@ export function prepare(input={}){
  {id:'E3',type:'evidence',title:'Operations update',published:'2026-10-20T12:40:00Z',available:'2026-10-20T12:42:00Z',text:'Supply disruption. A USD3m EBITDA reduction is a scenario, not a realized result. Credit review remains unresolved.',eligible:true},
  {id:'E4',type:'evidence',title:'Later covenant amendment',published:'2026-10-20T13:05:00Z',available:'2026-10-20T13:07:00Z',text:'Ceiling amended to 4.0x.',eligible:false}
  ];
+ for(const source of sources)source.data_points=evidenceItems(source);
  const evidence=c.mode==='model_only'?[]:sources.filter(s=>(s.id!=='E2'||!c.dropCovenant)&&(s.id!=='E3'||c.disruption)&&(s.eligible||c.futureLeak));
  const calculation=c.mode==='rag_tools'?{formula:'(75 - cash) / EBITDA',current:(75-c.cash)/c.ebitda,scenario:c.ebitda>3?(75-c.cash)/(c.ebitda-3):null,ceiling:3.5,inputs:['E1','E2'],note:'Scenario EBITDA falls by USD3m; this is not an observed outcome.'}:null;
  const question=c.wording==='standard'?'Can we release the Harbor Metals credit brief stating comfortable covenant headroom?':'Is the evidence sufficient to publish a comfortable-headroom assessment for Harbor Metals?';

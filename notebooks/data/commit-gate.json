@@ -1,0 +1,44 @@
+{
+  "scope": "Stateful simulated execution controller, no external broker or authenticated approval.",
+  "initial_state": {
+    "snapshot_version": 1,
+    "pending_orders": 0,
+    "grant_version": 1,
+    "grant_active": true,
+    "grant_limit": 10000,
+    "reviewer_approved": true,
+    "evidence_valid": true
+  },
+  "scenarios": [
+    {
+      "id": "unchanged",
+      "label": "No state change",
+      "expected": "PERMITTED"
+    },
+    {
+      "id": "snapshot",
+      "label": "Update holdings snapshot",
+      "expected": "BLOCKED"
+    },
+    {
+      "id": "pending",
+      "label": "Add a pending order",
+      "expected": "BLOCKED"
+    },
+    {
+      "id": "grant",
+      "label": "Revoke the grant",
+      "expected": "BLOCKED"
+    },
+    {
+      "id": "evidence",
+      "label": "Invalidate required evidence",
+      "expected": "BLOCKED"
+    },
+    {
+      "id": "approval",
+      "label": "Withdraw reviewer approval",
+      "expected": "BLOCKED"
+    }
+  ]
+}

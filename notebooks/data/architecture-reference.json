@@ -1,0 +1,302 @@
+[
+  {
+    "caseId": "simple",
+    "required": false,
+    "available": false,
+    "branch": false,
+    "correctCash": 15,
+    "cards": [
+      {
+        "id": "rag",
+        "label": "Fixed RAG",
+        "steps": [
+          "Application retrieves filing + covenant.",
+          "Model drafts an answer; no independently executed calculation."
+        ],
+        "cash": null,
+        "leverage": null,
+        "supported": false,
+        "missing": false,
+        "status": "HOLD CALCULATION CLAIM"
+      },
+      {
+        "id": "fixed",
+        "label": "Fixed RAG + calculator",
+        "steps": [
+          "Application retrieves filing + covenant.",
+          "Application binds eligible cash to covenant definition.",
+          "Calculator executes; evidence check evaluates its inputs."
+        ],
+        "cash": 15,
+        "leverage": 3,
+        "supported": true,
+        "missing": false,
+        "status": "CALCULATION SUPPORTED"
+      },
+      {
+        "id": "agent",
+        "label": "Agent-selected tools",
+        "steps": [
+          "Illustrated agent retrieves filing + covenant.",
+          "Illustrated agent requests calculation using eligible cash."
+        ],
+        "cash": 15,
+        "leverage": 3,
+        "supported": true,
+        "missing": false,
+        "status": "CALCULATION SUPPORTED"
+      }
+    ]
+  },
+  {
+    "caseId": "simple",
+    "required": false,
+    "available": false,
+    "branch": true,
+    "correctCash": 15,
+    "cards": [
+      {
+        "id": "rag",
+        "label": "Fixed RAG",
+        "steps": [
+          "Application retrieves filing + covenant.",
+          "Model drafts an answer; no independently executed calculation."
+        ],
+        "cash": null,
+        "leverage": null,
+        "supported": false,
+        "missing": false,
+        "status": "HOLD CALCULATION CLAIM"
+      },
+      {
+        "id": "fixed",
+        "label": "Fixed RAG + calculator",
+        "steps": [
+          "Application retrieves filing + covenant.",
+          "Application binds eligible cash to covenant definition.",
+          "Calculator executes; evidence check evaluates its inputs."
+        ],
+        "cash": 15,
+        "leverage": 3,
+        "supported": true,
+        "missing": false,
+        "status": "CALCULATION SUPPORTED"
+      },
+      {
+        "id": "agent",
+        "label": "Agent-selected tools",
+        "steps": [
+          "Illustrated agent retrieves filing + covenant.",
+          "Illustrated agent requests calculation using eligible cash."
+        ],
+        "cash": 15,
+        "leverage": 3,
+        "supported": true,
+        "missing": false,
+        "status": "CALCULATION SUPPORTED"
+      }
+    ]
+  },
+  {
+    "caseId": "annex",
+    "required": true,
+    "available": true,
+    "branch": false,
+    "correctCash": 10,
+    "cards": [
+      {
+        "id": "rag",
+        "label": "Fixed RAG",
+        "steps": [
+          "Application retrieves filing + covenant.",
+          "Model drafts an answer; no independently executed calculation."
+        ],
+        "cash": null,
+        "leverage": null,
+        "supported": false,
+        "missing": true,
+        "status": "HOLD CALCULATION CLAIM"
+      },
+      {
+        "id": "fixed",
+        "label": "Fixed RAG + calculator",
+        "steps": [
+          "Application retrieves filing + covenant.",
+          "Application uses total cash $15m without resolving the annex.",
+          "Calculator executes; evidence check evaluates its inputs."
+        ],
+        "cash": 15,
+        "leverage": 3,
+        "supported": false,
+        "missing": true,
+        "status": "HOLD CALCULATION CLAIM"
+      },
+      {
+        "id": "agent",
+        "label": "Agent-selected tools",
+        "steps": [
+          "Illustrated agent retrieves filing + covenant.",
+          "Illustrated agent follows the reference and retrieves Annex A.",
+          "Illustrated agent requests calculation using eligible cash."
+        ],
+        "cash": 10,
+        "leverage": 3.25,
+        "supported": true,
+        "missing": false,
+        "status": "CALCULATION SUPPORTED"
+      }
+    ]
+  },
+  {
+    "caseId": "annex",
+    "required": true,
+    "available": true,
+    "branch": true,
+    "correctCash": 10,
+    "cards": [
+      {
+        "id": "rag",
+        "label": "Fixed RAG",
+        "steps": [
+          "Application retrieves filing + covenant.",
+          "Model drafts an answer; no independently executed calculation."
+        ],
+        "cash": null,
+        "leverage": null,
+        "supported": false,
+        "missing": true,
+        "status": "HOLD CALCULATION CLAIM"
+      },
+      {
+        "id": "fixed",
+        "label": "Fixed RAG + calculator",
+        "steps": [
+          "Application retrieves filing + covenant.",
+          "Programmed branch retrieves Annex A.",
+          "Application binds eligible cash to covenant definition.",
+          "Calculator executes; evidence check evaluates its inputs."
+        ],
+        "cash": 10,
+        "leverage": 3.25,
+        "supported": true,
+        "missing": false,
+        "status": "CALCULATION SUPPORTED"
+      },
+      {
+        "id": "agent",
+        "label": "Agent-selected tools",
+        "steps": [
+          "Illustrated agent retrieves filing + covenant.",
+          "Illustrated agent follows the reference and retrieves Annex A.",
+          "Illustrated agent requests calculation using eligible cash."
+        ],
+        "cash": 10,
+        "leverage": 3.25,
+        "supported": true,
+        "missing": false,
+        "status": "CALCULATION SUPPORTED"
+      }
+    ]
+  },
+  {
+    "caseId": "missing",
+    "required": true,
+    "available": false,
+    "branch": false,
+    "correctCash": null,
+    "cards": [
+      {
+        "id": "rag",
+        "label": "Fixed RAG",
+        "steps": [
+          "Application retrieves filing + covenant.",
+          "Model drafts an answer; no independently executed calculation."
+        ],
+        "cash": null,
+        "leverage": null,
+        "supported": false,
+        "missing": true,
+        "status": "HOLD CALCULATION CLAIM"
+      },
+      {
+        "id": "fixed",
+        "label": "Fixed RAG + calculator",
+        "steps": [
+          "Application retrieves filing + covenant.",
+          "Application uses total cash $15m without resolving the annex.",
+          "Calculator executes; evidence check evaluates its inputs."
+        ],
+        "cash": 15,
+        "leverage": 3,
+        "supported": false,
+        "missing": true,
+        "status": "HOLD CALCULATION CLAIM"
+      },
+      {
+        "id": "agent",
+        "label": "Agent-selected tools",
+        "steps": [
+          "Illustrated agent retrieves filing + covenant.",
+          "Illustrated agent requests Annex A; unavailable.",
+          "Unbound total-cash calculation cannot establish covenant leverage."
+        ],
+        "cash": 15,
+        "leverage": 3,
+        "supported": false,
+        "missing": true,
+        "status": "HOLD CALCULATION CLAIM"
+      }
+    ]
+  },
+  {
+    "caseId": "missing",
+    "required": true,
+    "available": false,
+    "branch": true,
+    "correctCash": null,
+    "cards": [
+      {
+        "id": "rag",
+        "label": "Fixed RAG",
+        "steps": [
+          "Application retrieves filing + covenant.",
+          "Model drafts an answer; no independently executed calculation."
+        ],
+        "cash": null,
+        "leverage": null,
+        "supported": false,
+        "missing": true,
+        "status": "HOLD CALCULATION CLAIM"
+      },
+      {
+        "id": "fixed",
+        "label": "Fixed RAG + calculator",
+        "steps": [
+          "Application retrieves filing + covenant.",
+          "Programmed branch requests Annex A; unavailable.",
+          "Application cannot bind eligible cash; provisional total-cash result is rejected.",
+          "Calculator executes; evidence check evaluates its inputs."
+        ],
+        "cash": 15,
+        "leverage": 3,
+        "supported": false,
+        "missing": true,
+        "status": "HOLD CALCULATION CLAIM"
+      },
+      {
+        "id": "agent",
+        "label": "Agent-selected tools",
+        "steps": [
+          "Illustrated agent retrieves filing + covenant.",
+          "Illustrated agent requests Annex A; unavailable.",
+          "Unbound total-cash calculation cannot establish covenant leverage."
+        ],
+        "cash": 15,
+        "leverage": 3,
+        "supported": false,
+        "missing": true,
+        "status": "HOLD CALCULATION CLAIM"
+      }
+    ]
+  }
+]

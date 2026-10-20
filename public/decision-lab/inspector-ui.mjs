@@ -1,0 +1,12 @@
+import {profileTrace,relevanceProfile,compareStrata,partialIdentification,reportingBias,robustOutliers} from './profiler.mjs';
+import {renderSportsGovernance} from './sports-ui.mjs';
+const $=id=>document.getElementById(id),esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let activeTrace,redraw;
+function download(data,name){const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+export function showInspection(trace,draw){activeTrace=trace;redraw=draw;const p=profileTrace(trace),label=id=>trace.nodes.find(n=>n.id===id)?.label||id;
+$('profile').innerHTML=`<div class="inspection-columns"><div><h3>Flat alerts</h3>${p.findings.length?p.findings.map(f=>`<p><b>${esc(f.rule)}</b><br>${esc(f.reason)}</p>`).join(''):'<p>No issues found by these checks. This does not certify the answer.</p>'}</div><div><h3>Graph-based review plan</h3>${p.findings.map(f=>`<article class="finding"><b>${esc(f.node)} · ${esc(label(f.node))}</b><p>${esc(f.action)} Owner: ${esc(f.owner)}.</p><p><strong>Recorded downstream paths:</strong> ${f.paths.length?f.paths.map(path=>path.map(esc).join(' → ')).join('; '):'None recorded.'}</p><p class="fine">Possible context influence: ${f.possible_context_effects.length?f.possible_context_effects.map(esc).join(', '):'None recorded.'} Missing links can make this incomplete.</p></article>`).join('')}</div></div><p class="fine">${esc(p.scope)}</p><details><summary>Construction and policy</summary><pre>${esc(JSON.stringify({construction:trace.construction||'User-supplied trace; dependencies require review.',policy:trace.policy},null,2))}</pre></details>`;
+}
+export function setupInspector(draw){redraw=draw;$('export-trace').onclick=()=>{if(activeTrace)download(activeTrace,'belieflens-trace.json')};
+$('import-trace').onchange=async e=>{try{const f=e.target.files[0];if(!f)return;if(f.size>250000)throw Error('File exceeds 250 KB.');const trace=JSON.parse(await f.text());profileTrace(trace);showInspection(trace,draw);draw({graph:trace});$('result').innerHTML='';$('inspector-context').textContent='Loaded independent trace: '+trace.id+'. No Harbor Metals policy is inferred.';$('import-error').textContent='Imported trace inspected locally. Agent result above is a separate run.';}catch(e){$('import-error').textContent=e.message}};
+renderCoverage();}
+function renderCoverage(){ renderSportsGovernance(); }

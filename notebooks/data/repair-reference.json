@@ -1,0 +1,1868 @@
+[
+  {
+    "id": "missing_actual",
+    "before": {
+      "actual": {
+        "state": "blocked",
+        "reason": "no_eligible_source",
+        "value": null,
+        "support": []
+      },
+      "consensus": {
+        "state": "ok",
+        "value": 2,
+        "support": [
+          "c"
+        ]
+      },
+      "surprise": {
+        "state": "blocked",
+        "reason": "dependency_failed",
+        "value": null,
+        "support": []
+      },
+      "positive": {
+        "state": "blocked",
+        "reason": "dependency_failed",
+        "value": null,
+        "support": []
+      },
+      "recommendation": {
+        "state": "blocked",
+        "reason": "dependency_failed",
+        "value": null,
+        "support": []
+      },
+      "report_actual": {
+        "state": "blocked",
+        "reason": "dependency_failed",
+        "value": null,
+        "support": []
+      },
+      "earnings_risk": {
+        "state": "blocked",
+        "reason": "dependency_failed",
+        "value": null,
+        "support": []
+      },
+      "independent_review": {
+        "state": "ok",
+        "value": true,
+        "support": []
+      },
+      "review_supported": {
+        "state": "ok",
+        "value": true,
+        "support": [
+          "independent_review"
+        ]
+      },
+      "unrelated": {
+        "state": "ok",
+        "value": "market-open",
+        "support": []
+      }
+    },
+    "diagnosis": {
+      "failed_source_dependencies": [
+        "actual"
+      ],
+      "requests": [
+        {
+          "node": "actual",
+          "reason": "no_eligible_source",
+          "constraints": {
+            "issuer": "Harbor",
+            "period": "Q2",
+            "metric": "actual",
+            "eligible": true,
+            "operative": true
+          },
+          "action": "obtain_eligible_evidence",
+          "required_record": "source meeting every declared constraint",
+          "structural_potentially_affected": [
+            "earnings_risk",
+            "positive",
+            "recommendation",
+            "report_actual",
+            "review_supported",
+            "surprise"
+          ]
+        }
+      ],
+      "structural_potentially_affected": [
+        "earnings_risk",
+        "positive",
+        "recommendation",
+        "report_actual",
+        "review_supported",
+        "surprise"
+      ],
+      "actually_blocked": [
+        "actual",
+        "surprise",
+        "positive",
+        "recommendation",
+        "report_actual",
+        "earnings_risk"
+      ]
+    },
+    "after": {
+      "actual": {
+        "state": "ok",
+        "value": 3,
+        "support": [
+          "a"
+        ]
+      },
+      "consensus": {
+        "state": "ok",
+        "value": 2,
+        "support": [
+          "c"
+        ]
+      },
+      "surprise": {
+        "state": "ok",
+        "value": 1,
+        "support": [
+          "actual",
+          "consensus"
+        ]
+      },
+      "positive": {
+        "state": "ok",
+        "value": true,
+        "support": [
+          "surprise"
+        ]
+      },
+      "recommendation": {
+        "state": "ok",
+        "value": "buy",
+        "support": [
+          "positive"
+        ]
+      },
+      "report_actual": {
+        "state": "ok",
+        "value": 3,
+        "support": [
+          "actual"
+        ]
+      },
+      "earnings_risk": {
+        "state": "ok",
+        "value": true,
+        "support": [
+          "actual"
+        ]
+      },
+      "independent_review": {
+        "state": "ok",
+        "value": true,
+        "support": []
+      },
+      "review_supported": {
+        "state": "ok",
+        "value": true,
+        "support": [
+          "positive",
+          "independent_review"
+        ]
+      },
+      "unrelated": {
+        "state": "ok",
+        "value": "market-open",
+        "support": []
+      }
+    },
+    "controls": [
+      {
+        "name": "wrong_issuer",
+        "after": {
+          "actual": {
+            "state": "blocked",
+            "reason": "no_eligible_source",
+            "value": null,
+            "support": []
+          },
+          "consensus": {
+            "state": "ok",
+            "value": 2,
+            "support": [
+              "c"
+            ]
+          },
+          "surprise": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "positive": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "recommendation": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "report_actual": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "earnings_risk": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "independent_review": {
+            "state": "ok",
+            "value": true,
+            "support": []
+          },
+          "review_supported": {
+            "state": "ok",
+            "value": true,
+            "support": [
+              "independent_review"
+            ]
+          },
+          "unrelated": {
+            "state": "ok",
+            "value": "market-open",
+            "support": []
+          }
+        }
+      },
+      {
+        "name": "stale",
+        "after": {
+          "actual": {
+            "state": "blocked",
+            "reason": "no_eligible_source",
+            "value": null,
+            "support": []
+          },
+          "consensus": {
+            "state": "ok",
+            "value": 2,
+            "support": [
+              "c"
+            ]
+          },
+          "surprise": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "positive": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "recommendation": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "report_actual": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "earnings_risk": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "independent_review": {
+            "state": "ok",
+            "value": true,
+            "support": []
+          },
+          "review_supported": {
+            "state": "ok",
+            "value": true,
+            "support": [
+              "independent_review"
+            ]
+          },
+          "unrelated": {
+            "state": "ok",
+            "value": "market-open",
+            "support": []
+          }
+        }
+      },
+      {
+        "name": "empty",
+        "after": {
+          "actual": {
+            "state": "blocked",
+            "reason": "no_eligible_source",
+            "value": null,
+            "support": []
+          },
+          "consensus": {
+            "state": "ok",
+            "value": 2,
+            "support": [
+              "c"
+            ]
+          },
+          "surprise": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "positive": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "recommendation": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "report_actual": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "earnings_risk": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "independent_review": {
+            "state": "ok",
+            "value": true,
+            "support": []
+          },
+          "review_supported": {
+            "state": "ok",
+            "value": true,
+            "support": [
+              "independent_review"
+            ]
+          },
+          "unrelated": {
+            "state": "ok",
+            "value": "market-open",
+            "support": []
+          }
+        }
+      },
+      {
+        "name": "unauthorized_resolution",
+        "after": {
+          "actual": {
+            "state": "blocked",
+            "reason": "no_eligible_source",
+            "value": null,
+            "support": []
+          },
+          "consensus": {
+            "state": "ok",
+            "value": 2,
+            "support": [
+              "c"
+            ]
+          },
+          "surprise": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "positive": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "recommendation": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "report_actual": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "earnings_risk": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "independent_review": {
+            "state": "ok",
+            "value": true,
+            "support": []
+          },
+          "review_supported": {
+            "state": "ok",
+            "value": true,
+            "support": [
+              "independent_review"
+            ]
+          },
+          "unrelated": {
+            "state": "ok",
+            "value": "market-open",
+            "support": []
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "stale_consensus",
+    "before": {
+      "actual": {
+        "state": "ok",
+        "value": 3,
+        "support": [
+          "a"
+        ]
+      },
+      "consensus": {
+        "state": "blocked",
+        "reason": "no_eligible_source",
+        "value": null,
+        "support": []
+      },
+      "surprise": {
+        "state": "blocked",
+        "reason": "dependency_failed",
+        "value": null,
+        "support": []
+      },
+      "positive": {
+        "state": "blocked",
+        "reason": "dependency_failed",
+        "value": null,
+        "support": []
+      },
+      "recommendation": {
+        "state": "blocked",
+        "reason": "dependency_failed",
+        "value": null,
+        "support": []
+      },
+      "report_actual": {
+        "state": "ok",
+        "value": 3,
+        "support": [
+          "actual"
+        ]
+      },
+      "earnings_risk": {
+        "state": "ok",
+        "value": true,
+        "support": [
+          "actual"
+        ]
+      },
+      "independent_review": {
+        "state": "ok",
+        "value": true,
+        "support": []
+      },
+      "review_supported": {
+        "state": "ok",
+        "value": true,
+        "support": [
+          "independent_review"
+        ]
+      },
+      "unrelated": {
+        "state": "ok",
+        "value": "market-open",
+        "support": []
+      }
+    },
+    "diagnosis": {
+      "failed_source_dependencies": [
+        "consensus"
+      ],
+      "requests": [
+        {
+          "node": "consensus",
+          "reason": "no_eligible_source",
+          "constraints": {
+            "issuer": "Harbor",
+            "period": "Q2",
+            "metric": "consensus",
+            "eligible": true,
+            "operative": true
+          },
+          "action": "obtain_eligible_evidence",
+          "required_record": "source meeting every declared constraint",
+          "structural_potentially_affected": [
+            "positive",
+            "recommendation",
+            "review_supported",
+            "surprise"
+          ]
+        }
+      ],
+      "structural_potentially_affected": [
+        "positive",
+        "recommendation",
+        "review_supported",
+        "surprise"
+      ],
+      "actually_blocked": [
+        "consensus",
+        "surprise",
+        "positive",
+        "recommendation"
+      ]
+    },
+    "after": {
+      "actual": {
+        "state": "ok",
+        "value": 3,
+        "support": [
+          "a"
+        ]
+      },
+      "consensus": {
+        "state": "ok",
+        "value": 2,
+        "support": [
+          "c"
+        ]
+      },
+      "surprise": {
+        "state": "ok",
+        "value": 1,
+        "support": [
+          "actual",
+          "consensus"
+        ]
+      },
+      "positive": {
+        "state": "ok",
+        "value": true,
+        "support": [
+          "surprise"
+        ]
+      },
+      "recommendation": {
+        "state": "ok",
+        "value": "buy",
+        "support": [
+          "positive"
+        ]
+      },
+      "report_actual": {
+        "state": "ok",
+        "value": 3,
+        "support": [
+          "actual"
+        ]
+      },
+      "earnings_risk": {
+        "state": "ok",
+        "value": true,
+        "support": [
+          "actual"
+        ]
+      },
+      "independent_review": {
+        "state": "ok",
+        "value": true,
+        "support": []
+      },
+      "review_supported": {
+        "state": "ok",
+        "value": true,
+        "support": [
+          "positive",
+          "independent_review"
+        ]
+      },
+      "unrelated": {
+        "state": "ok",
+        "value": "market-open",
+        "support": []
+      }
+    },
+    "controls": [
+      {
+        "name": "wrong_issuer",
+        "after": {
+          "actual": {
+            "state": "ok",
+            "value": 3,
+            "support": [
+              "a"
+            ]
+          },
+          "consensus": {
+            "state": "blocked",
+            "reason": "no_eligible_source",
+            "value": null,
+            "support": []
+          },
+          "surprise": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "positive": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "recommendation": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "report_actual": {
+            "state": "ok",
+            "value": 3,
+            "support": [
+              "actual"
+            ]
+          },
+          "earnings_risk": {
+            "state": "ok",
+            "value": true,
+            "support": [
+              "actual"
+            ]
+          },
+          "independent_review": {
+            "state": "ok",
+            "value": true,
+            "support": []
+          },
+          "review_supported": {
+            "state": "ok",
+            "value": true,
+            "support": [
+              "independent_review"
+            ]
+          },
+          "unrelated": {
+            "state": "ok",
+            "value": "market-open",
+            "support": []
+          }
+        }
+      },
+      {
+        "name": "stale",
+        "after": {
+          "actual": {
+            "state": "ok",
+            "value": 3,
+            "support": [
+              "a"
+            ]
+          },
+          "consensus": {
+            "state": "blocked",
+            "reason": "no_eligible_source",
+            "value": null,
+            "support": []
+          },
+          "surprise": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "positive": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "recommendation": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "report_actual": {
+            "state": "ok",
+            "value": 3,
+            "support": [
+              "actual"
+            ]
+          },
+          "earnings_risk": {
+            "state": "ok",
+            "value": true,
+            "support": [
+              "actual"
+            ]
+          },
+          "independent_review": {
+            "state": "ok",
+            "value": true,
+            "support": []
+          },
+          "review_supported": {
+            "state": "ok",
+            "value": true,
+            "support": [
+              "independent_review"
+            ]
+          },
+          "unrelated": {
+            "state": "ok",
+            "value": "market-open",
+            "support": []
+          }
+        }
+      },
+      {
+        "name": "empty",
+        "after": {
+          "actual": {
+            "state": "ok",
+            "value": 3,
+            "support": [
+              "a"
+            ]
+          },
+          "consensus": {
+            "state": "blocked",
+            "reason": "no_eligible_source",
+            "value": null,
+            "support": []
+          },
+          "surprise": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "positive": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "recommendation": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "report_actual": {
+            "state": "ok",
+            "value": 3,
+            "support": [
+              "actual"
+            ]
+          },
+          "earnings_risk": {
+            "state": "ok",
+            "value": true,
+            "support": [
+              "actual"
+            ]
+          },
+          "independent_review": {
+            "state": "ok",
+            "value": true,
+            "support": []
+          },
+          "review_supported": {
+            "state": "ok",
+            "value": true,
+            "support": [
+              "independent_review"
+            ]
+          },
+          "unrelated": {
+            "state": "ok",
+            "value": "market-open",
+            "support": []
+          }
+        }
+      },
+      {
+        "name": "unauthorized_resolution",
+        "after": {
+          "actual": {
+            "state": "ok",
+            "value": 3,
+            "support": [
+              "a"
+            ]
+          },
+          "consensus": {
+            "state": "blocked",
+            "reason": "no_eligible_source",
+            "value": null,
+            "support": []
+          },
+          "surprise": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "positive": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "recommendation": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "report_actual": {
+            "state": "ok",
+            "value": 3,
+            "support": [
+              "actual"
+            ]
+          },
+          "earnings_risk": {
+            "state": "ok",
+            "value": true,
+            "support": [
+              "actual"
+            ]
+          },
+          "independent_review": {
+            "state": "ok",
+            "value": true,
+            "support": []
+          },
+          "review_supported": {
+            "state": "ok",
+            "value": true,
+            "support": [
+              "independent_review"
+            ]
+          },
+          "unrelated": {
+            "state": "ok",
+            "value": "market-open",
+            "support": []
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "conflict_actual",
+    "before": {
+      "actual": {
+        "state": "blocked",
+        "reason": "conflicting_sources",
+        "value": null,
+        "support": [
+          "a",
+          "bad"
+        ]
+      },
+      "consensus": {
+        "state": "ok",
+        "value": 2,
+        "support": [
+          "c"
+        ]
+      },
+      "surprise": {
+        "state": "blocked",
+        "reason": "dependency_failed",
+        "value": null,
+        "support": []
+      },
+      "positive": {
+        "state": "blocked",
+        "reason": "dependency_failed",
+        "value": null,
+        "support": []
+      },
+      "recommendation": {
+        "state": "blocked",
+        "reason": "dependency_failed",
+        "value": null,
+        "support": []
+      },
+      "report_actual": {
+        "state": "blocked",
+        "reason": "dependency_failed",
+        "value": null,
+        "support": []
+      },
+      "earnings_risk": {
+        "state": "blocked",
+        "reason": "dependency_failed",
+        "value": null,
+        "support": []
+      },
+      "independent_review": {
+        "state": "ok",
+        "value": true,
+        "support": []
+      },
+      "review_supported": {
+        "state": "ok",
+        "value": true,
+        "support": [
+          "independent_review"
+        ]
+      },
+      "unrelated": {
+        "state": "ok",
+        "value": "market-open",
+        "support": []
+      }
+    },
+    "diagnosis": {
+      "failed_source_dependencies": [
+        "actual"
+      ],
+      "requests": [
+        {
+          "node": "actual",
+          "reason": "conflicting_sources",
+          "constraints": {
+            "issuer": "Harbor",
+            "period": "Q2",
+            "metric": "actual",
+            "eligible": true,
+            "operative": true
+          },
+          "action": "obtain_authoritative_resolution",
+          "required_record": "resolution with issuer authority and superseded source IDs",
+          "structural_potentially_affected": [
+            "earnings_risk",
+            "positive",
+            "recommendation",
+            "report_actual",
+            "review_supported",
+            "surprise"
+          ]
+        }
+      ],
+      "structural_potentially_affected": [
+        "earnings_risk",
+        "positive",
+        "recommendation",
+        "report_actual",
+        "review_supported",
+        "surprise"
+      ],
+      "actually_blocked": [
+        "actual",
+        "surprise",
+        "positive",
+        "recommendation",
+        "report_actual",
+        "earnings_risk"
+      ]
+    },
+    "after": {
+      "actual": {
+        "state": "ok",
+        "value": 3,
+        "support": [
+          "a"
+        ]
+      },
+      "consensus": {
+        "state": "ok",
+        "value": 2,
+        "support": [
+          "c"
+        ]
+      },
+      "surprise": {
+        "state": "ok",
+        "value": 1,
+        "support": [
+          "actual",
+          "consensus"
+        ]
+      },
+      "positive": {
+        "state": "ok",
+        "value": true,
+        "support": [
+          "surprise"
+        ]
+      },
+      "recommendation": {
+        "state": "ok",
+        "value": "buy",
+        "support": [
+          "positive"
+        ]
+      },
+      "report_actual": {
+        "state": "ok",
+        "value": 3,
+        "support": [
+          "actual"
+        ]
+      },
+      "earnings_risk": {
+        "state": "ok",
+        "value": true,
+        "support": [
+          "actual"
+        ]
+      },
+      "independent_review": {
+        "state": "ok",
+        "value": true,
+        "support": []
+      },
+      "review_supported": {
+        "state": "ok",
+        "value": true,
+        "support": [
+          "positive",
+          "independent_review"
+        ]
+      },
+      "unrelated": {
+        "state": "ok",
+        "value": "market-open",
+        "support": []
+      }
+    },
+    "controls": [
+      {
+        "name": "wrong_issuer",
+        "after": {
+          "actual": {
+            "state": "blocked",
+            "reason": "conflicting_sources",
+            "value": null,
+            "support": [
+              "a",
+              "bad"
+            ]
+          },
+          "consensus": {
+            "state": "ok",
+            "value": 2,
+            "support": [
+              "c"
+            ]
+          },
+          "surprise": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "positive": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "recommendation": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "report_actual": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "earnings_risk": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "independent_review": {
+            "state": "ok",
+            "value": true,
+            "support": []
+          },
+          "review_supported": {
+            "state": "ok",
+            "value": true,
+            "support": [
+              "independent_review"
+            ]
+          },
+          "unrelated": {
+            "state": "ok",
+            "value": "market-open",
+            "support": []
+          }
+        }
+      },
+      {
+        "name": "stale",
+        "after": {
+          "actual": {
+            "state": "blocked",
+            "reason": "conflicting_sources",
+            "value": null,
+            "support": [
+              "a",
+              "bad"
+            ]
+          },
+          "consensus": {
+            "state": "ok",
+            "value": 2,
+            "support": [
+              "c"
+            ]
+          },
+          "surprise": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "positive": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "recommendation": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "report_actual": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "earnings_risk": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "independent_review": {
+            "state": "ok",
+            "value": true,
+            "support": []
+          },
+          "review_supported": {
+            "state": "ok",
+            "value": true,
+            "support": [
+              "independent_review"
+            ]
+          },
+          "unrelated": {
+            "state": "ok",
+            "value": "market-open",
+            "support": []
+          }
+        }
+      },
+      {
+        "name": "empty",
+        "after": {
+          "actual": {
+            "state": "blocked",
+            "reason": "conflicting_sources",
+            "value": null,
+            "support": [
+              "a",
+              "bad"
+            ]
+          },
+          "consensus": {
+            "state": "ok",
+            "value": 2,
+            "support": [
+              "c"
+            ]
+          },
+          "surprise": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "positive": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "recommendation": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "report_actual": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "earnings_risk": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "independent_review": {
+            "state": "ok",
+            "value": true,
+            "support": []
+          },
+          "review_supported": {
+            "state": "ok",
+            "value": true,
+            "support": [
+              "independent_review"
+            ]
+          },
+          "unrelated": {
+            "state": "ok",
+            "value": "market-open",
+            "support": []
+          }
+        }
+      },
+      {
+        "name": "unauthorized_resolution",
+        "after": {
+          "actual": {
+            "state": "blocked",
+            "reason": "conflicting_sources",
+            "value": null,
+            "support": [
+              "a",
+              "bad"
+            ]
+          },
+          "consensus": {
+            "state": "ok",
+            "value": 2,
+            "support": [
+              "c"
+            ]
+          },
+          "surprise": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "positive": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "recommendation": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "report_actual": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "earnings_risk": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "independent_review": {
+            "state": "ok",
+            "value": true,
+            "support": []
+          },
+          "review_supported": {
+            "state": "ok",
+            "value": true,
+            "support": [
+              "independent_review"
+            ]
+          },
+          "unrelated": {
+            "state": "ok",
+            "value": "market-open",
+            "support": []
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "two_missing",
+    "before": {
+      "actual": {
+        "state": "blocked",
+        "reason": "no_eligible_source",
+        "value": null,
+        "support": []
+      },
+      "consensus": {
+        "state": "blocked",
+        "reason": "no_eligible_source",
+        "value": null,
+        "support": []
+      },
+      "surprise": {
+        "state": "blocked",
+        "reason": "dependency_failed",
+        "value": null,
+        "support": []
+      },
+      "positive": {
+        "state": "blocked",
+        "reason": "dependency_failed",
+        "value": null,
+        "support": []
+      },
+      "recommendation": {
+        "state": "blocked",
+        "reason": "dependency_failed",
+        "value": null,
+        "support": []
+      },
+      "report_actual": {
+        "state": "blocked",
+        "reason": "dependency_failed",
+        "value": null,
+        "support": []
+      },
+      "earnings_risk": {
+        "state": "blocked",
+        "reason": "dependency_failed",
+        "value": null,
+        "support": []
+      },
+      "independent_review": {
+        "state": "ok",
+        "value": true,
+        "support": []
+      },
+      "review_supported": {
+        "state": "ok",
+        "value": true,
+        "support": [
+          "independent_review"
+        ]
+      },
+      "unrelated": {
+        "state": "ok",
+        "value": "market-open",
+        "support": []
+      }
+    },
+    "diagnosis": {
+      "failed_source_dependencies": [
+        "actual",
+        "consensus"
+      ],
+      "requests": [
+        {
+          "node": "actual",
+          "reason": "no_eligible_source",
+          "constraints": {
+            "issuer": "Harbor",
+            "period": "Q2",
+            "metric": "actual",
+            "eligible": true,
+            "operative": true
+          },
+          "action": "obtain_eligible_evidence",
+          "required_record": "source meeting every declared constraint",
+          "structural_potentially_affected": [
+            "earnings_risk",
+            "positive",
+            "recommendation",
+            "report_actual",
+            "review_supported",
+            "surprise"
+          ]
+        },
+        {
+          "node": "consensus",
+          "reason": "no_eligible_source",
+          "constraints": {
+            "issuer": "Harbor",
+            "period": "Q2",
+            "metric": "consensus",
+            "eligible": true,
+            "operative": true
+          },
+          "action": "obtain_eligible_evidence",
+          "required_record": "source meeting every declared constraint",
+          "structural_potentially_affected": [
+            "positive",
+            "recommendation",
+            "review_supported",
+            "surprise"
+          ]
+        }
+      ],
+      "structural_potentially_affected": [
+        "earnings_risk",
+        "positive",
+        "recommendation",
+        "report_actual",
+        "review_supported",
+        "surprise"
+      ],
+      "actually_blocked": [
+        "actual",
+        "consensus",
+        "surprise",
+        "positive",
+        "recommendation",
+        "report_actual",
+        "earnings_risk"
+      ]
+    },
+    "after": {
+      "actual": {
+        "state": "ok",
+        "value": 3,
+        "support": [
+          "a"
+        ]
+      },
+      "consensus": {
+        "state": "ok",
+        "value": 2,
+        "support": [
+          "c"
+        ]
+      },
+      "surprise": {
+        "state": "ok",
+        "value": 1,
+        "support": [
+          "actual",
+          "consensus"
+        ]
+      },
+      "positive": {
+        "state": "ok",
+        "value": true,
+        "support": [
+          "surprise"
+        ]
+      },
+      "recommendation": {
+        "state": "ok",
+        "value": "buy",
+        "support": [
+          "positive"
+        ]
+      },
+      "report_actual": {
+        "state": "ok",
+        "value": 3,
+        "support": [
+          "actual"
+        ]
+      },
+      "earnings_risk": {
+        "state": "ok",
+        "value": true,
+        "support": [
+          "actual"
+        ]
+      },
+      "independent_review": {
+        "state": "ok",
+        "value": true,
+        "support": []
+      },
+      "review_supported": {
+        "state": "ok",
+        "value": true,
+        "support": [
+          "positive",
+          "independent_review"
+        ]
+      },
+      "unrelated": {
+        "state": "ok",
+        "value": "market-open",
+        "support": []
+      }
+    },
+    "controls": [
+      {
+        "name": "wrong_issuer",
+        "after": {
+          "actual": {
+            "state": "blocked",
+            "reason": "no_eligible_source",
+            "value": null,
+            "support": []
+          },
+          "consensus": {
+            "state": "blocked",
+            "reason": "no_eligible_source",
+            "value": null,
+            "support": []
+          },
+          "surprise": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "positive": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "recommendation": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "report_actual": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "earnings_risk": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "independent_review": {
+            "state": "ok",
+            "value": true,
+            "support": []
+          },
+          "review_supported": {
+            "state": "ok",
+            "value": true,
+            "support": [
+              "independent_review"
+            ]
+          },
+          "unrelated": {
+            "state": "ok",
+            "value": "market-open",
+            "support": []
+          }
+        }
+      },
+      {
+        "name": "stale",
+        "after": {
+          "actual": {
+            "state": "blocked",
+            "reason": "no_eligible_source",
+            "value": null,
+            "support": []
+          },
+          "consensus": {
+            "state": "blocked",
+            "reason": "no_eligible_source",
+            "value": null,
+            "support": []
+          },
+          "surprise": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "positive": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "recommendation": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "report_actual": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "earnings_risk": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "independent_review": {
+            "state": "ok",
+            "value": true,
+            "support": []
+          },
+          "review_supported": {
+            "state": "ok",
+            "value": true,
+            "support": [
+              "independent_review"
+            ]
+          },
+          "unrelated": {
+            "state": "ok",
+            "value": "market-open",
+            "support": []
+          }
+        }
+      },
+      {
+        "name": "empty",
+        "after": {
+          "actual": {
+            "state": "blocked",
+            "reason": "no_eligible_source",
+            "value": null,
+            "support": []
+          },
+          "consensus": {
+            "state": "blocked",
+            "reason": "no_eligible_source",
+            "value": null,
+            "support": []
+          },
+          "surprise": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "positive": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "recommendation": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "report_actual": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "earnings_risk": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "independent_review": {
+            "state": "ok",
+            "value": true,
+            "support": []
+          },
+          "review_supported": {
+            "state": "ok",
+            "value": true,
+            "support": [
+              "independent_review"
+            ]
+          },
+          "unrelated": {
+            "state": "ok",
+            "value": "market-open",
+            "support": []
+          }
+        }
+      },
+      {
+        "name": "unauthorized_resolution",
+        "after": {
+          "actual": {
+            "state": "blocked",
+            "reason": "no_eligible_source",
+            "value": null,
+            "support": []
+          },
+          "consensus": {
+            "state": "blocked",
+            "reason": "no_eligible_source",
+            "value": null,
+            "support": []
+          },
+          "surprise": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "positive": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "recommendation": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "report_actual": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "earnings_risk": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "independent_review": {
+            "state": "ok",
+            "value": true,
+            "support": []
+          },
+          "review_supported": {
+            "state": "ok",
+            "value": true,
+            "support": [
+              "independent_review"
+            ]
+          },
+          "unrelated": {
+            "state": "ok",
+            "value": "market-open",
+            "support": []
+          }
+        }
+      },
+      {
+        "name": "partial_repair",
+        "after": {
+          "actual": {
+            "state": "ok",
+            "value": 3,
+            "support": [
+              "a"
+            ]
+          },
+          "consensus": {
+            "state": "blocked",
+            "reason": "no_eligible_source",
+            "value": null,
+            "support": []
+          },
+          "surprise": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "positive": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "recommendation": {
+            "state": "blocked",
+            "reason": "dependency_failed",
+            "value": null,
+            "support": []
+          },
+          "report_actual": {
+            "state": "ok",
+            "value": 3,
+            "support": [
+              "actual"
+            ]
+          },
+          "earnings_risk": {
+            "state": "ok",
+            "value": true,
+            "support": [
+              "actual"
+            ]
+          },
+          "independent_review": {
+            "state": "ok",
+            "value": true,
+            "support": []
+          },
+          "review_supported": {
+            "state": "ok",
+            "value": true,
+            "support": [
+              "independent_review"
+            ]
+          },
+          "unrelated": {
+            "state": "ok",
+            "value": "market-open",
+            "support": []
+          }
+        }
+      }
+    ]
+  }
+]

@@ -1,54 +1,53 @@
 # STAC AI Bootcamp
 
-**Matthew Dixon, PhD, FRM · BeliefLens**  
-STAC AI Workshop · NYC · 21 October 2026
+**[Open the public web exercises](https://belieflens.org/decision-lab)** · No account or API key needed for the seven default exercises.
 
-Seven example Python notebooks, each with four learning objectives, runnable experiments, learning checks and a recap.
+# STAC AI Workshop · NYC · 21 October 2026
 
-| Section | Notebook | Experiment |
+Matthew Dixon, PhD, FRM · Participant workbook
+
+## Start here
+
+1. Extract the complete `BeliefLens_Workshop_Notebooks.zip`.
+2. Install Python 3.10+ and JupyterLab (`python -m pip install jupyterlab`).
+3. Open a terminal in the extracted `belieflens-decision-lab` folder and run `python -m jupyterlab`.
+4. Open the numbered notebook in `notebooks/`. Run cells in order.
+
+Keep `workshop_offline.py`, `data/`, and the package helper files in their original locations. Downloading an individual notebook without its companion files is insufficient. Default exercises require no GPU, API key, Node.js or model weights. The optional legacy classifier reference uses Node.js; it is not the main Section 4 exercise.
+
+| Section | Main notebook | What you do |
 |---|---|---|
-| 1 | [Financial language-model architectures](notebooks/01_architectures.ipynb) | Model context, retrieval and calculator comparisons |
-| 2 | [Grounded financial RAG](notebooks/02_grounded_rag.ipynb) | Provenance, timestamp eligibility and missing evidence |
-| 3 | [Post-training](notebooks/03_post_training.ipynb) | SFT loss, low-rank updates and numerical DPO optimization |
-| 4 | [Adaptation lab](notebooks/04_adaptation_lab.ipynb) | Instruction examples, held-out issuers and actual logistic model training |
-| 5 | [Alpha and risk](notebooks/05_alpha_risk.ipynb) | Signal replay, costs, look-ahead leakage and vintage joins |
-| 6 | [Evaluation](notebooks/06_evaluation.ipynb) | Evidence graphs, fault tests and held-out calibration |
-| 7 | [Governance](notebooks/07_governance.ipynb) | Approval revocation, Bayesian review and expected loss |
+| 1 | `01_architectures.ipynb` | Compare the simple definition, annex, programmed branch and missing annex; inspect what each path supports. |
+| 2 | `02_grounded_rag.ipynb` | Check time eligibility and sufficiency, trace branching impact, and verify 4 valid / 17 invalid repairs. |
+| 3 | `03_post_training.ipynb` | Calculate the same SFT, LoRA and DPO illustrations as the web interface; inspect the unchanged evidence gap. |
+| 4 | `04_adaptation_lab.ipynb` | Diagnose a controlled workflow through supplied interventions. See the additional recorded-adaptation notebooks below. |
+| 5 | `05_alpha_risk.ipynb` | Compare time-valid and future-derived signals, fees, a gate and the no-trade baseline. |
+| 6 | `06_evaluation.ipynb` | Inspect 1,200 saved framing assessments, recompute evidence checks and compare exact responses. |
+| 7 | `07_governance.ipynb` | Trace Yankees/Patriots sponsorship checks and approval; then enforce current authority and idempotency at commit. |
 
-## Quick start
+## Section 4 alternatives retained
 
-Requires Python 3.10+ and Node.js 20+. No GPU, model weights or API key is needed for the default exercises.
+- `04_actual_adaptation_readable.ipynb`: readable recorded base-versus-adapter comparison.
+- `04_actual_adaptation.ipynb`: detailed recorded comparison with explicit optional local inference.
+- `04_instructor_lora_demo.ipynb`: instructor demonstration; use the supplied guide.
+- `04_workflow_diagnosis.ipynb`: dedicated controlled diagnosis notebook.
+- `04_adaptation_lab_classifier_reference.ipynb`: optional legacy numerical classifier exercise; requires Node.js. It is not LLM fine-tuning.
+
+Instructor instructions are retained in `instructor-sandbox/INSTRUCTOR_LORA_DEMO.md` and `REMOTE_JUPYTER.md`. No model weights or credentials are distributed. Any opt-in fresh inference requires separately provisioned approved artifacts; it does not run by default.
+
+## Interpretation
+
+Sections 1–3, 5 and 7 are declared synthetic teaching computations. Section 6 replays measured model responses to synthetic cases. The Section 4 recorded adapter comparison is separately labelled. Do not interpret synthetic positive returns as market alpha, a lower training loss as calibrated confidence, or model-reported citations as causal attribution.
+
+The portable Python checks in Sections 1–3 and 5–7 are compared against saved outputs exported from the browser engines. Regeneration for maintainers uses `scripts/export_notebook_fixtures.mjs` and `scripts/align_offline_notebooks.py`; participants do not run those scripts.
+
+## Clone and run
 
 ```bash
 git clone https://github.com/mfrdixon/STAC_AI_Bootcamp.git
 cd STAC_AI_Bootcamp
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install -r requirements.txt
-python -m jupyterlab notebooks
+python3 -m pip install -r requirements.txt
+python3 -m jupyterlab notebooks
 ```
 
-On Windows activate with `.venv\Scripts\activate` instead. Open a notebook and run the cells in order. Keep the complete repository: notebooks import `lab_client.py`, which invokes the shared JavaScript case engine through Node. If Node is not on your PATH, set `NODE_BINARY` to its executable path.
-
-## Execution modes
-
-**Offline (default):** fictional financial data and deterministic teaching outputs. Numerical experiments demonstrate training objectives, statistical evaluation and decision policies. They are not measurements of a language model.
-
-**Optional live:** commented notebook cells can call a separately running BeliefLens Decision Lab server. Set `LAB_URL` to its base URL (default `http://127.0.0.1:8787/decision-lab`) and enter a temporary workshop key using `getpass`. The server holds `TOGETHER_API_KEY`; participants should not put that provider credential into notebooks. This repository includes the offline engine, not the web server.
-
-A real fine-tuned financial LLM adapter is not yet included. Section 4 trains a numerical classifier; it does not claim to fine-tune an LLM. The graph uses a bounded case template rather than general automatic extraction of model reasoning. Approval is simulated and no financial action is executed.
-
-## Verification
-
-```bash
-python scripts/check_notebooks.py
-```
-
-All seven notebooks were executed successfully before packaging. Outcomes on synthetic examples do not establish production reliability. Actual live inference requires a configured server and provider account.
-
-## Background
-
-- [Together API](https://docs.together.ai/reference/chat-completions)
-- [LoRA](https://arxiv.org/abs/2106.09685)
-- [QLoRA](https://arxiv.org/abs/2305.14314)
-- [DPO](https://arxiv.org/abs/2305.18290)
+Live model calls and fresh GPU training are optional instructor extensions. The default notebooks use bundled fixtures, numerical illustrations and explicitly labelled recorded responses. They do not contact a model provider.

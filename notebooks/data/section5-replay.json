@@ -1,0 +1,115 @@
+{
+  "scope": "Constructed synthetic independent five-session opportunities; no real-market alpha or model inference.",
+  "capital_per_opportunity": 10000,
+  "fee_bps_default": 15,
+  "observations": [
+    {
+      "id": "week-01",
+      "decision_time": "2026-01-05T15:00:00+00:00",
+      "valid_signal": "BUY",
+      "valid_available_at": "2026-01-04T15:00:00+00:00",
+      "leaked_signal": "BUY",
+      "leaked_available_at": "2026-01-10T15:00:00+00:00",
+      "realized_return": 0.018
+    },
+    {
+      "id": "week-02",
+      "decision_time": "2026-01-12T15:00:00+00:00",
+      "valid_signal": "BUY",
+      "valid_available_at": "2026-01-11T15:00:00+00:00",
+      "leaked_signal": "CASH",
+      "leaked_available_at": "2026-01-17T15:00:00+00:00",
+      "realized_return": -0.024
+    },
+    {
+      "id": "week-03",
+      "decision_time": "2026-01-19T15:00:00+00:00",
+      "valid_signal": "CASH",
+      "valid_available_at": "2026-01-18T15:00:00+00:00",
+      "leaked_signal": "BUY",
+      "leaked_available_at": "2026-01-24T15:00:00+00:00",
+      "realized_return": 0.011
+    },
+    {
+      "id": "week-04",
+      "decision_time": "2026-01-26T15:00:00+00:00",
+      "valid_signal": "CASH",
+      "valid_available_at": "2026-01-25T15:00:00+00:00",
+      "leaked_signal": "CASH",
+      "leaked_available_at": "2026-01-31T15:00:00+00:00",
+      "realized_return": -0.009
+    },
+    {
+      "id": "week-05",
+      "decision_time": "2026-02-02T15:00:00+00:00",
+      "valid_signal": "BUY",
+      "valid_available_at": "2026-02-01T15:00:00+00:00",
+      "leaked_signal": "BUY",
+      "leaked_available_at": "2026-02-07T15:00:00+00:00",
+      "realized_return": 0.032
+    },
+    {
+      "id": "week-06",
+      "decision_time": "2026-02-09T15:00:00+00:00",
+      "valid_signal": "CASH",
+      "valid_available_at": "2026-02-08T15:00:00+00:00",
+      "leaked_signal": "CASH",
+      "leaked_available_at": "2026-02-14T15:00:00+00:00",
+      "realized_return": -0.017
+    },
+    {
+      "id": "week-07",
+      "decision_time": "2026-02-16T15:00:00+00:00",
+      "valid_signal": "BUY",
+      "valid_available_at": "2026-02-15T15:00:00+00:00",
+      "leaked_signal": "BUY",
+      "leaked_available_at": "2026-02-21T15:00:00+00:00",
+      "realized_return": 0.007
+    },
+    {
+      "id": "week-08",
+      "decision_time": "2026-02-23T15:00:00+00:00",
+      "valid_signal": "BUY",
+      "valid_available_at": "2026-02-22T15:00:00+00:00",
+      "leaked_signal": "CASH",
+      "leaked_available_at": "2026-02-28T15:00:00+00:00",
+      "realized_return": -0.036
+    },
+    {
+      "id": "week-09",
+      "decision_time": "2026-03-02T15:00:00+00:00",
+      "valid_signal": "CASH",
+      "valid_available_at": "2026-03-01T15:00:00+00:00",
+      "leaked_signal": "BUY",
+      "leaked_available_at": "2026-03-07T15:00:00+00:00",
+      "realized_return": 0.021
+    },
+    {
+      "id": "week-10",
+      "decision_time": "2026-03-09T15:00:00+00:00",
+      "valid_signal": "BUY",
+      "valid_available_at": "2026-03-08T15:00:00+00:00",
+      "leaked_signal": "BUY",
+      "leaked_available_at": "2026-03-14T15:00:00+00:00",
+      "realized_return": 0.004
+    },
+    {
+      "id": "week-11",
+      "decision_time": "2026-03-16T15:00:00+00:00",
+      "valid_signal": "CASH",
+      "valid_available_at": "2026-03-15T15:00:00+00:00",
+      "leaked_signal": "CASH",
+      "leaked_available_at": "2026-03-21T15:00:00+00:00",
+      "realized_return": -0.012
+    },
+    {
+      "id": "week-12",
+      "decision_time": "2026-03-23T15:00:00+00:00",
+      "valid_signal": "BUY",
+      "valid_available_at": "2026-03-22T15:00:00+00:00",
+      "leaked_signal": "BUY",
+      "leaked_available_at": "2026-03-28T15:00:00+00:00",
+      "realized_return": 0.015
+    }
+  ]
+}
