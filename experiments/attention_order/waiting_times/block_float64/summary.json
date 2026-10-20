@@ -1,0 +1,27 @@
+{
+  "block_local": {
+    "p_yes_min": 0.19727350518148445,
+    "p_yes_max": 0.19727386534879632,
+    "p_yes_order_range": 3.6016731186361284e-07,
+    "max_repeat_range": 0.0,
+    "top_candidates": [
+      "NO"
+    ],
+    "raw_mass_min": 0.08691744165261704,
+    "raw_mass_max": 0.08691785558395114
+  },
+  "audit": {
+    "block_local": {
+      "forbidden_attention_max": 0.0,
+      "all_record_tokens_can_read_prefix": true,
+      "readout_can_read_all_records": true,
+      "tokens": 596
+    }
+  },
+  "elapsed_seconds": 62.53392791748047,
+  "evaluations": 30,
+  "torch": "2.13.0",
+  "transformers": "4.57.3",
+  "invariance_tolerance": 1e-12,
+  "block_within_tolerance": false
+}

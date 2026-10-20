@@ -173,9 +173,51 @@ Ordinary causal & 21.734693\% & 23.566553\% & 1.831860\\
 Restricted mask, global positions & 9.217633\% & 9.741331\% & 0.523698\\
 Restricted mask, local positions & 19.726548\% & 19.726937\% & 0.000389\\\bottomrule
 \end{tabular}\end{center}
-Every identical-repeat difference was zero. The full construction's range is $3.89\times10^{-6}$ in probability units, within the declared $10^{-5}$ numerical tolerance. It is not bitwise invariant. Masked attention entries were zero in audited order-zero runs across every layer, and the readout's access to all records was checked. The residual is consistent with floating-point reduction effects; a higher-precision diagnosis was not conducted.
+Every identical-repeat difference was zero. The full construction's range is $3.89\times10^{-6}$ in probability units, within the declared $10^{-5}$ numerical tolerance. It is not bitwise invariant. Masked attention entries were zero in audited order-zero runs across every layer, and the readout's access to all records was checked. The residual is consistent with floating-point reduction effects; a subsequent precision diagnosis is reported in the next section.
 
 \textbf{Critical qualification.} Uppercase YES and NO together receive 95.71--96.77\% of raw probability mass in the ordinary condition, but only 8.6926--8.6929\% under the full mask/local-position construction. Although NO remains first within the two uppercase candidates, the unconstrained vocabulary argmax becomes title-case \texttt{Yes} in all thirty full-construction runs. In the mask-only condition it is NO in twenty-four runs and COUNT in six. Thus invariant conditional scores do not establish preserved output behavior, calibration or counting accuracy. A mask retrofit can substantially alter the pretrained model's distribution. This experiment is an architectural readout check on one fixed sample, not a validated counting solution. Raw results and code are in \texttt{waiting\_times/block\_matched/}.
+
+\newpage
+\section{Numerical precision and the residual order variation}
+A follow-up keeps the waiting-time inputs, masks, local positions and original Qwen output head fixed while increasing arithmetic precision. Casting the model to float64 alone leaves attention softmax and RMSNorm operations in float32 in the library implementation. A second diagnostic preserves float64 through those two operations, without changing their mathematical formulas or training any weights.
+\begin{center}\small
+\begin{tabular}{lr}\toprule
+Configuration & Maximum $P(\mathrm{YES})$ range\\\midrule
+Original float32 & $3.88869\times10^{-6}$\\
+Float64 weights, default internal casts & $3.60167\times10^{-7}$\\
+Float64 + dtype-preserving softmax and RMSNorm & $4.49640\times10^{-15}$\\\bottomrule
+\end{tabular}\end{center}
+Each configuration uses ten orders and three identical repeats. Repeated inputs give exactly identical results; forbidden attention entries remain zero. The final diagnostic meets the declared $10^{-12}$ probability tolerance and takes 63.25 seconds. Rotary embedding calculations retain the library implementation; the same local positions produce the same features under permutation.
+
+This controlled precision result strongly supports a floating-point explanation for the original residual. Matrix multiplication, softmax denominators and weighted sums can accumulate terms in different orders after a permutation. Real-number addition is associative, but finite-precision addition is not. The construction's exact-arithmetic symmetry therefore need not produce bitwise equality in ordinary kernels. The remaining $10^{-15}$-scale variation is consistent with double-precision rounding. This is not evidence of increased correctness or calibration: the uppercase YES/NO pair still receives only about 8.69\% of total vocabulary probability. Code and logs are in \texttt{waiting\_times/block\_float64/} and \texttt{waiting\_times/block\_precision/}.
+
+\newpage
+\section{Hidden-source dice: stability is not calibration}
+We generated one fixed sample of fifty independent fair-die draws with seed 20261024. The source is hidden from Qwen: it is told only that fifty numbers were observed and asked to predict the next digit from one to six. The same values are presented in ten permutations with three repeats. Ordinary causal and Block Attention configurations use identical record-formatted input tokens, unchanged weights and the original vocabulary head. Digit candidates are single tokens and normalized over the six alternatives; no EOS is scored or full answer generated. Sixty forward calls took 24.27 seconds.
+\begin{center}\small
+\begin{tabular}{lrr}\toprule
+Measure & Ordinary & Block + local positions\\\midrule
+Changed highest-ranked digit / 45 order pairs & 16 & 0\\
+Maximum order TV & 0.155478 & 0.000003171\\
+Identical-repeat TV & 0 & 0\\
+Preferred digits across orders & 4, 5 & 1\\
+Raw candidate mass & 93.93--95.53\% & 1.93646--1.93654\%\\
+Unrestricted vocabulary argmax & 4 or 5 & \texttt{Observ}\\\bottomrule
+\end{tabular}\end{center}
+For the original ordering, the restricted digit distributions are:
+\begin{center}\small
+\begin{tabular}{lrrr}\toprule
+Digit & Ordinary & Block Attention & True hidden process\\\midrule
+1 & 11.7892\% & 64.3762\% & 16.6667\%\\
+2 & 5.6526\% & 5.5056\% & 16.6667\%\\
+3 & 25.9069\% & 6.3672\% & 16.6667\%\\
+4 & 26.2371\% & 5.4086\% & 16.6667\%\\
+5 & 18.9917\% & 7.0223\% & 16.6667\%\\
+6 & 11.4225\% & 11.3202\% & 16.6667\%\\\bottomrule
+\end{tabular}\end{center}
+The ordinary model's highest-ranked digit changes with numerical evidence order. Block Attention reduces ordering variation within the declared $10^{-5}$ tolerance, but does not recover uniform probabilities. It strongly disrupts the output format: only about 1.94\% of raw probability mass remains on the allowed digits. The most likely unrestricted next token is \texttt{Observ}, not the restricted winner 1. Audited forbidden attention weights are zero, and the readout retains access to every record.
+
+The experimenter knows that a fair independent process assigns $1/6$ to each next value. The model was deliberately not told this. Without that premise, a nonuniform prediction alone is not a mathematical contradiction: it can reflect inference of an ordered process. The application imposes set semantics through the intervention. This test separates order invariance from predictive calibration and task-format preservation; it does not establish improved forecasting. Reproduction artifacts are in \texttt{dice\_order/}.
 
 \newpage
 \section*{Figure 1: the tested independent-encoding workaround}
