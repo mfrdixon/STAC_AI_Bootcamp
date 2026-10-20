@@ -1,0 +1,28 @@
+{
+  "expected_count": 19,
+  "expected_percentage": 38,
+  "expected_majority": "NO",
+  "orders": 10,
+  "repeats": 3,
+  "total": 30,
+  "valid_format": 30,
+  "truncated": 0,
+  "distinct_generated_outputs": 1,
+  "distinct_majority_answers": [
+    "NO"
+  ],
+  "distinct_counts": [
+    50
+  ],
+  "distinct_percentages": [
+    0.0
+  ],
+  "exact_correct": 0,
+  "p_yes_min": 0.23746194792055914,
+  "p_yes_max": 0.2679959617958761,
+  "max_identical_prompt_probability_range": 0.0,
+  "repeat_text_changes": 0,
+  "elapsed_seconds": 48.9992299079895,
+  "torch": "2.13.0",
+  "transformers": "4.57.3"
+}

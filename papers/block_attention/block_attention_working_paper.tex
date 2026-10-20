@@ -150,6 +150,16 @@ Unrestricted uniform attention + pooling & -0.073611 & -0.073611\\\bottomrule
 Across one hundred permutations of this sample, the causal output spans $[-0.34655,0.28677]$. Both invariant constructions return the exact mean in every tested order. Twenty fixed samples, one hundred orders, ten repetitions and three configurations give 60,000 evaluations. Every repeat is identical; no training or randomness in execution is involved. The maximum causal absolute error across all samples and orders is 0.47787; the other two constructions have zero measured error. These are analytic demonstrations, not a fitted estimator or evidence of trained-model competence.
 
 \newpage
+\section{A natural-language counting control: stable but incorrect}
+We tested whether an ordinary pretrained model changes a familiar statistical answer when unordered numerical observations are shuffled. One fixed sample of fifty synthetic clinic waiting times was drawn once using seed 20261022. Nineteen values exceed thirty minutes, so the correct response is ``NO; count=19; percentage=38\%.'' The same values were reused in ten permutations and three identical repeats, with the question and answer-label order held fixed. The execution order was randomized and the manifest frozen before inference. No calculator or expected answer was supplied to Qwen2.5-0.5B-Instruct.
+
+All thirty unconstrained greedy responses were identical: ``NO; count=50; percentage=0\%.'' They were validly formatted and untruncated. The NO answer was correct, but the count and percentage were wrong and internally inconsistent. This is a counting/instruction failure, not observed order-induced answer instability. Exact response accuracy was zero of thirty.
+
+Teacher-forced YES/NO prefix scores excluding EOS gave conditional YES probabilities between 0.23746 and 0.26800, a range of 3.0534 percentage points. These scores condition on the two candidate prefixes and are not truth probabilities. Identical-prompt repeats yielded zero numerical or text variation. The run took 49 seconds on CPU with float32 eager inference, neutral repetition penalty and greedy decoding. No sampling or training occurred.
+
+This negative finding for final-answer sensitivity is retained alongside the positive order-effect experiments. It does not show broad robustness: only one fixed numerical sample and one small model were tested. Nor does it show Block Attention repairing a meaningful counting task: that comparison has not been trained or performed. Reproduction files are in \texttt{waiting\_times/}, including the manifest and raw outputs.
+
+\newpage
 \section*{Figure 1: the tested independent-encoding workaround}
 \includegraphics[width=\linewidth]{partial_attention_figure.pdf}
 \newpage

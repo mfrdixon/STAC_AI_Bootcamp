@@ -28,8 +28,8 @@ This is a proof of order isolation—not a claim of better investment decisions 
 
 The design question: **which parts of your workflow should interact—and which should be structurally independent?**
 
-[Working paper: methodology, equations and preliminary results](block_attention_working_paper.pdf)
+[Working paper: methodology, equations and preliminary results](https://github.com/mfrdixon/STAC_AI_Bootcamp/blob/main/papers/block_attention/block_attention_working_paper.pdf)
 
 Figures: `partial_attention_figure.png` (pretrained-model workaround) and `block_attention_figure.png` (masked tiny-model proof).
 
-Publication note: the paper link is local. Upload the PDF or host it publicly before publishing this post; no public URL has been created.
+The paper and code are available in the linked GitHub repository.
