@@ -1,0 +1,83 @@
+{
+  "mode": "default offline/recorded; live, fresh inference and GPU switches left disabled",
+  "results": [
+    {
+      "notebook": "01_architectures.ipynb",
+      "status": "passed",
+      "code_cells": 7,
+      "seconds": 0.15
+    },
+    {
+      "notebook": "01b_harbor_tools_mcp_permissions.ipynb",
+      "status": "passed",
+      "code_cells": 9,
+      "seconds": 0.0
+    },
+    {
+      "notebook": "02_grounded_rag.ipynb",
+      "status": "passed",
+      "code_cells": 16,
+      "seconds": 0.0
+    },
+    {
+      "notebook": "03_post_training.ipynb",
+      "status": "passed",
+      "code_cells": 5,
+      "seconds": 0.0
+    },
+    {
+      "notebook": "04_actual_adaptation.ipynb",
+      "status": "passed",
+      "code_cells": 9,
+      "seconds": 0.0
+    },
+    {
+      "notebook": "04_actual_adaptation_readable.ipynb",
+      "status": "passed",
+      "code_cells": 9,
+      "seconds": 0.0
+    },
+    {
+      "notebook": "04_adaptation_lab.ipynb",
+      "status": "passed",
+      "code_cells": 6,
+      "seconds": 0.0
+    },
+    {
+      "notebook": "04_adaptation_lab_classifier_reference.ipynb",
+      "status": "passed",
+      "code_cells": 5,
+      "seconds": 0.31
+    },
+    {
+      "notebook": "04_instructor_lora_demo.ipynb",
+      "status": "passed",
+      "code_cells": 4,
+      "seconds": 0.0
+    },
+    {
+      "notebook": "04_workflow_diagnosis.ipynb",
+      "status": "passed",
+      "code_cells": 6,
+      "seconds": 0.0
+    },
+    {
+      "notebook": "05_alpha_risk.ipynb",
+      "status": "passed",
+      "code_cells": 5,
+      "seconds": 0.0
+    },
+    {
+      "notebook": "06_evaluation.ipynb",
+      "status": "passed",
+      "code_cells": 6,
+      "seconds": 0.01
+    },
+    {
+      "notebook": "07_governance.ipynb",
+      "status": "passed",
+      "code_cells": 6,
+      "seconds": 0.0
+    }
+  ]
+}
