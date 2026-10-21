@@ -17,3 +17,7 @@
 Run notebook cells in order. The default recorded examples do not require a model API key. Each notebook includes code-line guides and answer checks. Optional live inference and GPU training require separate setup.
 
 [All notebooks and companion exercises](notebooks/)
+
+## Complete presentation
+
+[Full workshop PDF](slides/STAC_AI_Workshop_NYC_2026.pdf) · [Opening and Section 1](slides/STAC_AI_Workshop_NYC_2026_Opening_Section_1.pdf)
