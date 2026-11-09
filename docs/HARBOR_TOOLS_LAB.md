@@ -1,7 +1,7 @@
 # Harbor Metals · Section 1 lab
 
-1. Start with [01_architectures.ipynb](notebooks/01_architectures.ipynb): fixed RAG, fixed RAG plus calculator, then agent-selected calls. The default model is scripted, explicitly identified, and runs offline.
-2. Continue to [01b_harbor_tools_mcp_permissions.ipynb](notebooks/01b_harbor_tools_mcp_permissions.ipynb): the same company, direct OpenAI function calling, shared tools through MCP, and permission checks.
+1. Start with [01_architectures.ipynb](../notebooks/01_architectures.ipynb): fixed RAG, fixed RAG plus calculator, then agent-selected calls. The default model is scripted, explicitly identified, and runs offline.
+2. Continue to [01b_harbor_tools_mcp_permissions.ipynb](../notebooks/01b_harbor_tools_mcp_permissions.ipynb): the same company, direct OpenAI function calling, shared tools through MCP, and permission checks.
 
 ## Browser
 
@@ -12,10 +12,10 @@ Alternatively use Colab **File → Open notebook → GitHub**, paste the GitHub 
 
 ## Local
 
-Clone the repository and launch JupyterLab from `notebooks/`. Keep both helper modules and the MCP server script alongside the notebooks. For optional integrations run:
+Clone the repository and launch JupyterLab from `../notebooks/`. Keep both helper modules and the MCP server script alongside the notebooks. The Section 1 integration dependencies (MCP, OpenAI) ship with the standard environment setup — install everything with:
 
 ```bash
-python -m pip install -r requirements-harbor-tools.txt
+make .venv   # or: uv sync
 ```
 
 Default cells need no API key. Live GPT calls use `OPENAI_API_KEY` or a hidden prompt. The first notebook can also use Together. Never save keys in cells or outputs. Only fictional company information is sent.

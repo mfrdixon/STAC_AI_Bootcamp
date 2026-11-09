@@ -5,11 +5,11 @@ Matthew Dixon, PhD, FRM · Participant workbook
 ## Start here
 
 1. Extract the complete `BeliefLens_Workshop_Notebooks.zip`.
-2. Install Python 3.10+ and JupyterLab (`python -m pip install jupyterlab`).
-3. Open a terminal in the extracted `belieflens-decision-lab` folder and run `python -m jupyterlab`.
-4. Open the numbered notebook in `notebooks/`. Run cells in order.
+2. Install Python 3.12+ and [uv](https://docs.astral.sh/uv/), then set up the environment with `make .venv` (or `uv sync`). This installs JupyterLab and all dependencies.
+3. Open a terminal in the extracted `belieflens-decision-lab` folder and launch JupyterLab with `make jupyter`.
+4. Open the numbered notebook in `../notebooks/`. Run cells in order.
 
-Keep `workshop_offline.py`, `data/`, and the package helper files in their original locations. Downloading an individual notebook without its companion files is insufficient. Default exercises require no GPU, API key, Node.js or model weights. The optional legacy classifier reference uses Node.js; it is not the main Section 4 exercise.
+Keep `workshop_offline.py`, `../data/`, and the package helper files in their original locations. Downloading an individual notebook without its companion files is insufficient. Default exercises require no GPU, API key, Node.js or model weights. The optional legacy classifier reference uses Node.js; it is not the main Section 4 exercise.
 
 | Section | Main notebook | What you do |
 |---|---|---|
@@ -29,13 +29,13 @@ Keep `workshop_offline.py`, `data/`, and the package helper files in their origi
 - `04_workflow_diagnosis.ipynb`: dedicated controlled diagnosis notebook.
 - `04_adaptation_lab_classifier_reference.ipynb`: optional legacy numerical classifier exercise; requires Node.js. It is not LLM fine-tuning.
 
-Instructor instructions are retained in `instructor-sandbox/INSTRUCTOR_LORA_DEMO.md` and `REMOTE_JUPYTER.md`. No model weights or credentials are distributed. Any opt-in fresh inference requires separately provisioned approved artifacts; it does not run by default.
+Instructor instructions are retained in `../instructor-sandbox/INSTRUCTOR_LORA_DEMO.md` and `REMOTE_JUPYTER.md`. No model weights or credentials are distributed. Any opt-in fresh inference requires separately provisioned approved artifacts; it does not run by default.
 
 ## Interpretation
 
 Sections 1–3, 5 and 7 are declared synthetic teaching computations. Section 6 replays measured model responses to synthetic cases. The Section 4 recorded adapter comparison is separately labelled. Do not interpret synthetic positive returns as market alpha, a lower training loss as calibrated confidence, or model-reported citations as causal attribution.
 
-The portable Python checks in Sections 1–3 and 5–7 are compared against saved outputs exported from the browser engines. Regeneration for maintainers uses `scripts/export_notebook_fixtures.mjs` and `scripts/align_offline_notebooks.py`; participants do not run those scripts.
+The portable Python checks in Sections 1–3 and 5–7 are compared against saved outputs exported from the browser engines. Regeneration for maintainers uses `../scripts/export_notebook_fixtures.mjs` and `../scripts/align_offline_notebooks.py`; participants do not run those scripts.
 
 ### Section 1: executable architecture notebook
 
