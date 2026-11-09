@@ -3,7 +3,7 @@
 import json, os, shutil, subprocess, urllib.request, urllib.error
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[2]
 
 
 def run(config=None, *, live=False, base_url=None, key=None, model=None):

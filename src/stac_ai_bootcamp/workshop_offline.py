@@ -9,7 +9,7 @@ from datetime import datetime
 
 
 def load_fixture(name):
-    return json.loads((Path(__file__).parent / "data" / name).read_text())
+    return json.loads((Path(__file__).parents[2] / "data" / name).read_text())
 
 
 def show_table(rows):
