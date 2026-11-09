@@ -29,6 +29,10 @@ dev = [
     "ruff>=0.17.1",
 ]
 
+[tool.pytest.ini_options]
+pythonpath = [ "src" ]
+testpaths = ["tests"]
+
 [tool.ruff.lint]
 ignore = ["BLE001", "DTZ011"]
 
