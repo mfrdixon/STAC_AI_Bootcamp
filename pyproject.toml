@@ -1,10 +1,10 @@
 [project]
 name = "stac-ai-bootcamp"
 version = "0.1.0"
-description = "Add your description here"
+description = "STAC AI Bootcamp"
 readme = "README.md"
 authors = [
-    { name = "Jiri Klic", email = "web@jiriklic.com" }
+    { name = "Matthew Dixon", email = "mfrdixon@gmail.com" },
 ]
 requires-python = ">=3.12"
 dependencies = [
@@ -28,3 +28,9 @@ dev = [
     "pytest-cov>=7.1.0",
     "ruff>=0.17.1",
 ]
+
+[tool.ruff.lint]
+ignore = ["BLE001", "DTZ011"]
+
+[tool.ruff.lint.isort]
+lines-after-imports = 2
