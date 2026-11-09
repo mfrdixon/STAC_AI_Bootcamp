@@ -26,12 +26,14 @@ dev = [
     "nbformat>=5.11.1",
     "pytest>=9.1.1",
     "pytest-cov>=7.1.0",
+    "pytest-xdist>=3.8.0",
     "ruff>=0.17.1",
 ]
 
 [tool.pytest.ini_options]
 pythonpath = [ "src" ]
 testpaths = ["tests"]
+addopts = "-n 4 -q -rA"
 
 [tool.ruff.lint]
 ignore = ["BLE001", "DTZ011"]
