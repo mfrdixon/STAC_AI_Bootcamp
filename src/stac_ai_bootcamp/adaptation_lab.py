@@ -1,6 +1,6 @@
 """Recorded LoRA audit; standard-library default. No model generation on load."""
 
-from stac_ai_bootcamp.utility import set_huggingface_offline  # noqa: I001
+from stac_ai_bootcamp.utility import PROJECT_ROOT, set_huggingface_offline  # noqa: I001
 
 set_huggingface_offline()  # must run before transformers/torch/peft import
 
@@ -16,8 +16,7 @@ from peft import PeftModel
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 
-ROOT = Path(__file__).resolve().parents[2]
-DATA = ROOT / "public/decision-lab/data/recorded-adaptation.json"
+DATA = PROJECT_ROOT / "public/decision-lab/data/recorded-adaptation.json"
 
 
 def load():

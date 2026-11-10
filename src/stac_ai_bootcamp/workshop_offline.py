@@ -7,11 +7,12 @@ import collections
 import json
 import math
 from datetime import datetime
-from pathlib import Path
+
+from stac_ai_bootcamp.utility import PROJECT_ROOT
 
 
 def load_fixture(name):
-    return json.loads((Path(__file__).parents[2] / "data" / name).read_text())
+    return json.loads((PROJECT_ROOT / "data" / name).read_text())
 
 
 def show_table(rows):

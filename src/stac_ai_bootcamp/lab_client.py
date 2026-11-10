@@ -6,10 +6,8 @@ import shutil
 import subprocess
 import urllib.error
 import urllib.request
-from pathlib import Path
 
-
-ROOT = Path(__file__).resolve().parents[2]
+from stac_ai_bootcamp.utility import PROJECT_ROOT
 
 
 def run(config=None, *, live=False, base_url=None, key=None, model=None):
@@ -21,7 +19,7 @@ def run(config=None, *, live=False, base_url=None, key=None, model=None):
                 "Install Node.js 20+ or set NODE_BINARY to its absolute path."
             )
         result = subprocess.run(
-            [node, str(ROOT / "scripts/run.mjs")],
+            [node, str(PROJECT_ROOT / "scripts/run.mjs")],
             input=json.dumps(payload),
             text=True,
             capture_output=True,
