@@ -12,7 +12,7 @@ import torch
 import torch.nn.functional as F
 from torch import nn
 
-from stac_ai_bootcamp.utility import experiment_output
+from stac_ai_bootcamp.utility import configure_torch, experiment_output
 
 
 N = 50
@@ -79,9 +79,7 @@ def dataset(size, seed):
 def main() -> None:
     output_dir = experiment_output("attention_order/tiny_adaptation")
     start = time.time()
-    torch.manual_seed(20261025)
-    torch.set_num_threads(2)
-    torch.use_deterministic_algorithms(True)
+    configure_torch(seed=20261025, num_threads=2)
     train = dataset(8000, 81001)
     test = dataset(1000, 81002)
     manifest: dict = {

@@ -11,7 +11,7 @@ import time
 import torch
 from torch import nn
 
-from stac_ai_bootcamp.utility import experiment_output
+from stac_ai_bootcamp.utility import configure_torch, experiment_output
 
 
 class TinySet(nn.Module):
@@ -65,9 +65,7 @@ class TinySet(nn.Module):
 
 def run_iid_set(samples: int, permutations: int, repeats: int, prefix: str) -> None:
     output_dir = experiment_output("attention_order/block_attention")
-    torch.manual_seed(20261021)
-    torch.set_num_threads(2)
-    torch.use_deterministic_algorithms(True)
+    configure_torch(seed=20261021, num_threads=2)
     model = TinySet().eval()
     g = torch.Generator().manual_seed(81234)
     # Independent samples of 50 draws each; identity order plus random permutations.

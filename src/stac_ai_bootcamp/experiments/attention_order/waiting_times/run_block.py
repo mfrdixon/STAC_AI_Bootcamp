@@ -13,17 +13,19 @@ set_huggingface_offline()  # must run before transformers/torch import
 import hashlib
 import inspect
 import json
-import os
 import random
 import time
-from pathlib import Path
 
 import torch
 import transformers
 import transformers.models.qwen2.modeling_qwen2 as qmod
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-from stac_ai_bootcamp.utility import PROJECT_ROOT, experiment_output
+from stac_ai_bootcamp.utility import (
+    configure_torch,
+    experiment_output,
+    get_qwen_model_path,
+)
 
 
 VARIANTS = {
@@ -81,18 +83,8 @@ def run_block(variant: str) -> None:
     output_dir = experiment_output(f"attention_order/waiting_times/block_{variant}")
     src = json.loads((source_dir / "manifest.json").read_text())
     start = time.time()
-    torch.manual_seed(20261023)
-    torch.set_num_threads(4)
-    torch.use_deterministic_algorithms(True)
-    path = Path(
-        os.environ.get(
-            "QWEN_MODEL_PATH",
-            str(
-                PROJECT_ROOT
-                / "experiments/attention_order/dictionary_invariance/qwen_model"
-            ),
-        )
-    )
+    configure_torch(seed=20261023)
+    path = get_qwen_model_path()
     tok = AutoTokenizer.from_pretrained(path, local_files_only=True)
     model = AutoModelForCausalLM.from_pretrained(
         path,

@@ -6,7 +6,7 @@ import torch
 import torch.nn.functional as F
 from torch import nn
 
-from stac_ai_bootcamp.utility import experiment_output, total_variation
+from stac_ai_bootcamp.utility import configure_torch, experiment_output, total_variation
 
 
 actions = {
@@ -104,9 +104,7 @@ class Tiny(nn.Module):
 
 def main() -> None:
     output_dir = experiment_output("attention_order/block_attention")
-    torch.manual_seed(20261020)
-    torch.set_num_threads(2)
-    torch.use_deterministic_algorithms(True)
+    configure_torch(seed=20261020, num_threads=2)
     model = Tiny().eval()
     start = time.time()
     rows = []

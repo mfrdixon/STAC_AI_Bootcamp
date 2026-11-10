@@ -5,16 +5,19 @@ set_huggingface_offline()  # must run before transformers/torch import
 import hashlib
 import itertools
 import json
-import os
 import random
 import time
-from pathlib import Path
 
 import torch
 import transformers
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-from stac_ai_bootcamp.utility import PROJECT_ROOT, experiment_output, total_variation
+from stac_ai_bootcamp.utility import (
+    configure_torch,
+    experiment_output,
+    get_qwen_model_path,
+    total_variation,
+)
 
 
 def main() -> None:
@@ -42,18 +45,8 @@ def main() -> None:
         "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
     }
     (output_dir / "manifest.json").write_text(json.dumps(manifest, indent=2))
-    torch.manual_seed(20261024)
-    torch.set_num_threads(4)
-    torch.use_deterministic_algorithms(True)
-    path = Path(
-        os.environ.get(
-            "QWEN_MODEL_PATH",
-            str(
-                PROJECT_ROOT
-                / "experiments/attention_order/dictionary_invariance/qwen_model"
-            ),
-        )
-    )
+    configure_torch(seed=20261024)
+    path = get_qwen_model_path()
     tok = AutoTokenizer.from_pretrained(path, local_files_only=True)
     model = AutoModelForCausalLM.from_pretrained(
         path,
@@ -197,10 +190,12 @@ def main() -> None:
         summary[mode] = {
             "original_order_probs": first[0]["probabilities"],
             "max_order_tv": max(
-                total_variation(a["probabilities"], b["probabilities"]) for a, b in pairs
+                total_variation(a["probabilities"], b["probabilities"])
+                for a, b in pairs
             ),
             "mean_order_tv": sum(
-                total_variation(a["probabilities"], b["probabilities"]) for a, b in pairs
+                total_variation(a["probabilities"], b["probabilities"])
+                for a, b in pairs
             )
             / len(pairs),
             "top_candidate_changes": sum(
@@ -208,8 +203,12 @@ def main() -> None:
             ),
             "order_pairs": len(pairs),
             "max_repeat_tv": max(repeat_tv),
-            "min_tv_from_uniform": min(total_variation(x["probabilities"], uniform) for x in first),
-            "max_tv_from_uniform": max(total_variation(x["probabilities"], uniform) for x in first),
+            "min_tv_from_uniform": min(
+                total_variation(x["probabilities"], uniform) for x in first
+            ),
+            "max_tv_from_uniform": max(
+                total_variation(x["probabilities"], uniform) for x in first
+            ),
             "candidate_mass_min": min(x["candidate_mass"] for x in first),
             "candidate_mass_max": max(x["candidate_mass"] for x in first),
             "top_candidates": sorted({x["top_candidate"] for x in first}),

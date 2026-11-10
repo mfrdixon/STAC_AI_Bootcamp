@@ -1,8 +1,10 @@
-"""Offline architectural proof, not a trained investment decision system."""
+"""Shared core for the dictionary-invariance experiment.
 
-from stac_ai_bootcamp.utility import set_huggingface_offline  # noqa: I001
-
-set_huggingface_offline()  # must run before transformers/torch import
+run_qwen.py and run_flan.py differ only in how they load the model and in their
+encode()/prompted() callbacks; everything else — the action/case manifest, the
+order-invariant cosine cross-attention readout, the evaluation loop, and the
+summary aggregation — lives here.
+"""
 
 import hashlib
 import itertools
@@ -12,12 +14,10 @@ import time
 import torch
 import torch.nn.functional as F
 import transformers
-from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
 from stac_ai_bootcamp.utility import experiment_output, total_variation, winner
 
 
-MODEL = "google/flan-t5-base"
 actions = {
     "BUY": "Take a long position when eligible actual EPS exceeds consensus EPS.",
     "CASH": "Do not take a position when eligible actual EPS is at or below consensus EPS.",
@@ -44,17 +44,49 @@ cases = [
 ]
 
 
-def main() -> None:
-    output_dir = experiment_output("attention_order/dictionary_invariance/flan")
+@torch.inference_mode()
+def separate(encode, evidence, entries):
+    # Each action is encoded independently; entries never share encoder context.
+    H = F.normalize(encode(evidence), dim=-1)
+    scores = {}
+    for name, desc in entries.items():
+        q = F.normalize(encode(name + ": " + desc).mean(0), dim=0)
+        attn = torch.softmax(H @ q, dim=0)
+        z = attn @ H
+        scores[name] = float(q @ z)
+    # Canonical summation order removes floating-point reduction-order differences.
+    names = sorted(scores)
+    probs = torch.tensor([scores[n] for n in names], dtype=torch.float64).softmax(0)
+    return scores, dict(zip(names, probs.tolist()))
+
+
+def run_experiment(
+    output_name,
+    manifest_extra,
+    model,
+    tok,
+    encode,
+    prompted,
+    summary_fields,
+    model_revision,
+):
+    """Drive the full dictionary-invariance evaluation and write the artifacts.
+
+    output_name     relative experiment path for experiment_output()
+    manifest_extra  model-specific keys merged into the manifest (e.g. "model")
+    model, tok      the loaded model/tokenizer (for stats and tokenization)
+    encode          text -> last_hidden_state[0] callable
+    prompted        (evidence, entries) -> dict of row fields (incl. json_prompt_probs, prompt)
+    summary_fields  probability fields to aggregate (qwen has three, flan has two)
+    model_revision  commit hash recorded in the summary
+    """
+    output_dir = experiment_output(output_name)
     start = time.time()
-    torch.manual_seed(20261019)
-    torch.set_num_threads(4)
-    torch.use_deterministic_algorithms(True)
-    tok = AutoTokenizer.from_pretrained(MODEL, local_files_only=True)
-    model = AutoModelForSeq2SeqLM.from_pretrained(MODEL, local_files_only=True).eval()
     orders = list(itertools.permutations(actions))
+    # manifest_extra first (e.g. "model") to preserve the original key order,
+    # which the manifest_sha256 in the summary depends on.
     manifest: dict = {
-        "model": MODEL,
+        **manifest_extra,
         "actions": actions,
         "cases": cases,
         "orders": orders,
@@ -65,70 +97,30 @@ def main() -> None:
     }
     (output_dir / "manifest.json").write_text(json.dumps(manifest, indent=2))
 
-    @torch.inference_mode()
-    def encode(text):
-        x = tok(text, return_tensors="pt")
-        return model.encoder(**x).last_hidden_state[0]
-
-    @torch.inference_mode()
-    def separate(evidence, entries):
-        # Each action is encoded independently; entries never share encoder context.
-        H = F.normalize(encode(evidence), dim=-1)
-        scores = {}
-        for name, desc in entries.items():
-            q = F.normalize(encode(name + ": " + desc).mean(0), dim=0)
-            attn = torch.softmax(H @ q, dim=0)
-            z = attn @ H
-            scores[name] = float(q @ z)
-        # Canonical summation order removes floating-point reduction-order differences.
-        names = sorted(scores)
-        probs = torch.tensor([scores[n] for n in names], dtype=torch.float64).softmax(0)
-        return scores, dict(zip(names, probs.tolist()))
-
-    @torch.inference_mode()
-    def prompted(evidence, entries):
-        prompt = (
-            "Choose the action using the evidence and these definitions. "
-            "Reply with exactly BUY, CASH or WITHHOLD.\nEvidence: "
-            + evidence
-            + "\nAction definitions: "
-            + json.dumps(entries)
-        )
-        names = sorted(actions)
-        inputs = tok([prompt] * 3, return_tensors="pt", padding=True)
-        targets = tok(names, return_tensors="pt", padding=True)
-        labels = targets.input_ids.clone()
-        labels[targets.attention_mask == 0] = -100
-        logits = model(**inputs, labels=labels).logits.float().log_softmax(-1)
-        ids = labels.clamp_min(0)
-        lp = logits.gather(-1, ids.unsqueeze(-1)).squeeze(-1)
-        scores = (lp * (labels != -100)).sum(-1).double()
-        # Includes EOS: complete answer probabilities, normalized over three answers.
-        return dict(zip(names, scores.softmax(0).tolist())), prompt
-
     rows = []
     for case_id, evidence, expected in cases:
         for oi, order in enumerate(orders):
             for repeat in range(5):
                 entries = {name: actions[name] for name in order}
-                raw, p = separate(evidence, entries)
-                baseline, prompt = prompted(evidence, entries)
-                rows.append(
-                    {
-                        "case": case_id,
-                        "expected": expected,
-                        "order": list(order),
-                        "repeat": repeat,
-                        "separate_scores": raw,
-                        "separate_probs": p,
-                        "json_prompt_probs": baseline,
-                        "prompt": prompt,
-                    }
-                )
-            print(f"{case_id} order {oi + 1}/6: {time.time() - start:.1f}s", flush=True)
+                raw, p = separate(encode, evidence, entries)
+                row = {
+                    "case": case_id,
+                    "expected": expected,
+                    "order": list(order),
+                    "repeat": repeat,
+                    "separate_scores": raw,
+                    "separate_probs": p,
+                }
+                row.update(prompted(evidence, entries))
+                rows.append(row)
+            print(
+                f"{case_id} order {oi + 1}/{len(orders)}: {time.time() - start:.1f}s",
+                flush=True,
+            )
         (output_dir / "outputs.json").write_text(json.dumps(rows, indent=2))
+
     summary = {}
-    for field in ["separate_probs", "json_prompt_probs"]:
+    for field in summary_fields:
         order_tv = []
         repeat_tv = []
         flips = 0
@@ -140,7 +132,7 @@ def main() -> None:
             for a, b in itertools.combinations(first, 2):
                 order_tv.append(total_variation(a[field], b[field]))
                 flips += winner(a[field]) != winner(b[field])
-            for oi in range(6):
+            for oi in range(len(orders)):
                 for a, b in itertools.combinations(r[oi * 5 : (oi + 1) * 5], 2):
                     repeat_tv.append(total_variation(a[field], b[field]))
         summary[field] = {
@@ -168,7 +160,7 @@ def main() -> None:
         device="CPU",
         torch=torch.__version__,
         transformers=transformers.__version__,
-        model_revision=model.config._commit_hash,
+        model_revision=model_revision,
         tokenization={k: tok.encode(k) for k in actions},
         manifest_sha256=hashlib.sha256(
             (output_dir / "manifest.json").read_bytes()
@@ -176,7 +168,3 @@ def main() -> None:
     )
     (output_dir / "summary.json").write_text(json.dumps(summary, indent=2))
     print(json.dumps(summary, indent=2), flush=True)
-
-
-if __name__ == "__main__":
-    main()
