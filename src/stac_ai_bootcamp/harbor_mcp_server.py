@@ -28,5 +28,5 @@ def release_brief(brief: str) -> dict:
     return dispatch(principal, "release_brief", {"brief": brief})
 
 
-if __name__ == "__main__":
+def main() -> None:
     mcp.run(transport="stdio")

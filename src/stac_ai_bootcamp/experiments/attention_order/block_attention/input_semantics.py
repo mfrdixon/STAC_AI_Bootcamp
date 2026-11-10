@@ -50,7 +50,3 @@ def main() -> None:
     print(
         "Explicit set/sequence semantics, duplicate preservation and missing-type checks passed."
     )
-
-
-if __name__ == "__main__":
-    main()

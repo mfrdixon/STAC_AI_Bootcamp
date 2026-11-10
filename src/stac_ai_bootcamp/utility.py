@@ -1,3 +1,4 @@
+import json
 import os
 from pathlib import Path
 
@@ -27,6 +28,31 @@ def get_qwen_model_path() -> Path:
             str(PROJECT_ROOT / "experiments/attention_order/qwen_model"),
         )
     )
+
+
+def get_flan_model_id() -> str:
+    """Repo id for the FLAN seq2seq model (env FLAN_MODEL_ID)."""
+    return os.environ.get("FLAN_MODEL_ID", "google/flan-t5-base")
+
+
+def get_qwen_model_id() -> str:
+    """Repo id for the Qwen instruct model (env QWEN_MODEL_ID)."""
+    return os.environ.get("QWEN_MODEL_ID", "Qwen/Qwen2.5-0.5B-Instruct")
+
+
+def get_qwen_model_rev() -> str:
+    """Pinned Qwen revision (env QWEN_MODEL_REV)."""
+    return os.environ.get(
+        "QWEN_MODEL_REV", "7ae557604adf67be50417f59c2c2f167def9a775"
+    )
+
+
+def save_json(path: Path, data: dict, print_data: bool = False) -> None:
+    """Serialize `data` to `path` as pretty-printed JSON (indent=2)."""
+    data_json: str = json.dumps(data, indent=2)
+    path.write_text(data_json)
+    if print_data:
+        print(data_json, flush=True)
 
 
 def total_variation(a: dict, b: dict) -> float:

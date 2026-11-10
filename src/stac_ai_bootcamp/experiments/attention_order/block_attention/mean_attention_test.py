@@ -8,7 +8,7 @@ import math
 from stac_ai_bootcamp.experiments.attention_order.block_attention.input_semantics import (
     compile_input,
 )
-from stac_ai_bootcamp.utility import experiment_output
+from stac_ai_bootcamp.utility import experiment_output, save_json
 
 
 def attention_mean(x, mode):
@@ -91,14 +91,5 @@ def main() -> None:
         weights="Q=K=0; V=x; uniform softmax within allowed positions; arithmetic mean pooling",
         training=False,
     )
-    (output_dir / "mean_attention_summary.json").write_text(
-        json.dumps(summary, indent=2)
-    )
-    (output_dir / "mean_attention_outputs.json").write_text(
-        json.dumps(rows, indent=2)
-    )
-    print(json.dumps(summary, indent=2))
-
-
-if __name__ == "__main__":
-    main()
+    save_json(output_dir / "mean_attention_summary.json", summary, print_data=True)
+    save_json(output_dir / "mean_attention_outputs.json", rows)

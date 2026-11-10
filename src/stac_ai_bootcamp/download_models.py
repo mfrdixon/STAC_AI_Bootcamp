@@ -9,20 +9,21 @@ local_files_only=True); FLAN is fetched into the default HuggingFace cache, whic
 is where run_flan.py resolves it from by repo id.
 """
 
-import os
-
 from huggingface_hub import snapshot_download
 
-from stac_ai_bootcamp.utility import get_qwen_model_path
+from stac_ai_bootcamp.utility import (
+    get_flan_model_id,
+    get_qwen_model_id,
+    get_qwen_model_path,
+    get_qwen_model_rev,
+)
 
 
 def main() -> None:
-    qwen_id = os.environ.get("QWEN_MODEL_ID", "Qwen/Qwen2.5-0.5B-Instruct")
-    qwen_rev = os.environ.get(
-        "QWEN_MODEL_REV", "7ae557604adf67be50417f59c2c2f167def9a775"
-    )
+    qwen_id = get_qwen_model_id()
+    qwen_rev = get_qwen_model_rev()
     qwen_path = get_qwen_model_path()
-    flan_id = os.environ.get("FLAN_MODEL_ID", "google/flan-t5-base")
+    flan_id = get_flan_model_id()
 
     print(f"Downloading {qwen_id}@{qwen_rev[:12]} -> {qwen_path}", flush=True)
     snapshot_download(repo_id=qwen_id, revision=qwen_rev, local_dir=qwen_path)

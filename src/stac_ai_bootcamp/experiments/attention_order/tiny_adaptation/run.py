@@ -12,7 +12,11 @@ import torch
 import torch.nn.functional as F
 from torch import nn
 
-from stac_ai_bootcamp.utility import configure_torch, experiment_output
+from stac_ai_bootcamp.utility import (
+    configure_torch,
+    experiment_output,
+    save_json
+)
 
 
 N = 50
@@ -99,7 +103,7 @@ def main() -> None:
         "evaluation": "10 fixed permutations per test set; three identical repeats of first permutation",
         "success_criteria": "report all results; no selection based on held-out performance",
     }
-    (output_dir / "manifest.json").write_text(json.dumps(manifest, indent=2))
+    save_json(output_dir / "manifest.json", manifest)
     model = Model()
 
     def fit(model, blocked, steps, seed):
@@ -211,7 +215,7 @@ def main() -> None:
         "adaptation_training": adapt_logs,
         "torch": torch.__version__,
     }
-    (output_dir / "summary.json").write_text(json.dumps(summary, indent=2))
+    save_json(output_dir / "summary.json", summary)
     torch.save(
         {
             "base": base.state_dict(),
@@ -222,7 +226,3 @@ def main() -> None:
         output_dir / "checkpoints.pt",
     )
     print("COMPLETE", json.dumps(summary, indent=2), flush=True)
-
-
-if __name__ == "__main__":
-    main()

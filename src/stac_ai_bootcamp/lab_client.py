@@ -57,7 +57,3 @@ def compact(result):
         "permitted": result["gate"],
         "checks": {x["id"]: x["status"] for x in result["checks"]},
     }
-
-
-def save(result, path="experiment.json"):
-    Path(path).write_text(json.dumps(result, indent=2))

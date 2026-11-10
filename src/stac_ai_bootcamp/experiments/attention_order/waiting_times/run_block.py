@@ -25,6 +25,7 @@ from stac_ai_bootcamp.utility import (
     configure_torch,
     experiment_output,
     get_qwen_model_path,
+    save_json,
 )
 
 
@@ -119,7 +120,7 @@ def run_block(variant: str) -> None:
         "readout": "Original Qwen vocabulary output head at final assistant-prefix token; YES/NO single-token probabilities normalized over these two tokens; no EOS",
         "action_ids": actionids,
     }
-    (output_dir / "manifest.json").write_text(json.dumps(manifest, indent=2))
+    save_json(output_dir / "manifest.json", manifest)
     jobs = [
         (mode, o, r)
         for mode in manifest["conditions"]
@@ -266,8 +267,7 @@ def run_block(variant: str) -> None:
         invariance_tolerance=tolerance,
         block_within_tolerance=summary["block_local"]["p_yes_order_range"] < tolerance,
     )
-    (output_dir / "summary.json").write_text(json.dumps(summary, indent=2))
-    print(json.dumps(summary, indent=2), flush=True)
+    save_json(output_dir / "summary.json", summary, print_data=True)
 
 
 def main_matched() -> None:

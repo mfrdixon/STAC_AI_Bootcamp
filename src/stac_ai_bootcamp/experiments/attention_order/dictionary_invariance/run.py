@@ -15,10 +15,12 @@ import torch
 from transformers import AutoModelForCausalLM, AutoModelForSeq2SeqLM, AutoTokenizer
 
 from stac_ai_bootcamp.experiments.attention_order.dictionary_invariance import common
-from stac_ai_bootcamp.utility import configure_torch, get_qwen_model_path
-
-
-FLAN_MODEL = "google/flan-t5-base"
+from stac_ai_bootcamp.utility import (
+    configure_torch,
+    get_flan_model_id,
+    get_qwen_model_path,
+    get_qwen_model_rev,
+)
 
 
 def main_qwen() -> None:
@@ -95,15 +97,16 @@ def main_qwen() -> None:
         encode=encode,
         prompted=prompted,
         summary_fields=["separate_probs", "json_prompt_probs", "json_prefix_probs"],
-        model_revision="7ae557604adf67be50417f59c2c2f167def9a775",
+        model_revision=get_qwen_model_rev(),
     )
 
 
 def main_flan() -> None:
     configure_torch(seed=20261019)
-    tok = AutoTokenizer.from_pretrained(FLAN_MODEL, local_files_only=True)
+    flan_id: str = get_flan_model_id()
+    tok = AutoTokenizer.from_pretrained(flan_id, local_files_only=True)
     model = AutoModelForSeq2SeqLM.from_pretrained(
-        FLAN_MODEL, local_files_only=True
+        flan_id, local_files_only=True
     ).eval()
 
     @torch.inference_mode()
@@ -137,7 +140,7 @@ def main_flan() -> None:
 
     common.run_experiment(
         output_name="attention_order/dictionary_invariance/flan",
-        manifest_extra={"model": FLAN_MODEL},
+        manifest_extra={"model": flan_id},
         model=model,
         tok=tok,
         encode=encode,

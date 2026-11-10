@@ -5,13 +5,16 @@ Two sizes share one evaluation core:
   main_expanded_test  20 samples, 100 permutations, 10 repeats, prefix iid_set_expanded
 """
 
-import json
 import time
 
 import torch
 from torch import nn
 
-from stac_ai_bootcamp.utility import configure_torch, experiment_output
+from stac_ai_bootcamp.utility import (
+    configure_torch,
+    experiment_output,
+    save_json,
+)
 
 
 class TinySet(nn.Module):
@@ -150,18 +153,15 @@ def run_iid_set(samples: int, permutations: int, repeats: int, prefix: str) -> N
         seconds=time.time() - start,
         tolerance=1e-6,
     )
-    (output_dir / f"{prefix}_outputs.json").write_text(json.dumps(rows, indent=2))
-    (output_dir / f"{prefix}_summary.json").write_text(json.dumps(summary, indent=2))
-    (output_dir / f"{prefix}_inputs.json").write_text(
-        json.dumps(
-            {
-                "samples": [x.tolist() for x in sample_list],
-                "permutations": [o.tolist() for o in orders],
-            },
-            indent=2,
-        )
+    save_json(output_dir / f"{prefix}_outputs.json", rows)
+    save_json(output_dir / f"{prefix}_summary.json", summary, print_data=True)
+    save_json(
+        output_dir / f"{prefix}_inputs.json",
+        {
+            "samples": [x.tolist() for x in sample_list],
+            "permutations": [o.tolist() for o in orders],
+        },
     )
-    print(json.dumps(summary, indent=2))
 
 
 def main_test() -> None:

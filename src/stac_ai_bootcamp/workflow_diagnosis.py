@@ -4,6 +4,8 @@ import copy
 import json
 from pathlib import Path
 
+from stac_ai_bootcamp.utility import save_json
+
 
 ROOT = Path(__file__).resolve().parents[2]
 GRAPH = [
@@ -346,12 +348,12 @@ def build():
     return payload
 
 
-if __name__ == "__main__":
+def main() -> None:
     p = build()
     out = (
         ROOT
         / "apps/belieflens-decision-lab/public/decision-lab/data/workflow-diagnosis.json"
     )
-    out.write_text(json.dumps(p, indent=2))
-    (Path(__file__).parent / "results.json").write_text(json.dumps(p, indent=2))
+    save_json(out, p)
+    save_json(Path(__file__).parent / "results.json", p)
     print(json.dumps(p["verification"], indent=2))

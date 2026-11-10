@@ -1,12 +1,16 @@
 import itertools
-import json
 import time
 
 import torch
 import torch.nn.functional as F
 from torch import nn
 
-from stac_ai_bootcamp.utility import configure_torch, experiment_output, total_variation
+from stac_ai_bootcamp.utility import (
+    configure_torch,
+    experiment_output,
+    save_json,
+    total_variation,
+)
 
 
 actions = {
@@ -184,10 +188,5 @@ def main() -> None:
         torch=torch.__version__,
         tolerance=1e-6,
     )
-    (output_dir / "outputs.json").write_text(json.dumps(rows, indent=2))
-    (output_dir / "summary.json").write_text(json.dumps(summary, indent=2))
-    print(json.dumps(summary, indent=2))
-
-
-if __name__ == "__main__":
-    main()
+    save_json(output_dir / "outputs.json", rows)
+    save_json(output_dir / "summary.json", summary, print_data=True)

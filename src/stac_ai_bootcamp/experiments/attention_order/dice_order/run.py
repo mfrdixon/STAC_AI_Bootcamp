@@ -15,7 +15,10 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from stac_ai_bootcamp.utility import (
     configure_torch,
     experiment_output,
+    get_qwen_model_id,
     get_qwen_model_path,
+    get_qwen_model_rev,
+    save_json,
     total_variation,
 )
 
@@ -41,10 +44,10 @@ def main() -> None:
         "source_hidden_from_model": "Independent fair die, pseudorandom draws; true next-value distribution is uniform",
         "record_template": "Observation: {value}.\\n",
         "purpose": "Measure order sensitivity separately from agreement with hidden data-generating distribution",
-        "model": "Qwen/Qwen2.5-0.5B-Instruct",
-        "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+        "model": get_qwen_model_id(),
+        "revision": get_qwen_model_rev(),
     }
-    (output_dir / "manifest.json").write_text(json.dumps(manifest, indent=2))
+    save_json(output_dir / "manifest.json", manifest)
     configure_torch(seed=20261024)
     path = get_qwen_model_path()
     tok = AutoTokenizer.from_pretrained(path, local_files_only=True)
@@ -67,7 +70,7 @@ def main() -> None:
     candidates = {str(i): enc(str(i)) for i in range(1, 7)}
     assert all(len(v) == 1 for v in candidates.values())
     manifest.update(prefix=pre, suffix=suf, candidate_ids=candidates)
-    (output_dir / "manifest.json").write_text(json.dumps(manifest, indent=2))
+    save_json(output_dir / "manifest.json", manifest)
     jobs = [
         (mode, o, r)
         for mode in manifest["conditions"]
@@ -225,9 +228,4 @@ def main() -> None:
         block_invariance_tolerance=1e-5,
         block_within_tolerance=summary["block_local"]["max_order_tv"] < 1e-5,
     )
-    (output_dir / "summary.json").write_text(json.dumps(summary, indent=2))
-    print(json.dumps(summary, indent=2), flush=True)
-
-
-if __name__ == "__main__":
-    main()
+    save_json(output_dir / "summary.json", summary, print_data=True)

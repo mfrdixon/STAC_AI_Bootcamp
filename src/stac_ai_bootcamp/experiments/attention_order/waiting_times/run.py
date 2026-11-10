@@ -15,7 +15,10 @@ from transformers import AutoModelForCausalLM, AutoTokenizer, GenerationConfig
 from stac_ai_bootcamp.utility import (
     configure_torch,
     experiment_output,
+    get_qwen_model_id,
     get_qwen_model_path,
+    get_qwen_model_rev,
+    save_json,
 )
 
 
@@ -50,11 +53,11 @@ def main() -> None:
         "expected_count": count,
         "expected_percentage": 2 * count,
         "expected_majority": expected,
-        "model": "Qwen/Qwen2.5-0.5B-Instruct",
-        "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+        "model": get_qwen_model_id(),
+        "revision": get_qwen_model_rev(),
         "protocol": "Ordinary unmodified model; single fixed sample; raw YES/NO prefix scoring without EOS; unconstrained greedy generation; no tools",
     }
-    (output_dir / "manifest.json").write_text(json.dumps(manifest, indent=2))
+    save_json(output_dir / "manifest.json", manifest)
     print("Frozen manifest:", count, expected, flush=True)
     configure_torch(seed=20261022)
     modelpath = get_qwen_model_path()
@@ -188,9 +191,4 @@ def main() -> None:
         "torch": torch.__version__,
         "transformers": transformers.__version__,
     }
-    (output_dir / "summary.json").write_text(json.dumps(summary, indent=2))
-    print(json.dumps(summary, indent=2), flush=True)
-
-
-if __name__ == "__main__":
-    main()
+    save_json(output_dir / "summary.json", summary, print_data=True)

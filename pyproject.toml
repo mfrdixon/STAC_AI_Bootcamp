@@ -19,6 +19,8 @@ dependencies = [
 
 [project.scripts]
 download-models = "stac_ai_bootcamp.download_models:main"
+harbor-mcp-server = "stac_ai_bootcamp.harbor_mcp_server:main"
+workflow-diagnosis = "stac_ai_bootcamp.workflow_diagnosis:main"
 exp-block-attention = "stac_ai_bootcamp.experiments.attention_order.block_attention.run:main"
 exp-block-attention-iid-set = "stac_ai_bootcamp.experiments.attention_order.block_attention.iid_set_test:main_test"
 exp-block-attention-iid-set-expanded = "stac_ai_bootcamp.experiments.attention_order.block_attention.iid_set_test:main_expanded_test"

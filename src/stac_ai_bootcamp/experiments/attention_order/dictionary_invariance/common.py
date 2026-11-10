@@ -8,14 +8,18 @@ summary aggregation — lives here.
 
 import hashlib
 import itertools
-import json
 import time
 
 import torch
 import torch.nn.functional as F
 import transformers
 
-from stac_ai_bootcamp.utility import experiment_output, total_variation, winner
+from stac_ai_bootcamp.utility import (
+    experiment_output,
+    save_json,
+    total_variation,
+    winner,
+)
 
 
 actions = {
@@ -95,7 +99,7 @@ def run_experiment(
         "head": "untrained shared cosine cross-attention; no learned projections",
         "scope": "Architectural invariance only. Policy-derived labels are not investment outcomes.",
     }
-    (output_dir / "manifest.json").write_text(json.dumps(manifest, indent=2))
+    save_json(output_dir / "manifest.json", manifest)
 
     rows = []
     for case_id, evidence, expected in cases:
@@ -117,7 +121,7 @@ def run_experiment(
                 f"{case_id} order {oi + 1}/{len(orders)}: {time.time() - start:.1f}s",
                 flush=True,
             )
-        (output_dir / "outputs.json").write_text(json.dumps(rows, indent=2))
+        save_json(output_dir / "outputs.json", rows)
 
     summary = {}
     for field in summary_fields:
@@ -166,5 +170,4 @@ def run_experiment(
             (output_dir / "manifest.json").read_bytes()
         ).hexdigest(),
     )
-    (output_dir / "summary.json").write_text(json.dumps(summary, indent=2))
-    print(json.dumps(summary, indent=2), flush=True)
+    save_json(output_dir / "summary.json", summary, print_data=True)
