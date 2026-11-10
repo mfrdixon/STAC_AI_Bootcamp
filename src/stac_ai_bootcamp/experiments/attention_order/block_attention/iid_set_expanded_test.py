@@ -2,16 +2,11 @@
 
 import json
 import time
-from pathlib import Path
 
 import torch
 from torch import nn
 
-
-P = Path(__file__).resolve().parent
-torch.manual_seed(20261021)
-torch.set_num_threads(2)
-torch.use_deterministic_algorithms(True)
+from stac_ai_bootcamp.utility import experiment_io
 
 
 class TinySet(nn.Module):
@@ -63,94 +58,110 @@ class TinySet(nn.Module):
         return float(self.head(h[0].double().mean(0).float())), h[0], max(forbidden)
 
 
-model = TinySet().eval()
-g = torch.Generator().manual_seed(81234)
-# Twenty fixed samples of 50 draws each; identity + 99 permutations, ten exact repeats.
-samples = [torch.randn(50, generator=g) for _ in range(20)]
-orders = [torch.arange(50)] + [torch.randperm(50, generator=g) for _ in range(99)]
-rows = []
-start = time.time()
-max_equivariance = 0
-with torch.inference_mode():
-    for si, x in enumerate(samples):
-        base_h = None
-        for mode in ["ordinary", "block_global_positions", "block_set"]:
-            for pi, perm in enumerate(orders):
-                assert torch.equal(torch.sort(x[perm]).values, torch.sort(x).values)
-                for repeat in range(10):
-                    y, h, f = model(x[perm], mode)
-                    rows.append(
-                        {
-                            "sample": si,
-                            "mode": mode,
-                            "permutation": pi,
-                            "repeat": repeat,
-                            "output": y,
-                            "forbidden_attention_max": f,
-                        }
+def main() -> None:
+    _, output_dir = experiment_io("attention_order/block_attention")
+    torch.manual_seed(20261021)
+    torch.set_num_threads(2)
+    torch.use_deterministic_algorithms(True)
+    model = TinySet().eval()
+    g = torch.Generator().manual_seed(81234)
+    # Twenty fixed samples of 50 draws each; identity + 99 permutations, ten exact repeats.
+    samples = [torch.randn(50, generator=g) for _ in range(20)]
+    orders = [torch.arange(50)] + [torch.randperm(50, generator=g) for _ in range(99)]
+    rows = []
+    start = time.time()
+    max_equivariance = 0
+    with torch.inference_mode():
+        for si, x in enumerate(samples):
+            base_h = None
+            for mode in ["ordinary", "block_global_positions", "block_set"]:
+                for pi, perm in enumerate(orders):
+                    assert torch.equal(
+                        torch.sort(x[perm]).values, torch.sort(x).values
                     )
-                    if mode == "block_set":
-                        if pi == 0 and repeat == 0:
-                            base_h = h.clone()
-                        max_equivariance = max(
-                            max_equivariance, float((h - base_h[perm]).abs().max())
+                    for repeat in range(10):
+                        y, h, f = model(x[perm], mode)
+                        rows.append(
+                            {
+                                "sample": si,
+                                "mode": mode,
+                                "permutation": pi,
+                                "repeat": repeat,
+                                "output": y,
+                                "forbidden_attention_max": f,
+                            }
                         )
-summary = {}
-for mode in ["ordinary", "block_global_positions", "block_set"]:
-    ranges = []
-    repeat_max = 0
-    for si in range(20):
-        r = [z for z in rows if z["mode"] == mode and z["sample"] == si]
-        ys = [z["output"] for z in r if z["repeat"] == 0]
-        ranges.append(max(ys) - min(ys))
-        for pi in range(100):
-            ys = [z["output"] for z in r if z["permutation"] == pi]
-            repeat_max = max(repeat_max, max(ys) - min(ys))
-    summary[mode] = {
-        "max_output_range": max(ranges),
-        "mean_output_range": sum(ranges) / 20,
-        "first_sample_range": ranges[0],
-        "max_repeat_range": repeat_max,
-    }
-# Check sensitivity to actual values, not just constant output.
-with torch.inference_mode():
-    x = samples[0]
-    a, _, _ = model(x, "block_set")
-    b, _, _ = model(x + 1, "block_set")
-assert summary["block_set"]["max_output_range"] < 1e-6
-assert max_equivariance < 1e-6
-assert summary["ordinary"]["max_output_range"] > 1e-5
-assert abs(a - b) > 1e-5
-summary.update(
-    parameters=sum(p.numel() for p in model.parameters()),
-    trained=False,
-    seed=20261021,
-    data_seed=81234,
-    distribution="standard normal, independent pseudorandom draws",
-    samples=20,
-    items_per_sample=50,
-    permutations=100,
-    repeats=10,
-    evaluations=len(rows),
-    block_max_hidden_equivariance_error=max_equivariance,
-    block_forbidden_attention_max=max(
-        z["forbidden_attention_max"] for z in rows if z["mode"] == "block_set"
-    ),
-    first_sample_original_output=a,
-    first_sample_shifted_by_one_output=b,
-    value_change_absolute_output=abs(a - b),
-    seconds=time.time() - start,
-    tolerance=1e-6,
-)
-(P / "iid_set_expanded_outputs.json").write_text(json.dumps(rows, indent=2))
-(P / "iid_set_expanded_summary.json").write_text(json.dumps(summary, indent=2))
-(P / "iid_set_expanded_inputs.json").write_text(
-    json.dumps(
-        {
-            "samples": [x.tolist() for x in samples],
-            "permutations": [o.tolist() for o in orders],
-        },
-        indent=2,
+                        if mode == "block_set":
+                            if pi == 0 and repeat == 0:
+                                base_h = h.clone()
+                            max_equivariance = max(
+                                max_equivariance,
+                                float((h - base_h[perm]).abs().max()),
+                            )
+    summary = {}
+    for mode in ["ordinary", "block_global_positions", "block_set"]:
+        ranges = []
+        repeat_max = 0
+        for si in range(20):
+            r = [z for z in rows if z["mode"] == mode and z["sample"] == si]
+            ys = [z["output"] for z in r if z["repeat"] == 0]
+            ranges.append(max(ys) - min(ys))
+            for pi in range(100):
+                ys = [z["output"] for z in r if z["permutation"] == pi]
+                repeat_max = max(repeat_max, max(ys) - min(ys))
+        summary[mode] = {
+            "max_output_range": max(ranges),
+            "mean_output_range": sum(ranges) / 20,
+            "first_sample_range": ranges[0],
+            "max_repeat_range": repeat_max,
+        }
+    # Check sensitivity to actual values, not just constant output.
+    with torch.inference_mode():
+        x = samples[0]
+        a, _, _ = model(x, "block_set")
+        b, _, _ = model(x + 1, "block_set")
+    assert summary["block_set"]["max_output_range"] < 1e-6
+    assert max_equivariance < 1e-6
+    assert summary["ordinary"]["max_output_range"] > 1e-5
+    assert abs(a - b) > 1e-5
+    summary.update(
+        parameters=sum(p.numel() for p in model.parameters()),
+        trained=False,
+        seed=20261021,
+        data_seed=81234,
+        distribution="standard normal, independent pseudorandom draws",
+        samples=20,
+        items_per_sample=50,
+        permutations=100,
+        repeats=10,
+        evaluations=len(rows),
+        block_max_hidden_equivariance_error=max_equivariance,
+        block_forbidden_attention_max=max(
+            z["forbidden_attention_max"] for z in rows if z["mode"] == "block_set"
+        ),
+        first_sample_original_output=a,
+        first_sample_shifted_by_one_output=b,
+        value_change_absolute_output=abs(a - b),
+        seconds=time.time() - start,
+        tolerance=1e-6,
     )
-)
-print(json.dumps(summary, indent=2))
+    (output_dir / "iid_set_expanded_outputs.json").write_text(
+        json.dumps(rows, indent=2)
+    )
+    (output_dir / "iid_set_expanded_summary.json").write_text(
+        json.dumps(summary, indent=2)
+    )
+    (output_dir / "iid_set_expanded_inputs.json").write_text(
+        json.dumps(
+            {
+                "samples": [x.tolist() for x in samples],
+                "permutations": [o.tolist() for o in orders],
+            },
+            indent=2,
+        )
+    )
+    print(json.dumps(summary, indent=2))
+
+
+if __name__ == "__main__":
+    main()

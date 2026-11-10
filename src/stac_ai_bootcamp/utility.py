@@ -5,6 +5,23 @@ from pathlib import Path
 PROJECT_ROOT: Path = Path(__file__).parents[2].resolve()
 
 
+def experiment_io(relative: str) -> tuple[Path, Path]:
+    """Return (input_dir, output_dir) for an experiment, creating both.
+
+    Paths are anchored to the legacy tree at PROJECT_ROOT/experiments/<relative>
+    rather than to each script's on-disk location, so experiment code can live
+    anywhere under src/ and still read/write a stable, shared data tree. The
+    <relative> key mirrors the old folder layout, which keeps the outputs of
+    now-flattened scripts (e.g. the flan/qwen runners) in distinct directories.
+    """
+    base = PROJECT_ROOT / "experiments" / relative
+    input_dir = base / "input"
+    output_dir = base / "output"
+    input_dir.mkdir(parents=True, exist_ok=True)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    return input_dir, output_dir
+
+
 def set_huggingface_offline() -> None:
     """Force HuggingFace fully offline — no downloads, no tokenizer forking
 
@@ -14,19 +31,3 @@ def set_huggingface_offline() -> None:
     os.environ["HF_HUB_OFFLINE"] = "1"
     os.environ["TRANSFORMERS_OFFLINE"] = "1"
     os.environ["TOKENIZERS_PARALLELISM"] = "false"
-
-
-def get_io_directories(file_path: str) -> tuple[Path, Path]:
-    """Return input and output directory paths for given file path
-
-    Args:
-        file_path (str): pass __file__ of target file
-
-    Returns:
-        tuple[Path, Path]: input_dir, output_dir
-    """
-    parent_dir: Path = Path(file_path).parent.resolve()
-    input_dir: Path = parent_dir / "input"
-    output_dir: Path = parent_dir / "output"
-
-    return input_dir, output_dir

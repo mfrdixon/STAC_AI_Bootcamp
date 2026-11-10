@@ -1,17 +1,14 @@
 import itertools
 import json
 import time
-from pathlib import Path
 
 import torch
 import torch.nn.functional as F
 from torch import nn
 
+from stac_ai_bootcamp.utility import experiment_io
 
-P = Path(__file__).resolve().parent
-torch.manual_seed(20261020)
-torch.set_num_threads(2)
-torch.use_deterministic_algorithms(True)
+
 actions = {
     "BUY": "take a long position when actual earnings exceed consensus",
     "CASH": "do not take a position when actual earnings are below consensus",
@@ -105,88 +102,98 @@ class Tiny(nn.Module):
         return dict(zip(names, prob.tolist())), vectors, mass
 
 
-model = Tiny().eval()
-start = time.time()
-rows = []
-with torch.inference_mode():
-    for mode in ["ordinary", "block_global_positions", "block_reset"]:
-        for ci, e in enumerate(evidence):
-            for order in itertools.permutations(actions):
-                for repeat in range(5):
-                    blocks = [("E", e)] + [(a, a + " " + actions[a]) for a in order]
-                    probs, v, m = model(blocks, mode)
-                    rows.append(
-                        {
-                            "mode": mode,
-                            "case": ci,
-                            "order": order,
-                            "repeat": repeat,
-                            "scores": probs,
-                            "cross_block_max_attention": m,
-                        }
-                    )
-
-
 def tv(a, b):
     return sum(abs(a[k] - b[k]) for k in a) / 2
 
 
-summary = {}
-for mode in ["ordinary", "block_global_positions", "block_reset"]:
-    vals = []
-    reps = []
-    flips = 0
-    for ci in range(5):
-        r = [x for x in rows if x["mode"] == mode and x["case"] == ci]
-        first = [x for x in r if x["repeat"] == 0]
-        for a, b in itertools.combinations(first, 2):
-            vals.append(tv(a["scores"], b["scores"]))
-            flips += max(a["scores"], key=a["scores"].get) != max(
-                b["scores"], key=b["scores"].get
-            )
-        for o in itertools.permutations(actions):
-            g = [x for x in r if tuple(x["order"]) == o]
-            reps.extend(
-                tv(a["scores"], b["scores"]) for a, b in itertools.combinations(g, 2)
-            )
-    summary[mode] = {
-        "max_order_tv": max(vals),
-        "mean_order_tv": sum(vals) / len(vals),
-        "top_changes": flips,
-        "order_pairs": len(vals),
-        "max_repeat_tv": max(reps),
-        "repeat_pairs": len(reps),
-        "cross_block_max_attention": max(
-            x["cross_block_max_attention"] for x in rows if x["mode"] == mode
-        ),
-    }
-# Change earlier BUY text; CASH must not change under block/reset.
-blocks = [("E", evidence[0])] + [(a, a + " " + actions[a]) for a in actions]
-changed = list(blocks)
-changed[1] = ("BUY", "BUY changed irrelevant description")
-with torch.inference_mode():
-    _, v, _ = model(blocks, "block_reset")
-    _, v2, _ = model(changed, "block_reset")
-    isolation = float((v["CASH"] - v2["CASH"]).abs().max())
-    # Compare joint masked execution to genuinely independent per-block executions.
-    # Hidden-state isolation is checked above; probabilities need not remain fixed when BUY changes.
-assert summary["block_reset"]["max_order_tv"] < 1e-6
-assert summary["block_reset"]["cross_block_max_attention"] == 0
-assert isolation < 1e-6
-assert summary["ordinary"]["max_order_tv"] > 1e-5
-assert summary["block_global_positions"]["max_order_tv"] > 1e-5
-summary.update(
-    parameters=sum(x.numel() for x in model.parameters()),
-    layers=2,
-    heads=4,
-    width=32,
-    trained=False,
-    seed=20261020,
-    isolation_CASH_vector_max_change=isolation,
-    seconds=time.time() - start,
-    torch=torch.__version__,
-    tolerance=1e-6,
-)
-(P / "outputs.json").write_text(json.dumps(rows, indent=2))
-(P / "summary.json").write_text(json.dumps(summary, indent=2))
-print(json.dumps(summary, indent=2))
+def main() -> None:
+    _, output_dir = experiment_io("attention_order/block_attention")
+    torch.manual_seed(20261020)
+    torch.set_num_threads(2)
+    torch.use_deterministic_algorithms(True)
+    model = Tiny().eval()
+    start = time.time()
+    rows = []
+    with torch.inference_mode():
+        for mode in ["ordinary", "block_global_positions", "block_reset"]:
+            for ci, e in enumerate(evidence):
+                for order in itertools.permutations(actions):
+                    for repeat in range(5):
+                        blocks = [("E", e)] + [
+                            (a, a + " " + actions[a]) for a in order
+                        ]
+                        probs, v, m = model(blocks, mode)
+                        rows.append(
+                            {
+                                "mode": mode,
+                                "case": ci,
+                                "order": order,
+                                "repeat": repeat,
+                                "scores": probs,
+                                "cross_block_max_attention": m,
+                            }
+                        )
+    summary = {}
+    for mode in ["ordinary", "block_global_positions", "block_reset"]:
+        vals = []
+        reps = []
+        flips = 0
+        for ci in range(5):
+            r = [x for x in rows if x["mode"] == mode and x["case"] == ci]
+            first = [x for x in r if x["repeat"] == 0]
+            for a, b in itertools.combinations(first, 2):
+                vals.append(tv(a["scores"], b["scores"]))
+                flips += max(a["scores"], key=a["scores"].get) != max(
+                    b["scores"], key=b["scores"].get
+                )
+            for o in itertools.permutations(actions):
+                g = [x for x in r if tuple(x["order"]) == o]
+                reps.extend(
+                    tv(a["scores"], b["scores"])
+                    for a, b in itertools.combinations(g, 2)
+                )
+        summary[mode] = {
+            "max_order_tv": max(vals),
+            "mean_order_tv": sum(vals) / len(vals),
+            "top_changes": flips,
+            "order_pairs": len(vals),
+            "max_repeat_tv": max(reps),
+            "repeat_pairs": len(reps),
+            "cross_block_max_attention": max(
+                x["cross_block_max_attention"] for x in rows if x["mode"] == mode
+            ),
+        }
+    # Change earlier BUY text; CASH must not change under block/reset.
+    blocks = [("E", evidence[0])] + [(a, a + " " + actions[a]) for a in actions]
+    changed = list(blocks)
+    changed[1] = ("BUY", "BUY changed irrelevant description")
+    with torch.inference_mode():
+        _, v, _ = model(blocks, "block_reset")
+        _, v2, _ = model(changed, "block_reset")
+        isolation = float((v["CASH"] - v2["CASH"]).abs().max())
+        # Compare joint masked execution to genuinely independent per-block executions.
+        # Hidden-state isolation is checked above; probabilities need not remain fixed when BUY changes.
+    assert summary["block_reset"]["max_order_tv"] < 1e-6
+    assert summary["block_reset"]["cross_block_max_attention"] == 0
+    assert isolation < 1e-6
+    assert summary["ordinary"]["max_order_tv"] > 1e-5
+    assert summary["block_global_positions"]["max_order_tv"] > 1e-5
+    summary.update(
+        parameters=sum(x.numel() for x in model.parameters()),
+        layers=2,
+        heads=4,
+        width=32,
+        trained=False,
+        seed=20261020,
+        isolation_CASH_vector_max_change=isolation,
+        seconds=time.time() - start,
+        torch=torch.__version__,
+        tolerance=1e-6,
+    )
+    (output_dir / "outputs.json").write_text(json.dumps(rows, indent=2))
+    (output_dir / "summary.json").write_text(json.dumps(summary, indent=2))
+    print(json.dumps(summary, indent=2))
+
+
+if __name__ == "__main__":
+    main()

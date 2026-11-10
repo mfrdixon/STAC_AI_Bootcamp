@@ -36,7 +36,7 @@ def compile_input(payload):
     }
 
 
-if __name__ == "__main__":
+def main() -> None:
     a = compile_input({"type": "set", "items": [0.12, -0.83, 0.12]})
     assert a["items"] == [0.12, -0.83, 0.12] and a["position_ids"] == [0, 0, 0]
     b = compile_input({"type": "sequence", "items": [0.12, -0.83, 0.12]})
@@ -50,3 +50,7 @@ if __name__ == "__main__":
     print(
         "Explicit set/sequence semantics, duplicate preservation and missing-type checks passed."
     )
+
+
+if __name__ == "__main__":
+    main()
