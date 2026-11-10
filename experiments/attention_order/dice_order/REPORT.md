@@ -35,4 +35,11 @@ The experimenter knows the true distribution is uniform. The model was deliberat
 Block architecture: instruction prefix causal; each record sees prefix and its own causal tokens; records cannot see each other; final readout sees all records. Local rotary positions reset per record, and suffix positions remain fixed. No weights are changed.
 
 ## Reproduce
-Set QWEN_MODEL_PATH to the local pinned Qwen2.5-0.5B directory and run `python run.py`. `manifest.json` contains values, orders, token IDs, templates and model revision; `outputs.jsonl` contains every trial; `summary.json` contains results.
+Set `QWEN_MODEL_PATH` to the local pinned Qwen2.5-0.5B directory and run (`uv run` syncs deps automatically):
+
+```bash
+export QWEN_MODEL_PATH=/path/to/qwen_model
+uv run python experiments/attention_order/dice_order/run.py
+```
+
+`manifest.json` contains values, orders, token IDs, templates and model revision; `outputs.jsonl` contains every trial; `summary.json` contains results.

@@ -1,4 +1,9 @@
-# STAC AI Bootcamp
+# STAC AI Bootcamp (local version)
+
+> **NOTE:** this fork has been updated to work in local development environment using [uv](https://docs.astral.sh/uv/) package manager.  
+> If you want to keep using this project in Google Colab, see the original GitHub repo [mfrdixon/STAC_AI_Bootcamp](https://github.com/mfrdixon/STAC_AI_Bootcamp)
+
+
 
 **[Open the public web exercises](https://belieflens.org/decision-lab)** · No account or API key needed for the seven default exercises.
 

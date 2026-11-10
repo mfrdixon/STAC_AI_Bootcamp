@@ -32,4 +32,11 @@ The combined raw probability mass of uppercase YES and NO is 95.71–96.77% for 
 One fixed sample and one model do not establish general robustness or calibrated beliefs. The result supports a masked architecture's numerical order-invariance property under the specified readout, not a ready-to-use counting system.
 
 ## Reproduce
-Set QWEN_MODEL_PATH to the pinned Qwen2.5-0.5B directory, then run `python run.py`. Parent `manifest.json` is the original waiting-times manifest. Files: manifest.json, outputs.jsonl, summary.json. Model revision is recorded in the nested source manifest. No downloaded weights are included in GitHub.
+Set `QWEN_MODEL_PATH` to the pinned Qwen2.5-0.5B directory, then run (`uv run` syncs deps automatically):
+
+```bash
+export QWEN_MODEL_PATH=/path/to/qwen_model
+uv run python experiments/attention_order/waiting_times/block_matched/run.py
+```
+
+Parent `manifest.json` is the original waiting-times manifest. Files: manifest.json, outputs.jsonl, summary.json. Model revision is recorded in the nested source manifest. No downloaded weights are included in GitHub.

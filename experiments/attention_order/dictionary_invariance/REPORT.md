@@ -2,7 +2,11 @@
 
 ## Scope and execution
 
-Completed offline on CPU in 51.64 seconds after loading a cached model. FLAN-T5-base has 247,577,856 parameters; no parameters were trained. Revision and environment are recorded in summary.json. Run with the Python environment containing torch and transformers: `python run.py`.
+Completed offline on CPU in 51.64 seconds after loading a cached model. FLAN-T5-base has 247,577,856 parameters; no parameters were trained. Revision and environment are recorded in summary.json. Run (`uv run` syncs torch and transformers automatically):
+
+```bash
+uv run python experiments/attention_order/dictionary_invariance/run.py
+```
 
 Five constructed EPS cases (above consensus, below, equal, missing and conflicting) were tested under all six dictionary orders, with five identical repeats: 150 evaluations per method. These are five distinct cases, not 150 independent observations. Labels reflect the stipulated EPS policy, not market outcomes.
 

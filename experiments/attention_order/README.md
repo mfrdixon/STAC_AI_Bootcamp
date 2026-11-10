@@ -4,12 +4,14 @@ Two separate demonstrations: independent encoding with pretrained Qwen/FLAN, and
 
 ## Run the small tests (CPU, no model download)
 
+Dependencies are declared in the project `pyproject.toml` (absorbed from the old
+`requirements.txt`); `uv run` auto-syncs the environment, so no manual pip install is needed.
+
 ```bash
-python -m pip install torch
-python experiments/attention_order/block_attention/run.py
-python experiments/attention_order/block_attention/input_semantics.py
-python experiments/attention_order/block_attention/iid_set_expanded_test.py
-python experiments/attention_order/block_attention/mean_attention_test.py
+uv run python experiments/attention_order/block_attention/run.py
+uv run python experiments/attention_order/block_attention/input_semantics.py
+uv run python experiments/attention_order/block_attention/iid_set_expanded_test.py
+uv run python experiments/attention_order/block_attention/mean_attention_test.py
 ```
 
 The expanded test generates 20 fixed samples of 50 standard-normal draws. Each sample is reused exactly over 100 permutations and ten repeats. The script asserts equal input multisets. Ten repeats test execution variation, not additional independent cases. `iid_set_expanded_inputs.json` records all actual inputs and permutations. The scalar readout has no statistical meaning.
@@ -26,7 +28,16 @@ The arithmetic-mean example is intentionally analytic: causal uniform prefix att
 
 ## Pretrained comparisons
 
-Install `requirements.txt`. FLAN runner loads an already cached `google/flan-t5-base` with offline mode. Download it first with Hugging Face if necessary. Qwen runner expects `dictionary_invariance/qwen_model/` populated with revision `7ae557604adf67be50417f59c2c2f167def9a775` of `Qwen/Qwen2.5-0.5B-Instruct`. Model weights are intentionally excluded. Then run the appropriate `run.py` (writes results beside itself).
+Dependencies live in the project `pyproject.toml`; `uv run` syncs them automatically (no separate install step). FLAN runner loads an already cached `google/flan-t5-base` with offline mode. Download it first with Hugging Face if necessary. Qwen runner expects `dictionary_invariance/qwen_model/` populated with revision `7ae557604adf67be50417f59c2c2f167def9a775` of `Qwen/Qwen2.5-0.5B-Instruct`. Model weights are intentionally excluded. Then run the appropriate `run.py` (writes results beside itself):
+
+```bash
+# FLAN-T5 (offline cached weights)
+uv run python experiments/attention_order/dictionary_invariance/run.py
+
+# Qwen (set the path to your local pinned Qwen2.5-0.5B directory)
+export QWEN_MODEL_PATH=/path/to/qwen_model
+uv run python experiments/attention_order/dictionary_invariance/qwen/run.py
+```
 
 Both runners freeze weights and use independent hidden-vector encoding plus an untrained shared attention scorer. JSON baseline likelihoods include EOS; Qwen also records prefix scores without EOS. Scores are not calibrated probabilities. This test does not independently evaluate generated answers.
 

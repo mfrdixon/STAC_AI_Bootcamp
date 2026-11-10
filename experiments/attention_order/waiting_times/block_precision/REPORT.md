@@ -14,4 +14,11 @@ Identical repeats had exactly zero variation. Forbidden attention weights remain
 
 The mean probability itself also changes slightly under precision changes. This does not fix the separate output-format problem: restricted uppercase YES/NO candidates still receive only about 8.69% of raw probability mass. No improvement in counting correctness is claimed.
 
-Runtime: 63.25 seconds for the final 30-call diagnostic. Use QWEN_MODEL_PATH and run.py as in block_matched. Parent manifest is the original waiting-time manifest. block_float64 records the intermediate diagnostic without removal of the internal casts.
+Runtime: 63.25 seconds for the final 30-call diagnostic. Run as in block_matched (`uv run` syncs deps automatically):
+
+```bash
+export QWEN_MODEL_PATH=/path/to/qwen_model
+uv run python experiments/attention_order/waiting_times/block_precision/run.py
+```
+
+Parent manifest is the original waiting-time manifest. block_float64 records the intermediate diagnostic without removal of the internal casts.
