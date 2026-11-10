@@ -100,7 +100,9 @@ TOOLS = [
 
 
 def number(text, field):
-    return float(re.search(re.escape(field) + r"[: ]+([0-9.]+)", text, re.IGNORECASE).group(1))
+    return float(
+        re.search(re.escape(field) + r"[: ]+([0-9.]+)", text, re.IGNORECASE).group(1)
+    )
 
 
 def received_payloads(messages):
@@ -178,7 +180,7 @@ from getpass import getpass
 
 
 class HostedLLM:
-    ENDPOINTS = {
+    ENDPOINTS = {  # noqa: RUF012 — immutable endpoint map, never mutated
         "openai": "https://api.openai.com/v1/chat/completions",
         "together": "https://api.together.ai/v1/chat/completions",
     }
@@ -345,11 +347,11 @@ class ModelSession:
 
 def financial_inputs(packet):
     filing = next(d["text"] for d in packet["documents"] if d["id"] == "FILING")
-    return dict(
-        debt=number(filing, "debt"),
-        eligible_cash=number(filing, "cash"),
-        ebitda=number(filing, "EBITDA"),
-    )
+    return {
+        "debt": number(filing, "debt"),
+        "eligible_cash": number(filing, "cash"),
+        "ebitda": number(filing, "EBITDA"),
+    }
 
 
 def panel(title, value):

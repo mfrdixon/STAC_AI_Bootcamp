@@ -82,23 +82,23 @@ def dataset(size, seed):
 
 train = dataset(8000, 81001)
 test = dataset(1000, 81002)
-manifest = dict(
-    seed=20261025,
-    train_seed=81001,
-    test_seed=81002,
-    train_sets=8000,
-    test_sets=1000,
-    items=50,
-    base_steps=500,
-    adapt_steps=300,
-    batch_size=64,
-    learning_rate=0.002,
-    task="Estimate fraction above 30 minutes; classify strictly more than half",
-    input="continuous numerical values, not text",
-    training="all tiny-model weights; no pretrained LM and no LoRA",
-    evaluation="10 fixed permutations per test set; three identical repeats of first permutation",
-    success_criteria="report all results; no selection based on held-out performance",
-)
+manifest: dict = {
+    "seed": 20261025,
+    "train_seed": 81001,
+    "test_seed": 81002,
+    "train_sets": 8000,
+    "test_sets": 1000,
+    "items": 50,
+    "base_steps": 500,
+    "adapt_steps": 300,
+    "batch_size": 64,
+    "learning_rate": 0.002,
+    "task": "Estimate fraction above 30 minutes; classify strictly more than half",
+    "input": "continuous numerical values, not text",
+    "training": "all tiny-model weights; no pretrained LM and no LoRA",
+    "evaluation": "10 fixed permutations per test set; three identical repeats of first permutation",
+    "success_criteria": "report all results; no selection based on held-out performance",
+}
 (P / "manifest.json").write_text(json.dumps(manifest, indent=2))
 model = Model()
 initial = copy.deepcopy(model.state_dict())
@@ -119,7 +119,7 @@ def fit(model, blocked, steps, seed):
         torch.nn.utils.clip_grad_norm_(model.parameters(), 1)
         opt.step()
         if (step + 1) % 100 == 0:
-            logs.append(dict(step=step + 1, loss=float(loss.detach())))
+            logs.append({"step": step + 1, "loss": float(loss.detach())})
             print(
                 "train",
                 blocked,
@@ -171,53 +171,55 @@ with torch.inference_mode():
                     float((l.sigmoid() - ps[0, lo : lo + 100]).abs().max()),
                 )
         boundary = (test[1] > 0.45) & (test[1] < 0.56)
-        results[name] = dict(
-            majority_accuracy=float((labels == truth).float().mean()),
-            majority_accuracy_first_order=float((labels[0] == truth[0]).float().mean()),
-            fraction_mae_percentage_points=float(
+        results[name] = {
+            "majority_accuracy": float((labels == truth).float().mean()),
+            "majority_accuracy_first_order": float(
+                (labels[0] == truth[0]).float().mean()
+            ),
+            "fraction_mae_percentage_points": float(
                 (fs - test[1][None]).abs().mean() * 100
             ),
-            fraction_mae_first_order_pp=float((fs[0] - test[1]).abs().mean() * 100),
-            max_fraction_order_range_pp=float(
+            "fraction_mae_first_order_pp": float((fs[0] - test[1]).abs().mean() * 100),
+            "max_fraction_order_range_pp": float(
                 (fs.max(0).values - fs.min(0).values).max() * 100
             ),
-            max_yes_probability_order_range=float(
+            "max_yes_probability_order_range": float(
                 (ps.max(0).values - ps.min(0).values).max()
             ),
-            sets_with_answer_flip=int((labels.any(0) != labels.all(0)).sum()),
-            test_sets=1000,
-            max_identical_repeat_difference=repeat_delta,
-            boundary_sets=int(boundary.sum()),
-            boundary_accuracy=float(
+            "sets_with_answer_flip": int((labels.any(0) != labels.all(0)).sum()),
+            "test_sets": 1000,
+            "max_identical_repeat_difference": repeat_delta,
+            "boundary_sets": int(boundary.sum()),
+            "boundary_accuracy": float(
                 (labels[:, boundary] == truth[:, boundary]).float().mean()
             ),
-        )
+        }
         torch.save(
-            dict(
-                fractions=fs,
-                yes_probabilities=ps,
-                truth_fraction=test[1],
-                truth_majority=test[2],
-            ),
+            {
+                "fractions": fs,
+                "yes_probabilities": ps,
+                "truth_fraction": test[1],
+                "truth_majority": test[2],
+            },
             P / (name + "_outputs.pt"),
         )
         print(name, json.dumps(results[name]), flush=True)
-summary = dict(
-    results=results,
-    parameters=sum(p.numel() for p in model.parameters()),
-    seconds=time.time() - start,
-    base_training=base_logs,
-    adaptation_training=adapt_logs,
-    torch=torch.__version__,
-)
+summary: dict = {
+    "results": results,
+    "parameters": sum(p.numel() for p in model.parameters()),
+    "seconds": time.time() - start,
+    "base_training": base_logs,
+    "adaptation_training": adapt_logs,
+    "torch": torch.__version__,
+}
 (P / "summary.json").write_text(json.dumps(summary, indent=2))
 torch.save(
-    dict(
-        base=base.state_dict(),
-        adapted=adapt.state_dict(),
-        test_inputs=test[0],
-        permutations=perms,
-    ),
+    {
+        "base": base.state_dict(),
+        "adapted": adapt.state_dict(),
+        "test_inputs": test[0],
+        "permutations": perms,
+    },
     P / "checkpoints.pt",
 )
 print("COMPLETE", json.dumps(summary, indent=2), flush=True)

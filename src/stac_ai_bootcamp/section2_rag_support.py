@@ -7,58 +7,76 @@ from html import escape
 
 
 DOCUMENTS = [
-    dict(
-        id="FILING",
-        title="Harbor Metals: quarterly filing",
-        issuer="Harbor Metals",
-        available="2026-10-20 08:00",
-        role="filing",
-        text="Harbor Metals reports debt of $75 million, cash of $15 million and EBITDA of $20 million. Figures are for the quarter ended 30 September 2026.",
-    ),
-    dict(
-        id="COVENANT",
-        title="Harbor Metals: signed credit agreement",
-        issuer="Harbor Metals",
-        available="2026-10-19 16:00",
-        role="covenant",
-        text="The signed covenant limits net leverage to 3.5 times EBITDA. Net leverage is (debt minus eligible cash) divided by EBITDA. Eligible cash means total cash less restricted cash. The restricted cash amount is specified in Annex A.",
-    ),
-    dict(
-        id="ANNEX",
-        title="Harbor Metals: Annex A",
-        issuer="Harbor Metals",
-        available="2026-10-20 08:30",
-        role="annex",
-        text="Annex A to the signed credit agreement: restricted cash is $5 million for the quarter ended 30 September 2026. This amount is unavailable for debt repayment and must be excluded from eligible cash.",
-    ),
-    dict(
-        id="AMENDMENT",
-        title="Harbor Metals: covenant amendment",
-        issuer="Harbor Metals",
-        available="2026-10-20 09:07",
-        role="amendment",
-        text="The covenant amendment permits all cash, including restricted cash, to be deducted when calculating net leverage. The ceiling remains 3.5 times EBITDA. Released at 09:07 on 20 October 2026.",
-    ),
-    dict(
-        id="OTHER",
-        title="Bay Copper: restricted cash annex",
-        issuer="Bay Copper",
-        available="2026-10-20 08:00",
-        role="annex",
-        text="Restricted cash in the Bay Copper covenant annex is zero. All cash is eligible for the net leverage covenant calculation.",
-    ),
-    dict(
-        id="PRESENTATION",
-        title="Harbor Metals: management presentation",
-        issuer="Harbor Metals",
-        available="2026-10-20 08:10",
-        role="presentation",
-        text="Management describes liquidity and covenant headroom as comfortable. This presentation does not provide a downside EBITDA scenario or replace the signed credit agreement.",
-    ),
+    {
+        "id": "FILING",
+        "title": "Harbor Metals: quarterly filing",
+        "issuer": "Harbor Metals",
+        "available": "2026-10-20 08:00",
+        "role": "filing",
+        "text": "Harbor Metals reports debt of $75 million, cash of $15 million and EBITDA of $20 million. Figures are for the quarter ended 30 September 2026.",
+    },
+    {
+        "id": "COVENANT",
+        "title": "Harbor Metals: signed credit agreement",
+        "issuer": "Harbor Metals",
+        "available": "2026-10-19 16:00",
+        "role": "covenant",
+        "text": "The signed covenant limits net leverage to 3.5 times EBITDA. Net leverage is (debt minus eligible cash) divided by EBITDA. Eligible cash means total cash less restricted cash. The restricted cash amount is specified in Annex A.",
+    },
+    {
+        "id": "ANNEX",
+        "title": "Harbor Metals: Annex A",
+        "issuer": "Harbor Metals",
+        "available": "2026-10-20 08:30",
+        "role": "annex",
+        "text": "Annex A to the signed credit agreement: restricted cash is $5 million for the quarter ended 30 September 2026. This amount is unavailable for debt repayment and must be excluded from eligible cash.",
+    },
+    {
+        "id": "AMENDMENT",
+        "title": "Harbor Metals: covenant amendment",
+        "issuer": "Harbor Metals",
+        "available": "2026-10-20 09:07",
+        "role": "amendment",
+        "text": "The covenant amendment permits all cash, including restricted cash, to be deducted when calculating net leverage. The ceiling remains 3.5 times EBITDA. Released at 09:07 on 20 October 2026.",
+    },
+    {
+        "id": "OTHER",
+        "title": "Bay Copper: restricted cash annex",
+        "issuer": "Bay Copper",
+        "available": "2026-10-20 08:00",
+        "role": "annex",
+        "text": "Restricted cash in the Bay Copper covenant annex is zero. All cash is eligible for the net leverage covenant calculation.",
+    },
+    {
+        "id": "PRESENTATION",
+        "title": "Harbor Metals: management presentation",
+        "issuer": "Harbor Metals",
+        "available": "2026-10-20 08:10",
+        "role": "presentation",
+        "text": "Management describes liquidity and covenant headroom as comfortable. This presentation does not provide a downside EBITDA scenario or replace the signed credit agreement.",
+    },
 ]
-STOP = set(
-    ["the", "a", "an", "of", "is", "are", "in", "to", "for", "and", "by", "from", "what", "which", "does", "do", "its", "it", "be"]
-)
+STOP: set[str] = {
+    "the",
+    "a",
+    "an",
+    "of",
+    "is",
+    "are",
+    "in",
+    "to",
+    "for",
+    "and",
+    "by",
+    "from",
+    "what",
+    "which",
+    "does",
+    "do",
+    "its",
+    "it",
+    "be",
+}
 
 
 def tokens(text):
@@ -90,7 +108,7 @@ def search_documents(query, documents, top_k=4):
         )
         if score > 0:
             ranked.append(
-                dict(d, score=score, matches=", ".join(sorted(set(q) & set(v))))
+                {**d, "score": score, "matches": ", ".join(sorted(set(q) & set(v)))}
             )
     return sorted(ranked, key=lambda x: (-x["score"], x["id"]))[:top_k]
 
@@ -178,12 +196,12 @@ def check_requirements(passages):
     # Declared requirements are instructional policy, not inferred truth.
     ids = {d["id"] for d in passages}
     return [
-        dict(
-            Claim=claim,
-            Required=", ".join(required),
-            Missing=", ".join(sorted(set(required) - ids)) or "none",
-            Status="READY TO CHECK" if set(required) <= ids else "BLOCKED",
-        )
+        {
+            "Claim": claim,
+            "Required": ", ".join(required),
+            "Missing": ", ".join(sorted(set(required) - ids)) or "none",
+            "Status": "READY TO CHECK" if set(required) <= ids else "BLOCKED",
+        }
         for claim, required in [
             ("Current covenant ratio", ["FILING", "COVENANT", "ANNEX"]),
             ("Comfortable headroom", ["FILING", "COVENANT", "ANNEX", "DOWNSIDE"]),

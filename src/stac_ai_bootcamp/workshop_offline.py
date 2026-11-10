@@ -77,17 +77,17 @@ def architecture(case="simple", branch=False):
             ((75 - correct_cash) / 20 if supported else 3) if calculator else None
         )
         rows.append(
-            dict(
-                id=id,
-                label=label,
-                cash=cash,
-                leverage=leverage,
-                supported=supported,
-                missing=required and not resolved,
-                status="CALCULATION SUPPORTED"
+            {
+                "id": id,
+                "label": label,
+                "cash": cash,
+                "leverage": leverage,
+                "supported": supported,
+                "missing": required and not resolved,
+                "status": "CALCULATION SUPPORTED"
                 if supported
                 else "HOLD CALCULATION CLAIM",
-            )
+            }
         )
     return rows
 
@@ -100,7 +100,7 @@ def rag_case(case="baseline"):
         raise ValueError(case)
     for s in sources:
         s["eligible"] = all(
-            datetime.fromisoformat(s[k].replace("Z", "+00:00")) <= cutoff
+            datetime.fromisoformat(s[k].replace("Z", "+00:00")) <= cutoff  # noqa: FURB162 — explicit Z-offset for clarity
             for k in ("published", "available")
         )
         s["inContext"] = s["id"] in (
@@ -344,14 +344,14 @@ def financial_replay(data, mode="valid", gate=True, fee_bps=None):
                 pnl=net * data["capital_per_opportunity"],
             )
         )
-    return dict(
-        rows=rows,
-        trades=sum(r["trade"] for r in rows),
-        blocked=sum(r["blocked"] for r in rows),
-        net_pnl=sum(r["pnl"] for r in rows),
-        net_bps=10000 * sum(r["net"] for r in rows) / len(rows),
-        worst_pnl=min(r["pnl"] for r in rows),
-    )
+    return {
+        "rows": rows,
+        "trades": sum(r["trade"] for r in rows),
+        "blocked": sum(r["blocked"] for r in rows),
+        "net_pnl": sum(r["pnl"] for r in rows),
+        "net_bps": 10000 * sum(r["net"] for r in rows) / len(rows),
+        "worst_pnl": min(r["pnl"] for r in rows),
+    }
 
 
 def check_framing_evidence(case, records=None):
@@ -389,18 +389,18 @@ def check_framing_evidence(case, records=None):
         if values["actual_eps"][0] > values["consensus_eps"][0]
         else "CASH"
     )
-    return dict(action=action, failed=failed, values=values)
+    return {"action": action, "failed": failed, "values": values}
 
 
 def framing_metrics(data, model, frame):
     rows = [r for r in data["outputs"] if r["model"] == model and r["framing"] == frame]
-    return dict(
-        n=len(rows),
-        correct=sum(r["action"] == r["expected"] for r in rows),
-        unsupported_buys=sum(
+    return {
+        "n": len(rows),
+        "correct": sum(r["action"] == r["expected"] for r in rows),
+        "unsupported_buys": sum(
             r["action"] == "BUY" and r["expected"] != "BUY" for r in rows
         ),
-    )
+    }
 
 
 class CommitController:
@@ -422,13 +422,13 @@ class CommitController:
         )
 
     def prepare(self, notional=5000):
-        self.proposal = dict(
-            id="proposal-" + str(self.next),
-            snapshot_version=self.state["snapshot_version"],
-            pending_orders=self.state["pending_orders"],
-            grant_version=self.state["grant_version"],
-            notional=notional,
-        )
+        self.proposal = {
+            "id": "proposal-" + str(self.next),
+            "snapshot_version": self.state["snapshot_version"],
+            "pending_orders": self.state["pending_orders"],
+            "grant_version": self.state["grant_version"],
+            "notional": notional,
+        }
         self.next += 1
         self._log("PREPARED", proposal=self.proposal)
         return dict(self.proposal)
@@ -452,36 +452,37 @@ class CommitController:
     def commit(self):
         p = self.proposal
         s = self.state
-        checks = dict(
-            proposal_present=p is not None,
-            snapshot_current=bool(p) and p["snapshot_version"] == s["snapshot_version"],
-            pending_orders_current=bool(p)
+        checks: dict = {
+            "proposal_present": p is not None,
+            "snapshot_current": bool(p)
+            and p["snapshot_version"] == s["snapshot_version"],
+            "pending_orders_current": bool(p)
             and p["pending_orders"] == s["pending_orders"],
-            grant_current=bool(p)
+            "grant_current": bool(p)
             and p["grant_version"] == s["grant_version"]
             and s["grant_active"],
-            within_limit=bool(p)
+            "within_limit": bool(p)
             and isinstance(p["notional"], (int, float))
             and math.isfinite(p["notional"])
             and 0 < p["notional"] <= s["grant_limit"],
-            evidence_valid=s["evidence_valid"],
-            reviewer_approved=s["reviewer_approved"],
-            not_already_committed=bool(p) and p["id"] not in self.used,
-        )
+            "evidence_valid": s["evidence_valid"],
+            "reviewer_approved": s["reviewer_approved"],
+            "not_already_committed": bool(p) and p["id"] not in self.used,
+        }
         permitted = all(checks.values())
         if permitted:
             self.used.add(p["id"])
             self.orders.append(
-                dict(
-                    id="mock-order-" + str(len(self.orders)),
-                    proposal_id=p["id"],
-                    notional=p["notional"],
-                )
+                {
+                    "id": "mock-order-" + str(len(self.orders)),
+                    "proposal_id": p["id"],
+                    "notional": p["notional"],
+                }
             )
-        result = dict(
-            decision="PERMITTED" if permitted else "BLOCKED",
-            checks=checks,
-            dispatched=permitted,
-        )
+        result: dict = {
+            "decision": "PERMITTED" if permitted else "BLOCKED",
+            "checks": checks,
+            "dispatched": permitted,
+        }
         self._log("COMMIT_CHECK", proposal_id=p["id"] if p else None, **result)
         return result

@@ -1,10 +1,19 @@
 """Recorded LoRA audit; standard-library default. No model generation on load."""
 
+from stac_ai_bootcamp.utility import set_huggingface_offline  # noqa: I001
+
+set_huggingface_offline()  # must run before transformers/torch/peft import
+
 import hashlib
 import json
 import math
 import statistics
+from contextlib import nullcontext
 from pathlib import Path
+
+import torch
+from peft import PeftModel
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -51,16 +60,6 @@ def verify(data):
 
 def local_score(case, base_dir, adapter_dir, expected_base_hash, expected_adapter_hash):
     """Opt-in fresh inference. Uses installed packages/local weights only; no downloads."""
-    import os
-
-    os.environ["HF_HUB_OFFLINE"] = "1"
-    os.environ["TRANSFORMERS_OFFLINE"] = "1"
-    from contextlib import nullcontext
-
-    import torch
-    from peft import PeftModel
-    from transformers import AutoModelForCausalLM, AutoTokenizer
-
     base_dir, adapter_dir = Path(base_dir), Path(adapter_dir)
     for p, expected in [
         (base_dir / "model.safetensors", expected_base_hash),

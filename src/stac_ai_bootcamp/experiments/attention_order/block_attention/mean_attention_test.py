@@ -41,15 +41,15 @@ for si, x in enumerate(samples):
             for repeat in range(10):
                 y = attention_mean(z, mode)
                 rows.append(
-                    dict(
-                        sample=si,
-                        permutation=pi,
-                        repeat=repeat,
-                        mode=mode,
-                        output=y,
-                        target=target,
-                        error=y - target,
-                    )
+                    {
+                        "sample": si,
+                        "permutation": pi,
+                        "repeat": repeat,
+                        "mode": mode,
+                        "output": y,
+                        "target": target,
+                        "error": y - target,
+                    }
                 )
 summary = {}
 for mode in ["causal", "block_set", "unrestricted"]:
@@ -62,15 +62,19 @@ for mode in ["causal", "block_set", "unrestricted"]:
             v = [z["output"] for z in r if z["permutation"] == pi]
             repeat_range = max(repeat_range, max(v) - min(v))
     first = [z for z in rows if z["mode"] == mode and z["sample"] == 0]
-    summary[mode] = dict(
-        first_sample_min=min(z["output"] for z in first),
-        first_sample_max=max(z["output"] for z in first),
-        first_sample_order0=next(z["output"] for z in first if z["permutation"] == 0),
-        first_sample_order1=next(z["output"] for z in first if z["permutation"] == 1),
-        max_order_range=max(ranges),
-        max_absolute_error=max(abs(z["error"]) for z in rows if z["mode"] == mode),
-        max_repeat_range=repeat_range,
-    )
+    summary[mode] = {
+        "first_sample_min": min(z["output"] for z in first),
+        "first_sample_max": max(z["output"] for z in first),
+        "first_sample_order0": next(
+            z["output"] for z in first if z["permutation"] == 0
+        ),
+        "first_sample_order1": next(
+            z["output"] for z in first if z["permutation"] == 1
+        ),
+        "max_order_range": max(ranges),
+        "max_absolute_error": max(abs(z["error"]) for z in rows if z["mode"] == mode),
+        "max_repeat_range": repeat_range,
+    }
 assert summary["block_set"]["max_absolute_error"] == 0
 assert summary["unrestricted"]["max_absolute_error"] < 1e-14
 assert summary["causal"]["max_order_range"] > 1e-5

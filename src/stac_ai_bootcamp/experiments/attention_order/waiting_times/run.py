@@ -1,10 +1,10 @@
-import os
+from stac_ai_bootcamp.utility import set_huggingface_offline  # noqa: I001
 
+set_huggingface_offline()  # must run before transformers/torch import
 
-os.environ["HF_HUB_OFFLINE"] = "1"
-os.environ["TOKENIZERS_PARALLELISM"] = "false"
 import hashlib
 import json
+import os
 import random
 import re
 import time
@@ -35,20 +35,20 @@ question = (
 )
 jobs = [(oi, r) for oi in range(10) for r in range(3)]
 rng.shuffle(jobs)
-manifest = dict(
-    seed=20261022,
-    values=values,
-    orders=orders,
-    repeats=3,
-    execution_order=jobs,
-    question=question,
-    expected_count=count,
-    expected_percentage=2 * count,
-    expected_majority=expected,
-    model="Qwen/Qwen2.5-0.5B-Instruct",
-    revision="7ae557604adf67be50417f59c2c2f167def9a775",
-    protocol="Ordinary unmodified model; single fixed sample; raw YES/NO prefix scoring without EOS; unconstrained greedy generation; no tools",
-)
+manifest: dict = {
+    "seed": 20261022,
+    "values": values,
+    "orders": orders,
+    "repeats": 3,
+    "execution_order": jobs,
+    "question": question,
+    "expected_count": count,
+    "expected_percentage": 2 * count,
+    "expected_majority": expected,
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+    "protocol": "Ordinary unmodified model; single fixed sample; raw YES/NO prefix scoring without EOS; unconstrained greedy generation; no tools",
+}
 (P / "manifest.json").write_text(json.dumps(manifest, indent=2))
 print("Frozen manifest:", count, expected, flush=True)
 torch.manual_seed(20261022)
@@ -120,22 +120,24 @@ with torch.inference_mode(), open(P / "outputs.jsonl", "w") as out:
         m = re.fullmatch(
             r"\s*(YES|NO);\s*count=(\d+);\s*percentage=(\d+(?:\.\d+)?)%\s*", answer
         )
-        parsed = (
-            dict(majority=m[1], count=int(m[2]), percentage=float(m[3])) if m else None
+        parsed: dict | None = (
+            {"majority": m[1], "count": int(m[2]), "percentage": float(m[3])}
+            if m
+            else None
         )
-        row = dict(
-            order=oi,
-            repeat=repeat,
-            prompt=prompt,
-            prompt_sha256=hashlib.sha256(prompt.encode()).hexdigest(),
-            answer=answer,
-            parsed=parsed,
-            p_yes=pyes,
-            logprobs=scores,
-            candidate_token_ids=pieces,
-            generated_ids=ids,
-            truncated=len(ids) >= 48 and ids[-1] != tok.eos_token_id,
-        )
+        row: dict = {
+            "order": oi,
+            "repeat": repeat,
+            "prompt": prompt,
+            "prompt_sha256": hashlib.sha256(prompt.encode()).hexdigest(),
+            "answer": answer,
+            "parsed": parsed,
+            "p_yes": pyes,
+            "logprobs": scores,
+            "candidate_token_ids": pieces,
+            "generated_ids": ids,
+            "truncated": len(ids) >= 48 and ids[-1] != tok.eos_token_id,
+        }
         out.write(json.dumps(row) + "\n")
         out.flush()
         rows.append(row)
@@ -151,36 +153,37 @@ repeat_prob = max(
     - min(z["p_yes"] for z in rows if z["order"] == o)
     for o in range(10)
 )
-summary = dict(
-    expected_count=count,
-    expected_percentage=count * 2,
-    expected_majority=expected,
-    orders=10,
-    repeats=3,
-    total=30,
-    valid_format=sum(z["parsed"] is not None for z in rows),
-    truncated=sum(z["truncated"] for z in rows),
-    distinct_generated_outputs=len(set(z["answer"] for z in first)),
-    distinct_majority_answers=sorted(
-        set(z["parsed"]["majority"] for z in first if z["parsed"])
+summary: dict = {
+    "expected_count": count,
+    "expected_percentage": count * 2,
+    "expected_majority": expected,
+    "orders": 10,
+    "repeats": 3,
+    "total": 30,
+    "valid_format": sum(z["parsed"] is not None for z in rows),
+    "truncated": sum(z["truncated"] for z in rows),
+    "distinct_generated_outputs": len({z["answer"] for z in first}),
+    "distinct_majority_answers": sorted(
+        {z["parsed"]["majority"] for z in first if z["parsed"]}
     ),
-    distinct_counts=sorted(set(z["parsed"]["count"] for z in first if z["parsed"])),
-    distinct_percentages=sorted(
-        set(z["parsed"]["percentage"] for z in first if z["parsed"])
+    "distinct_counts": sorted({z["parsed"]["count"] for z in first if z["parsed"]}),
+    "distinct_percentages": sorted(
+        {z["parsed"]["percentage"] for z in first if z["parsed"]}
     ),
-    exact_correct=sum(
-        z["parsed"] == dict(majority=expected, count=count, percentage=float(count * 2))
+    "exact_correct": sum(
+        z["parsed"]
+        == {"majority": expected, "count": count, "percentage": float(count * 2)}
         for z in rows
     ),
-    p_yes_min=min(z["p_yes"] for z in first),
-    p_yes_max=max(z["p_yes"] for z in first),
-    max_identical_prompt_probability_range=repeat_prob,
-    repeat_text_changes=sum(
-        len(set(z["answer"] for z in rows if z["order"] == o)) > 1 for o in range(10)
+    "p_yes_min": min(z["p_yes"] for z in first),
+    "p_yes_max": max(z["p_yes"] for z in first),
+    "max_identical_prompt_probability_range": repeat_prob,
+    "repeat_text_changes": sum(
+        len({z["answer"] for z in rows if z["order"] == o}) > 1 for o in range(10)
     ),
-    elapsed_seconds=time.time() - start,
-    torch=torch.__version__,
-    transformers=transformers.__version__,
-)
+    "elapsed_seconds": time.time() - start,
+    "torch": torch.__version__,
+    "transformers": transformers.__version__,
+}
 (P / "summary.json").write_text(json.dumps(summary, indent=2))
 print(json.dumps(summary, indent=2), flush=True)

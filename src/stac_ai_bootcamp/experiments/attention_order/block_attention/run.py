@@ -116,14 +116,14 @@ with torch.inference_mode():
                     blocks = [("E", e)] + [(a, a + " " + actions[a]) for a in order]
                     probs, v, m = model(blocks, mode)
                     rows.append(
-                        dict(
-                            mode=mode,
-                            case=ci,
-                            order=order,
-                            repeat=repeat,
-                            scores=probs,
-                            cross_block_max_attention=m,
-                        )
+                        {
+                            "mode": mode,
+                            "case": ci,
+                            "order": order,
+                            "repeat": repeat,
+                            "scores": probs,
+                            "cross_block_max_attention": m,
+                        }
                     )
 
 
@@ -149,17 +149,17 @@ for mode in ["ordinary", "block_global_positions", "block_reset"]:
             reps.extend(
                 tv(a["scores"], b["scores"]) for a, b in itertools.combinations(g, 2)
             )
-    summary[mode] = dict(
-        max_order_tv=max(vals),
-        mean_order_tv=sum(vals) / len(vals),
-        top_changes=flips,
-        order_pairs=len(vals),
-        max_repeat_tv=max(reps),
-        repeat_pairs=len(reps),
-        cross_block_max_attention=max(
+    summary[mode] = {
+        "max_order_tv": max(vals),
+        "mean_order_tv": sum(vals) / len(vals),
+        "top_changes": flips,
+        "order_pairs": len(vals),
+        "max_repeat_tv": max(reps),
+        "repeat_pairs": len(reps),
+        "cross_block_max_attention": max(
             x["cross_block_max_attention"] for x in rows if x["mode"] == mode
         ),
-    )
+    }
 # Change earlier BUY text; CASH must not change under block/reset.
 blocks = [("E", evidence[0])] + [(a, a + " " + actions[a]) for a in actions]
 changed = list(blocks)

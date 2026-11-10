@@ -1,10 +1,10 @@
-import os
+from stac_ai_bootcamp.utility import set_huggingface_offline  # noqa: I001
 
+set_huggingface_offline()  # must run before transformers/torch import
 
-os.environ["HF_HUB_OFFLINE"] = "1"
-os.environ["TOKENIZERS_PARALLELISM"] = "false"
 import hashlib
 import json
+import os
 import random
 import time
 from pathlib import Path
@@ -36,7 +36,7 @@ import transformers.models.qwen2.modeling_qwen2 as qmod
 source = inspect.getsource(qmod.eager_attention_forward).replace(
     "dtype=torch.float32", "dtype=query.dtype"
 )
-exec(source, qmod.__dict__)
+exec(source, qmod.__dict__)  # noqa: S102 — intentional float64 attention-kernel patch
 
 
 def rms_preserve(self, hidden_states):
@@ -61,20 +61,20 @@ suffixids = enc(suffix)
 records = [enc(f"Waiting time: {v:.1f} minutes.\n") for v in src["values"]]
 actionids = {a: enc(a) for a in ["YES", "NO"]}
 assert all(len(v) == 1 for v in actionids.values())
-manifest = dict(
-    source_manifest_sha256=hashlib.sha256(
+manifest: dict = {
+    "source_manifest_sha256": hashlib.sha256(
         (P.parent / "manifest.json").read_bytes()
     ).hexdigest(),
-    source=src,
-    record_template="Waiting time: {value:.1f} minutes.\\n",
-    prefix=pre,
-    suffix=suffix,
-    tokenization="Each fixed segment tokenized independently, concatenated identically in every condition",
-    conditions=["block_local"],
-    positions="Record positions reset to prefix_length + within_record_index; suffix retains fixed global positions",
-    readout="Original Qwen vocabulary output head at final assistant-prefix token; YES/NO single-token probabilities normalized over these two tokens; no EOS",
-    action_ids=actionids,
-)
+    "source": src,
+    "record_template": "Waiting time: {value:.1f} minutes.\\n",
+    "prefix": pre,
+    "suffix": suffix,
+    "tokenization": "Each fixed segment tokenized independently, concatenated identically in every condition",
+    "conditions": ["block_local"],
+    "positions": "Record positions reset to prefix_length + within_record_index; suffix retains fixed global positions",
+    "readout": "Original Qwen vocabulary output head at final assistant-prefix token; YES/NO single-token probabilities normalized over these two tokens; no EOS",
+    "action_ids": actionids,
+}
 (P / "manifest.json").write_text(json.dumps(manifest, indent=2))
 jobs = [
     (mode, o, r) for mode in manifest["conditions"] for o in range(10) for r in range(3)
@@ -147,27 +147,29 @@ with torch.inference_mode(), open(P / "outputs.jsonl", "w") as f:
         lp = logits.log_softmax(-1)
         vals = [float(lp[actionids[a][0]]) for a in ["YES", "NO"]]
         p = float(torch.tensor(vals, dtype=torch.float64).softmax(0)[0])
-        row = dict(
-            mode=mode,
-            order=oi,
-            repeat=repeat,
-            p_yes=p,
-            yes_logprob=vals[0],
-            no_logprob=vals[1],
-            top_candidate="YES" if p > 0.5 else "NO",
-            raw_candidate_mass=sum(float(lp[actionids[a][0]].exp()) for a in actionids),
-            full_vocab_argmax=tok.decode([int(logits.argmax())]),
-            input_ids_sha256=hashlib.sha256(json.dumps(ids).encode()).hexdigest(),
-        )
+        row: dict = {
+            "mode": mode,
+            "order": oi,
+            "repeat": repeat,
+            "p_yes": p,
+            "yes_logprob": vals[0],
+            "no_logprob": vals[1],
+            "top_candidate": "YES" if p > 0.5 else "NO",
+            "raw_candidate_mass": sum(
+                float(lp[actionids[a][0]].exp()) for a in actionids
+            ),
+            "full_vocab_argmax": tok.decode([int(logits.argmax())]),
+            "input_ids_sha256": hashlib.sha256(json.dumps(ids).encode()).hexdigest(),
+        }
         if check:
-            audit[mode] = dict(
-                forbidden_attention_max=forbidden_context["max_weight"],
-                all_record_tokens_can_read_prefix=True,
-                readout_can_read_all_records=bool(
+            audit[mode] = {
+                "forbidden_attention_max": forbidden_context["max_weight"],
+                "all_record_tokens_can_read_prefix": True,
+                "readout_can_read_all_records": bool(
                     allowed[-1, len(preids) : suffix_start].all()
                 ),
-                tokens=n,
-            )
+                "tokens": n,
+            }
             forbidden_context.clear()
         rows.append(row)
         f.write(json.dumps(row) + "\n")
@@ -191,16 +193,16 @@ for mode in manifest["conditions"]:
     for oi in range(10):
         v = [z["p_yes"] for z in rows if z["mode"] == mode and z["order"] == oi]
         repeats.append(max(v) - min(v))
-    summary[mode] = dict(
-        p_yes_min=min(z["p_yes"] for z in first),
-        p_yes_max=max(z["p_yes"] for z in first),
-        p_yes_order_range=max(z["p_yes"] for z in first)
+    summary[mode] = {
+        "p_yes_min": min(z["p_yes"] for z in first),
+        "p_yes_max": max(z["p_yes"] for z in first),
+        "p_yes_order_range": max(z["p_yes"] for z in first)
         - min(z["p_yes"] for z in first),
-        max_repeat_range=max(repeats),
-        top_candidates=sorted(set(z["top_candidate"] for z in first)),
-        raw_mass_min=min(z["raw_candidate_mass"] for z in first),
-        raw_mass_max=max(z["raw_candidate_mass"] for z in first),
-    )
+        "max_repeat_range": max(repeats),
+        "top_candidates": sorted({z["top_candidate"] for z in first}),
+        "raw_mass_min": min(z["raw_candidate_mass"] for z in first),
+        "raw_mass_max": max(z["raw_candidate_mass"] for z in first),
+    }
 # Ensure exactly matched input tokens, not just identical record values.
 for oi in range(10):
     assert len({z["input_ids_sha256"] for z in rows if z["order"] == oi}) == 1

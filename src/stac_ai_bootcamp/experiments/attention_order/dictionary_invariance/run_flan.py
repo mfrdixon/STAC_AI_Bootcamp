@@ -1,10 +1,9 @@
 """Offline architectural proof, not a trained investment decision system."""
 
-import os
+from stac_ai_bootcamp.utility import set_huggingface_offline  # noqa: I001
 
+set_huggingface_offline()  # must run before transformers/torch import
 
-os.environ["HF_HUB_OFFLINE"] = "1"
-os.environ["TOKENIZERS_PARALLELISM"] = "false"
 import hashlib
 import itertools
 import json
@@ -50,16 +49,16 @@ cases = [
     ),
 ]
 orders = list(itertools.permutations(actions))
-manifest = dict(
-    model=MODEL,
-    actions=actions,
-    cases=cases,
-    orders=orders,
-    repeats=5,
-    seed=20261019,
-    head="untrained shared cosine cross-attention; no learned projections",
-    scope="Architectural invariance only. Policy-derived labels are not investment outcomes.",
-)
+manifest: dict = {
+    "model": MODEL,
+    "actions": actions,
+    "cases": cases,
+    "orders": orders,
+    "repeats": 5,
+    "seed": 20261019,
+    "head": "untrained shared cosine cross-attention; no learned projections",
+    "scope": "Architectural invariance only. Policy-derived labels are not investment outcomes.",
+}
 (ROOT / "manifest.json").write_text(json.dumps(manifest, indent=2))
 
 
@@ -115,16 +114,16 @@ for case_id, evidence, expected in cases:
             raw, p = separate(evidence, entries)
             baseline, prompt = prompted(evidence, entries)
             rows.append(
-                dict(
-                    case=case_id,
-                    expected=expected,
-                    order=list(order),
-                    repeat=repeat,
-                    separate_scores=raw,
-                    separate_probs=p,
-                    json_prompt_probs=baseline,
-                    prompt=prompt,
-                )
+                {
+                    "case": case_id,
+                    "expected": expected,
+                    "order": list(order),
+                    "repeat": repeat,
+                    "separate_scores": raw,
+                    "separate_probs": p,
+                    "json_prompt_probs": baseline,
+                    "prompt": prompt,
+                }
             )
         print(f"{case_id} order {oi + 1}/6: {time.time() - START:.1f}s", flush=True)
     (ROOT / "outputs.json").write_text(json.dumps(rows, indent=2))
@@ -135,7 +134,7 @@ def tv(a, b):
 
 
 def winner(p):
-    return sorted(p, key=lambda k: (-p[k], k))[0]
+    return min(p, key=lambda k: (-p[k], k))
 
 
 summary = {}
@@ -154,17 +153,17 @@ for field in ["separate_probs", "json_prompt_probs"]:
         for oi in range(6):
             for a, b in itertools.combinations(r[oi * 5 : (oi + 1) * 5], 2):
                 repeat_tv.append(tv(a[field], b[field]))
-    summary[field] = dict(
-        order_pairs=len(order_tv),
-        mean_order_tv=sum(order_tv) / len(order_tv),
-        max_order_tv=max(order_tv),
-        order_action_changes=flips,
-        affected_cases=affected,
-        repeat_pairs=len(repeat_tv),
-        max_repeat_tv=max(repeat_tv),
-        policy_matches=sum(winner(x[field]) == x["expected"] for x in rows),
-        runs=len(rows),
-    )
+    summary[field] = {
+        "order_pairs": len(order_tv),
+        "mean_order_tv": sum(order_tv) / len(order_tv),
+        "max_order_tv": max(order_tv),
+        "order_action_changes": flips,
+        "affected_cases": affected,
+        "repeat_pairs": len(repeat_tv),
+        "max_repeat_tv": max(repeat_tv),
+        "policy_matches": sum(winner(x[field]) == x["expected"] for x in rows),
+        "runs": len(rows),
+    }
 assert summary["separate_probs"]["max_order_tv"] == 0
 assert summary["separate_probs"]["max_repeat_tv"] == 0
 # Evidence sensitivity control: invariant does not mean a constant representation.

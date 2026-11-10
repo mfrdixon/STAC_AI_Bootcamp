@@ -1,11 +1,11 @@
-import os
+from stac_ai_bootcamp.utility import set_huggingface_offline  # noqa: I001
 
+set_huggingface_offline()  # must run before transformers/torch import
 
-os.environ["HF_HUB_OFFLINE"] = "1"
-os.environ["TOKENIZERS_PARALLELISM"] = "false"
 import hashlib
 import itertools
 import json
+import os
 import random
 import time
 from pathlib import Path
@@ -25,19 +25,19 @@ for _ in range(9):
     rng.shuffle(p)
     orders.append(p)
 question = "The following 50 numbers were observed. Predict the next number. Reply with exactly one digit from 1 to 6 and nothing else. Observations:\n"
-manifest = dict(
-    seed=20261024,
-    values=values,
-    orders=orders,
-    repeats=3,
-    conditions=["ordinary", "block_local"],
-    question=question,
-    source_hidden_from_model="Independent fair die, pseudorandom draws; true next-value distribution is uniform",
-    record_template="Observation: {value}.\\n",
-    purpose="Measure order sensitivity separately from agreement with hidden data-generating distribution",
-    model="Qwen/Qwen2.5-0.5B-Instruct",
-    revision="7ae557604adf67be50417f59c2c2f167def9a775",
-)
+manifest: dict = {
+    "seed": 20261024,
+    "values": values,
+    "orders": orders,
+    "repeats": 3,
+    "conditions": ["ordinary", "block_local"],
+    "question": question,
+    "source_hidden_from_model": "Independent fair die, pseudorandom draws; true next-value distribution is uniform",
+    "record_template": "Observation: {value}.\\n",
+    "purpose": "Measure order sensitivity separately from agreement with hidden data-generating distribution",
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+}
 (P / "manifest.json").write_text(json.dumps(manifest, indent=2))
 torch.manual_seed(20261024)
 torch.set_num_threads(4)
@@ -135,27 +135,27 @@ with torch.inference_mode(), open(P / "outputs.jsonl", "w") as out:
         ps = vals.softmax(0).tolist()
         rawmass = float(vals.exp().sum())
         argmax = int(logits.argmax())
-        row = dict(
-            mode=mode,
-            order=o,
-            repeat=r,
-            probabilities=dict(zip(map(str, range(1, 7)), ps)),
-            candidate_mass=rawmass,
-            top_candidate=str(ps.index(max(ps)) + 1),
-            full_vocab_argmax_id=argmax,
-            full_vocab_argmax=tok.decode([argmax]),
-            input_sha256=hashlib.sha256(json.dumps(ids).encode()).hexdigest(),
-        )
+        row: dict = {
+            "mode": mode,
+            "order": o,
+            "repeat": r,
+            "probabilities": dict(zip(map(str, range(1, 7)), ps)),
+            "candidate_mass": rawmass,
+            "top_candidate": str(ps.index(max(ps)) + 1),
+            "full_vocab_argmax_id": argmax,
+            "full_vocab_argmax": tok.decode([argmax]),
+            "input_sha256": hashlib.sha256(json.dumps(ids).encode()).hexdigest(),
+        }
         rows.append(row)
         out.write(json.dumps(row) + "\n")
         out.flush()
         if check:
-            audit[mode] = dict(
-                max_forbidden=context["max_forbidden"],
-                readout_sees_all_records=bool(
+            audit[mode] = {
+                "max_forbidden": context["max_forbidden"],
+                "readout_sees_all_records": bool(
                     allowed[-1, len(prefix) : suffixstart].all()
                 ),
-            )
+            }
             context.clear()
         if (k + 1) % 10 == 0:
             print(k + 1, "/60", round(time.time() - start, 1), "sec", flush=True)
@@ -187,23 +187,27 @@ for mode in manifest["conditions"]:
             for a, b in itertools.combinations(group, 2)
         ]
     pairs = list(itertools.combinations(first, 2))
-    summary[mode] = dict(
-        original_order_probs=first[0]["probabilities"],
-        max_order_tv=max(tv(a["probabilities"], b["probabilities"]) for a, b in pairs),
-        mean_order_tv=sum(tv(a["probabilities"], b["probabilities"]) for a, b in pairs)
+    summary[mode] = {
+        "original_order_probs": first[0]["probabilities"],
+        "max_order_tv": max(
+            tv(a["probabilities"], b["probabilities"]) for a, b in pairs
+        ),
+        "mean_order_tv": sum(
+            tv(a["probabilities"], b["probabilities"]) for a, b in pairs
+        )
         / len(pairs),
-        top_candidate_changes=sum(
+        "top_candidate_changes": sum(
             a["top_candidate"] != b["top_candidate"] for a, b in pairs
         ),
-        order_pairs=len(pairs),
-        max_repeat_tv=max(repeat_tv),
-        min_tv_from_uniform=min(tv(x["probabilities"], uniform) for x in first),
-        max_tv_from_uniform=max(tv(x["probabilities"], uniform) for x in first),
-        candidate_mass_min=min(x["candidate_mass"] for x in first),
-        candidate_mass_max=max(x["candidate_mass"] for x in first),
-        top_candidates=sorted({x["top_candidate"] for x in first}),
-        full_vocab_argmaxes=sorted({x["full_vocab_argmax"] for x in first}),
-    )
+        "order_pairs": len(pairs),
+        "max_repeat_tv": max(repeat_tv),
+        "min_tv_from_uniform": min(tv(x["probabilities"], uniform) for x in first),
+        "max_tv_from_uniform": max(tv(x["probabilities"], uniform) for x in first),
+        "candidate_mass_min": min(x["candidate_mass"] for x in first),
+        "candidate_mass_max": max(x["candidate_mass"] for x in first),
+        "top_candidates": sorted({x["top_candidate"] for x in first}),
+        "full_vocab_argmaxes": sorted({x["full_vocab_argmax"] for x in first}),
+    }
 for o in range(10):
     assert len({x["input_sha256"] for x in rows if x["order"] == o}) == 1
 summary.update(

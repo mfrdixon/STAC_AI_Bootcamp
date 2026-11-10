@@ -79,14 +79,14 @@ with torch.inference_mode():
                 for repeat in range(5):
                     y, h, f = model(x[perm], mode)
                     rows.append(
-                        dict(
-                            sample=si,
-                            mode=mode,
-                            permutation=pi,
-                            repeat=repeat,
-                            output=y,
-                            forbidden_attention_max=f,
-                        )
+                        {
+                            "sample": si,
+                            "mode": mode,
+                            "permutation": pi,
+                            "repeat": repeat,
+                            "output": y,
+                            "forbidden_attention_max": f,
+                        }
                     )
                     if mode == "block_set":
                         if pi == 0 and repeat == 0:
@@ -105,12 +105,12 @@ for mode in ["ordinary", "block_global_positions", "block_set"]:
         for pi in range(20):
             ys = [z["output"] for z in r if z["permutation"] == pi]
             repeat_max = max(repeat_max, max(ys) - min(ys))
-    summary[mode] = dict(
-        max_output_range=max(ranges),
-        mean_output_range=sum(ranges) / 10,
-        first_sample_range=ranges[0],
-        max_repeat_range=repeat_max,
-    )
+    summary[mode] = {
+        "max_output_range": max(ranges),
+        "mean_output_range": sum(ranges) / 10,
+        "first_sample_range": ranges[0],
+        "max_repeat_range": repeat_max,
+    }
 # Check sensitivity to actual values, not just constant output.
 with torch.inference_mode():
     x = samples[0]
@@ -145,10 +145,10 @@ summary.update(
 (P / "iid_set_summary.json").write_text(json.dumps(summary, indent=2))
 (P / "iid_set_inputs.json").write_text(
     json.dumps(
-        dict(
-            samples=[x.tolist() for x in samples],
-            permutations=[o.tolist() for o in orders],
-        ),
+        {
+            "samples": [x.tolist() for x in samples],
+            "permutations": [o.tolist() for o in orders],
+        },
         indent=2,
     )
 )
