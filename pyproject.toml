@@ -20,17 +20,17 @@ dependencies = [
 [project.scripts]
 stac-ai-bootcamp = "stac_ai_bootcamp:main"
 exp-block-attention = "stac_ai_bootcamp.experiments.attention_order.block_attention.run:main"
-exp-block-attention-iid-set = "stac_ai_bootcamp.experiments.attention_order.block_attention.iid_set_test:main"
-exp-block-attention-iid-set-expanded = "stac_ai_bootcamp.experiments.attention_order.block_attention.iid_set_expanded_test:main"
+exp-block-attention-iid-set = "stac_ai_bootcamp.experiments.attention_order.block_attention.iid_set_test:main_test"
+exp-block-attention-iid-set-expanded = "stac_ai_bootcamp.experiments.attention_order.block_attention.iid_set_test:main_expanded_test"
 exp-block-attention-mean = "stac_ai_bootcamp.experiments.attention_order.block_attention.mean_attention_test:main"
 exp-block-attention-input-semantics = "stac_ai_bootcamp.experiments.attention_order.block_attention.input_semantics:main"
 exp-dice-order = "stac_ai_bootcamp.experiments.attention_order.dice_order.run:main"
 exp-dictionary-invariance-flan = "stac_ai_bootcamp.experiments.attention_order.dictionary_invariance.run_flan:main"
 exp-dictionary-invariance-qwen = "stac_ai_bootcamp.experiments.attention_order.dictionary_invariance.run_qwen:main"
 exp-waiting-times = "stac_ai_bootcamp.experiments.attention_order.waiting_times.run:main"
-exp-waiting-times-block-matched = "stac_ai_bootcamp.experiments.attention_order.waiting_times.run_block_matched:main"
-exp-waiting-times-block-float64 = "stac_ai_bootcamp.experiments.attention_order.waiting_times.run_block_float64:main"
-exp-waiting-times-block-precision = "stac_ai_bootcamp.experiments.attention_order.waiting_times.run_block_precision:main"
+exp-waiting-times-block-matched = "stac_ai_bootcamp.experiments.attention_order.waiting_times.run_block:main_matched"
+exp-waiting-times-block-float64 = "stac_ai_bootcamp.experiments.attention_order.waiting_times.run_block:main_float64"
+exp-waiting-times-block-precision = "stac_ai_bootcamp.experiments.attention_order.waiting_times.run_block:main_precision"
 exp-tiny-adaptation = "stac_ai_bootcamp.experiments.attention_order.tiny_adaptation.run:main"
 
 [build-system]

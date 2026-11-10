@@ -12,7 +12,7 @@ import torch
 import torch.nn.functional as F
 from torch import nn
 
-from stac_ai_bootcamp.utility import experiment_io
+from stac_ai_bootcamp.utility import experiment_output
 
 
 N = 50
@@ -77,7 +77,7 @@ def dataset(size, seed):
 
 
 def main() -> None:
-    _, output_dir = experiment_io("attention_order/tiny_adaptation")
+    output_dir = experiment_output("attention_order/tiny_adaptation")
     start = time.time()
     torch.manual_seed(20261025)
     torch.set_num_threads(2)

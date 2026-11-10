@@ -1,4 +1,9 @@
-"""Set semantics test; no training, semantic-accuracy or randomness inference claim."""
+"""Set semantics test; no training, semantic-accuracy or randomness inference claim.
+
+Two sizes share one evaluation core:
+  main_test           10 samples, 20 permutations, 5 repeats, prefix iid_set
+  main_expanded_test  20 samples, 100 permutations, 10 repeats, prefix iid_set_expanded
+"""
 
 import json
 import time
@@ -6,7 +11,7 @@ import time
 import torch
 from torch import nn
 
-from stac_ai_bootcamp.utility import experiment_io
+from stac_ai_bootcamp.utility import experiment_output
 
 
 class TinySet(nn.Module):
@@ -58,25 +63,30 @@ class TinySet(nn.Module):
         return float(self.head(h[0].double().mean(0).float())), h[0], max(forbidden)
 
 
-def main() -> None:
-    _, output_dir = experiment_io("attention_order/block_attention")
+def run_iid_set(samples: int, permutations: int, repeats: int, prefix: str) -> None:
+    output_dir = experiment_output("attention_order/block_attention")
     torch.manual_seed(20261021)
     torch.set_num_threads(2)
     torch.use_deterministic_algorithms(True)
     model = TinySet().eval()
     g = torch.Generator().manual_seed(81234)
-    # Predeclare ten independent samples of size 50, N(0,1); identity + 19 permutations.
-    samples = [torch.randn(50, generator=g) for _ in range(10)]
-    orders = [torch.arange(50)] + [torch.randperm(50, generator=g) for _ in range(19)]
+    # Independent samples of 50 draws each; identity order plus random permutations.
+    sample_list = [torch.randn(50, generator=g) for _ in range(samples)]
+    orders = [torch.arange(50)] + [
+        torch.randperm(50, generator=g) for _ in range(permutations - 1)
+    ]
     rows = []
     start = time.time()
     max_equivariance = 0
     with torch.inference_mode():
-        for si, x in enumerate(samples):
+        for si, x in enumerate(sample_list):
             base_h = None
             for mode in ["ordinary", "block_global_positions", "block_set"]:
                 for pi, perm in enumerate(orders):
-                    for repeat in range(5):
+                    assert torch.equal(
+                        torch.sort(x[perm]).values, torch.sort(x).values
+                    )
+                    for repeat in range(repeats):
                         y, h, f = model(x[perm], mode)
                         rows.append(
                             {
@@ -99,22 +109,22 @@ def main() -> None:
     for mode in ["ordinary", "block_global_positions", "block_set"]:
         ranges = []
         repeat_max = 0
-        for si in range(10):
+        for si in range(samples):
             r = [z for z in rows if z["mode"] == mode and z["sample"] == si]
             ys = [z["output"] for z in r if z["repeat"] == 0]
             ranges.append(max(ys) - min(ys))
-            for pi in range(20):
+            for pi in range(permutations):
                 ys = [z["output"] for z in r if z["permutation"] == pi]
                 repeat_max = max(repeat_max, max(ys) - min(ys))
         summary[mode] = {
             "max_output_range": max(ranges),
-            "mean_output_range": sum(ranges) / 10,
+            "mean_output_range": sum(ranges) / samples,
             "first_sample_range": ranges[0],
             "max_repeat_range": repeat_max,
         }
     # Check sensitivity to actual values, not just constant output.
     with torch.inference_mode():
-        x = samples[0]
+        x = sample_list[0]
         a, _, _ = model(x, "block_set")
         b, _, _ = model(x + 1, "block_set")
     assert summary["block_set"]["max_output_range"] < 1e-6
@@ -127,10 +137,10 @@ def main() -> None:
         seed=20261021,
         data_seed=81234,
         distribution="standard normal, independent pseudorandom draws",
-        samples=10,
+        samples=samples,
         items_per_sample=50,
-        permutations=20,
-        repeats=5,
+        permutations=permutations,
+        repeats=repeats,
         evaluations=len(rows),
         block_max_hidden_equivariance_error=max_equivariance,
         block_forbidden_attention_max=max(
@@ -142,12 +152,12 @@ def main() -> None:
         seconds=time.time() - start,
         tolerance=1e-6,
     )
-    (output_dir / "iid_set_outputs.json").write_text(json.dumps(rows, indent=2))
-    (output_dir / "iid_set_summary.json").write_text(json.dumps(summary, indent=2))
-    (output_dir / "iid_set_inputs.json").write_text(
+    (output_dir / f"{prefix}_outputs.json").write_text(json.dumps(rows, indent=2))
+    (output_dir / f"{prefix}_summary.json").write_text(json.dumps(summary, indent=2))
+    (output_dir / f"{prefix}_inputs.json").write_text(
         json.dumps(
             {
-                "samples": [x.tolist() for x in samples],
+                "samples": [x.tolist() for x in sample_list],
                 "permutations": [o.tolist() for o in orders],
             },
             indent=2,
@@ -156,5 +166,9 @@ def main() -> None:
     print(json.dumps(summary, indent=2))
 
 
-if __name__ == "__main__":
-    main()
+def main_test() -> None:
+    run_iid_set(samples=10, permutations=20, repeats=5, prefix="iid_set")
+
+
+def main_expanded_test() -> None:
+    run_iid_set(samples=20, permutations=100, repeats=10, prefix="iid_set_expanded")

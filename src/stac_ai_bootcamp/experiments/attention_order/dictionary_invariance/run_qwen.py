@@ -15,7 +15,12 @@ import torch.nn.functional as F
 import transformers
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-from stac_ai_bootcamp.utility import PROJECT_ROOT, experiment_io
+from stac_ai_bootcamp.utility import (
+    PROJECT_ROOT,
+    experiment_output,
+    total_variation,
+    winner,
+)
 
 
 actions = {
@@ -44,16 +49,8 @@ cases = [
 ]
 
 
-def tv(a, b):
-    return sum(abs(a[k] - b[k]) for k in a) / 2
-
-
-def winner(p):
-    return min(p, key=lambda k: (-p[k], k))
-
-
 def main() -> None:
-    _, output_dir = experiment_io("attention_order/dictionary_invariance/qwen")
+    output_dir = experiment_output("attention_order/dictionary_invariance/qwen")
     start = time.time()
     torch.manual_seed(20261019)
     torch.set_num_threads(4)
@@ -181,11 +178,11 @@ def main() -> None:
             first = [x for x in r if x["repeat"] == 0]
             affected += len({winner(x[field]) for x in first}) > 1
             for a, b in itertools.combinations(first, 2):
-                order_tv.append(tv(a[field], b[field]))
+                order_tv.append(total_variation(a[field], b[field]))
                 flips += winner(a[field]) != winner(b[field])
             for oi in range(6):
                 for a, b in itertools.combinations(r[oi * 5 : (oi + 1) * 5], 2):
-                    repeat_tv.append(tv(a[field], b[field]))
+                    repeat_tv.append(total_variation(a[field], b[field]))
         summary[field] = {
             "order_pairs": len(order_tv),
             "mean_order_tv": sum(order_tv) / len(order_tv),
@@ -201,7 +198,7 @@ def main() -> None:
     assert summary["separate_probs"]["max_repeat_tv"] == 0
     # Evidence sensitivity control: invariant does not mean a constant representation.
     summary["separate_evidence_change_max_tv"] = max(
-        tv(a["separate_probs"], b["separate_probs"])
+        total_variation(a["separate_probs"], b["separate_probs"])
         for a, b in itertools.combinations(rows[::30], 2)
     )
     summary.update(

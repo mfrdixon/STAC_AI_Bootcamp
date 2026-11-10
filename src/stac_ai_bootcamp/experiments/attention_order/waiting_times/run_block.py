@@ -1,8 +1,17 @@
+"""Block-local attention invariance over the frozen waiting-times manifest.
+
+Three variants share one evaluation core:
+  matched   float32, conditions ordinary/mask_only/block_local, tolerance 1e-5
+  float64   float64, condition block_local only, tolerance 1e-12
+  precision float64 plus a kernel patch that keeps attention in float64, tolerance 1e-12
+"""
+
 from stac_ai_bootcamp.utility import set_huggingface_offline  # noqa: I001
 
 set_huggingface_offline()  # must run before transformers/torch import
 
 import hashlib
+import inspect
 import json
 import os
 import random
@@ -11,14 +20,65 @@ from pathlib import Path
 
 import torch
 import transformers
+import transformers.models.qwen2.modeling_qwen2 as qmod
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-from stac_ai_bootcamp.utility import PROJECT_ROOT, experiment_io
+from stac_ai_bootcamp.utility import PROJECT_ROOT, experiment_output
 
 
-def main() -> None:
-    _, source_dir = experiment_io("attention_order/waiting_times")
-    _, output_dir = experiment_io("attention_order/waiting_times/block_float64")
+VARIANTS = {
+    "matched": {
+        "conditions": ["ordinary", "mask_only", "block_local"],
+        "dtype": torch.float32,
+        "tolerance": 1e-5,
+        "patch": False,
+    },
+    "float64": {
+        "conditions": ["block_local"],
+        "dtype": torch.float64,
+        "tolerance": 1e-12,
+        "patch": False,
+    },
+    "precision": {
+        "conditions": ["block_local"],
+        "dtype": torch.float64,
+        "tolerance": 1e-12,
+        "patch": True,
+    },
+}
+
+
+def _patch_float64_kernel() -> None:
+    """Preserve float64 through the Qwen2 attention softmax and RMSNorm.
+
+    Patches the transformers kernel globally, so it must run before any Qwen2
+    model is instantiated. Diagnostic use only.
+    """
+    source = inspect.getsource(qmod.eager_attention_forward).replace(
+        "dtype=torch.float32", "dtype=query.dtype"
+    )
+    exec(source, qmod.__dict__)  # noqa: S102 — intentional float64 attention-kernel patch
+
+    def rms_preserve(self, hidden_states):
+        variance = hidden_states.pow(2).mean(-1, keepdim=True)
+        return (
+            self.weight
+            * hidden_states
+            * torch.rsqrt(variance + self.variance_epsilon)
+        )
+
+    qmod.Qwen2RMSNorm.forward = rms_preserve
+
+
+def run_block(variant: str) -> None:
+    config = VARIANTS[variant]
+    conditions = config["conditions"]
+    dtype = config["dtype"]
+    tolerance = config["tolerance"]
+    if config["patch"]:
+        _patch_float64_kernel()
+    source_dir = experiment_output("attention_order/waiting_times")
+    output_dir = experiment_output(f"attention_order/waiting_times/block_{variant}")
     src = json.loads((source_dir / "manifest.json").read_text())
     start = time.time()
     torch.manual_seed(20261023)
@@ -37,7 +97,7 @@ def main() -> None:
     model = AutoModelForCausalLM.from_pretrained(
         path,
         local_files_only=True,
-        torch_dtype=torch.float64,
+        torch_dtype=dtype,
         attn_implementation="eager",
     ).eval()
     placeholder = "RECORDS_INSERTED_HERE"
@@ -62,7 +122,7 @@ def main() -> None:
         "prefix": pre,
         "suffix": suffix,
         "tokenization": "Each fixed segment tokenized independently, concatenated identically in every condition",
-        "conditions": ["block_local"],
+        "conditions": conditions,
         "positions": "Record positions reset to prefix_length + within_record_index; suffix retains fixed global positions",
         "readout": "Original Qwen vocabulary output head at final assistant-prefix token; YES/NO single-token probabilities normalized over these two tokens; no EOS",
         "action_ids": actionids,
@@ -122,7 +182,7 @@ def main() -> None:
             )
             if mode == "ordinary":
                 allowed = causal
-            mask = torch.zeros(n, n, dtype=torch.float64)
+            mask = torch.zeros(n, n, dtype=dtype)
             mask.masked_fill_(~allowed, float("-inf"))
             pos = torch.tensor(
                 positions if mode == "block_local" else list(range(n))
@@ -211,12 +271,20 @@ def main() -> None:
         evaluations=len(rows),
         torch=torch.__version__,
         transformers=transformers.__version__,
-        invariance_tolerance=1e-12,
-        block_within_tolerance=summary["block_local"]["p_yes_order_range"] < 1e-12,
+        invariance_tolerance=tolerance,
+        block_within_tolerance=summary["block_local"]["p_yes_order_range"] < tolerance,
     )
     (output_dir / "summary.json").write_text(json.dumps(summary, indent=2))
     print(json.dumps(summary, indent=2), flush=True)
 
 
-if __name__ == "__main__":
-    main()
+def main_matched() -> None:
+    run_block("matched")
+
+
+def main_float64() -> None:
+    run_block("float64")
+
+
+def main_precision() -> None:
+    run_block("precision")

@@ -6,7 +6,7 @@ import torch
 import torch.nn.functional as F
 from torch import nn
 
-from stac_ai_bootcamp.utility import experiment_io
+from stac_ai_bootcamp.utility import experiment_output, total_variation
 
 
 actions = {
@@ -102,12 +102,8 @@ class Tiny(nn.Module):
         return dict(zip(names, prob.tolist())), vectors, mass
 
 
-def tv(a, b):
-    return sum(abs(a[k] - b[k]) for k in a) / 2
-
-
 def main() -> None:
-    _, output_dir = experiment_io("attention_order/block_attention")
+    output_dir = experiment_output("attention_order/block_attention")
     torch.manual_seed(20261020)
     torch.set_num_threads(2)
     torch.use_deterministic_algorithms(True)
@@ -142,14 +138,14 @@ def main() -> None:
             r = [x for x in rows if x["mode"] == mode and x["case"] == ci]
             first = [x for x in r if x["repeat"] == 0]
             for a, b in itertools.combinations(first, 2):
-                vals.append(tv(a["scores"], b["scores"]))
+                vals.append(total_variation(a["scores"], b["scores"]))
                 flips += max(a["scores"], key=a["scores"].get) != max(
                     b["scores"], key=b["scores"].get
                 )
             for o in itertools.permutations(actions):
                 g = [x for x in r if tuple(x["order"]) == o]
                 reps.extend(
-                    tv(a["scores"], b["scores"])
+                    total_variation(a["scores"], b["scores"])
                     for a, b in itertools.combinations(g, 2)
                 )
         summary[mode] = {

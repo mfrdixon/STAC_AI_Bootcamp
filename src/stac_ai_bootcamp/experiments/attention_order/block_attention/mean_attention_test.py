@@ -8,7 +8,7 @@ import math
 from stac_ai_bootcamp.experiments.attention_order.block_attention.input_semantics import (
     compile_input,
 )
-from stac_ai_bootcamp.utility import experiment_io
+from stac_ai_bootcamp.utility import experiment_output
 
 
 def attention_mean(x, mode):
@@ -27,7 +27,7 @@ def attention_mean(x, mode):
 
 
 def main() -> None:
-    _, output_dir = experiment_io("attention_order/block_attention")
+    output_dir = experiment_output("attention_order/block_attention")
     source = json.loads((output_dir / "iid_set_expanded_inputs.json").read_text())
     samples = source["samples"]
     orders = source["permutations"]

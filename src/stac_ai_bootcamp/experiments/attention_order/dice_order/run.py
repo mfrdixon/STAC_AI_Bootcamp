@@ -14,15 +14,11 @@ import torch
 import transformers
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-from stac_ai_bootcamp.utility import PROJECT_ROOT, experiment_io
-
-
-def tv(a, b):
-    return 0.5 * sum(abs(a[str(i)] - b[str(i)]) for i in range(1, 7))
+from stac_ai_bootcamp.utility import PROJECT_ROOT, experiment_output, total_variation
 
 
 def main() -> None:
-    _, output_dir = experiment_io("attention_order/dice_order")
+    output_dir = experiment_output("attention_order/dice_order")
     start = time.time()
     rng = random.Random(20261024)
     values = [rng.randint(1, 6) for _ in range(50)]
@@ -194,17 +190,17 @@ def main() -> None:
         for o in range(10):
             group = [x for x in rows if x["mode"] == mode and x["order"] == o]
             repeat_tv += [
-                tv(a["probabilities"], b["probabilities"])
+                total_variation(a["probabilities"], b["probabilities"])
                 for a, b in itertools.combinations(group, 2)
             ]
         pairs = list(itertools.combinations(first, 2))
         summary[mode] = {
             "original_order_probs": first[0]["probabilities"],
             "max_order_tv": max(
-                tv(a["probabilities"], b["probabilities"]) for a, b in pairs
+                total_variation(a["probabilities"], b["probabilities"]) for a, b in pairs
             ),
             "mean_order_tv": sum(
-                tv(a["probabilities"], b["probabilities"]) for a, b in pairs
+                total_variation(a["probabilities"], b["probabilities"]) for a, b in pairs
             )
             / len(pairs),
             "top_candidate_changes": sum(
@@ -212,8 +208,8 @@ def main() -> None:
             ),
             "order_pairs": len(pairs),
             "max_repeat_tv": max(repeat_tv),
-            "min_tv_from_uniform": min(tv(x["probabilities"], uniform) for x in first),
-            "max_tv_from_uniform": max(tv(x["probabilities"], uniform) for x in first),
+            "min_tv_from_uniform": min(total_variation(x["probabilities"], uniform) for x in first),
+            "max_tv_from_uniform": max(total_variation(x["probabilities"], uniform) for x in first),
             "candidate_mass_min": min(x["candidate_mass"] for x in first),
             "candidate_mass_max": max(x["candidate_mass"] for x in first),
             "top_candidates": sorted({x["top_candidate"] for x in first}),

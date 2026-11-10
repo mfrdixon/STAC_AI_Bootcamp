@@ -14,11 +14,11 @@ import torch
 import transformers
 from transformers import AutoModelForCausalLM, AutoTokenizer, GenerationConfig
 
-from stac_ai_bootcamp.utility import PROJECT_ROOT, experiment_io
+from stac_ai_bootcamp.utility import PROJECT_ROOT, experiment_output
 
 
 def main() -> None:
-    _, output_dir = experiment_io("attention_order/waiting_times")
+    output_dir = experiment_output("attention_order/waiting_times")
     start = time.time()
     rng = random.Random(20261022)
     values = [round(rng.uniform(1, 60), 1) for _ in range(50)]
