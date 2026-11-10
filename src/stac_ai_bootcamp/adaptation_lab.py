@@ -1,7 +1,11 @@
 """Recorded LoRA audit; standard-library default. No model generation on load."""
 
-import hashlib, json, math, statistics
+import hashlib
+import json
+import math
+import statistics
 from pathlib import Path
+
 
 ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / "public/decision-lab/data/recorded-adaptation.json"
@@ -52,9 +56,10 @@ def local_score(case, base_dir, adapter_dir, expected_base_hash, expected_adapte
     os.environ["HF_HUB_OFFLINE"] = "1"
     os.environ["TRANSFORMERS_OFFLINE"] = "1"
     from contextlib import nullcontext
+
     import torch
-    from transformers import AutoTokenizer, AutoModelForCausalLM
     from peft import PeftModel
+    from transformers import AutoModelForCausalLM, AutoTokenizer
 
     base_dir, adapter_dir = Path(base_dir), Path(adapter_dir)
     for p, expected in [

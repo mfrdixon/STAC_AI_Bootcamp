@@ -1,8 +1,10 @@
 """Optional local MCP v1 example. Principal is fixed by trusted launcher configuration."""
 
 import os
-from mcp.server.fastmcp import FastMCP
+
 from harbor_tools import dispatch
+from mcp.server.fastmcp import FastMCP
+
 
 mcp = FastMCP("Harbor Metals")
 principal = os.environ.get("HARBOR_DEMO_PRINCIPAL", "research")

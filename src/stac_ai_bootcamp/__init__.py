@@ -1,5 +1,6 @@
 import importlib.metadata
 
+
 # Retrieve the version from package metadata (pyproject.toml)
 try:
     __version__ = importlib.metadata.version("stac-ai-bootcamp")

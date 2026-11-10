@@ -5,6 +5,7 @@ import re
 from collections import Counter
 from html import escape
 
+
 DOCUMENTS = [
     dict(
         id="FILING",
@@ -56,7 +57,7 @@ DOCUMENTS = [
     ),
 ]
 STOP = set(
-    "the a an of is are in to for and by from what which does do its it be".split()
+    ["the", "a", "an", "of", "is", "are", "in", "to", "for", "and", "by", "from", "what", "which", "does", "do", "its", "it", "be"]
 )
 
 

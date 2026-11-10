@@ -3,9 +3,11 @@ Graph evaluator reuses the tested graph_repair experiment implementation.
 Other functions mirror the declared browser teaching logic and are parity-tested.
 """
 
-from pathlib import Path
-import json, math, collections
+import collections
+import json
+import math
 from datetime import datetime
+from pathlib import Path
 
 
 def load_fixture(name):
@@ -41,7 +43,7 @@ def show_table(rows):
         )
     html += "</tbody></table>"
     try:
-        from IPython.display import display, HTML
+        from IPython.display import HTML, display
 
         display(HTML(html))
     except ImportError:

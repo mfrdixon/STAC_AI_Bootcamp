@@ -1,7 +1,13 @@
 """Shared browser/Node engine client. No third-party package required."""
 
-import json, os, shutil, subprocess, urllib.request, urllib.error
+import json
+import os
+import shutil
+import subprocess
+import urllib.error
+import urllib.request
 from pathlib import Path
+
 
 ROOT = Path(__file__).resolve().parents[2]
 

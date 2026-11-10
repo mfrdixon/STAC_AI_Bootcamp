@@ -1,5 +1,9 @@
-import json, math, re, copy, uuid
-from pprint import pprint
+import copy
+import json
+import math
+import re
+import uuid
+
 
 QUESTION = "Does Harbor Metals have comfortable covenant headroom? Establish current covenant leverage, cite sources, and identify what remains unresolved."
 SYSTEM = """You assess the fictional Harbor Metals case. Use only supplied documents and tool results.
@@ -96,7 +100,7 @@ TOOLS = [
 
 
 def number(text, field):
-    return float(re.search(re.escape(field) + r"[: ]+([0-9.]+)", text, re.I).group(1))
+    return float(re.search(re.escape(field) + r"[: ]+([0-9.]+)", text, re.IGNORECASE).group(1))
 
 
 def received_payloads(messages):
@@ -168,7 +172,8 @@ class SyntheticLLM:
         return {"role": "assistant", "content": text}
 
 
-import urllib.request, urllib.error
+import urllib.error
+import urllib.request
 from getpass import getpass
 
 
@@ -224,8 +229,9 @@ class HostedLLM:
 
 
 # Presentation and provider adapters; workflow orchestration stays in the notebook.
-from types import SimpleNamespace
 from html import escape
+from types import SimpleNamespace
+
 
 DOCUMENTS = make_store()
 INITIAL_DOCUMENTS = ["FILING", "COVENANT"]
@@ -369,7 +375,7 @@ def panel(title, value):
     else:
         text = str(value)
     try:
-        from IPython.display import display, HTML
+        from IPython.display import HTML, display
 
         display(
             HTML(

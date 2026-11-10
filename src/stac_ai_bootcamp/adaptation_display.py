@@ -1,6 +1,8 @@
 """Portable, escaped HTML presentation of recorded adaptation evidence."""
 
-import html, json
+import html
+import json
+
 from IPython.display import HTML, display
 
 
