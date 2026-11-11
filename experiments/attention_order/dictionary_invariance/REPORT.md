@@ -2,7 +2,12 @@
 
 ## Scope and execution
 
-Completed offline on CPU in 51.64 seconds after loading a cached model. FLAN-T5-base has 247,577,856 parameters; no parameters were trained. Revision and environment are recorded in summary.json. Run with the Python environment containing torch and transformers: `python run.py`.
+Completed offline on CPU in 51.64 seconds after loading a cached model. FLAN-T5-base has 247,577,856 parameters; no parameters were trained. Revision and environment are recorded in summary.json. Copy `.env.example` to `.env` once (it presets `FLAN_MODEL_ID`); if the cached FLAN-T5-base weights are absent, fetch them once with `uv run --env-file=.env download-models`. Then run (`uv run` syncs torch and transformers automatically):
+
+```bash
+uv run --env-file=.env exp-dictionary-invariance-qwen
+uv run --env-file=.env exp-dictionary-invariance-flan
+```
 
 Five constructed EPS cases (above consensus, below, equal, missing and conflicting) were tested under all six dictionary orders, with five identical repeats: 150 evaluations per method. These are five distinct cases, not 150 independent observations. Labels reflect the stipulated EPS policy, not market outcomes.
 
@@ -34,4 +39,4 @@ Application-side independent encoding and shared scoring can eliminate dictionar
 
 Neither method made useful decisions here: each matched the stipulated policy on only one of five distinct cases. The separate scorer is intentionally untrained. This proof does not demonstrate a trained attention architecture, economic value, calibrated confidence, improved accuracy, or invariance to changed wording or evidence order. It does not identify the neural cause of the JSON model's sensitivity. A trained head and held-out decision tests remain necessary before claiming a practical decision system.
 
-Artifacts: manifest.json, outputs.json, summary.json, run.py, run.log.
+Artifacts (under `dictionary_invariance/flan/`): manifest.json, outputs.json, summary.json.

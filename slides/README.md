@@ -18,6 +18,6 @@
 
 ## Exercises
 
-Python notebooks are the default exercise route. Use the complete repository so that helper modules and data remain available. Follow the exact notebook filenames and cell headings named in the slides. See the [notebook guide](../NOTEBOOK_GUIDE.md) for setup. Default exercises use supplied local or recorded examples; fresh inference and GPU training are optional and separate.
+Python notebooks are the default exercise route. Use the complete repository so that helper modules and data remain available. Follow the exact notebook filenames and cell headings named in the slides. See the [notebook guide](../docs/NOTEBOOK_GUIDE.md) for setup. Default exercises use supplied local or recorded examples; fresh inference and GPU training are optional and separate.
 
 The source-summary slides provide reading context. Figure provenance and permission notices are retained in [SOURCES_AND_PERMISSIONS.txt](SOURCES_AND_PERMISSIONS.txt).
