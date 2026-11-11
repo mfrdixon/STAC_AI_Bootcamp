@@ -35,6 +35,23 @@ def get_flan_model_id() -> str:
     return os.environ.get("FLAN_MODEL_ID", "google/flan-t5-base")
 
 
+def get_flan_model_rev() -> str:
+    """Commit SHA of the locally cached FLAN snapshot.
+
+    Transformers 5.18+ no longer exposes config._commit_hash; resolve the
+    revision from the offline HuggingFace cache instead. Honors FLAN_MODEL_REV to
+    pin explicitly, otherwise reads the cached snapshot directory name (its SHA).
+    """
+    flan_rev = os.environ.get("FLAN_MODEL_REV")
+    if flan_rev:
+        return flan_rev
+    from huggingface_hub import snapshot_download
+
+    flan_id: str = get_flan_model_id()
+    flan_rev: str = Path(snapshot_download(flan_id, local_files_only=True)).name
+    return flan_rev
+
+
 def get_qwen_model_id() -> str:
     """Repo id for the Qwen instruct model (env QWEN_MODEL_ID)."""
     return os.environ.get("QWEN_MODEL_ID", "Qwen/Qwen2.5-0.5B-Instruct")

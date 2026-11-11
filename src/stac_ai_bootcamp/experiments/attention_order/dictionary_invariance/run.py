@@ -19,6 +19,7 @@ from stac_ai_bootcamp.experiments.attention_order.dictionary_invariance import c
 from stac_ai_bootcamp.utility import (
     configure_torch,
     get_flan_model_id,
+    get_flan_model_rev,
     get_qwen_model_path,
     get_qwen_model_rev,
 )
@@ -148,5 +149,5 @@ def main_flan() -> None:
         encode=functools.partial(flan_encode, model, tok),
         prompted=functools.partial(flan_prompted, model, tok),
         summary_fields=["separate_probs", "json_prompt_probs"],
-        model_revision=model.config._commit_hash,
+        model_revision=get_flan_model_rev(),
     )
