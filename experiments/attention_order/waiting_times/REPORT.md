@@ -13,4 +13,10 @@ Teacher-forced YES/NO prefix scores, normalized over those two candidates, gave 
 Runtime: 48.999 seconds. One sample and one small model do not establish general robustness. No Block Attention model was trained for this task, and no repair claim is supported. Retain this null result for answer-order sensitivity rather than selecting only favorable examples.
 
 ## Run
-Set QWEN_MODEL_PATH to the local pinned Qwen directory, then run `python run.py`. The code requires torch and transformers and uses offline weights. Revision is recorded in manifest.json. Inputs and raw outputs are included.
+Copy `.env.example` to `.env` once (`QWEN_MODEL_PATH` defaults to `experiments/attention_order/qwen_model`). If the pinned Qwen weights are not yet present, fetch them once with `uv run --env-file=.env download-models`. Then run (`uv run` syncs torch and transformers automatically):
+
+```bash
+uv run --env-file=.env exp-waiting-times
+```
+
+The code uses offline weights. Revision is recorded in manifest.json. Inputs and raw outputs are included.

@@ -1,4 +1,9 @@
-# STAC AI Bootcamp
+# STAC AI Bootcamp (local version)
+
+> **NOTE:** this fork has been updated to work in local development environment using [uv](https://docs.astral.sh/uv/) package manager.  
+> If you want to keep using this project in Google Colab, see the original GitHub repo [mfrdixon/STAC_AI_Bootcamp](https://github.com/mfrdixon/STAC_AI_Bootcamp)
+
+
 
 **[Open the public web exercises](https://belieflens.org/decision-lab)** · No account or API key needed for the seven default exercises.
 
@@ -9,8 +14,8 @@ Matthew Dixon, PhD, FRM · Participant workbook
 ## Start here
 
 1. Extract the complete `BeliefLens_Workshop_Notebooks.zip`.
-2. Install Python 3.10+ and JupyterLab (`python -m pip install jupyterlab`).
-3. Open a terminal in the extracted `belieflens-decision-lab` folder and run `python -m jupyterlab`.
+2. Install Python 3.12+ and [uv](https://docs.astral.sh/uv/), then set up the environment with `make .venv` (or `uv sync`). This installs JupyterLab and all dependencies.
+3. Open a terminal in the extracted `belieflens-decision-lab` folder and launch JupyterLab with `make jupyter`.
 4. Open the numbered notebook in `notebooks/`. Run cells in order.
 
 Keep `workshop_offline.py`, `data/`, and the package helper files in their original locations. Downloading an individual notebook without its companion files is insufficient. Default exercises require no GPU, API key, Node.js or model weights. The optional legacy classifier reference uses Node.js; it is not the main Section 4 exercise.
@@ -46,8 +51,8 @@ The portable Python checks in Sections 1–3 and 5–7 are compared against save
 ```bash
 git clone https://github.com/mfrdixon/STAC_AI_Bootcamp.git
 cd STAC_AI_Bootcamp
-python3 -m pip install -r requirements.txt
-python3 -m jupyterlab notebooks
+make .venv   # or: uv sync
+make jupyter
 ```
 
 Live model calls and fresh GPU training are optional instructor extensions. The default notebooks use bundled fixtures, numerical illustrations and explicitly labelled recorded responses. They do not contact a model provider.

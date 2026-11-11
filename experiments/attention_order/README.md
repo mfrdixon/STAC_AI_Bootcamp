@@ -4,12 +4,18 @@ Two separate demonstrations: independent encoding with pretrained Qwen/FLAN, and
 
 ## Run the small tests (CPU, no model download)
 
+Dependencies are declared in the project `pyproject.toml` (absorbed from the old
+`requirements.txt`); `uv run` auto-syncs the environment, so no manual pip install is needed.
+Each experiment is exposed as an `exp-*` console script (see `[project.scripts]`
+in `pyproject.toml`); every run reads/writes under
+`experiments/attention_order/<name>/{input,output}/`.
+
 ```bash
-python -m pip install torch
-python experiments/attention_order/block_attention/run.py
-python experiments/attention_order/block_attention/input_semantics.py
-python experiments/attention_order/block_attention/iid_set_expanded_test.py
-python experiments/attention_order/block_attention/mean_attention_test.py
+uv run exp-block-attention
+uv run exp-block-attention-input-semantics
+uv run exp-block-attention-iid-set-expanded   # produces output/iid_set_expanded_inputs.json
+uv run exp-block-attention-mean               # consumes it; run after the expanded test
+uv run exp-tiny-adaptation                    # trains a tiny model; no pretrained weights
 ```
 
 The expanded test generates 20 fixed samples of 50 standard-normal draws. Each sample is reused exactly over 100 permutations and ten repeats. The script asserts equal input multisets. Ten repeats test execution variation, not additional independent cases. `iid_set_expanded_inputs.json` records all actual inputs and permutations. The scalar readout has no statistical meaning.
@@ -26,7 +32,47 @@ The arithmetic-mean example is intentionally analytic: causal uniform prefix att
 
 ## Pretrained comparisons
 
-Install `requirements.txt`. FLAN runner loads an already cached `google/flan-t5-base` with offline mode. Download it first with Hugging Face if necessary. Qwen runner expects `dictionary_invariance/qwen_model/` populated with revision `7ae557604adf67be50417f59c2c2f167def9a775` of `Qwen/Qwen2.5-0.5B-Instruct`. Model weights are intentionally excluded. Then run the appropriate `run.py` (writes results beside itself).
+Dependencies live in the project `pyproject.toml`; `uv run` syncs them automatically (no separate install step). The model-backed runners load `google/flan-t5-base` (from the HuggingFace cache) and `Qwen/Qwen2.5-0.5B-Instruct` at revision `7ae557604adf67be50417f59c2c2f167def9a775` (from a local directory) in offline mode. Model weights are intentionally excluded from the repo.
+
+### Download the model weights (one-time, requires network)
+
+`download-models` is the only script that runs with HuggingFace **online** (every other entrypoint forces offline mode). It fetches Qwen into `QWEN_MODEL_PATH` (default `experiments/attention_order/qwen_model/`, loaded with `local_files_only=True` at the pinned revision) and Flan into the default HuggingFace cache. Configuration comes entirely from the environment — copy `.env.example` to `.env` first, then run with `--env-file=.env`:
+
+```bash
+cp .env.example .env   # QWEN_MODEL_ID / QWEN_MODEL_REV / FLAN_MODEL_ID preset; QWEN_MODEL_PATH optional
+uv run --env-file=.env download-models
+```
+
+Expected output ends with:
+
+```
+Models ready:
+  qwen: .../experiments/attention_order/qwen_model
+  flan: .../.cache/huggingface/hub/models--google--flan-t5-base/snapshots/<rev>
+```
+
+### Run the pretrained experiments
+
+With weights in place, run with `--env-file=.env` (results are written under each experiment's `output/`):
+
+```bash
+# FLAN-T5 (offline cached weights; writes to dictionary_invariance/flan/output/)
+uv run --env-file=.env exp-dictionary-invariance-flan
+
+# Qwen (writes to dictionary_invariance/qwen/output/)
+uv run --env-file=.env exp-dictionary-invariance-qwen
+```
+
+The remaining model-backed experiments follow the same pattern. `exp-waiting-times`
+must run before the three block variants, which read its `output/manifest.json`:
+
+```bash
+uv run --env-file=.env exp-waiting-times
+uv run --env-file=.env exp-waiting-times-block-matched
+uv run --env-file=.env exp-waiting-times-block-float64
+uv run --env-file=.env exp-waiting-times-block-precision
+uv run --env-file=.env exp-dice-order
+```
 
 Both runners freeze weights and use independent hidden-vector encoding plus an untrained shared attention scorer. JSON baseline likelihoods include EOS; Qwen also records prefix scores without EOS. Scores are not calibrated probabilities. This test does not independently evaluate generated answers.
 
