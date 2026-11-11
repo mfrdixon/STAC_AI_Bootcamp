@@ -14,8 +14,8 @@ jupyter:
 		uv run jupyter lab; \
 	fi
 
-server:
-	@echo "Serving Decision Lab at.."
+dashboard:
+	@echo "Serving Decision Lab dashboard.."
 	@uv run python -m http.server 8000 --directory public
 
 test:
@@ -47,7 +47,7 @@ help:
 	@echo "  make help          - Print help"
 	@echo "  make .venv         - Install project dependencies"
 	@echo "  make jupyter       - Run JupyterLab"
-	@echo "  make server        - Serve the Decision Lab web app"
+	@echo "  make dashboard     - Serve the Decision Lab dashboard"
 	@echo "  make test          - Run tests"
 	@echo "  make test-cov      - Run tests with coverage"
 	@echo "  make lint          - Lint code"

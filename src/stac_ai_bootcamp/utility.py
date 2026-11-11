@@ -11,7 +11,7 @@ def experiment_output(relative: str) -> Path:
 
     The path is anchored to PROJECT_ROOT/experiments/<exp-name>/output.
     """
-    output_dir = PROJECT_ROOT / "experiments" / relative / "output"
+    output_dir = PROJECT_ROOT / "experiments" / relative
     output_dir.mkdir(parents=True, exist_ok=True)
     return output_dir
 

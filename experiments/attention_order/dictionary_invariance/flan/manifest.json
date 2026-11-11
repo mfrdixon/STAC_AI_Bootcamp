@@ -1,5 +1,8 @@
 {
-  "model": "google/flan-t5-base",
+  "model": {
+    "name": "google/flan-t5-base",
+    "rev": "7bcac572ce56db69c1ea7c8af255c5d7c9672fc2"
+  },
   "actions": {
     "BUY": "Take a long position when eligible actual EPS exceeds consensus EPS.",
     "CASH": "Do not take a position when eligible actual EPS is at or below consensus EPS.",

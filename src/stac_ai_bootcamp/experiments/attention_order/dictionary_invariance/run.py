@@ -20,6 +20,7 @@ from stac_ai_bootcamp.utility import (
     configure_torch,
     get_flan_model_id,
     get_flan_model_rev,
+    get_qwen_model_id,
     get_qwen_model_path,
     get_qwen_model_rev,
 )
@@ -124,7 +125,9 @@ def main_qwen() -> None:
     ).eval()
     common.run_experiment(
         output_name="attention_order/dictionary_invariance/qwen",
-        manifest_extra={"model": str(model_path)},
+        manifest_extra={
+            "model": {"name": get_qwen_model_id(), "rev": get_qwen_model_rev()},
+        },
         model=model,
         tok=tok,
         encode=functools.partial(qwen_encode, model, tok),
@@ -143,7 +146,9 @@ def main_flan() -> None:
     ).eval()
     common.run_experiment(
         output_name="attention_order/dictionary_invariance/flan",
-        manifest_extra={"model": flan_id},
+        manifest_extra={
+            "model": {"name": flan_id, "rev": get_flan_model_rev()},
+        },
         model=model,
         tok=tok,
         encode=functools.partial(flan_encode, model, tok),
