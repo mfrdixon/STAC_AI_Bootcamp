@@ -24,7 +24,7 @@ Default cells need no API key. Live GPT calls use `OPENAI_API_KEY` or a hidden p
 
 - Offline walkthrough: initial reported-cash calculation 3.00x; eligible-cash calculation 3.25x; agent follows annex.
 - Permission checks: research cannot release; reviewer can release; revoked reviewer cannot release. Release is simulated.
-- Actual local MCP v1.30.0: initialize, discover three tools, retrieve annex, calculate 3.25x, deny research release, permit reviewer release.
+- Actual local FastMCP 4.1.8: initialize, discover three tools, retrieve annex, calculate 3.25x, deny research release, permit reviewer release.
 - Live Together calls reached retrieval tools, but tested Llama/Qwen runs skipped the calculator. A Qwen run also produced an incorrect formula and ratio. The notebook flags missing calculator execution; these runs are not successful end-to-end task validations.
 - OpenAI live calls require an account key; no key was available during preparation, so this provider path is not claimed as live-tested.
 
