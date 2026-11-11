@@ -2,8 +2,9 @@
 
 import os
 
-from harbor_tools import dispatch
-from mcp.server.fastmcp import FastMCP
+from fastmcp import FastMCP
+
+from stac_ai_bootcamp.harbor_tools import dispatch
 
 
 mcp = FastMCP("Harbor Metals")
