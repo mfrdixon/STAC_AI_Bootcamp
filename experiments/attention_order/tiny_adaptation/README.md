@@ -2,10 +2,10 @@
 
 Train an 18,818-parameter numerical transformer on 8,000 synthetic waiting-time sets; evaluate 1,000 independent held-out sets under ten permutations. Values are continuous embeddings, not language tokens. No pretrained language model or LoRA is involved. All weights train. The blocked model adapts for 300 additional steps after 500 ordinary steps; there is no matched additional-training ordinary control, so do not attribute an improvement solely to architecture or compare training efficiency.
 
-Dependencies are synced automatically by `uv run`:
+Dependencies are synced automatically by `uv run`. This experiment trains from scratch on CPU — no model weights or `.env` are needed:
 
 ```bash
-uv run python experiments/attention_order/tiny_adaptation/run.py
+uv run exp-tiny-adaptation
 ```
 
 Training, test and permutation seeds are fixed in manifest.json. The output head learns a fraction estimate and binary majority decision; no hand-coded threshold is applied to its fraction prediction to obtain the majority decision.
