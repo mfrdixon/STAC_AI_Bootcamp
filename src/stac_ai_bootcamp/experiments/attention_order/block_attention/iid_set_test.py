@@ -66,23 +66,21 @@ class TinySet(nn.Module):
         return float(self.head(h[0].double().mean(0).float())), h[0], max(forbidden)
 
 
-def run_iid_set(samples: int, permutations: int, repeats: int, prefix: str) -> None:
-    output_dir = experiment_output("attention_order/block_attention")
-    configure_torch(seed=20261021, num_threads=2)
-    model = TinySet().eval()
-    g = torch.Generator().manual_seed(81234)
-    # Independent samples of 50 draws each; identity order plus random permutations.
-    sample_list = [torch.randn(50, generator=g) for _ in range(samples)]
-    orders = [torch.arange(50)] + [
-        torch.randperm(50, generator=g) for _ in range(permutations - 1)
-    ]
+MODES = ["ordinary", "block_global_positions", "block_set"]
+
+
+def evaluate_modes(model, sample_list, orders, repeats):
+    """Run every (sample, mode, permutation, repeat) trial.
+
+    Returns ``(rows, max_equivariance)`` where the latter is the largest observed
+    departure from permutation-equivariance of the block_set hidden states.
+    """
     rows = []
-    start = time.time()
     max_equivariance = 0
     with torch.inference_mode():
         for si, x in enumerate(sample_list):
             base_h = None
-            for mode in ["ordinary", "block_global_positions", "block_set"]:
+            for mode in MODES:
                 for pi, perm in enumerate(orders):
                     assert torch.equal(
                         torch.sort(x[perm]).values, torch.sort(x).values
@@ -106,8 +104,13 @@ def run_iid_set(samples: int, permutations: int, repeats: int, prefix: str) -> N
                                 max_equivariance,
                                 float((h - base_h[perm]).abs().max()),
                             )
+    return rows, max_equivariance
+
+
+def summarize_modes(rows, samples, permutations):
+    """Per-mode output-range statistics over the first repeats and per permutation."""
     summary = {}
-    for mode in ["ordinary", "block_global_positions", "block_set"]:
+    for mode in MODES:
         ranges = []
         repeat_max = 0
         for si in range(samples):
@@ -123,7 +126,15 @@ def run_iid_set(samples: int, permutations: int, repeats: int, prefix: str) -> N
             "first_sample_range": ranges[0],
             "max_repeat_range": repeat_max,
         }
-    # Check sensitivity to actual values, not just constant output.
+    return summary
+
+
+def assert_invariance(model, summary, sample_list, max_equivariance):
+    """Value-sensitivity probe plus block_set / ordinary assertions.
+
+    Returns ``(a, b)``, the first sample's block_set output and its +1-shifted
+    counterpart, recorded in the summary as the value-change control.
+    """
     with torch.inference_mode():
         x = sample_list[0]
         a, _, _ = model(x, "block_set")
@@ -132,6 +143,23 @@ def run_iid_set(samples: int, permutations: int, repeats: int, prefix: str) -> N
     assert max_equivariance < 1e-6
     assert summary["ordinary"]["max_output_range"] > 1e-5
     assert abs(a - b) > 1e-5
+    return a, b
+
+
+def run_iid_set(samples: int, permutations: int, repeats: int, prefix: str) -> None:
+    output_dir = experiment_output("attention_order/block_attention")
+    configure_torch(seed=20261021, num_threads=2)
+    model = TinySet().eval()
+    g = torch.Generator().manual_seed(81234)
+    # Independent samples of 50 draws each; identity order plus random permutations.
+    sample_list = [torch.randn(50, generator=g) for _ in range(samples)]
+    orders = [torch.arange(50)] + [
+        torch.randperm(50, generator=g) for _ in range(permutations - 1)
+    ]
+    start = time.time()
+    rows, max_equivariance = evaluate_modes(model, sample_list, orders, repeats)
+    summary = summarize_modes(rows, samples, permutations)
+    a, b = assert_invariance(model, summary, sample_list, max_equivariance)
     summary.update(
         parameters=sum(p.numel() for p in model.parameters()),
         trained=False,

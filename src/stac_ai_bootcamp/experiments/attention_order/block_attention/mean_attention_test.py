@@ -26,11 +26,11 @@ def attention_mean(x, mode):
     raise ValueError(mode)
 
 
-def main() -> None:
-    output_dir = experiment_output("attention_order/block_attention")
-    source = json.loads((output_dir / "iid_set_expanded_inputs.json").read_text())
-    samples = source["samples"]
-    orders = source["permutations"]
+MODES = ["causal", "block_set", "unrestricted"]
+
+
+def evaluate(samples, orders):
+    """Compute the analytic attention mean for every sample/permutation/mode/repeat."""
     rows = []
     for si, x in enumerate(samples):
         target = math.fsum(x) / len(x)
@@ -38,7 +38,7 @@ def main() -> None:
             z = [x[i] for i in p]
             assert sorted(z) == sorted(x)
             assert compile_input({"type": "set", "items": z})["mode"] == "block_set"
-            for mode in ["causal", "block_set", "unrestricted"]:
+            for mode in MODES:
                 for repeat in range(10):
                     y = attention_mean(z, mode)
                     rows.append(
@@ -52,8 +52,13 @@ def main() -> None:
                             "error": y - target,
                         }
                     )
+    return rows
+
+
+def summarize_and_assert(rows, samples, orders):
+    """Per-mode range/error stats, then assert the analytic properties hold."""
     summary = {}
-    for mode in ["causal", "block_set", "unrestricted"]:
+    for mode in MODES:
         ranges = []
         repeat_range = 0
         for si in range(len(samples)):
@@ -81,6 +86,16 @@ def main() -> None:
     assert summary["block_set"]["max_absolute_error"] == 0
     assert summary["unrestricted"]["max_absolute_error"] < 1e-14
     assert summary["causal"]["max_order_range"] > 1e-5
+    return summary
+
+
+def main() -> None:
+    output_dir = experiment_output("attention_order/block_attention")
+    source = json.loads((output_dir / "iid_set_expanded_inputs.json").read_text())
+    samples = source["samples"]
+    orders = source["permutations"]
+    rows = evaluate(samples, orders)
+    summary = summarize_and_assert(rows, samples, orders)
     summary.update(
         first_sample_true_mean=math.fsum(samples[0]) / 50,
         samples=len(samples),

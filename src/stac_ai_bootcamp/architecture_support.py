@@ -2,7 +2,12 @@ import copy
 import json
 import math
 import re
+import urllib.error
+import urllib.request
 import uuid
+from getpass import getpass
+from html import escape
+from types import SimpleNamespace
 
 
 QUESTION = "Does Harbor Metals have comfortable covenant headroom? Establish current covenant leverage, cite sources, and identify what remains unresolved."
@@ -174,11 +179,6 @@ class SyntheticLLM:
         return {"role": "assistant", "content": text}
 
 
-import urllib.error
-import urllib.request
-from getpass import getpass
-
-
 class HostedLLM:
     ENDPOINTS = {  # noqa: RUF012 — immutable endpoint map, never mutated
         "openai": "https://api.openai.com/v1/chat/completions",
@@ -231,10 +231,6 @@ class HostedLLM:
 
 
 # Presentation and provider adapters; workflow orchestration stays in the notebook.
-from html import escape
-from types import SimpleNamespace
-
-
 DOCUMENTS = make_store()
 INITIAL_DOCUMENTS = ["FILING", "COVENANT"]
 QUESTION = "Does Harbor Metals have comfortable covenant headroom? Establish current covenant leverage, cite sources, and identify what remains unresolved."

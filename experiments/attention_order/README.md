@@ -32,11 +32,30 @@ The arithmetic-mean example is intentionally analytic: causal uniform prefix att
 
 ## Pretrained comparisons
 
-Dependencies live in the project `pyproject.toml`; `uv run` syncs them automatically (no separate install step). FLAN runner loads an already cached `google/flan-t5-base` with offline mode. Download it first with Hugging Face if necessary. Qwen runner expects `experiments/attention_order/dictionary_invariance/qwen_model/` populated with revision `7ae557604adf67be50417f59c2c2f167def9a775` of `Qwen/Qwen2.5-0.5B-Instruct`, or any directory pointed to by `QWEN_MODEL_PATH`. Model weights are intentionally excluded. Copy `.env.example` to `.env`, set `QWEN_MODEL_PATH` there, and run with `--env-file=.env` (results are written under each experiment's `output/`):
+Dependencies live in the project `pyproject.toml`; `uv run` syncs them automatically (no separate install step). The model-backed runners load `google/flan-t5-base` (from the HuggingFace cache) and `Qwen/Qwen2.5-0.5B-Instruct` at revision `7ae557604adf67be50417f59c2c2f167def9a775` (from a local directory) in offline mode. Model weights are intentionally excluded from the repo.
+
+### Download the model weights (one-time, requires network)
+
+`download-models` is the only script that runs with HuggingFace **online** (every other entrypoint forces offline mode). It fetches Qwen into `QWEN_MODEL_PATH` (default `experiments/attention_order/qwen_model/`, loaded with `local_files_only=True` at the pinned revision) and Flan into the default HuggingFace cache. Configuration comes entirely from the environment — copy `.env.example` to `.env` first, then run with `--env-file=.env`:
 
 ```bash
-cp .env.example .env   # then edit QWEN_MODEL_PATH
+cp .env.example .env   # QWEN_MODEL_ID / QWEN_MODEL_REV / FLAN_MODEL_ID preset; QWEN_MODEL_PATH optional
+uv run --env-file=.env download-models
+```
 
+Expected output ends with:
+
+```
+Models ready:
+  qwen: .../experiments/attention_order/qwen_model
+  flan: .../.cache/huggingface/hub/models--google--flan-t5-base/snapshots/<rev>
+```
+
+### Run the pretrained experiments
+
+With weights in place, run with `--env-file=.env` (results are written under each experiment's `output/`):
+
+```bash
 # FLAN-T5 (offline cached weights; writes to dictionary_invariance/flan/output/)
 uv run --env-file=.env exp-dictionary-invariance-flan
 

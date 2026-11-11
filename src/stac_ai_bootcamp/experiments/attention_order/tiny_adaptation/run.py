@@ -15,7 +15,7 @@ from torch import nn
 from stac_ai_bootcamp.utility import (
     configure_torch,
     experiment_output,
-    save_json
+    save_json,
 )
 
 
@@ -80,6 +80,96 @@ def dataset(size, seed):
     return x, fraction, majority
 
 
+def train_checkpoint(model, train, blocked, steps, seed, start):
+    """Train ``model`` in place for ``steps`` and return the per-100-step loss log.
+
+    ``blocked`` selects the block-local attention path; ``start`` is the shared
+    wall-clock origin used only for progress prints.
+    """
+    model.train()
+    opt = torch.optim.AdamW(model.parameters(), lr=0.002, weight_decay=0.001)
+    g = torch.Generator().manual_seed(seed)
+    logs = []
+    for step in range(steps):
+        idx = torch.randint(len(train[0]), (64,), generator=g)
+        x, t, y = [a[idx] for a in train]
+        f, logit = model(x, blocked)
+        loss = 20 * F.mse_loss(f, t) + F.binary_cross_entropy_with_logits(logit, y)
+        opt.zero_grad()
+        loss.backward()
+        torch.nn.utils.clip_grad_norm_(model.parameters(), 1)
+        opt.step()
+        if (step + 1) % 100 == 0:
+            logs.append({"step": step + 1, "loss": float(loss.detach())})
+            print(
+                "train",
+                blocked,
+                step + 1,
+                round(float(loss.detach()), 4),
+                round(time.time() - start, 1),
+                flush=True,
+            )
+    return logs
+
+
+def evaluate_variant(m, blocked, test, perms):
+    """Evaluate one trained variant over the fixed permutations.
+
+    Returns ``(metrics, fractions, probabilities)`` where the latter two are the
+    stacked per-permutation tensors saved alongside the summary.
+    """
+    fractions = []
+    probabilities = []
+    for perm in perms:
+        fs = []
+        ps = []
+        for lo in range(0, 1000, 100):
+            f, l = m(test[0][lo : lo + 100, perm], blocked)
+            fs.append(f)
+            ps.append(l.sigmoid())
+        fractions.append(torch.cat(fs))
+        probabilities.append(torch.cat(ps))
+    fs = torch.stack(fractions)
+    ps = torch.stack(probabilities)
+    labels = ps > 0.5
+    truth = test[2].bool()[None]
+    # Recompute identical first inputs twice, with the same batching as primary evaluation.
+    repeat_delta = 0.0
+    for repeat in range(2):
+        for lo in range(0, 1000, 100):
+            f, l = m(test[0][lo : lo + 100], blocked)
+            repeat_delta = max(
+                repeat_delta,
+                float((f - fs[0, lo : lo + 100]).abs().max()),
+                float((l.sigmoid() - ps[0, lo : lo + 100]).abs().max()),
+            )
+    boundary = (test[1] > 0.45) & (test[1] < 0.56)
+    metrics = {
+        "majority_accuracy": float((labels == truth).float().mean()),
+        "majority_accuracy_first_order": float(
+            (labels[0] == truth[0]).float().mean()
+        ),
+        "fraction_mae_percentage_points": float(
+            (fs - test[1][None]).abs().mean() * 100
+        ),
+        "fraction_mae_first_order_pp": float((fs[0] - test[1]).abs().mean() * 100),
+        "max_fraction_order_range_pp": float(
+            (fs.max(0).values - fs.min(0).values).max() * 100
+        ),
+        "max_yes_probability_order_range": float(
+            (ps.max(0).values - ps.min(0).values).max()
+        ),
+        "sets_with_answer_flip": int((labels.any(0) != labels.all(0)).sum()),
+        "test_sets": 1000,
+        "max_identical_repeat_difference": repeat_delta,
+        "boundary_sets": int(boundary.sum()),
+        "boundary_accuracy": float(
+            (labels[:, boundary] == truth[:, boundary]).float().mean()
+        ),
+    }
+    return metrics, fs, ps
+
+
 def main() -> None:
     output_dir = experiment_output("attention_order/tiny_adaptation")
     start = time.time()
@@ -105,36 +195,9 @@ def main() -> None:
     }
     save_json(output_dir / "manifest.json", manifest)
     model = Model()
-
-    def fit(model, blocked, steps, seed):
-        model.train()
-        opt = torch.optim.AdamW(model.parameters(), lr=0.002, weight_decay=0.001)
-        g = torch.Generator().manual_seed(seed)
-        logs = []
-        for step in range(steps):
-            idx = torch.randint(len(train[0]), (64,), generator=g)
-            x, t, y = [a[idx] for a in train]
-            f, logit = model(x, blocked)
-            loss = 20 * F.mse_loss(f, t) + F.binary_cross_entropy_with_logits(logit, y)
-            opt.zero_grad()
-            loss.backward()
-            torch.nn.utils.clip_grad_norm_(model.parameters(), 1)
-            opt.step()
-            if (step + 1) % 100 == 0:
-                logs.append({"step": step + 1, "loss": float(loss.detach())})
-                print(
-                    "train",
-                    blocked,
-                    step + 1,
-                    round(float(loss.detach()), 4),
-                    round(time.time() - start, 1),
-                    flush=True,
-                )
-        return logs
-
-    base_logs = fit(model, False, 500, 81003)
+    base_logs = train_checkpoint(model, train, False, 500, 81003, start)
     base = copy.deepcopy(model).eval()
-    adapt_logs = fit(model, True, 300, 81004)
+    adapt_logs = train_checkpoint(model, train, True, 300, 81004, start)
     adapt = model.eval()
     # Fixed evaluation permutations; never used to select checkpoints.
     g = torch.Generator().manual_seed(81005)
@@ -146,57 +209,8 @@ def main() -> None:
             ("block_without_adaptation", base, True),
             ("block_after_adaptation", adapt, True),
         ]:
-            fractions = []
-            probabilities = []
-            for perm in perms:
-                fs = []
-                ps = []
-                for lo in range(0, 1000, 100):
-                    f, l = m(test[0][lo : lo + 100, perm], blocked)
-                    fs.append(f)
-                    ps.append(l.sigmoid())
-                fractions.append(torch.cat(fs))
-                probabilities.append(torch.cat(ps))
-            fs = torch.stack(fractions)
-            ps = torch.stack(probabilities)
-            labels = ps > 0.5
-            truth = test[2].bool()[None]
-            # Recompute identical first inputs twice, with the same batching as primary evaluation.
-            repeat_delta = 0.0
-            for repeat in range(2):
-                for lo in range(0, 1000, 100):
-                    f, l = m(test[0][lo : lo + 100], blocked)
-                    repeat_delta = max(
-                        repeat_delta,
-                        float((f - fs[0, lo : lo + 100]).abs().max()),
-                        float((l.sigmoid() - ps[0, lo : lo + 100]).abs().max()),
-                    )
-            boundary = (test[1] > 0.45) & (test[1] < 0.56)
-            results[name] = {
-                "majority_accuracy": float((labels == truth).float().mean()),
-                "majority_accuracy_first_order": float(
-                    (labels[0] == truth[0]).float().mean()
-                ),
-                "fraction_mae_percentage_points": float(
-                    (fs - test[1][None]).abs().mean() * 100
-                ),
-                "fraction_mae_first_order_pp": float(
-                    (fs[0] - test[1]).abs().mean() * 100
-                ),
-                "max_fraction_order_range_pp": float(
-                    (fs.max(0).values - fs.min(0).values).max() * 100
-                ),
-                "max_yes_probability_order_range": float(
-                    (ps.max(0).values - ps.min(0).values).max()
-                ),
-                "sets_with_answer_flip": int((labels.any(0) != labels.all(0)).sum()),
-                "test_sets": 1000,
-                "max_identical_repeat_difference": repeat_delta,
-                "boundary_sets": int(boundary.sum()),
-                "boundary_accuracy": float(
-                    (labels[:, boundary] == truth[:, boundary]).float().mean()
-                ),
-            }
+            metrics, fs, ps = evaluate_variant(m, blocked, test, perms)
+            results[name] = metrics
             torch.save(
                 {
                     "fractions": fs,

@@ -106,21 +106,21 @@ class Tiny(nn.Module):
         return dict(zip(names, prob.tolist())), vectors, mass
 
 
-def main() -> None:
-    output_dir = experiment_output("attention_order/block_attention")
-    configure_torch(seed=20261020, num_threads=2)
-    model = Tiny().eval()
-    start = time.time()
+MODES = ["ordinary", "block_global_positions", "block_reset"]
+
+
+def evaluate_modes(model):
+    """Run every (mode, case, order, repeat) trial and collect the rows."""
     rows = []
     with torch.inference_mode():
-        for mode in ["ordinary", "block_global_positions", "block_reset"]:
+        for mode in MODES:
             for ci, e in enumerate(evidence):
                 for order in itertools.permutations(actions):
                     for repeat in range(5):
                         blocks = [("E", e)] + [
                             (a, a + " " + actions[a]) for a in order
                         ]
-                        probs, v, m = model(blocks, mode)
+                        probs, _v, m = model(blocks, mode)
                         rows.append(
                             {
                                 "mode": mode,
@@ -131,8 +131,13 @@ def main() -> None:
                                 "cross_block_max_attention": m,
                             }
                         )
+    return rows
+
+
+def summarize_modes(rows):
+    """Per-mode order/repeat total-variation and cross-block attention stats."""
     summary = {}
-    for mode in ["ordinary", "block_global_positions", "block_reset"]:
+    for mode in MODES:
         vals = []
         reps = []
         flips = 0
@@ -161,7 +166,15 @@ def main() -> None:
                 x["cross_block_max_attention"] for x in rows if x["mode"] == mode
             ),
         }
-    # Change earlier BUY text; CASH must not change under block/reset.
+    return summary
+
+
+def assert_invariance(model, summary):
+    """Isolation test plus the block-reset / ordinary sensitivity assertions.
+
+    Changing earlier BUY text must leave the CASH hidden vector unchanged under
+    block/reset; returns the measured isolation delta for the summary.
+    """
     blocks = [("E", evidence[0])] + [(a, a + " " + actions[a]) for a in actions]
     changed = list(blocks)
     changed[1] = ("BUY", "BUY changed irrelevant description")
@@ -176,6 +189,17 @@ def main() -> None:
     assert isolation < 1e-6
     assert summary["ordinary"]["max_order_tv"] > 1e-5
     assert summary["block_global_positions"]["max_order_tv"] > 1e-5
+    return isolation
+
+
+def main() -> None:
+    output_dir = experiment_output("attention_order/block_attention")
+    configure_torch(seed=20261020, num_threads=2)
+    model = Tiny().eval()
+    start = time.time()
+    rows = evaluate_modes(model)
+    summary = summarize_modes(rows)
+    isolation = assert_invariance(model, summary)
     summary.update(
         parameters=sum(x.numel() for x in model.parameters()),
         layers=2,

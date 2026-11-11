@@ -48,6 +48,76 @@ cases = [
 ]
 
 
+def collect_rows(output_dir, orders, encode, prompted, start):
+    """Evaluate every case/order/repeat, writing outputs.json after each case."""
+    rows = []
+    for case_id, evidence, expected in cases:
+        for oi, order in enumerate(orders):
+            for repeat in range(5):
+                entries = {name: actions[name] for name in order}
+                raw, p = separate(encode, evidence, entries)
+                row = {
+                    "case": case_id,
+                    "expected": expected,
+                    "order": list(order),
+                    "repeat": repeat,
+                    "separate_scores": raw,
+                    "separate_probs": p,
+                }
+                row.update(prompted(evidence, entries))
+                rows.append(row)
+            print(
+                f"{case_id} order {oi + 1}/{len(orders)}: {time.time() - start:.1f}s",
+                flush=True,
+            )
+        save_json(output_dir / "outputs.json", rows)
+    return rows
+
+
+def summarize_invariance(rows, orders, summary_fields):
+    """Per-field order/repeat invariance aggregation plus the sanity controls.
+
+    Builds a per-field block of order-TV / repeat-TV / action-flip / policy-match
+    stats, then asserts the untrained cosine readout is exactly order- and
+    repeat-invariant and records the evidence-sensitivity control.
+    """
+    summary = {}
+    for field in summary_fields:
+        order_tv = []
+        repeat_tv = []
+        flips = 0
+        affected = 0
+        for case_id, _, _ in cases:
+            r = [x for x in rows if x["case"] == case_id]
+            first = [x for x in r if x["repeat"] == 0]
+            affected += len({winner(x[field]) for x in first}) > 1
+            for a, b in itertools.combinations(first, 2):
+                order_tv.append(total_variation(a[field], b[field]))
+                flips += winner(a[field]) != winner(b[field])
+            for oi in range(len(orders)):
+                for a, b in itertools.combinations(r[oi * 5 : (oi + 1) * 5], 2):
+                    repeat_tv.append(total_variation(a[field], b[field]))
+        summary[field] = {
+            "order_pairs": len(order_tv),
+            "mean_order_tv": sum(order_tv) / len(order_tv),
+            "max_order_tv": max(order_tv),
+            "order_action_changes": flips,
+            "affected_cases": affected,
+            "repeat_pairs": len(repeat_tv),
+            "max_repeat_tv": max(repeat_tv),
+            "policy_matches": sum(winner(x[field]) == x["expected"] for x in rows),
+            "runs": len(rows),
+        }
+    assert summary["separate_probs"]["max_order_tv"] == 0
+    assert summary["separate_probs"]["max_repeat_tv"] == 0
+    # Evidence sensitivity control: invariant does not mean a constant representation.
+    summary["separate_evidence_change_max_tv"] = max(
+        total_variation(a["separate_probs"], b["separate_probs"])
+        for a, b in itertools.combinations(rows[::30], 2)
+    )
+    return summary
+
+
 @torch.inference_mode()
 def separate(encode, evidence, entries):
     # Each action is encoded independently; entries never share encoder context.
@@ -101,62 +171,9 @@ def run_experiment(
     }
     save_json(output_dir / "manifest.json", manifest)
 
-    rows = []
-    for case_id, evidence, expected in cases:
-        for oi, order in enumerate(orders):
-            for repeat in range(5):
-                entries = {name: actions[name] for name in order}
-                raw, p = separate(encode, evidence, entries)
-                row = {
-                    "case": case_id,
-                    "expected": expected,
-                    "order": list(order),
-                    "repeat": repeat,
-                    "separate_scores": raw,
-                    "separate_probs": p,
-                }
-                row.update(prompted(evidence, entries))
-                rows.append(row)
-            print(
-                f"{case_id} order {oi + 1}/{len(orders)}: {time.time() - start:.1f}s",
-                flush=True,
-            )
-        save_json(output_dir / "outputs.json", rows)
+    rows = collect_rows(output_dir, orders, encode, prompted, start)
 
-    summary = {}
-    for field in summary_fields:
-        order_tv = []
-        repeat_tv = []
-        flips = 0
-        affected = 0
-        for case_id, _, _ in cases:
-            r = [x for x in rows if x["case"] == case_id]
-            first = [x for x in r if x["repeat"] == 0]
-            affected += len({winner(x[field]) for x in first}) > 1
-            for a, b in itertools.combinations(first, 2):
-                order_tv.append(total_variation(a[field], b[field]))
-                flips += winner(a[field]) != winner(b[field])
-            for oi in range(len(orders)):
-                for a, b in itertools.combinations(r[oi * 5 : (oi + 1) * 5], 2):
-                    repeat_tv.append(total_variation(a[field], b[field]))
-        summary[field] = {
-            "order_pairs": len(order_tv),
-            "mean_order_tv": sum(order_tv) / len(order_tv),
-            "max_order_tv": max(order_tv),
-            "order_action_changes": flips,
-            "affected_cases": affected,
-            "repeat_pairs": len(repeat_tv),
-            "max_repeat_tv": max(repeat_tv),
-            "policy_matches": sum(winner(x[field]) == x["expected"] for x in rows),
-            "runs": len(rows),
-        }
-    assert summary["separate_probs"]["max_order_tv"] == 0
-    assert summary["separate_probs"]["max_repeat_tv"] == 0
-    # Evidence sensitivity control: invariant does not mean a constant representation.
-    summary["separate_evidence_change_max_tv"] = max(
-        total_variation(a["separate_probs"], b["separate_probs"])
-        for a, b in itertools.combinations(rows[::30], 2)
-    )
+    summary = summarize_invariance(rows, orders, summary_fields)
     summary.update(
         elapsed_seconds=time.time() - start,
         parameters=sum(p.numel() for p in model.parameters()),
